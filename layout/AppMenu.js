@@ -21,6 +21,11 @@ const AppMenu = () => {
                     label: 'Products',
                     icon: 'pi pi-fw pi-briefcase',
                     to: '/pages/crud'
+                },
+                {
+                    label: 'Plans',
+                    icon: 'pi pi-fw pi-briefcase',
+                    to: '/plans'
                 }
             ]
         }
