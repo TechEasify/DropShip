@@ -6,7 +6,7 @@ const TokenGenerator = () => {
     const param = router.query;
 
     useEffect(() => {
-        console.log(param);
+        param.shop && console.log(param.shop.toString().split('.')[0]);
         // if (param.shop) {
         //     let shop = param.shop;
         //     let api_key = '24e08c2eb20b126105d9056f24bcf486';
@@ -18,7 +18,7 @@ const TokenGenerator = () => {
 
         //     router.push(install_url);
         // }
-        // param && router.push('https://admin.shopify.com/store/' + param.shop.toString().split('.')[0] + '/apps/tech-dropship');
+        param.shop && router.push('https://admin.shopify.com/store/' + param.shop.toString().split('.')[0] + '/apps/tech-dropship');
     }, [param]);
 
     return <h1>Hello</h1>;
