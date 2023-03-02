@@ -14,7 +14,7 @@ const Store = () => {
             let redirect_uri = 'https://techeasifyreactapp.netlify.app/token-generator/generate';
 
             // Build install/approval URL to redirect to
-            let install_url = 'https://' + shop + '.myshopify.com/admin/oauth/authorize?client_id=' + api_key + '&scope=' + scopes + '&redirect_uri=' + encodeURIComponent(redirect_uri);
+            let install_url = 'https://' + shop + '/admin/oauth/authorize?client_id=' + api_key + '&scope=' + scopes + '&redirect_uri=' + encodeURIComponent(redirect_uri);
 
             router.push(install_url);
         }
