@@ -18,7 +18,7 @@ const TokenGenerator = () => {
 
         //     router.push(install_url);
         // }
-        param.shop && router.push('https://admin.shopify.com/store/' + param.shop.toString().split('.')[0] + '/apps/tech-dropship');
+        param.shop && router.push('https://admin.shopify.com/store/' + param.shop.toString().split('.')[0] + '/apps/dropship-32');
     }, [param]);
 
     return <h1>Hello</h1>;
