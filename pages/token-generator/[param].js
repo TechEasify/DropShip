@@ -18,6 +18,7 @@ const TokenGenerator = () => {
 
         //     router.push(install_url);
         // }
+        param && router.push('/dashboard');
     }, [param]);
 
     return <h1>Hello</h1>;
