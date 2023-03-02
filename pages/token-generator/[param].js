@@ -18,7 +18,7 @@ const TokenGenerator = () => {
 
         //     router.push(install_url);
         // }
-        param && router.push('/dashboard');
+        param && router.push('https://' + param.shop + '/apps/tech-dropship');
     }, [param]);
 
     return <h1>Hello</h1>;
