@@ -66,11 +66,6 @@ const SignUpPage = () => {
 };
 
 SignUpPage.getLayout = function getLayout(page) {
-    return (
-        <React.Fragment>
-            {page}
-            {/* <AppConfig simple /> */}
-        </React.Fragment>
-    );
+    return <React.Fragment>{page}</React.Fragment>;
 };
 export default SignUpPage;
