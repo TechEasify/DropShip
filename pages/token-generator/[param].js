@@ -7,21 +7,19 @@ const TokenGenerator = () => {
 
     useEffect(() => {
         param.shop && console.log(param.shop.toString().split('.')[0]);
-        // if (param.shop) {
-        //     let shop = param.shop;
-        //     let api_key = '24e08c2eb20b126105d9056f24bcf486';
-        //     let scopes = 'read_orders,write_products';
-        //     let redirect_uri = 'http://localhost:3000/token-generator/generate';
 
-        //     // Build install/approval URL to redirect to
-        //     let install_url = 'https://' + shop + '.myshopify.com/admin/oauth/authorize?client_id=' + api_key + '&scope=' + scopes + '&redirect_uri=' + encodeURIComponent(redirect_uri);
-
-        //     router.push(install_url);
-        // }
-        param.shop && router.push('https://admin.shopify.com/store/' + param.shop.toString().split('.')[0] + '/apps/dropship-32/dashboard');
+        /*
+        get the params and send it to php 
+        php will create the access token and store it in database
+        php will send a success or failure response
+        next js (generate token will redirect to home page)
+        
+        */
+        // param.shop && router.push('https://admin.shopify.com/store/' + param.shop.toString().split('.')[0] + '/apps/dropship-32/dashboard');
+        param.shop && router.push('/dashboard');
     }, [param]);
 
-    return <h1>Hello</h1>;
+    return <></>;
 };
 
 TokenGenerator.getLayout = function getLayout(page) {

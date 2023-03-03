@@ -6,13 +6,19 @@ export class LoginService {
         this.contextPath = 'https://62e1182cfa99731d75cdd699.mockapi.io';
     }
 
-    validateLogin(email, password) {
-        return fetch(this.contextPath + '/User?email=' + email + '&password=' + password, { headers: { 'Cache-Control': 'no-cache' } }).then((res) => res);
+    async validateLogin(email, password) {
+        const res = await fetch(this.contextPath + '/User?email=' + email + '&password=' + password, { headers: { 'Cache-Control': 'no-cache' } });
+        return res;
     }
 
-    getCustomersLarge() {
-        return fetch(this.contextPath + '/demo/data/customers-large.json', { headers: { 'Cache-Control': 'no-cache' } })
-            .then((res) => res.json())
-            .then((d) => d.data);
+    async validateAccessToken(token) {
+        const res = await fetch('https://apidropshipping/auth?token=' + token, { headers: { 'Cache-Control': 'no-cache' } });
+        return res;
+    }
+
+    async getCustomersLarge() {
+        const res = await fetch(this.contextPath + '/demo/data/customers-large.json', { headers: { 'Cache-Control': 'no-cache' } });
+        const d = await res.json();
+        return d.data;
     }
 }
