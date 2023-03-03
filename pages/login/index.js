@@ -1,14 +1,14 @@
 import getConfig from 'next/config';
 import { useRouter } from 'next/router';
 import React, { useContext, useEffect, useState } from 'react';
-import AppConfig from '../layout/AppConfig';
+import AppConfig from '../../layout/AppConfig';
 import { Checkbox } from 'primereact/checkbox';
 import { Button } from 'primereact/button';
 import { Password } from 'primereact/password';
-import { LayoutContext } from '../layout/context/layoutcontext';
+import { LayoutContext } from '../../layout/context/layoutcontext';
 import { InputText } from 'primereact/inputtext';
 import { classNames } from 'primereact/utils';
-import { LoginService } from '../demo/service/LoginService';
+import { LoginService } from '../../demo/service/LoginService';
 import Link from 'next/link';
 
 const LoginPage = () => {

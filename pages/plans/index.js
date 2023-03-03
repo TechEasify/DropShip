@@ -2,7 +2,7 @@ import getConfig from 'next/config';
 import { useRouter } from 'next/router';
 import React, { useContext, useEffect, useState } from 'react';
 import { Button } from 'primereact/button';
-import { LayoutContext } from '../layout/context/layoutcontext';
+import { LayoutContext } from '../../layout/context/layoutcontext';
 import { classNames } from 'primereact/utils';
 import Link from 'next/link';
 
