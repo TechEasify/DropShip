@@ -136,7 +136,7 @@ const selectProduct = () => {
 
     const dataviewGridItem = (data) => {
         return (
-            <div className="col-12 md:col-6 xl:col-3">
+            <div className="col-12 md:col-6 xl:col-4">
                 <div className="card m-3 border-1 surface-border shadow-2">
                     <div className="flex flex-wrap gap-2 align-items-center justify-content-between mb-2">
                         <div className="flex align-items-center">
