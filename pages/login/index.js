@@ -71,7 +71,7 @@ const LoginPage = () => {
                             </div>
                             <div className="font-medium text-center">
                                 Don't Have An Account Yet?
-                                <Link href={'/sign-up'}>
+                                <Link href={'/signup'}>
                                     <a className="no-underline ml-2 text-center cursor-pointer" style={{ color: 'var(--primary-color)' }}>
                                         Sign Up
                                     </a>

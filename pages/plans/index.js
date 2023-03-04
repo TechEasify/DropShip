@@ -12,7 +12,7 @@ const Plans = () => {
     const router = useRouter();
     const containerClassName = classNames('surface-ground flex align-items-center justify-content-center min-h-screen min-w-screen overflow-hidden', { 'p-input-filled': layoutConfig.inputStyle === 'filled' });
     return (
-        <div className="surface-ground px-4 py-8 md:px-6 lg:px-8">
+        <div className="surface-ground px-4 py-4 md:px-6 lg:px-8">
             <div className="text-900 font-bold text-6xl mb-4">Set up your store, pick a plan later</div>
             <div className="text-700 text-xl mb-6 line-height-3">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Velit numquam eligendi quos.</div>
 
@@ -114,13 +114,12 @@ const Plans = () => {
     );
 };
 
-Plans.getLayout = function getLayout(page) {
-    return (
-        <React.Fragment>
-            {page}
-            {/* <AppConfig simple /> */}
-        </React.Fragment>
-    );
-};
+// Plans.getLayout = function getLayout(page) {
+//     return (
+//         <React.Fragment>
+//             {page}
+//         </React.Fragment>
+//     );
+// };
 
 export default Plans;

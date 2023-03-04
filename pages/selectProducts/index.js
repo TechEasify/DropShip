@@ -107,7 +107,7 @@ const selectProduct = () => {
 
     const dataviewGridItem = (data) => {
         return (
-            <div className="col-12 lg:col-3">
+            <div className="col-12 md:col-6 xl:col-3">
                 <div className="card m-3 border-1 surface-border shadow-2">
                     <div className="flex flex-wrap gap-2 align-items-center justify-content-between mb-2">
                         <div className="flex align-items-center">
@@ -117,7 +117,7 @@ const selectProduct = () => {
                         {/* <span className={`product-badge status-${data.inventoryStatus.toLowerCase()}`}>{data.inventoryStatus}</span> */}
                     </div>
                     <div className="flex flex-column align-items-center text-center mb-3">
-                        <img src={`${contextPath}/demo/images/product/${data.image}`} alt={data.name} className="shadow-2 my-3 mx-0" />
+                        <img src={`${contextPath}/demo/images/product/${data.image}`} alt={data.name} className="shadow-2 my-3 mx-0 max-w-full" />
                         <Rating value={data.rating} readOnly cancel={false} />
                     </div>
                     <div>
@@ -165,7 +165,7 @@ const selectProduct = () => {
     );
 };
 
-selectProduct.getLayout = function getLayout(page) {
-    return <React.Fragment>{page}</React.Fragment>;
-};
+// selectProduct.getLayout = function getLayout(page) {
+//     return <React.Fragment>{page}</React.Fragment>;
+// };
 export default selectProduct;

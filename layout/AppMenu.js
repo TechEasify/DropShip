@@ -26,6 +26,32 @@ const AppMenu = () => {
                     label: 'Plans',
                     icon: 'pi pi-fw pi-briefcase',
                     to: '/plans'
+                },
+                {
+                    label: 'Select Products',
+                    icon: 'pi pi-fw pi-briefcase',
+                    to: '/selectProducts'
+                },
+                {
+                    label: 'Branding',
+                    icon: 'pi pi-fw pi-briefcase',
+                    to: '/branding'
+                }
+            ]
+        },
+        {
+            label: 'Authentication',
+            icon: 'pi pi-fw pi-lock',
+            items: [
+                {
+                    label: 'Login',
+                    icon: 'pi pi-fw pi-briefcase',
+                    to: '/login'
+                },
+                {
+                    label: 'Sign Up',
+                    icon: 'pi pi-fw pi-briefcase',
+                    to: '/signup'
                 }
             ]
         }
