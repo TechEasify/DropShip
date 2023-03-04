@@ -36,6 +36,11 @@ const AppMenu = () => {
                     label: 'Branding',
                     icon: 'pi pi-fw pi-briefcase',
                     to: '/branding'
+                },
+                {
+                    label: 'Push To Store',
+                    icon: 'pi pi-fw pi-briefcase',
+                    to: '/pushToStore'
                 }
             ]
         },
