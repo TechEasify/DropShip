@@ -41,6 +41,11 @@ const AppMenu = () => {
                     label: 'Push To Store',
                     icon: 'pi pi-fw pi-briefcase',
                     to: '/pushToStore'
+                },
+                {
+                    label: 'Live On Store',
+                    icon: 'pi pi-fw pi-briefcase',
+                    to: '/liveOnStore'
                 }
             ]
         },
