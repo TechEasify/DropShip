@@ -67,31 +67,29 @@ const PushToStore = () => {
                                         <InputTextarea id="personalizedNote" rows="4" placeholder='Add a personalized note for your customers like "Thanks for shopping with us"' />
                                     </div>
                                 </div>
-                                <div className="grid justify-content-between">
-                                    <div className="flex gap-3 mb-2 lg:mb-0">
-                                        <button aria-label="Submit" className="p-button p-component p-button-outlined">
-                                            <span className="p-button-icon p-c p-button-icon-left pi pi-arrow-left"></span>
-                                            <span className="p-button-label p-c">Upload custom label</span>
-                                            <span role="presentation" className="p-ink"></span>
-                                        </button>
-                                        <button aria-label="Submit" className="p-button p-component">
-                                            <span className="p-button-icon p-c p-button-icon-right pi pi-arrow-right"></span>
-                                            <span className="p-button-label p-c">Call for custom label</span>
-                                            <span role="presentation" className="p-ink"></span>
-                                        </button>
-                                    </div>
-                                    <div className="flex gap-3 mb-2 lg:mb-0">
-                                        <button className="p-button p-component p-button-rounded p-button-secondary p-button-outlined p-button-icon-only">
-                                            <span className="p-button-icon p-c pi pi-trash"></span>
-                                            <span className="p-button-label p-c">&nbsp;</span>
-                                            <span role="presentation" className="p-ink"></span>
-                                        </button>
-                                        <button aria-label="Submit" className="p-button p-component">
-                                            <span className="p-button-label p-c">Push to store</span>
-                                            <span role="presentation" className="p-ink"></span>
-                                        </button>
-                                    </div>
-                                </div>
+                            </div>
+                        </div>
+                        <div className="grid justify-content-between">
+                            <div className="flex gap-3 mb-2 lg:mb-0">
+                                <button aria-label="Submit" className="p-button p-component p-button-outlined">
+                                    <span className="p-button-label p-c">Upload custom label</span>
+                                    <span role="presentation" className="p-ink"></span>
+                                </button>
+                                <button aria-label="Submit" className="p-button p-component">
+                                    <span className="p-button-label p-c">Call for custom label</span>
+                                    <span role="presentation" className="p-ink"></span>
+                                </button>
+                            </div>
+                            <div className="flex gap-3 mb-2 lg:mb-0">
+                                <button className="p-button p-component p-button-rounded p-button-secondary p-button-outlined p-button-icon-only">
+                                    <span className="p-button-icon p-c pi pi-trash"></span>
+                                    <span className="p-button-label p-c">&nbsp;</span>
+                                    <span role="presentation" className="p-ink"></span>
+                                </button>
+                                <button aria-label="Submit" className="p-button p-component">
+                                    <span className="p-button-label p-c">Push to store</span>
+                                    <span role="presentation" className="p-ink"></span>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -129,31 +127,29 @@ const PushToStore = () => {
                                         <InputTextarea id="personalizedNote" rows="4" placeholder='Add a personalized note for your customers like "Thanks for shopping with us"' />
                                     </div>
                                 </div>
-                                <div className="grid justify-content-between">
-                                    <div className="flex gap-3 mb-2 lg:mb-0">
-                                        <button aria-label="Submit" className="p-button p-component p-button-outlined">
-                                            <span className="p-button-icon p-c p-button-icon-left pi pi-arrow-left"></span>
-                                            <span className="p-button-label p-c">Upload custom label</span>
-                                            <span role="presentation" className="p-ink"></span>
-                                        </button>
-                                        <button aria-label="Submit" className="p-button p-component">
-                                            <span className="p-button-icon p-c p-button-icon-right pi pi-arrow-right"></span>
-                                            <span className="p-button-label p-c">Call for custom label</span>
-                                            <span role="presentation" className="p-ink"></span>
-                                        </button>
-                                    </div>
-                                    <div className="flex gap-3 mb-2 lg:mb-0">
-                                        <button className="p-button p-component p-button-rounded p-button-secondary p-button-outlined p-button-icon-only">
-                                            <span className="p-button-icon p-c pi pi-trash"></span>
-                                            <span className="p-button-label p-c">&nbsp;</span>
-                                            <span role="presentation" className="p-ink"></span>
-                                        </button>
-                                        <button aria-label="Submit" className="p-button p-component">
-                                            <span className="p-button-label p-c">Push to store</span>
-                                            <span role="presentation" className="p-ink"></span>
-                                        </button>
-                                    </div>
-                                </div>
+                            </div>
+                        </div>
+                        <div className="grid justify-content-between">
+                            <div className="flex gap-3 mb-2 lg:mb-0">
+                                <button aria-label="Submit" className="p-button p-component p-button-outlined">
+                                    <span className="p-button-label p-c">Upload custom label</span>
+                                    <span role="presentation" className="p-ink"></span>
+                                </button>
+                                <button aria-label="Submit" className="p-button p-component">
+                                    <span className="p-button-label p-c">Call for custom label</span>
+                                    <span role="presentation" className="p-ink"></span>
+                                </button>
+                            </div>
+                            <div className="flex gap-3 mb-2 lg:mb-0">
+                                <button className="p-button p-component p-button-rounded p-button-secondary p-button-outlined p-button-icon-only">
+                                    <span className="p-button-icon p-c pi pi-trash"></span>
+                                    <span className="p-button-label p-c">&nbsp;</span>
+                                    <span role="presentation" className="p-ink"></span>
+                                </button>
+                                <button aria-label="Submit" className="p-button p-component">
+                                    <span className="p-button-label p-c">Push to store</span>
+                                    <span role="presentation" className="p-ink"></span>
+                                </button>
                             </div>
                         </div>
                     </div>
