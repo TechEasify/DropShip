@@ -20,7 +20,7 @@ const AppMenu = () => {
                 {
                     label: 'Products',
                     icon: 'pi pi-fw pi-briefcase',
-                    to: '/pages/crud'
+                    to: '/allProducts'
                 },
                 {
                     label: 'Plans',
@@ -57,6 +57,11 @@ const AppMenu = () => {
                     label: 'All Vendors',
                     icon: 'pi pi-fw pi-user',
                     to: '/allVendors'
+                },
+                {
+                    label: 'All Orders',
+                    icon: 'pi pi-fw pi-shopping-bag',
+                    to: '/allOrders'
                 }
             ]
         },
