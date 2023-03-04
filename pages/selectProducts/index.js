@@ -8,6 +8,7 @@ import { OrderList } from 'primereact/orderlist';
 import { ProductService } from '../../demo/service/ProductService';
 import { InputText } from 'primereact/inputtext';
 import getConfig from 'next/config';
+import { Carousel } from 'primereact/carousel';
 
 const selectProduct = () => {
     const listValue = [
@@ -31,7 +32,35 @@ const selectProduct = () => {
     const [sortOrder, setSortOrder] = useState(null);
     const [sortField, setSortField] = useState(null);
     const contextPath = getConfig().publicRuntimeConfig.contextPath;
-
+    const carouselResponsiveOptions = [
+        {
+            breakpoint: '1024px',
+            numVisible: 3,
+            numScroll: 3
+        },
+        {
+            breakpoint: '768px',
+            numVisible: 2,
+            numScroll: 2
+        },
+        {
+            breakpoint: '560px',
+            numVisible: 1,
+            numScroll: 1
+        }
+    ];
+    const carouselItemTemplate = (product) => {
+        return (
+            <div className="border-1 surface-border border-round m-1 text-center py-5">
+                <div className="mb-3">
+                    <img src={`${contextPath}/demo/images/product/${product.image}`} alt={product.name} className="w-6 shadow-2" />
+                </div>
+                <div>
+                    <p className="text-xl p-mb-1">{product.name}</p>
+                </div>
+            </div>
+        );
+    };
     const sortOptions = [
         { label: 'Price High to Low', value: '!price' },
         { label: 'Price Low to High', value: 'price' }
@@ -127,12 +156,12 @@ const selectProduct = () => {
                     <hr />
                     <div className="flex align-items-center justify-content-between">
                         <div>
-                            <div className="text-xl font-semibold">You Pay : ${data.price}</div>
-                            <div className="text-xl font-semibold">You Sell : ${data.price + 12}</div>
+                            <div className="text-l font-semibold">You Pay : ${data.price}</div>
+                            <div className="text-l font-semibold">You Sell : ${data.price + 12}</div>
                         </div>
                         <div>
-                            <div className="text-xl font-semibold">Profit</div>
-                            <div className="text-xl font-semibold text-green-500">${data.price}</div>
+                            <div className="text-l font-semibold">Profit</div>
+                            <div className="text-l font-semibold text-green-500">${data.price}</div>
                         </div>
                         {/* <Button icon="pi pi-shopping-cart" disabled={data.inventoryStatus === 'OUTOFSTOCK'} /> */}
                     </div>
@@ -158,7 +187,10 @@ const selectProduct = () => {
             <div className="col-12">
                 <div className="card">
                     <h5>DataView</h5>
-                    <DataView value={filteredValue || dataViewValue} layout={layout} paginator rows={9} sortOrder={sortOrder} sortField={sortField} itemTemplate={itemTemplate} header={dataViewHeader}></DataView>
+                    <div>
+                        <Carousel value={dataViewValue} numVisible={6} numScroll={3} responsiveOptions={carouselResponsiveOptions} itemTemplate={carouselItemTemplate}></Carousel>
+                    </div>
+                    <DataView value={filteredValue || dataViewValue} layout={layout} paginator rows={12} sortOrder={sortOrder} sortField={sortField} itemTemplate={itemTemplate} header={dataViewHeader}></DataView>
                 </div>
             </div>
         </div>
