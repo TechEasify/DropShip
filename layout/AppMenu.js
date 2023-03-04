@@ -50,6 +50,17 @@ const AppMenu = () => {
             ]
         },
         {
+            label: 'Admin',
+            icon: 'pi pi-fw pi-lock',
+            items: [
+                {
+                    label: 'All Vendors',
+                    icon: 'pi pi-fw pi-user',
+                    to: '/allVendors'
+                }
+            ]
+        },
+        {
             label: 'Authentication',
             icon: 'pi pi-fw pi-lock',
             items: [
