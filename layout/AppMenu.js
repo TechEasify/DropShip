@@ -25,7 +25,19 @@ const AppMenu = () => {
                 {
                     label: 'Plans',
                     icon: 'pi pi-fw pi-briefcase',
-                    to: '/plans'
+                    // to: '/plans'
+                    items: [
+                        {
+                            label: 'Add Plan',
+                            icon: 'pi pi-fw pi-plus',
+                            to: '/planCrud'
+                        },
+                        {
+                            label: 'View Plan',
+                            icon: 'pi pi-fw pi-eye',
+                            to: '/plans'
+                        }
+                    ]
                 },
                 {
                     label: 'Select Products',
