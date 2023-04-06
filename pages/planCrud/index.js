@@ -17,10 +17,10 @@ import { PlanService } from '../../demo/service/PlanService';
 
 const PlanCrud = () => {
     let emptyPlan = {
-        planId: null,
-        planName: '',
-        planDescription: '',
-        planPrice: 0
+        package_id: null,
+        package_name: '',
+        description: '',
+        package_price: 0
     };
 
     const [plans, setPlans] = useState(null);
@@ -37,7 +37,10 @@ const PlanCrud = () => {
 
     useEffect(() => {
         const planService = new PlanService();
-        planService.getPlans().then((data) => setPlans(data));
+        planService.getPlans().then((data) => {
+            console.log(data.data);
+            setPlans(data.data);
+        });
     }, []);
 
     const formatCurrency = (value) => {
@@ -65,26 +68,39 @@ const PlanCrud = () => {
 
     const savePlan = () => {
         setSubmitted(true);
+        const planService = new PlanService();
 
-        if (plan.name.trim()) {
+        if (plan.package_name.trim()) {
             let _plans = [...plans];
             let _plan = { ...plan };
-            if (plan.planId) {
-                const index = findIndexById(plan.planId);
-
-                _plans[index] = _plan;
-                toast.current.show({ severity: 'success', summary: 'Successful', detail: 'Plan Updated', life: 3000 });
+            if (plan.package_id) {
+                planService.savePlan(_plan).then((res) => {
+                    console.log(res);
+                    if (res.status == 200) {
+                        const index = findIndexById(plan.package_id);
+                        _plans[index] = _plan;
+                        setPlans(_plans);
+                        setPlanDialog(false);
+                        setPlan(emptyPlan);
+                        toast.current.show({ severity: 'success', summary: 'Successful', detail: 'Plan Updated', life: 3000 });
+                    } else {
+                        toast.current.show({ severity: 'error', summary: 'Error', detail: 'Plan not Updated', life: 3000 });
+                    }
+                });
             } else {
-                _plan.planId = createId();
-                // _plan.code = createId();
-                // _plan.image = 'plan-placeholder.svg';
-                _plans.push(_plan);
-                toast.current.show({ severity: 'success', summary: 'Successful', detail: 'Plan Created', life: 3000 });
+                planService.savePlan(_plan).then((res) => {
+                    console.log(res);
+                    if (res.status == 200) {
+                        _plans.push(_plan);
+                        setPlans(_plans);
+                        setPlanDialog(false);
+                        setPlan(emptyPlan);
+                        toast.current.show({ severity: 'success', summary: 'Successful', detail: 'Plan Created', life: 3000 });
+                    } else {
+                        toast.current.show({ severity: 'error', summary: 'Error', detail: 'Plan not Created', life: 3000 });
+                    }
+                });
             }
-
-            setPlans(_plans);
-            setPlanDialog(false);
-            setPlan(emptyPlan);
         }
     };
 
@@ -99,17 +115,26 @@ const PlanCrud = () => {
     };
 
     const deletePlan = () => {
-        let _plans = plans.filter((val) => val.planId !== plan.planId);
-        setPlans(_plans);
-        setDeletePlanDialog(false);
-        setPlan(emptyPlan);
-        toast.current.show({ severity: 'success', summary: 'Successful', detail: 'Plan Deleted', life: 3000 });
+        const planService = new PlanService();
+
+        planService.deletePlan(plan.package_id).then((res) => {
+            console.log(res);
+            if (res.status == 200) {
+                let _plans = plans.filter((val) => val.package_id !== plan.package_id);
+                setPlans(_plans);
+                setDeletePlanDialog(false);
+                setPlan(emptyPlan);
+                toast.current.show({ severity: 'success', summary: 'Successful', detail: 'Plan Deleted', life: 3000 });
+            } else {
+                toast.current.show({ severity: 'error', summary: 'Error', detail: 'Plan not Deleted', life: 3000 });
+            }
+        });
     };
 
-    const findIndexById = (planId) => {
+    const findIndexById = (package_id) => {
         let index = -1;
         for (let i = 0; i < plans.length; i++) {
-            if (plans[i].planId === planId) {
+            if (plans[i].package_id === package_id) {
                 index = i;
                 break;
             }
@@ -118,14 +143,14 @@ const PlanCrud = () => {
         return index;
     };
 
-    const createId = () => {
-        let id = '';
-        let chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-        for (let i = 0; i < 5; i++) {
-            id += chars.charAt(Math.floor(Math.random() * chars.length));
-        }
-        return id;
-    };
+    // const createId = () => {
+    //     let id = '';
+    //     let chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    //     for (let i = 0; i < 5; i++) {
+    //         id += chars.charAt(Math.floor(Math.random() * chars.length));
+    //     }
+    //     return id;
+    // };
 
     const exportCSV = () => {
         dt.current.exportCSV();
@@ -135,13 +160,13 @@ const PlanCrud = () => {
         setDeletePlansDialog(true);
     };
 
-    const deleteSelectedPlans = () => {
-        let _plans = plans.filter((val) => !selectedPlans.includes(val));
-        setPlans(_plans);
-        setDeletePlansDialog(false);
-        setSelectedPlans(null);
-        toast.current.show({ severity: 'success', summary: 'Successful', detail: 'Plans Deleted', life: 3000 });
-    };
+    // const deleteSelectedPlans = () => {
+    //     let _plans = plans.filter((val) => !selectedPlans.includes(val));
+    //     setPlans(_plans);
+    //     setDeletePlansDialog(false);
+    //     setSelectedPlans(null);
+    //     toast.current.show({ severity: 'success', summary: 'Successful', detail: 'Plans Deleted', life: 3000 });
+    // };
 
     // const onCategoryChange = (e) => {
     //     let _plan = { ...plan };
@@ -189,7 +214,7 @@ const PlanCrud = () => {
         return (
             <>
                 <span className="p-column-title">Code</span>
-                {rowData.code}
+                {rowData.package_id}
             </>
         );
     };
@@ -198,7 +223,7 @@ const PlanCrud = () => {
         return (
             <>
                 <span className="p-column-title">Name</span>
-                {rowData.planName}
+                {rowData.package_name}
             </>
         );
     };
@@ -207,7 +232,7 @@ const PlanCrud = () => {
         return (
             <>
                 <span className="p-column-title">Description</span>
-                {rowData.planDescription}
+                {rowData.description}
             </>
         );
     };
@@ -225,7 +250,7 @@ const PlanCrud = () => {
         return (
             <>
                 <span className="p-column-title">Price</span>
-                {formatCurrency(rowData.planPrice)}
+                {formatCurrency(rowData.package_price)}
             </>
         );
     };
@@ -291,7 +316,7 @@ const PlanCrud = () => {
     const deletePlansDialogFooter = (
         <>
             <Button label="No" icon="pi pi-times" className="p-button-text" onClick={hideDeletePlansDialog} />
-            <Button label="Yes" icon="pi pi-check" className="p-button-text" onClick={deleteSelectedPlans} />
+            {/* <Button label="Yes" icon="pi pi-check" className="p-button-text" onClick={deleteSelectedPlans} /> */}
         </>
     );
 
@@ -336,12 +361,12 @@ const PlanCrud = () => {
                         {/* {plan.image && <img src={`${contextPath}/demo/images/plan/${plan.image}`} alt={plan.image} width="150" className="mt-0 mx-auto mb-5 block shadow-2" />} */}
                         <div className="field">
                             <label htmlFor="name">Name</label>
-                            <InputText id="name" value={plan.planName} onChange={(e) => onInputChange(e, 'planName')} required autoFocus className={classNames({ 'p-invalid': submitted && !plan.planName })} />
-                            {submitted && !plan.planName && <small className="p-invalid">Name is required.</small>}
+                            <InputText id="name" value={plan.package_name} onChange={(e) => onInputChange(e, 'package_name')} required autoFocus className={classNames({ 'p-invalid': submitted && !plan.package_name })} />
+                            {submitted && !plan.package_name && <small className="p-invalid">Name is required.</small>}
                         </div>
                         <div className="field">
                             <label htmlFor="description">Description</label>
-                            <InputTextarea id="description" value={plan.planDescription} onChange={(e) => onInputChange(e, 'planDescription')} required rows={3} cols={20} />
+                            <InputTextarea id="description" value={plan.description} onChange={(e) => onInputChange(e, 'description')} required rows={3} cols={20} />
                         </div>
 
                         {/* <div className="field">
@@ -369,7 +394,7 @@ const PlanCrud = () => {
                         <div className="formgrid grid">
                             <div className="field col">
                                 <label htmlFor="price">Price</label>
-                                <InputNumber id="price" value={plan.planPrice} onValueChange={(e) => onInputNumberChange(e, 'planPrice')} mode="currency" currency="USD" locale="en-US" />
+                                <InputNumber id="price" value={plan.package_price} onValueChange={(e) => onInputNumberChange(e, 'package_price')} mode="currency" currency="USD" locale="en-US" />
                             </div>
                             {/* <div className="field col">
                                 <label htmlFor="quantity">Quantity</label>
@@ -383,7 +408,7 @@ const PlanCrud = () => {
                             <i className="pi pi-exclamation-triangle mr-3" style={{ fontSize: '2rem' }} />
                             {plan && (
                                 <span>
-                                    Are you sure you want to delete <b>{plan.planName}</b>?
+                                    Are you sure you want to delete <b>{plan.package_name}</b>?
                                 </span>
                             )}
                         </div>
