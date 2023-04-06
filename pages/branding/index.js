@@ -62,23 +62,53 @@ const Branding = () => {
                         <p className="text-700 text-l mb-3">Set up and preview your Branded Invoice in this section.</p>
                         <h5>Brand Information</h5>
                         <div className="p-fluid formgrid grid">
-                            <div className="field mb-5 col-12">
+                            <div className="field mb-5 col-4">
                                 <label htmlFor="storeInformation">Store Information</label>
                                 <InputText id="storeInformation" type="text" placeholder="Brand Name" />
                             </div>
-                            <div className="field mb-5 col-12 md:col-6">
-                                <label htmlFor="contactEmail">Contact Email</label>
-                                <InputText id="contactEmail" type="text" placeholder="brandname@mail.com" />
-                            </div>
-                            <div className="field mb-5 col-12 md:col-6">
+                            <div className="field mb-5 col-12 md:col-4">
                                 <label htmlFor="websiteUrl">Website URL</label>
                                 <InputText id="websiteUrl" type="text" placeholder="Enter website URL" />
+                            </div>
+                            <div className="field mb-5 col-12 md:col-4">
+                                <label htmlFor="platform">Platform</label>
+                                <InputText id="platform" type="text" placeholder="Preferred platform" />
+                            </div>
+                            <div className="field mb-5 col-12 md:col-6">
+                                <label htmlFor="customerServiceEmail">Customer Service Email</label>
+                                <InputText id="customerServiceEmail" type="text" placeholder="brandname@mail.com" />
+                            </div>
+                            <div className="field mb-5 col-12 md:col-6">
+                                <label htmlFor="customerServicePhone">Customer Service Phone</label>
+                                <InputText id="customerServicePhone" type="tel" placeholder="9999999999" />
+                            </div>
+                            <div className="field mb-5 col-12 md:col-4">
+                                <label htmlFor="facebookPage">Facebook Page</label>
+                                <div className="p-inputgroup">
+                                    <span className="p-inputgroup-addon">http://facebook.com/</span>
+                                    <InputText id="facebookPage" type="url" placeholder="brandname" />
+                                </div>
+                            </div>
+                            <div className="field mb-5 col-12 md:col-4">
+                                <label htmlFor="twitterHandle">Twitter Handle</label>
+                                <div className="p-inputgroup">
+                                    <span className="p-inputgroup-addon">http://twitter.com/</span>
+                                    <InputText id="twitterHandle" type="url" placeholder="brandname" />
+                                </div>
+                            </div>
+                            <div className="field mb-5 col-12 md:col-4">
+                                <label htmlFor="instagramPage">Instagram Page</label>
+                                <div className="p-inputgroup">
+                                    <span className="p-inputgroup-addon">http://instagram.com/</span>
+                                    <InputText id="instagramPage" type="url" placeholder="brandname" />
+                                </div>
                             </div>
                             <div className="field mb-5 col-12">
                                 <label htmlFor="personalizedNote">Personalized Note To Customer (Optional)</label>
                                 <InputTextarea id="personalizedNote" rows="4" placeholder='Add a personalized note for your customers like "Thanks for shopping with us"' />
                             </div>
                             <div className="field mb-5 col-12">
+                                <label htmlFor="personalizedNote">Add a Brand Logo</label>
                                 <FileUpload name="demo[]" url="./upload.php" onUpload={onUpload} multiple accept="image/*" maxFileSize={1000000} />
                             </div>
                             <div className="mb-5 col-12">
