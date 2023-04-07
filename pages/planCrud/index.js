@@ -20,7 +20,13 @@ const PlanCrud = () => {
         package_id: null,
         package_name: '',
         description: '',
-        package_price: 0
+        is_popular: 0,
+        max_products: 0,
+        has_personalized_branding: 0,
+        has_branded_invoicing: 0,
+        can_customize_product_images: 0,
+        monthly_price: 0,
+        annual_price: 0
     };
 
     const [plans, setPlans] = useState(null);
@@ -143,15 +149,6 @@ const PlanCrud = () => {
         return index;
     };
 
-    // const createId = () => {
-    //     let id = '';
-    //     let chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    //     for (let i = 0; i < 5; i++) {
-    //         id += chars.charAt(Math.floor(Math.random() * chars.length));
-    //     }
-    //     return id;
-    // };
-
     const exportCSV = () => {
         dt.current.exportCSV();
     };
@@ -159,20 +156,6 @@ const PlanCrud = () => {
     const confirmDeleteSelected = () => {
         setDeletePlansDialog(true);
     };
-
-    // const deleteSelectedPlans = () => {
-    //     let _plans = plans.filter((val) => !selectedPlans.includes(val));
-    //     setPlans(_plans);
-    //     setDeletePlansDialog(false);
-    //     setSelectedPlans(null);
-    //     toast.current.show({ severity: 'success', summary: 'Successful', detail: 'Plans Deleted', life: 3000 });
-    // };
-
-    // const onCategoryChange = (e) => {
-    //     let _plan = { ...plan };
-    //     _plan['category'] = e.value;
-    //     setPlan(_plan);
-    // };
 
     const onInputChange = (e, name) => {
         const val = (e.target && e.target.value) || '';
@@ -210,16 +193,16 @@ const PlanCrud = () => {
         );
     };
 
-    const codeBodyTemplate = (rowData) => {
+    const packageIdBodyTemplate = (rowData) => {
         return (
             <>
-                <span className="p-column-title">Code</span>
+                <span className="p-column-title">ID</span>
                 {rowData.package_id}
             </>
         );
     };
 
-    const nameBodyTemplate = (rowData) => {
+    const packageNameBodyTemplate = (rowData) => {
         return (
             <>
                 <span className="p-column-title">Name</span>
@@ -237,50 +220,67 @@ const PlanCrud = () => {
         );
     };
 
-    // const imageBodyTemplate = (rowData) => {
-    //     return (
-    //         <>
-    //             <span className="p-column-title">Image</span>
-    //             <img src={`${contextPath}/demo/images/plan/${rowData.image}`} alt={rowData.image} className="shadow-2" width="100" />
-    //         </>
-    //     );
-    // };
-
-    const priceBodyTemplate = (rowData) => {
+    const isPopularBodyTemplate = (rowData) => {
         return (
             <>
-                <span className="p-column-title">Price</span>
-                {formatCurrency(rowData.package_price)}
+                <span className="p-column-title">Popular</span>
+                {rowData.is_popular}
             </>
         );
     };
 
-    // const categoryBodyTemplate = (rowData) => {
-    //     return (
-    //         <>
-    //             <span className="p-column-title">Category</span>
-    //             {rowData.category}
-    //         </>
-    //     );
-    // };
+    const maxProductsBodyTemplate = (rowData) => {
+        return (
+            <>
+                <span className="p-column-title">Max Products</span>
+                {rowData.max_products}
+            </>
+        );
+    };
 
-    // const ratingBodyTemplate = (rowData) => {
-    //     return (
-    //         <>
-    //             <span className="p-column-title">Reviews</span>
-    //             <Rating value={rowData.rating} readOnly cancel={false} />
-    //         </>
-    //     );
-    // };
+    const hasPersonalizedBrandingBodyTemplate = (rowData) => {
+        return (
+            <>
+                <span className="p-column-title">Personalised Branding</span>
+                {rowData.has_personalized_branding}
+            </>
+        );
+    };
 
-    // const statusBodyTemplate = (rowData) => {
-    //     return (
-    //         <>
-    //             <span className="p-column-title">Status</span>
-    //             <span className={`plan-badge status-${rowData.inventoryStatus.toLowerCase()}`}>{rowData.inventoryStatus}</span>
-    //         </>
-    //     );
-    // };
+    const hasBrandedInvoicingBodyTemplate = (rowData) => {
+        return (
+            <>
+                <span className="p-column-title">Branded Invoiceing</span>
+                {rowData.has_branded_invoicing}
+            </>
+        );
+    };
+
+    const canCustomizeProductImagesBodyTemplate = (rowData) => {
+        return (
+            <>
+                <span className="p-column-title">Customization</span>
+                {rowData.can_customize_product_images}
+            </>
+        );
+    };
+
+    const monthlyPriceBodyTemplate = (rowData) => {
+        return (
+            <>
+                <span className="p-column-title">Monthly Price</span>
+                {formatCurrency(rowData.monthly_price)}
+            </>
+        );
+    };
+    const annualPriceBodyTemplate = (rowData) => {
+        return (
+            <>
+                <span className="p-column-title">Annual Price</span>
+                {formatCurrency(rowData.annual_price)}
+            </>
+        );
+    };
 
     const actionBodyTemplate = (rowData) => {
         return (
@@ -345,15 +345,18 @@ const PlanCrud = () => {
                         responsiveLayout="scroll"
                         scrollable
                     >
-                        <Column selectionMode="multiple" headerStyle={{ width: '2rem' }}></Column>
-                        <Column field="code" header="Code" sortable body={codeBodyTemplate}></Column>
-                        <Column field="name" header="Name" sortable body={nameBodyTemplate}></Column>
+                        {/* <Column selectionMode="multiple" headerStyle={{ width: '2rem' }}></Column> */}
+                        <Column field="package_id" header="ID" sortable body={packageIdBodyTemplate}></Column>
+                        <Column field="package_name" header="Name" sortable body={packageNameBodyTemplate}></Column>
                         <Column field="description" header="Description" sortable body={descriptionBodyTemplate}></Column>
-                        {/* <Column header="Image" body={imageBodyTemplate}></Column> */}
-                        <Column field="price" header="Price" body={priceBodyTemplate} sortable></Column>
-                        {/* <Column field="category" header="Category" sortable body={categoryBodyTemplate}></Column> */}
-                        {/* <Column field="rating" header="Reviews" body={ratingBodyTemplate} sortable></Column> */}
-                        {/* <Column field="inventoryStatus" header="Status" body={statusBodyTemplate} sortable></Column> */}
+                        <Column field="is_popular" header="Popular" sortable body={isPopularBodyTemplate}></Column>
+                        <Column field="max_products" header="Max Products" sortable body={maxProductsBodyTemplate}></Column>
+                        <Column field="has_personalized_branding" header="Personalized Branding" sortable body={hasPersonalizedBrandingBodyTemplate}></Column>
+                        <Column field="has_branded_invoicing" header="Branded Invoicing" sortable body={hasBrandedInvoicingBodyTemplate}></Column>
+                        <Column field="can_customize_product_images" header="Image Customization" sortable body={canCustomizeProductImagesBodyTemplate}></Column>
+                        <Column field="monthly_price" header="Monthly Price" sortable body={monthlyPriceBodyTemplate}></Column>
+                        <Column field="annual_price" header="Annual Price" sortable body={annualPriceBodyTemplate}></Column>
+
                         <Column field="Actions" header="Actions" body={actionBodyTemplate} frozen={true} alignFrozen="right"></Column>
                     </DataTable>
 
