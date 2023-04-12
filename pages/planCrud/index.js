@@ -7,6 +7,7 @@ import { FileUpload } from 'primereact/fileupload';
 import { InputNumber } from 'primereact/inputnumber';
 import { InputText } from 'primereact/inputtext';
 import { InputTextarea } from 'primereact/inputtextarea';
+import { InputSwitch } from 'primereact/inputswitch';
 import { RadioButton } from 'primereact/radiobutton';
 import { Rating } from 'primereact/rating';
 import { Toast } from 'primereact/toast';
@@ -20,13 +21,15 @@ const PlanCrud = () => {
         package_id: null,
         package_name: '',
         description: '',
-        is_popular: 0,
+        is_popular: false,
         max_products: 0,
         has_personalized_branding: 0,
         has_branded_invoicing: 0,
         can_customize_product_images: 0,
-        monthly_price: 0,
-        annual_price: 0
+        amount: 0,
+        created_at: 0,
+        updated_at: 0,
+        trial_period_days: 0
     };
 
     const [plans, setPlans] = useState(null);
@@ -157,6 +160,18 @@ const PlanCrud = () => {
         setDeletePlansDialog(true);
     };
 
+    // const onCategoryChange = (e) => {
+    //     let _plan = { ...plan };
+    //     _plan['category'] = e.value;
+    //     setPlan(_plan);
+    // };
+
+    const onDurationChange = (e) => {
+        let _plan = { ...plan };
+        _plan['duration'] = e.value;
+        setPlan(_plan);
+    };
+
     const onInputChange = (e, name) => {
         const val = (e.target && e.target.value) || '';
         let _plan = { ...plan };
@@ -265,19 +280,35 @@ const PlanCrud = () => {
         );
     };
 
-    const monthlyPriceBodyTemplate = (rowData) => {
+    const amountBodyTemplate = (rowData) => {
         return (
             <>
-                <span className="p-column-title">Monthly Price</span>
-                {formatCurrency(rowData.monthly_price)}
+                <span className="p-column-title">Amount</span>
+                {formatCurrency(rowData.amount)}
             </>
         );
     };
-    const annualPriceBodyTemplate = (rowData) => {
+    const createdAtBodyTemplate = (rowData) => {
         return (
             <>
-                <span className="p-column-title">Annual Price</span>
-                {formatCurrency(rowData.annual_price)}
+                <span className="p-column-title">Created At</span>
+                {formatCurrency(rowData.created_at)}
+            </>
+        );
+    };
+    const updatedAtBodyTemplate = (rowData) => {
+        return (
+            <>
+                <span className="p-column-title">Updated At</span>
+                {formatCurrency(rowData.updated_at)}
+            </>
+        );
+    };
+    const trialPeriodDaysBodyTemplate = (rowData) => {
+        return (
+            <>
+                <span className="p-column-title">Trial Period Days</span>
+                {formatCurrency(rowData.trial_period_days)}
             </>
         );
     };
@@ -354,8 +385,10 @@ const PlanCrud = () => {
                         <Column field="has_personalized_branding" header="Personalized Branding" sortable body={hasPersonalizedBrandingBodyTemplate}></Column>
                         <Column field="has_branded_invoicing" header="Branded Invoicing" sortable body={hasBrandedInvoicingBodyTemplate}></Column>
                         <Column field="can_customize_product_images" header="Image Customization" sortable body={canCustomizeProductImagesBodyTemplate}></Column>
-                        <Column field="monthly_price" header="Monthly Price" sortable body={monthlyPriceBodyTemplate}></Column>
-                        <Column field="annual_price" header="Annual Price" sortable body={annualPriceBodyTemplate}></Column>
+                        <Column field="amount" header="Amount" sortable body={amountBodyTemplate}></Column>
+                        <Column field="created_at" header="Created At" sortable body={createdAtBodyTemplate}></Column>
+                        <Column field="updated_at" header="Updated At" sortable body={updatedAtBodyTemplate}></Column>
+                        <Column field="trial_period_days" header="Trial Days" sortable body={trialPeriodDaysBodyTemplate}></Column>
 
                         <Column field="Actions" header="Actions" body={actionBodyTemplate} frozen={true} alignFrozen="right"></Column>
                     </DataTable>
@@ -363,41 +396,47 @@ const PlanCrud = () => {
                     <Dialog visible={planDialog} style={{ width: '450px' }} header="Plan Details" modal className="p-fluid" footer={planDialogFooter} onHide={hideDialog}>
                         {/* {plan.image && <img src={`${contextPath}/demo/images/plan/${plan.image}`} alt={plan.image} width="150" className="mt-0 mx-auto mb-5 block shadow-2" />} */}
                         <div className="field">
-                            <label htmlFor="name">Name</label>
-                            <InputText id="name" value={plan.package_name} onChange={(e) => onInputChange(e, 'package_name')} required autoFocus className={classNames({ 'p-invalid': submitted && !plan.package_name })} />
-                            {submitted && !plan.package_name && <small className="p-invalid">Name is required.</small>}
+                            <label htmlFor="packageName">Package Name</label>
+                            <InputText id="packageName" value={plan.package_name} onChange={(e) => onInputChange(e, 'package_name')} required autoFocus className={classNames({ 'p-invalid': submitted && !plan.package_name })} />
+                            {submitted && !plan.package_name && <small className="p-invalid">Package Name is required.</small>}
                         </div>
                         <div className="field">
                             <label htmlFor="description">Description</label>
                             <InputTextarea id="description" value={plan.description} onChange={(e) => onInputChange(e, 'description')} required rows={3} cols={20} />
                         </div>
-
-                        {/* <div className="field">
-                            <label className="mb-3">Category</label>
+                        <div className="field">
+                            <label className="mb-3">Duration</label>
                             <div className="formgrid grid">
                                 <div className="field-radiobutton col-6">
-                                    <RadioButton inputId="category1" name="category" value="Accessories" onChange={onCategoryChange} checked={plan.category === 'Accessories'} />
-                                    <label htmlFor="category1">Accessories</label>
+                                    <RadioButton inputId="duration1" name="duration" value="Month" onChange={onDurationChange} checked={plan.duration === 'Month'} />
+                                    <label htmlFor="duration1">Month</label>
                                 </div>
                                 <div className="field-radiobutton col-6">
-                                    <RadioButton inputId="category2" name="category" value="Clothing" onChange={onCategoryChange} checked={plan.category === 'Clothing'} />
-                                    <label htmlFor="category2">Clothing</label>
-                                </div>
-                                <div className="field-radiobutton col-6">
-                                    <RadioButton inputId="category3" name="category" value="Electronics" onChange={onCategoryChange} checked={plan.category === 'Electronics'} />
-                                    <label htmlFor="category3">Electronics</label>
-                                </div>
-                                <div className="field-radiobutton col-6">
-                                    <RadioButton inputId="category4" name="category" value="Fitness" onChange={onCategoryChange} checked={plan.category === 'Fitness'} />
-                                    <label htmlFor="category4">Fitness</label>
+                                    <RadioButton inputId="duration2" name="duration" value="Year" onChange={onDurationChange} checked={plan.duration === 'Year'} />
+                                    <label htmlFor="duration2">Year</label>
                                 </div>
                             </div>
-                        </div> */}
-
+                        </div>
+                        <div className="field">
+                            <label htmlFor="packageTrialPeriodDays">Trial Period Days</label>
+                            <InputNumber
+                                id="packageTrialPeriodDays"
+                                value={plan.trial_period_days}
+                                onChange={(e) => onInputChange(e, 'trial_period_days')}
+                                required
+                                autoFocus
+                                className={classNames({ 'p-invalid': submitted && !plan.trial_period_days })}
+                            />
+                            {submitted && !plan.trial_period_days && <small className="p-invalid">Trial Days is required.</small>}
+                        </div>
+                        <div className="field">
+                            <label htmlFor="popular">Popular</label>
+                            <InputSwitch id="popular" name="is_popular" className="block" checked={plan.is_popular} onChange={(e) => onInputNumberChange(e, 'is_popular')} />
+                        </div>
                         <div className="formgrid grid">
                             <div className="field col">
                                 <label htmlFor="price">Price</label>
-                                <InputNumber id="price" value={plan.package_price} onValueChange={(e) => onInputNumberChange(e, 'package_price')} mode="currency" currency="USD" locale="en-US" />
+                                {/* <InputNumber id="price" value={plan.package_price} onValueChange={(e) => onInputNumberChange(e, 'package_price')} mode="currency" currency="USD" locale="en-US" /> */}
                             </div>
                             {/* <div className="field col">
                                 <label htmlFor="quantity">Quantity</label>
