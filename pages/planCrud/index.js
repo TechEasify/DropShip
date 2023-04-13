@@ -431,9 +431,8 @@ const PlanCrud = () => {
                             <InputNumber
                                 id="packageTrialPeriodDays"
                                 value={plan.trial_period_days}
-                                onChange={(e) => onInputChange(e, 'trial_period_days')}
-                                required
-                                autoFocus
+                                onValueChange={(e) => onInputChange(e, 'trial_period_days')}
+                                name="trial_period_days"
                                 className={classNames({ 'p-invalid': submitted && !plan.trial_period_days })}
                             />
                             {submitted && !plan.trial_period_days && <small className="p-invalid">Trial Days is required.</small>}
