@@ -234,6 +234,14 @@ const PlanCrud = () => {
             </>
         );
     };
+    const durationBodyTemplate = (rowData) => {
+        return (
+            <>
+                <span className="p-column-title">Duration</span>
+                {rowData.duration}
+            </>
+        );
+    };
 
     const isPopularBodyTemplate = (rowData) => {
         return (
@@ -380,6 +388,7 @@ const PlanCrud = () => {
                         <Column field="package_id" header="ID" sortable body={packageIdBodyTemplate}></Column>
                         <Column field="package_name" header="Name" sortable body={packageNameBodyTemplate}></Column>
                         <Column field="description" header="Description" sortable body={descriptionBodyTemplate}></Column>
+                        <Column field="duration" header="Duration" sortable body={durationBodyTemplate}></Column>
                         <Column field="is_popular" header="Popular" sortable body={isPopularBodyTemplate}></Column>
                         <Column field="max_products" header="Max Products" sortable body={maxProductsBodyTemplate}></Column>
                         <Column field="has_personalized_branding" header="Personalized Branding" sortable body={hasPersonalizedBrandingBodyTemplate}></Column>
@@ -430,18 +439,32 @@ const PlanCrud = () => {
                             {submitted && !plan.trial_period_days && <small className="p-invalid">Trial Days is required.</small>}
                         </div>
                         <div className="field">
-                            <label htmlFor="popular">Popular</label>
-                            <InputSwitch id="popular" name="is_popular" className="block" checked={plan.is_popular} onChange={(e) => onInputNumberChange(e, 'is_popular')} />
+                            <label htmlFor="maxProducts">Max Products</label>
+                            <InputNumber id="maxProducts" value={plan.max_products} onValueChange={(e) => onInputNumberChange(e, 'max_products')} min={0} />
                         </div>
                         <div className="formgrid grid">
                             <div className="field col">
-                                <label htmlFor="price">Price</label>
-                                {/* <InputNumber id="price" value={plan.package_price} onValueChange={(e) => onInputNumberChange(e, 'package_price')} mode="currency" currency="USD" locale="en-US" /> */}
+                                <label htmlFor="hasPersonalizedBranding">Personalized Branding</label>
+                                <InputSwitch id="hasPersonalizedBranding" name="has_personalized_branding" className="block" checked={plan.has_personalized_branding} onChange={(e) => onInputNumberChange(e, 'has_personalized_branding')} />
                             </div>
-                            {/* <div className="field col">
-                                <label htmlFor="quantity">Quantity</label>
-                                <InputNumber id="quantity" value={plan.quantity} onValueChange={(e) => onInputNumberChange(e, 'quantity')} integeronly />
-                            </div> */}
+                            <div className="field col">
+                                <label htmlFor="hasBrandedInvoicing">Branded Invoicing</label>
+                                <InputSwitch id="hasBrandedInvoicing" name="has_branded_invoicing" className="block" checked={plan.has_branded_invoicing} onChange={(e) => onInputNumberChange(e, 'has_branded_invoicing')} />
+                            </div>
+                        </div>
+                        <div className="formgrid grid">
+                            <div className="field col">
+                                <label htmlFor="popular">Popular</label>
+                                <InputSwitch id="popular" name="is_popular" className="block" checked={plan.is_popular} onChange={(e) => onInputNumberChange(e, 'is_popular')} />
+                            </div>
+                            <div className="field col">
+                                <label htmlFor="canCustomizeProductImages">Customize Product Images</label>
+                                <InputSwitch id="canCustomizeProductImages" name="can_customize_product_images" className="block" checked={plan.can_customize_product_images} onChange={(e) => onInputNumberChange(e, 'can_customize_product_images')} />
+                            </div>
+                        </div>
+                        <div className="field">
+                            <label htmlFor="amount">Amount</label>
+                            <InputNumber id="amount" value={plan.amount} onValueChange={(e) => onInputNumberChange(e, 'amount')} min={0} />
                         </div>
                     </Dialog>
 
