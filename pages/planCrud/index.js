@@ -21,7 +21,7 @@ const PlanCrud = () => {
         package_id: null,
         package_name: '',
         description: '',
-        is_popular: false,
+        is_popular: 0,
         max_products: 0,
         has_personalized_branding: 0,
         has_branded_invoicing: 0,
@@ -182,6 +182,14 @@ const PlanCrud = () => {
 
     const onInputNumberChange = (e, name) => {
         const val = e.value || 0;
+        let _plan = { ...plan };
+        _plan[`${name}`] = val;
+
+        setPlan(_plan);
+    };
+
+    const onInputSwitchChange = (e, name) => {
+        const val = e.target && e.target.value ? 1 : 0;
         let _plan = { ...plan };
         _plan[`${name}`] = val;
 
@@ -402,7 +410,7 @@ const PlanCrud = () => {
                         <Column field="Actions" header="Actions" body={actionBodyTemplate} frozen={true} alignFrozen="right"></Column>
                     </DataTable>
 
-                    <Dialog visible={planDialog} style={{ width: '450px' }} header="Plan Details" modal className="p-fluid" footer={planDialogFooter} onHide={hideDialog}>
+                    <Dialog visible={planDialog} style={{ width: '700px' }} header="Plan Details" modal className="p-fluid" footer={planDialogFooter} onHide={hideDialog}>
                         {/* {plan.image && <img src={`${contextPath}/demo/images/plan/${plan.image}`} alt={plan.image} width="150" className="mt-0 mx-auto mb-5 block shadow-2" />} */}
                         <div className="field">
                             <label htmlFor="packageName">Package Name</label>
@@ -444,21 +452,33 @@ const PlanCrud = () => {
                         <div className="formgrid grid">
                             <div className="field col">
                                 <label htmlFor="hasPersonalizedBranding">Personalized Branding</label>
-                                <InputSwitch id="hasPersonalizedBranding" name="has_personalized_branding" className="block" checked={plan.has_personalized_branding} onChange={(e) => onInputNumberChange(e, 'has_personalized_branding')} />
+                                <InputSwitch
+                                    id="hasPersonalizedBranding"
+                                    name="has_personalized_branding"
+                                    className="block"
+                                    checked={plan.has_personalized_branding === 1 ? true : false}
+                                    onChange={(e) => onInputSwitchChange(e, 'has_personalized_branding')}
+                                />
                             </div>
                             <div className="field col">
                                 <label htmlFor="hasBrandedInvoicing">Branded Invoicing</label>
-                                <InputSwitch id="hasBrandedInvoicing" name="has_branded_invoicing" className="block" checked={plan.has_branded_invoicing} onChange={(e) => onInputNumberChange(e, 'has_branded_invoicing')} />
+                                <InputSwitch id="hasBrandedInvoicing" name="has_branded_invoicing" className="block" checked={plan.has_branded_invoicing === 1 ? true : false} onChange={(e) => onInputSwitchChange(e, 'has_branded_invoicing')} />
                             </div>
                         </div>
                         <div className="formgrid grid">
                             <div className="field col">
                                 <label htmlFor="popular">Popular</label>
-                                <InputSwitch id="popular" name="is_popular" className="block" checked={plan.is_popular} onChange={(e) => onInputNumberChange(e, 'is_popular')} />
+                                <InputSwitch id="popular" name="is_popular" className="block" checked={plan.is_popular === 1 ? true : false} onChange={(e) => onInputSwitchChange(e, 'is_popular')} />
                             </div>
                             <div className="field col">
                                 <label htmlFor="canCustomizeProductImages">Customize Product Images</label>
-                                <InputSwitch id="canCustomizeProductImages" name="can_customize_product_images" className="block" checked={plan.can_customize_product_images} onChange={(e) => onInputNumberChange(e, 'can_customize_product_images')} />
+                                <InputSwitch
+                                    id="canCustomizeProductImages"
+                                    name="can_customize_product_images"
+                                    className="block"
+                                    checked={plan.can_customize_product_images === 1 ? true : false}
+                                    onChange={(e) => onInputSwitchChange(e, 'can_customize_product_images')}
+                                />
                             </div>
                         </div>
                         <div className="field">
