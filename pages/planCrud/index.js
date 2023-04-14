@@ -189,7 +189,7 @@ const PlanCrud = () => {
     };
 
     const onInputSwitchChange = (e, name) => {
-        const val = e.target && e.target.value ? 1 : 0;
+        const val = e.target && e.target.value ? '1' : '0';
         let _plan = { ...plan };
         _plan[`${name}`] = val;
 
@@ -449,19 +449,19 @@ const PlanCrud = () => {
                                     id="hasPersonalizedBranding"
                                     name="has_personalized_branding"
                                     className="block"
-                                    checked={plan.has_personalized_branding === 1 ? true : false}
+                                    checked={plan.has_personalized_branding === '1' ? true : false}
                                     onChange={(e) => onInputSwitchChange(e, 'has_personalized_branding')}
                                 />
                             </div>
                             <div className="field col">
                                 <label htmlFor="hasBrandedInvoicing">Branded Invoicing</label>
-                                <InputSwitch id="hasBrandedInvoicing" name="has_branded_invoicing" className="block" checked={plan.has_branded_invoicing === 1 ? true : false} onChange={(e) => onInputSwitchChange(e, 'has_branded_invoicing')} />
+                                <InputSwitch id="hasBrandedInvoicing" name="has_branded_invoicing" className="block" checked={plan.has_branded_invoicing === '1' ? true : false} onChange={(e) => onInputSwitchChange(e, 'has_branded_invoicing')} />
                             </div>
                         </div>
                         <div className="formgrid grid">
                             <div className="field col">
                                 <label htmlFor="popular">Popular</label>
-                                <InputSwitch id="popular" name="is_popular" className="block" checked={plan.is_popular === 1 ? true : false} onChange={(e) => onInputSwitchChange(e, 'is_popular')} />
+                                <InputSwitch id="popular" name="is_popular" className="block" checked={plan.is_popular === '1' ? true : false} onChange={(e) => onInputSwitchChange(e, 'is_popular')} />
                             </div>
                             <div className="field col">
                                 <label htmlFor="canCustomizeProductImages">Customize Product Images</label>
@@ -469,7 +469,7 @@ const PlanCrud = () => {
                                     id="canCustomizeProductImages"
                                     name="can_customize_product_images"
                                     className="block"
-                                    checked={plan.can_customize_product_images === 1 ? true : false}
+                                    checked={plan.can_customize_product_images === '1' ? true : false}
                                     onChange={(e) => onInputSwitchChange(e, 'can_customize_product_images')}
                                 />
                             </div>
