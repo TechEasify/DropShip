@@ -22,7 +22,7 @@ export class PlanService {
     }
 
     async deletePlan(id) {
-        const res = await axios.get(this.contextPath + 'delete' + id);
+        const res = await axios.get(this.contextPath + 'delete/' + id);
         return res.data;
     }
 }
