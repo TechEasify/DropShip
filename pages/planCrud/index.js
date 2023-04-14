@@ -255,7 +255,7 @@ const PlanCrud = () => {
         return (
             <>
                 <span className="p-column-title">Popular</span>
-                {rowData.is_popular}
+                {rowData.is_popular === '1' ? 'Yes' : 'No'}
             </>
         );
     };
@@ -273,7 +273,7 @@ const PlanCrud = () => {
         return (
             <>
                 <span className="p-column-title">Personalised Branding</span>
-                {rowData.has_personalized_branding}
+                {rowData.has_personalized_branding === '1' ? 'Yes' : 'No'}
             </>
         );
     };
@@ -282,7 +282,7 @@ const PlanCrud = () => {
         return (
             <>
                 <span className="p-column-title">Branded Invoiceing</span>
-                {rowData.has_branded_invoicing}
+                {rowData.has_branded_invoicing === '1' ? 'Yes' : 'No'}
             </>
         );
     };
@@ -291,7 +291,7 @@ const PlanCrud = () => {
         return (
             <>
                 <span className="p-column-title">Customization</span>
-                {rowData.can_customize_product_images}
+                {rowData.can_customize_product_images === '1' ? 'Yes' : 'No'}
             </>
         );
     };
