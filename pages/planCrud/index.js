@@ -300,7 +300,7 @@ const PlanCrud = () => {
         return (
             <>
                 <span className="p-column-title">Amount</span>
-                {formatCurrency(rowData.amount)}
+                {rowData.amount}
             </>
         );
     };
@@ -308,7 +308,7 @@ const PlanCrud = () => {
         return (
             <>
                 <span className="p-column-title">Created At</span>
-                {formatCurrency(rowData.created_at)}
+                {rowData.created_at}
             </>
         );
     };
@@ -316,7 +316,7 @@ const PlanCrud = () => {
         return (
             <>
                 <span className="p-column-title">Updated At</span>
-                {formatCurrency(rowData.updated_at)}
+                {rowData.updated_at}
             </>
         );
     };
@@ -324,7 +324,7 @@ const PlanCrud = () => {
         return (
             <>
                 <span className="p-column-title">Trial Period Days</span>
-                {formatCurrency(rowData.trial_period_days)}
+                {rowData.trial_period_days}
             </>
         );
     };
@@ -436,14 +436,7 @@ const PlanCrud = () => {
                         </div>
                         <div className="field">
                             <label htmlFor="packageTrialPeriodDays">Trial Period Days</label>
-                            <InputNumber
-                                id="packageTrialPeriodDays"
-                                value={plan.trial_period_days}
-                                onValueChange={(e) => onInputChange(e, 'trial_period_days')}
-                                name="trial_period_days"
-                                className={classNames({ 'p-invalid': submitted && !plan.trial_period_days })}
-                            />
-                            {submitted && !plan.trial_period_days && <small className="p-invalid">Trial Days is required.</small>}
+                            <InputNumber id="packageTrialPeriodDays" value={plan.trial_period_days} onValueChange={(e) => onInputNumberChange(e, 'trial_period_days')} name="trial_period_days" />
                         </div>
                         <div className="field">
                             <label htmlFor="maxProducts">Max Products</label>
