@@ -1,3 +1,4 @@
+import axios from 'axios';
 import getConfig from 'next/config';
 
 export class ProductService {
