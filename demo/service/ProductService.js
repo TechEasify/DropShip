@@ -2,37 +2,26 @@ import getConfig from 'next/config';
 
 export class ProductService {
     constructor() {
-        // this.contextPath = getConfig().publicRuntimeConfig.contextPath;
-        this.contextPath = 'https://62e1182cfa99731d75cdd699.mockapi.io';
+        this.contextPath = 'https://shopifyapp.iihtsrt.com/public/naturescure-api/product/v1/';
     }
 
-    // getProductsSmall() {
-    //     return fetch(this.contextPath + '/demo/data/products-small.json', { headers: { 'Cache-Control': 'no-cache' } })
-    //         .then((res) => res.json())
-    //         .then((d) => d.data);
-    // }
-
-    // getProducts() {
-    //     return fetch(this.contextPath + '/demo/data/products.json', { headers: { 'Cache-Control': 'no-cache' } })
-    //         .then((res) => res.json())
-    //         .then((d) => d.data);
-    // }
-
-    getProductsSmall() {
-        return fetch(this.contextPath + '/Products', { headers: { 'Cache-Control': 'no-cache' } })
-            .then((res) => res.json())
-            .then((d) => d);
+    async getProducts() {
+        const res = await axios.get(this.contextPath + 'all');
+        return res.data;
     }
 
-    getProducts() {
-        return fetch(this.contextPath + '/Products', { headers: { 'Cache-Control': 'no-cache' } })
-            .then((res) => res.json())
-            .then((d) => d);
+    async saveProduct(product) {
+        var res = null;
+        if (product.product_id != null) {
+            res = await axios.post(this.contextPath + 'update/' + product.product_id, product);
+        } else {
+            res = await axios.post(this.contextPath + 'add', product.product_id);
+        }
+        return res.data;
     }
 
-    getProductsWithOrdersSmall() {
-        return fetch(this.contextPath + '/demo/data/products-orders-small.json', { headers: { 'Cache-Control': 'no-cache' } })
-            .then((res) => res.json())
-            .then((d) => d.data);
+    async deleteProduct(id) {
+        const res = await axios.get(this.contextPath + 'delete/' + id);
+        return res.data;
     }
 }
