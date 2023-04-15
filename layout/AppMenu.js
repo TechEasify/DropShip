@@ -20,12 +20,22 @@ const AppMenu = () => {
                 {
                     label: 'Products',
                     icon: 'pi pi-fw pi-briefcase',
-                    to: '/allProducts'
+                    items: [
+                        {
+                            label: 'Add Product',
+                            icon: 'pi pi-fw pi-plus',
+                            to: '/productCrud'
+                        },
+                        {
+                            label: 'View Product',
+                            icon: 'pi pi-fw pi-eye',
+                            to: '/products'
+                        }
+                    ]
                 },
                 {
                     label: 'Plans',
                     icon: 'pi pi-fw pi-briefcase',
-                    // to: '/plans'
                     items: [
                         {
                             label: 'Add Plan',
