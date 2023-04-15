@@ -382,8 +382,9 @@ const PlanCrud = () => {
                         dataKey="id"
                         paginator
                         rows={10}
+                        showGridlines
                         rowsPerPageOptions={[5, 10, 25]}
-                        className="datatable-responsive"
+                        // className="datatable-responsive"
                         paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
                         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} plans"
                         globalFilter={globalFilter}
@@ -391,23 +392,22 @@ const PlanCrud = () => {
                         header={header}
                         responsiveLayout="scroll"
                         scrollable
+                        scrollHeight="400px"
                     >
-                        {/* <Column selectionMode="multiple" headerStyle={{ width: '2rem' }}></Column> */}
-                        <Column field="package_id" header="ID" sortable body={packageIdBodyTemplate}></Column>
-                        <Column field="package_name" header="Name" sortable body={packageNameBodyTemplate}></Column>
-                        <Column field="description" header="Description" sortable body={descriptionBodyTemplate}></Column>
-                        <Column field="duration" header="Duration" sortable body={durationBodyTemplate}></Column>
-                        <Column field="is_popular" header="Popular" sortable body={isPopularBodyTemplate}></Column>
-                        <Column field="max_products" header="Max Products" sortable body={maxProductsBodyTemplate}></Column>
-                        <Column field="has_personalized_branding" header="Personalized Branding" sortable body={hasPersonalizedBrandingBodyTemplate}></Column>
-                        <Column field="has_branded_invoicing" header="Branded Invoicing" sortable body={hasBrandedInvoicingBodyTemplate}></Column>
-                        <Column field="can_customize_product_images" header="Image Customization" sortable body={canCustomizeProductImagesBodyTemplate}></Column>
-                        <Column field="amount" header="Amount" sortable body={amountBodyTemplate}></Column>
-                        <Column field="created_at" header="Created At" sortable body={createdAtBodyTemplate}></Column>
-                        <Column field="updated_at" header="Updated At" sortable body={updatedAtBodyTemplate}></Column>
-                        <Column field="trial_period_days" header="Trial Days" sortable body={trialPeriodDaysBodyTemplate}></Column>
-
-                        <Column field="Actions" header="Actions" body={actionBodyTemplate} frozen={true} alignFrozen="right"></Column>
+                        <Column style={{ width: 'max-content', minWidth: '5rem' }} field="package_id" header="ID" sortable body={packageIdBodyTemplate}></Column>
+                        <Column style={{ width: 'max-content', minWidth: '5rem' }} field="package_name" header="Name" sortable body={packageNameBodyTemplate}></Column>
+                        <Column style={{ width: 'max-content', minWidth: '5rem' }} field="description" header="Description" sortable body={descriptionBodyTemplate}></Column>
+                        <Column style={{ width: 'max-content', minWidth: '5rem' }} field="duration" header="Duration" sortable body={durationBodyTemplate}></Column>
+                        <Column style={{ width: 'max-content', minWidth: '5rem' }} field="is_popular" header="Popular" sortable body={isPopularBodyTemplate}></Column>
+                        <Column style={{ width: 'max-content', minWidth: '5rem' }} field="max_products" header="Max Products" sortable body={maxProductsBodyTemplate}></Column>
+                        <Column style={{ width: 'max-content', minWidth: '5rem' }} field="has_personalized_branding" header="Personalized Branding" sortable body={hasPersonalizedBrandingBodyTemplate}></Column>
+                        <Column style={{ width: 'max-content', minWidth: '5rem' }} field="has_branded_invoicing" header="Branded Invoicing" sortable body={hasBrandedInvoicingBodyTemplate}></Column>
+                        <Column style={{ width: 'max-content', minWidth: '10rem' }} field="can_customize_product_images" header="Image Customization" sortable body={canCustomizeProductImagesBodyTemplate}></Column>
+                        <Column style={{ width: 'max-content', minWidth: '5rem' }} field="amount" header="Amount" sortable body={amountBodyTemplate}></Column>
+                        <Column style={{ width: 'max-content', minWidth: '5rem' }} field="created_at" header="Created At" sortable body={createdAtBodyTemplate}></Column>
+                        <Column style={{ width: 'max-content', minWidth: '5rem' }} field="updated_at" header="Updated At" sortable body={updatedAtBodyTemplate}></Column>
+                        <Column style={{ width: 'max-content', minWidth: '5rem' }} field="trial_period_days" header="Trial Days" sortable body={trialPeriodDaysBodyTemplate}></Column>
+                        <Column style={{ width: 'max-content', minWidth: '5rem' }} field="Actions" header="Actions" body={actionBodyTemplate} frozen={true} alignFrozen="right"></Column>
                     </DataTable>
 
                     <Dialog visible={planDialog} style={{ width: '700px' }} header="Plan Details" modal className="p-fluid" footer={planDialogFooter} onHide={hideDialog}>
