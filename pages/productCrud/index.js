@@ -14,30 +14,33 @@ import { Toast } from 'primereact/toast';
 import { Toolbar } from 'primereact/toolbar';
 import { classNames } from 'primereact/utils';
 import React, { useEffect, useRef, useState } from 'react';
-import { PlanService } from '../../demo/service/PlanService';
+import { ProductService } from '../../demo/service/ProductService';
 
-const PlanCrud = () => {
-    let emptyPlan = {
-        package_id: null,
-        package_name: '',
+const ProductCrud = () => {
+    let emptyProduct = {
+        product_id: null,
+        product_title: '',
+        price: 0,
+        shipping_price: 0,
+        retail_price: 0,
         description: '',
-        is_popular: 0,
-        max_products: 0,
-        has_personalized_branding: 0,
-        has_branded_invoicing: 0,
-        can_customize_product_images: 0,
-        amount: 0,
-        created_at: 0,
-        updated_at: 0,
-        trial_period_days: 0
+        product_sku: '',
+        quantity: 0,
+        preferred_background_color: '#fff',
+        sample_order_price: 0,
+        product_type: '',
+        product_vendor: '',
+        tags: '',
+        order: 0,
+        is_custom: 0
     };
 
-    const [plans, setPlans] = useState(null);
-    const [planDialog, setPlanDialog] = useState(false);
-    const [deletePlanDialog, setDeletePlanDialog] = useState(false);
-    const [deletePlansDialog, setDeletePlansDialog] = useState(false);
-    const [plan, setPlan] = useState(emptyPlan);
-    const [selectedPlans, setSelectedPlans] = useState(null);
+    const [products, setProducts] = useState(null);
+    const [productDialog, setProductDialog] = useState(false);
+    const [deleteProductDialog, setDeleteProductDialog] = useState(false);
+    const [deleteProductsDialog, setDeleteProductsDialog] = useState(false);
+    const [product, setProduct] = useState(emptyProduct);
+    const [selectedProducts, setSelectedProducts] = useState(null);
     const [submitted, setSubmitted] = useState(false);
     const [globalFilter, setGlobalFilter] = useState(null);
     const toast = useRef(null);
@@ -45,10 +48,10 @@ const PlanCrud = () => {
     const contextPath = getConfig().publicRuntimeConfig.contextPath;
 
     useEffect(() => {
-        const planService = new PlanService();
-        planService.getPlans().then((data) => {
+        const productService = new ProductService();
+        productService.getProducts().then((data) => {
             console.log(data.data);
-            setPlans(data.data);
+            setProducts(data.data);
         });
     }, []);
 
@@ -57,93 +60,93 @@ const PlanCrud = () => {
     };
 
     const openNew = () => {
-        setPlan(emptyPlan);
+        setProduct(emptyProduct);
         setSubmitted(false);
-        setPlanDialog(true);
+        setProductDialog(true);
     };
 
     const hideDialog = () => {
         setSubmitted(false);
-        setPlanDialog(false);
+        setProductDialog(false);
     };
 
-    const hideDeletePlanDialog = () => {
-        setDeletePlanDialog(false);
+    const hideDeleteProductDialog = () => {
+        setDeleteProductDialog(false);
     };
 
-    const hideDeletePlansDialog = () => {
-        setDeletePlansDialog(false);
+    const hideDeleteProductsDialog = () => {
+        setDeleteProductsDialog(false);
     };
 
-    const savePlan = () => {
+    const saveProduct = () => {
         setSubmitted(true);
-        const planService = new PlanService();
+        const productService = new ProductService();
 
-        if (plan.package_name.trim()) {
-            let _plans = [...plans];
-            let _plan = { ...plan };
-            if (plan.package_id) {
-                planService.savePlan(_plan).then((res) => {
+        if (product.package_title.trim()) {
+            let _products = [...products];
+            let _product = { ...product };
+            if (product.product_id) {
+                productService.saveProduct(_product).then((res) => {
                     console.log(res);
                     if (res.status == 200) {
-                        const index = findIndexById(plan.package_id);
-                        _plans[index] = _plan;
-                        setPlans(_plans);
-                        setPlanDialog(false);
-                        setPlan(emptyPlan);
-                        toast.current.show({ severity: 'success', summary: 'Successful', detail: 'Plan Updated', life: 3000 });
+                        const index = findIndexById(product.product_id);
+                        _products[index] = _product;
+                        setProducts(_products);
+                        setProductDialog(false);
+                        setProduct(emptyProduct);
+                        toast.current.show({ severity: 'success', summary: 'Successful', detail: 'Product Updated', life: 3000 });
                     } else {
-                        toast.current.show({ severity: 'error', summary: 'Error', detail: 'Plan not Updated', life: 3000 });
+                        toast.current.show({ severity: 'error', summary: 'Error', detail: 'Product not Updated', life: 3000 });
                     }
                 });
             } else {
-                planService.savePlan(_plan).then((res) => {
+                productService.saveProduct(_product).then((res) => {
                     console.log(res);
                     if (res.status == 200) {
-                        _plans.push(_plan);
-                        setPlans(_plans);
-                        setPlanDialog(false);
-                        setPlan(emptyPlan);
-                        toast.current.show({ severity: 'success', summary: 'Successful', detail: 'Plan Created', life: 3000 });
+                        _products.push(_product);
+                        setProducts(_products);
+                        setProductDialog(false);
+                        setProduct(emptyProduct);
+                        toast.current.show({ severity: 'success', summary: 'Successful', detail: 'Product Created', life: 3000 });
                     } else {
-                        toast.current.show({ severity: 'error', summary: 'Error', detail: 'Plan not Created', life: 3000 });
+                        toast.current.show({ severity: 'error', summary: 'Error', detail: 'Product not Created', life: 3000 });
                     }
                 });
             }
         }
     };
 
-    const editPlan = (plan) => {
-        setPlan({ ...plan });
-        setPlanDialog(true);
+    const editProduct = (product) => {
+        setProduct({ ...product });
+        setProductDialog(true);
     };
 
-    const confirmDeletePlan = (plan) => {
-        setPlan(plan);
-        setDeletePlanDialog(true);
+    const confirmDeleteProduct = (product) => {
+        setProduct(product);
+        setDeleteProductDialog(true);
     };
 
-    const deletePlan = () => {
-        const planService = new PlanService();
+    const deleteProduct = () => {
+        const productService = new ProductService();
 
-        planService.deletePlan(plan.package_id).then((res) => {
+        productService.deleteProduct(product.product_id).then((res) => {
             console.log(res);
             if (res.status == 200) {
-                let _plans = plans.filter((val) => val.package_id !== plan.package_id);
-                setPlans(_plans);
-                setDeletePlanDialog(false);
-                setPlan(emptyPlan);
-                toast.current.show({ severity: 'success', summary: 'Successful', detail: 'Plan Deleted', life: 3000 });
+                let _products = products.filter((val) => val.product_id !== product.product_id);
+                setProducts(_products);
+                setDeleteProductDialog(false);
+                setProduct(emptyProduct);
+                toast.current.show({ severity: 'success', summary: 'Successful', detail: 'Product Deleted', life: 3000 });
             } else {
-                toast.current.show({ severity: 'error', summary: 'Error', detail: 'Plan not Deleted', life: 3000 });
+                toast.current.show({ severity: 'error', summary: 'Error', detail: 'Product not Deleted', life: 3000 });
             }
         });
     };
 
-    const findIndexById = (package_id) => {
+    const findIndexById = (product_id) => {
         let index = -1;
-        for (let i = 0; i < plans.length; i++) {
-            if (plans[i].package_id === package_id) {
+        for (let i = 0; i < products.length; i++) {
+            if (products[i].product_id === product_id) {
                 index = i;
                 break;
             }
@@ -157,43 +160,38 @@ const PlanCrud = () => {
     };
 
     const confirmDeleteSelected = () => {
-        setDeletePlansDialog(true);
+        setDeleteProductsDialog(true);
     };
 
-    // const onCategoryChange = (e) => {
-    //     let _plan = { ...plan };
-    //     _plan['category'] = e.value;
-    //     setPlan(_plan);
-    // };
-
+    //On change Events for custom fields
     const onDurationChange = (e) => {
-        let _plan = { ...plan };
-        _plan['duration'] = e.value;
-        setPlan(_plan);
+        let _product = { ...product };
+        _product['duration'] = e.value;
+        setProduct(_product);
     };
 
     const onInputChange = (e, name) => {
         const val = (e.target && e.target.value) || '';
-        let _plan = { ...plan };
-        _plan[`${name}`] = val;
+        let _product = { ...product };
+        _product[`${name}`] = val;
 
-        setPlan(_plan);
+        setProduct(_product);
     };
 
     const onInputNumberChange = (e, name) => {
         const val = e.value || 0;
-        let _plan = { ...plan };
-        _plan[`${name}`] = val;
+        let _product = { ...product };
+        _product[`${name}`] = val;
 
-        setPlan(_plan);
+        setProduct(_product);
     };
 
     const onInputSwitchChange = (e, name) => {
         const val = e.target && e.target.value ? '1' : '0';
-        let _plan = { ...plan };
-        _plan[`${name}`] = val;
+        let _product = { ...product };
+        _product[`${name}`] = val;
 
-        setPlan(_plan);
+        setProduct(_product);
     };
 
     const leftToolbarTemplate = () => {
@@ -201,7 +199,7 @@ const PlanCrud = () => {
             <React.Fragment>
                 <div className="my-2">
                     <Button label="New" icon="pi pi-plus" className="p-button-success mr-2" onClick={openNew} />
-                    <Button label="Delete" icon="pi pi-trash" className="p-button-danger" onClick={confirmDeleteSelected} disabled={!selectedPlans || !selectedPlans.length} />
+                    <Button label="Delete" icon="pi pi-trash" className="p-button-danger" onClick={confirmDeleteSelected} disabled={!selectedProducts || !selectedProducts.length} />
                 </div>
             </React.Fragment>
         );
@@ -216,24 +214,47 @@ const PlanCrud = () => {
         );
     };
 
-    const packageIdBodyTemplate = (rowData) => {
+    //Templates for column data
+    const productIdBodyTemplate = (rowData) => {
         return (
             <>
-                <span className="p-column-title">ID</span>
-                {rowData.package_id}
+                <span className="p-column-title">Id</span>
+                {rowData.product_id}
             </>
         );
     };
-
-    const packageNameBodyTemplate = (rowData) => {
+    const productTitleBodyTemplate = (rowData) => {
         return (
             <>
-                <span className="p-column-title">Name</span>
-                {rowData.package_name}
+                <span className="p-column-title">Title</span>
+                {rowData.product_title}
             </>
         );
     };
-
+    const priceBodyTemplate = (rowData) => {
+        return (
+            <>
+                <span className="p-column-title">Price</span>
+                {rowData.price}
+            </>
+        );
+    };
+    const shippingPriceBodyTemplate = (rowData) => {
+        return (
+            <>
+                <span className="p-column-title">Shipping Price</span>
+                {rowData.shipping_price}
+            </>
+        );
+    };
+    const retailPriceBodyTemplate = (rowData) => {
+        return (
+            <>
+                <span className="p-column-title">Retail Price</span>
+                {rowData.retail_price}
+            </>
+        );
+    };
     const descriptionBodyTemplate = (rowData) => {
         return (
             <>
@@ -242,105 +263,108 @@ const PlanCrud = () => {
             </>
         );
     };
-    const durationBodyTemplate = (rowData) => {
+    const productSkuBodyTemplate = (rowData) => {
         return (
             <>
-                <span className="p-column-title">Duration</span>
-                {rowData.duration}
+                <span className="p-column-title">Sku</span>
+                {rowData.product_sku}
             </>
         );
     };
+    const quantityBodyTemplate = (rowData) => {
+        return (
+            <>
+                <span className="p-column-title">Quantity</span>
+                {rowData.quantity}
+            </>
+        );
+    };
+    const preferredBackgroundColorBodyTemplate = (rowData) => {
+        return (
+            <>
+                <span className="p-column-title">Preferred Background</span>
+                {rowData.preferred_background_color}
+            </>
+        );
+    };
+    const sampleOrderPriceBodyTemplate = (rowData) => {
+        return (
+            <>
+                <span className="p-column-title">Sample Order Price</span>
+                {rowData.sample_order_price}
+            </>
+        );
+    };
+    const productTypeBodyTemplate = (rowData) => {
+        return (
+            <>
+                <span className="p-column-title">Type</span>
+                {rowData.product_type}
+            </>
+        );
+    };
+    const productVendorBodyTemplate = (rowData) => {
+        return (
+            <>
+                <span className="p-column-title">Vendor</span>
+                {rowData.product_vendor}
+            </>
+        );
+    };
+    const tagsBodyTemplate = (rowData) => {
+        return (
+            <>
+                <span className="p-column-title">Tags</span>
+                {rowData.tags}
+            </>
+        );
+    };
+    const orderBodyTemplate = (rowData) => {
+        return (
+            <>
+                <span className="p-column-title">Order</span>
+                {rowData.order}
+            </>
+        );
+    };
+    const isCustomBodyTemplate = (rowData) => {
+        return (
+            <>
+                <span className="p-column-title">Custom</span>
+                {rowData.is_custom}
+            </>
+        );
+    };
+    // const $ = (rowData) => {
+    //     return (
+    //         <>
+    //             <span className="p-column-title">$</span>
+    //             {rowData.$}
+    //         </>
+    //     );
+    // };
 
-    const isPopularBodyTemplate = (rowData) => {
-        return (
-            <>
-                <span className="p-column-title">Popular</span>
-                {rowData.is_popular === '1' ? 'Yes' : 'No'}
-            </>
-        );
-    };
-
-    const maxProductsBodyTemplate = (rowData) => {
-        return (
-            <>
-                <span className="p-column-title">Max Products</span>
-                {rowData.max_products}
-            </>
-        );
-    };
-
-    const hasPersonalizedBrandingBodyTemplate = (rowData) => {
-        return (
-            <>
-                <span className="p-column-title">Personalised Branding</span>
-                {rowData.has_personalized_branding === '1' ? 'Yes' : 'No'}
-            </>
-        );
-    };
-
-    const hasBrandedInvoicingBodyTemplate = (rowData) => {
-        return (
-            <>
-                <span className="p-column-title">Branded Invoiceing</span>
-                {rowData.has_branded_invoicing === '1' ? 'Yes' : 'No'}
-            </>
-        );
-    };
-
-    const canCustomizeProductImagesBodyTemplate = (rowData) => {
-        return (
-            <>
-                <span className="p-column-title">Customization</span>
-                {rowData.can_customize_product_images === '1' ? 'Yes' : 'No'}
-            </>
-        );
-    };
-
-    const amountBodyTemplate = (rowData) => {
-        return (
-            <>
-                <span className="p-column-title">Amount</span>
-                {rowData.amount}
-            </>
-        );
-    };
-    const createdAtBodyTemplate = (rowData) => {
-        return (
-            <>
-                <span className="p-column-title">Created At</span>
-                {rowData.created_at}
-            </>
-        );
-    };
-    const updatedAtBodyTemplate = (rowData) => {
-        return (
-            <>
-                <span className="p-column-title">Updated At</span>
-                {rowData.updated_at}
-            </>
-        );
-    };
-    const trialPeriodDaysBodyTemplate = (rowData) => {
-        return (
-            <>
-                <span className="p-column-title">Trial Period Days</span>
-                {rowData.trial_period_days}
-            </>
-        );
-    };
+    // const canCustomizeProductImagesBodyTemplate = (rowData) => {
+    //     return (
+    //         <>
+    //             <span className="p-column-title">Customization</span>
+    //             {rowData.can_customize_product_images === '1' ? 'Yes' : 'No'}
+    //         </>
+    //     );
+    // };
 
     const actionBodyTemplate = (rowData) => {
         return (
             <>
-                <Button icon="pi pi-pencil" className="p-button-rounded p-button-success mr-2" onClick={() => editPlan(rowData)} />
-                <Button icon="pi pi-trash" className="p-button-rounded p-button-warning" onClick={() => confirmDeletePlan(rowData)} />
+                <Button icon="pi pi-pencil" className="p-button-rounded p-button-success mr-2" onClick={() => editProduct(rowData)} />
+                <Button icon="pi pi-trash" className="p-button-rounded p-button-warning" onClick={() => confirmDeleteProduct(rowData)} />
             </>
         );
     };
 
     const header = (
         <div className="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
-            <h5 className="m-0">Manage Plans</h5>
+            <h5 className="m-0">Manage Products</h5>
             <span className="block mt-2 md:mt-0 p-input-icon-left">
                 <i className="pi pi-search" />
                 <InputText type="search" onInput={(e) => setGlobalFilter(e.target.value)} placeholder="Search..." />
@@ -348,22 +372,22 @@ const PlanCrud = () => {
         </div>
     );
 
-    const planDialogFooter = (
+    const productDialogFooter = (
         <>
             <Button label="Cancel" icon="pi pi-times" className="p-button-text" onClick={hideDialog} />
-            <Button label="Save" icon="pi pi-check" className="p-button-text" onClick={savePlan} />
+            <Button label="Save" icon="pi pi-check" className="p-button-text" onClick={saveProduct} />
         </>
     );
-    const deletePlanDialogFooter = (
+    const deleteProductDialogFooter = (
         <>
-            <Button label="No" icon="pi pi-times" className="p-button-text" onClick={hideDeletePlanDialog} />
-            <Button label="Yes" icon="pi pi-check" className="p-button-text" onClick={deletePlan} />
+            <Button label="No" icon="pi pi-times" className="p-button-text" onClick={hideDeleteProductDialog} />
+            <Button label="Yes" icon="pi pi-check" className="p-button-text" onClick={deleteProduct} />
         </>
     );
-    const deletePlansDialogFooter = (
+    const deleteProductsDialogFooter = (
         <>
-            <Button label="No" icon="pi pi-times" className="p-button-text" onClick={hideDeletePlansDialog} />
-            {/* <Button label="Yes" icon="pi pi-check" className="p-button-text" onClick={deleteSelectedPlans} /> */}
+            <Button label="No" icon="pi pi-times" className="p-button-text" onClick={hideDeleteProductsDialog} />
+            {/* <Button label="Yes" icon="pi pi-check" className="p-button-text" onClick={deleteSelectedProducts} /> */}
         </>
     );
 
@@ -376,9 +400,9 @@ const PlanCrud = () => {
 
                     <DataTable
                         ref={dt}
-                        value={plans}
-                        selection={selectedPlans}
-                        onSelectionChange={(e) => setSelectedPlans(e.value)}
+                        value={products}
+                        selection={selectedProducts}
+                        onSelectionChange={(e) => setSelectedProducts(e.value)}
                         dataKey="id"
                         paginator
                         rows={10}
@@ -386,61 +410,63 @@ const PlanCrud = () => {
                         rowsPerPageOptions={[5, 10, 25]}
                         // className="datatable-responsive"
                         paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
-                        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} plans"
+                        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} products"
                         globalFilter={globalFilter}
-                        emptyMessage="No plans found."
+                        emptyMessage="No products found."
                         header={header}
                         responsiveLayout="scroll"
                         scrollable
                         scrollHeight="400px"
                     >
-                        <Column style={{ width: 'max-content', minWidth: '5rem' }} field="package_id" header="ID" sortable body={packageIdBodyTemplate}></Column>
-                        <Column style={{ width: 'max-content', minWidth: '5rem' }} field="package_name" header="Name" sortable body={packageNameBodyTemplate}></Column>
+                        <Column style={{ width: 'max-content', minWidth: '5rem' }} field="product_id" header="Id" sortable body={productIdBodyTemplate}></Column>
+                        <Column style={{ width: 'max-content', minWidth: '5rem' }} field="product_title" header="Title" sortable body={productTitleBodyTemplate}></Column>
+                        <Column style={{ width: 'max-content', minWidth: '5rem' }} field="price" header="Price" sortable body={priceBodyTemplate}></Column>
+                        <Column style={{ width: 'max-content', minWidth: '5rem' }} field="shipping_price" header="Shipping Price" sortable body={shippingPriceBodyTemplate}></Column>
+                        <Column style={{ width: 'max-content', minWidth: '5rem' }} field="retail_price" header="Retail Price" sortable body={retailPriceBodyTemplate}></Column>
                         <Column style={{ width: 'max-content', minWidth: '5rem' }} field="description" header="Description" sortable body={descriptionBodyTemplate}></Column>
-                        <Column style={{ width: 'max-content', minWidth: '5rem' }} field="duration" header="Duration" sortable body={durationBodyTemplate}></Column>
-                        <Column style={{ width: 'max-content', minWidth: '5rem' }} field="is_popular" header="Popular" sortable body={isPopularBodyTemplate}></Column>
-                        <Column style={{ width: 'max-content', minWidth: '5rem' }} field="max_products" header="Max Products" sortable body={maxProductsBodyTemplate}></Column>
-                        <Column style={{ width: 'max-content', minWidth: '5rem' }} field="has_personalized_branding" header="Personalized Branding" sortable body={hasPersonalizedBrandingBodyTemplate}></Column>
-                        <Column style={{ width: 'max-content', minWidth: '5rem' }} field="has_branded_invoicing" header="Branded Invoicing" sortable body={hasBrandedInvoicingBodyTemplate}></Column>
-                        <Column style={{ width: 'max-content', minWidth: '10rem' }} field="can_customize_product_images" header="Image Customization" sortable body={canCustomizeProductImagesBodyTemplate}></Column>
-                        <Column style={{ width: 'max-content', minWidth: '5rem' }} field="amount" header="Amount" sortable body={amountBodyTemplate}></Column>
-                        <Column style={{ width: 'max-content', minWidth: '5rem' }} field="created_at" header="Created At" sortable body={createdAtBodyTemplate}></Column>
-                        <Column style={{ width: 'max-content', minWidth: '5rem' }} field="updated_at" header="Updated At" sortable body={updatedAtBodyTemplate}></Column>
-                        <Column style={{ width: 'max-content', minWidth: '5rem' }} field="trial_period_days" header="Trial Days" sortable body={trialPeriodDaysBodyTemplate}></Column>
+                        <Column style={{ width: 'max-content', minWidth: '5rem' }} field="product_sku" header="Sku" sortable body={productSkuBodyTemplate}></Column>
+                        <Column style={{ width: 'max-content', minWidth: '5rem' }} field="quantity" header="Quantity" sortable body={quantityBodyTemplate}></Column>
+                        <Column style={{ width: 'max-content', minWidth: '5rem' }} field="preferred_background_color" header="Preferred Background" sortable body={preferredBackgroundColorBodyTemplate}></Column>
+                        <Column style={{ width: 'max-content', minWidth: '5rem' }} field="sample_order_price" header="Sample Order Price" sortable body={sampleOrderPriceBodyTemplate}></Column>
+                        <Column style={{ width: 'max-content', minWidth: '5rem' }} field="product_type" header="Type" sortable body={productTypeBodyTemplate}></Column>
+                        <Column style={{ width: 'max-content', minWidth: '5rem' }} field="product_vendor" header="Vendor" sortable body={productVendorBodyTemplate}></Column>
+                        <Column style={{ width: 'max-content', minWidth: '5rem' }} field="tags" header="Tags" sortable body={tagsBodyTemplate}></Column>
+                        <Column style={{ width: 'max-content', minWidth: '5rem' }} field="order" header="Order" sortable body={orderBodyTemplate}></Column>
+                        <Column style={{ width: 'max-content', minWidth: '5rem' }} field="is_custom" header="Custom" sortable body={isCustomBodyTemplate}></Column>
                         <Column style={{ width: 'max-content', minWidth: '5rem' }} field="Actions" header="Actions" body={actionBodyTemplate} frozen={true} alignFrozen="right"></Column>
                     </DataTable>
 
-                    <Dialog visible={planDialog} style={{ width: '700px' }} header="Plan Details" modal className="p-fluid" footer={planDialogFooter} onHide={hideDialog}>
-                        {/* {plan.image && <img src={`${contextPath}/demo/images/plan/${plan.image}`} alt={plan.image} width="150" className="mt-0 mx-auto mb-5 block shadow-2" />} */}
+                    <Dialog visible={productDialog} style={{ width: '700px' }} header="Product Details" modal className="p-fluid" footer={productDialogFooter} onHide={hideDialog}>
+                        {/* {product.image && <img src={`${contextPath}/demo/images/product/${product.image}`} alt={product.image} width="150" className="mt-0 mx-auto mb-5 block shadow-2" />} */}
                         <div className="field">
                             <label htmlFor="packageName">Package Name</label>
-                            <InputText id="packageName" value={plan.package_name} onChange={(e) => onInputChange(e, 'package_name')} required autoFocus className={classNames({ 'p-invalid': submitted && !plan.package_name })} />
-                            {submitted && !plan.package_name && <small className="p-invalid">Package Name is required.</small>}
+                            <InputText id="packageName" value={product.package_name} onChange={(e) => onInputChange(e, 'package_name')} required autoFocus className={classNames({ 'p-invalid': submitted && !product.package_name })} />
+                            {submitted && !product.package_name && <small className="p-invalid">Package Name is required.</small>}
                         </div>
                         <div className="field">
                             <label htmlFor="description">Description</label>
-                            <InputTextarea id="description" value={plan.description} onChange={(e) => onInputChange(e, 'description')} required rows={3} cols={20} />
+                            <InputTextarea id="description" value={product.description} onChange={(e) => onInputChange(e, 'description')} required rows={3} cols={20} />
                         </div>
                         <div className="field">
                             <label className="mb-3">Duration</label>
                             <div className="formgrid grid">
                                 <div className="field-radiobutton col-6">
-                                    <RadioButton inputId="duration1" name="duration" value="Month" onChange={onDurationChange} checked={plan.duration === 'Month'} />
+                                    <RadioButton inputId="duration1" name="duration" value="Month" onChange={onDurationChange} checked={product.duration === 'Month'} />
                                     <label htmlFor="duration1">Month</label>
                                 </div>
                                 <div className="field-radiobutton col-6">
-                                    <RadioButton inputId="duration2" name="duration" value="Year" onChange={onDurationChange} checked={plan.duration === 'Year'} />
+                                    <RadioButton inputId="duration2" name="duration" value="Year" onChange={onDurationChange} checked={product.duration === 'Year'} />
                                     <label htmlFor="duration2">Year</label>
                                 </div>
                             </div>
                         </div>
                         <div className="field">
                             <label htmlFor="packageTrialPeriodDays">Trial Period Days</label>
-                            <InputNumber id="packageTrialPeriodDays" value={plan.trial_period_days} onValueChange={(e) => onInputNumberChange(e, 'trial_period_days')} name="trial_period_days" />
+                            <InputNumber id="packageTrialPeriodDays" value={product.trial_period_days} onValueChange={(e) => onInputNumberChange(e, 'trial_period_days')} name="trial_period_days" />
                         </div>
                         <div className="field">
                             <label htmlFor="maxProducts">Max Products</label>
-                            <InputNumber id="maxProducts" value={plan.max_products} onValueChange={(e) => onInputNumberChange(e, 'max_products')} min={0} />
+                            <InputNumber id="maxProducts" value={product.max_products} onValueChange={(e) => onInputNumberChange(e, 'max_products')} min={0} />
                         </div>
                         <div className="formgrid grid">
                             <div className="field col">
@@ -449,19 +475,19 @@ const PlanCrud = () => {
                                     id="hasPersonalizedBranding"
                                     name="has_personalized_branding"
                                     className="block"
-                                    checked={plan.has_personalized_branding === '1' ? true : false}
+                                    checked={product.has_personalized_branding === '1' ? true : false}
                                     onChange={(e) => onInputSwitchChange(e, 'has_personalized_branding')}
                                 />
                             </div>
                             <div className="field col">
                                 <label htmlFor="hasBrandedInvoicing">Branded Invoicing</label>
-                                <InputSwitch id="hasBrandedInvoicing" name="has_branded_invoicing" className="block" checked={plan.has_branded_invoicing === '1' ? true : false} onChange={(e) => onInputSwitchChange(e, 'has_branded_invoicing')} />
+                                <InputSwitch id="hasBrandedInvoicing" name="has_branded_invoicing" className="block" checked={product.has_branded_invoicing === '1' ? true : false} onChange={(e) => onInputSwitchChange(e, 'has_branded_invoicing')} />
                             </div>
                         </div>
                         <div className="formgrid grid">
                             <div className="field col">
                                 <label htmlFor="popular">Popular</label>
-                                <InputSwitch id="popular" name="is_popular" className="block" checked={plan.is_popular === '1' ? true : false} onChange={(e) => onInputSwitchChange(e, 'is_popular')} />
+                                <InputSwitch id="popular" name="is_popular" className="block" checked={product.is_popular === '1' ? true : false} onChange={(e) => onInputSwitchChange(e, 'is_popular')} />
                             </div>
                             <div className="field col">
                                 <label htmlFor="canCustomizeProductImages">Customize Product Images</label>
@@ -469,32 +495,32 @@ const PlanCrud = () => {
                                     id="canCustomizeProductImages"
                                     name="can_customize_product_images"
                                     className="block"
-                                    checked={plan.can_customize_product_images === '1' ? true : false}
+                                    checked={product.can_customize_product_images === '1' ? true : false}
                                     onChange={(e) => onInputSwitchChange(e, 'can_customize_product_images')}
                                 />
                             </div>
                         </div>
                         <div className="field">
                             <label htmlFor="amount">Amount</label>
-                            <InputNumber id="amount" value={plan.amount} onValueChange={(e) => onInputNumberChange(e, 'amount')} min={0} />
+                            <InputNumber id="amount" value={product.amount} onValueChange={(e) => onInputNumberChange(e, 'amount')} min={0} />
                         </div>
                     </Dialog>
 
-                    <Dialog visible={deletePlanDialog} style={{ width: '450px' }} header="Confirm" modal footer={deletePlanDialogFooter} onHide={hideDeletePlanDialog}>
+                    <Dialog visible={deleteProductDialog} style={{ width: '450px' }} header="Confirm" modal footer={deleteProductDialogFooter} onHide={hideDeleteProductDialog}>
                         <div className="flex align-items-center justify-content-center">
                             <i className="pi pi-exclamation-triangle mr-3" style={{ fontSize: '2rem' }} />
-                            {plan && (
+                            {product && (
                                 <span>
-                                    Are you sure you want to delete <b>{plan.package_name}</b>?
+                                    Are you sure you want to delete <b>{product.package_name}</b>?
                                 </span>
                             )}
                         </div>
                     </Dialog>
 
-                    <Dialog visible={deletePlansDialog} style={{ width: '450px' }} header="Confirm" modal footer={deletePlansDialogFooter} onHide={hideDeletePlansDialog}>
+                    <Dialog visible={deleteProductsDialog} style={{ width: '450px' }} header="Confirm" modal footer={deleteProductsDialogFooter} onHide={hideDeleteProductsDialog}>
                         <div className="flex align-items-center justify-content-center">
                             <i className="pi pi-exclamation-triangle mr-3" style={{ fontSize: '2rem' }} />
-                            {plan && <span>Are you sure you want to delete the selected plans?</span>}
+                            {product && <span>Are you sure you want to delete the selected products?</span>}
                         </div>
                     </Dialog>
                 </div>
@@ -503,4 +529,4 @@ const PlanCrud = () => {
     );
 };
 
-export default PlanCrud;
+export default ProductCrud;
