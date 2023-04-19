@@ -20,10 +20,13 @@ const ProductCrud = () => {
     let emptyProduct = {
         product_id: null,
         product_title: '',
+        product_handle: '',
         price: 0,
         shipping_price: 0,
+        shipping_time: '',
         retail_price: 0,
         description: '',
+        featured_image: '',
         product_sku: '',
         quantity: 0,
         preferred_background_color: '#fff',
@@ -231,6 +234,14 @@ const ProductCrud = () => {
             </>
         );
     };
+    const productHandleBodyTemplate = (rowData) => {
+        return (
+            <>
+                <span className="p-column-title">Handle</span>
+                {rowData.product_handle}
+            </>
+        );
+    };
     const priceBodyTemplate = (rowData) => {
         return (
             <>
@@ -247,6 +258,14 @@ const ProductCrud = () => {
             </>
         );
     };
+    const shippingTimeBodyTemplate = (rowData) => {
+        return (
+            <>
+                <span className="p-column-title">Shipping Time</span>
+                {rowData.shipping_time}
+            </>
+        );
+    };
     const retailPriceBodyTemplate = (rowData) => {
         return (
             <>
@@ -260,6 +279,14 @@ const ProductCrud = () => {
             <>
                 <span className="p-column-title">Description</span>
                 {rowData.description}
+            </>
+        );
+    };
+    const featuredImageBodyTemplate = (rowData) => {
+        return (
+            <>
+                <span className="p-column-title">Featured Image</span>
+                <img src={rowData.featured_image} alt={rowData.product_title} className="w-full" />
             </>
         );
     };
@@ -283,7 +310,9 @@ const ProductCrud = () => {
         return (
             <>
                 <span className="p-column-title">Preferred Background</span>
-                {rowData.preferred_background_color}
+                <span className="h-2rem w-2rem shadow-4 border-round-md" style={{ backgroundColor: rowData.preferred_background_color }}>
+                    {/* {rowData.preferred_background_color} */}
+                </span>
             </>
         );
     };
@@ -331,27 +360,10 @@ const ProductCrud = () => {
         return (
             <>
                 <span className="p-column-title">Custom</span>
-                {rowData.is_custom}
+                {rowData.is_custom === '1' ? 'Yes' : 'No'}
             </>
         );
     };
-    // const $ = (rowData) => {
-    //     return (
-    //         <>
-    //             <span className="p-column-title">$</span>
-    //             {rowData.$}
-    //         </>
-    //     );
-    // };
-
-    // const canCustomizeProductImagesBodyTemplate = (rowData) => {
-    //     return (
-    //         <>
-    //             <span className="p-column-title">Customization</span>
-    //             {rowData.can_customize_product_images === '1' ? 'Yes' : 'No'}
-    //         </>
-    //     );
-    // };
 
     const actionBodyTemplate = (rowData) => {
         return (
@@ -419,9 +431,12 @@ const ProductCrud = () => {
                         scrollHeight="400px"
                     >
                         <Column style={{ width: 'max-content', minWidth: '5rem' }} field="product_id" header="Id" sortable body={productIdBodyTemplate}></Column>
+                        <Column style={{ width: 'min-content', minWidth: '5rem' }} field="featured_image" header="Image" sortable body={featuredImageBodyTemplate}></Column>
                         <Column style={{ width: 'max-content', minWidth: '5rem' }} field="product_title" header="Title" sortable body={productTitleBodyTemplate}></Column>
+                        <Column style={{ width: 'max-content', minWidth: '5rem' }} field="product_handle" header="Handle" sortable body={productHandleBodyTemplate}></Column>
                         <Column style={{ width: 'max-content', minWidth: '5rem' }} field="price" header="Price" sortable body={priceBodyTemplate}></Column>
                         <Column style={{ width: 'max-content', minWidth: '5rem' }} field="shipping_price" header="Shipping Price" sortable body={shippingPriceBodyTemplate}></Column>
+                        <Column style={{ width: 'max-content', minWidth: '5rem' }} field="shipping_time" header="Shipping Time" sortable body={shippingTimeBodyTemplate}></Column>
                         <Column style={{ width: 'max-content', minWidth: '5rem' }} field="retail_price" header="Retail Price" sortable body={retailPriceBodyTemplate}></Column>
                         <Column style={{ width: 'max-content', minWidth: '5rem' }} field="description" header="Description" sortable body={descriptionBodyTemplate}></Column>
                         <Column style={{ width: 'max-content', minWidth: '5rem' }} field="product_sku" header="Sku" sortable body={productSkuBodyTemplate}></Column>
