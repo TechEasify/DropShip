@@ -8,11 +8,14 @@ import { InputNumber } from 'primereact/inputnumber';
 import { InputText } from 'primereact/inputtext';
 import { InputTextarea } from 'primereact/inputtextarea';
 import { InputSwitch } from 'primereact/inputswitch';
+import { ColorPicker } from 'primereact/colorpicker';
+import { Chips } from 'primereact/chips';
 import { RadioButton } from 'primereact/radiobutton';
 import { Rating } from 'primereact/rating';
 import { Toast } from 'primereact/toast';
 import { Toolbar } from 'primereact/toolbar';
 import { classNames } from 'primereact/utils';
+import { Badge } from 'primereact/badge';
 import React, { useEffect, useRef, useState } from 'react';
 import { ProductService } from '../../demo/service/ProductService';
 
@@ -197,6 +200,14 @@ const ProductCrud = () => {
         setProduct(_product);
     };
 
+    const onInputColorChange = (e, name) => {
+        const val = e.target && e.target.value;
+        let _product = { ...product };
+        _product[`${name}`] = val;
+
+        setProduct(_product);
+    };
+
     const leftToolbarTemplate = () => {
         return (
             <React.Fragment>
@@ -344,7 +355,9 @@ const ProductCrud = () => {
         return (
             <>
                 <span className="p-column-title">Tags</span>
-                {rowData.tags}
+                {rowData.tags.split(',').map((tag, tagIndex) => {
+                    return <Badge value={tag} key={tagIndex}></Badge>;
+                })}
             </>
         );
     };
@@ -445,7 +458,7 @@ const ProductCrud = () => {
                         <Column style={{ width: 'max-content', minWidth: '5rem' }} field="sample_order_price" header="Sample Order Price" sortable body={sampleOrderPriceBodyTemplate}></Column>
                         <Column style={{ width: 'max-content', minWidth: '5rem' }} field="product_type" header="Type" sortable body={productTypeBodyTemplate}></Column>
                         <Column style={{ width: 'max-content', minWidth: '5rem' }} field="product_vendor" header="Vendor" sortable body={productVendorBodyTemplate}></Column>
-                        <Column style={{ width: 'max-content', minWidth: '5rem' }} field="tags" header="Tags" sortable body={tagsBodyTemplate}></Column>
+                        <Column style={{ width: 'max-content', minWidth: '5rem', flexWrap: 'wrap', gap: '2px' }} field="tags" header="Tags" sortable body={tagsBodyTemplate}></Column>
                         <Column style={{ width: 'max-content', minWidth: '5rem' }} field="order" header="Order" sortable body={orderBodyTemplate}></Column>
                         <Column style={{ width: 'max-content', minWidth: '5rem' }} field="is_custom" header="Custom" sortable body={isCustomBodyTemplate}></Column>
                         <Column style={{ width: 'max-content', minWidth: '5rem' }} field="Actions" header="Actions" body={actionBodyTemplate} frozen={true} alignFrozen="right"></Column>
@@ -454,70 +467,89 @@ const ProductCrud = () => {
                     <Dialog visible={productDialog} style={{ width: '700px' }} header="Product Details" modal className="p-fluid" footer={productDialogFooter} onHide={hideDialog}>
                         {/* {product.image && <img src={`${contextPath}/demo/images/product/${product.image}`} alt={product.image} width="150" className="mt-0 mx-auto mb-5 block shadow-2" />} */}
                         <div className="field">
-                            <label htmlFor="packageName">Package Name</label>
-                            <InputText id="packageName" value={product.package_name} onChange={(e) => onInputChange(e, 'package_name')} required autoFocus className={classNames({ 'p-invalid': submitted && !product.package_name })} />
-                            {submitted && !product.package_name && <small className="p-invalid">Package Name is required.</small>}
+                            <label htmlFor="packageTitle">Package Title</label>
+                            <InputText id="packageTitle" value={product.product_title} onChange={(e) => onInputChange(e, 'product_title')} required autoFocus className={classNames({ 'p-invalid': submitted && !product.product_title })} />
+                            {submitted && !product.product_title && <small className="p-invalid">Product Title is required.</small>}
+                        </div>
+                        <div className="field">
+                            <label htmlFor="productHandle">Product Handle</label>
+                            <InputText id="productHandle" value={product.product_handle} onChange={(e) => onInputChange(e, 'product_handle')} required autoFocus className={classNames({ 'p-invalid': submitted && !product.product_handle })} />
+                            {submitted && !product.product_handle && <small className="p-invalid">Product Handle is required.</small>}
+                        </div>
+
+                        <div className="formgrid grid">
+                            <div className="field col">
+                                <label htmlFor="price">Price</label>
+                                <InputNumber id="price" value={product.price} onValueChange={(e) => onInputNumberChange(e, 'price')} min={0} />
+                            </div>
+                            <div className="field col">
+                                <label htmlFor="retailPrice">Retail Price</label>
+                                <InputNumber id="retailPrice" value={product.retail_price} onValueChange={(e) => onInputNumberChange(e, 'retail_price')} min={0} />
+                            </div>
+                        </div>
+                        <div className="formgrid grid">
+                            <div className="field col">
+                                <label htmlFor="sampleOrderPrice">Sample Order Price</label>
+                                <InputNumber id="sampleOrderPrice" value={product.sample_order_price} onValueChange={(e) => onInputNumberChange(e, 'sample_order_price')} min={0} />
+                            </div>
+                            <div className="field col">
+                                <label htmlFor="shippingPrice">Shipping Price</label>
+                                <InputNumber id="shippingPrice" value={product.shipping_price} onValueChange={(e) => onInputNumberChange(e, 'shipping_price')} min={0} />
+                            </div>
                         </div>
                         <div className="field">
                             <label htmlFor="description">Description</label>
                             <InputTextarea id="description" value={product.description} onChange={(e) => onInputChange(e, 'description')} required rows={3} cols={20} />
                         </div>
-                        <div className="field">
-                            <label className="mb-3">Duration</label>
-                            <div className="formgrid grid">
-                                <div className="field-radiobutton col-6">
-                                    <RadioButton inputId="duration1" name="duration" value="Month" onChange={onDurationChange} checked={product.duration === 'Month'} />
-                                    <label htmlFor="duration1">Month</label>
-                                </div>
-                                <div className="field-radiobutton col-6">
-                                    <RadioButton inputId="duration2" name="duration" value="Year" onChange={onDurationChange} checked={product.duration === 'Year'} />
-                                    <label htmlFor="duration2">Year</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="field">
-                            <label htmlFor="packageTrialPeriodDays">Trial Period Days</label>
-                            <InputNumber id="packageTrialPeriodDays" value={product.trial_period_days} onValueChange={(e) => onInputNumberChange(e, 'trial_period_days')} name="trial_period_days" />
-                        </div>
-                        <div className="field">
-                            <label htmlFor="maxProducts">Max Products</label>
-                            <InputNumber id="maxProducts" value={product.max_products} onValueChange={(e) => onInputNumberChange(e, 'max_products')} min={0} />
-                        </div>
                         <div className="formgrid grid">
                             <div className="field col">
-                                <label htmlFor="hasPersonalizedBranding">Personalized Branding</label>
-                                <InputSwitch
-                                    id="hasPersonalizedBranding"
-                                    name="has_personalized_branding"
-                                    className="block"
-                                    checked={product.has_personalized_branding === '1' ? true : false}
-                                    onChange={(e) => onInputSwitchChange(e, 'has_personalized_branding')}
-                                />
+                                <label htmlFor="shippingTime">Shipping Time</label>
+                                <InputText id="shippingTime" value={product.shipping_time} onChange={(e) => onInputChange(e, 'shipping_time')} />
                             </div>
                             <div className="field col">
-                                <label htmlFor="hasBrandedInvoicing">Branded Invoicing</label>
-                                <InputSwitch id="hasBrandedInvoicing" name="has_branded_invoicing" className="block" checked={product.has_branded_invoicing === '1' ? true : false} onChange={(e) => onInputSwitchChange(e, 'has_branded_invoicing')} />
+                                <label htmlFor="productSku">Product Sku</label>
+                                <InputText id="productSku" value={product.product_sku} onChange={(e) => onInputChange(e, 'product_sku')} />
                             </div>
                         </div>
                         <div className="formgrid grid">
                             <div className="field col">
-                                <label htmlFor="popular">Popular</label>
-                                <InputSwitch id="popular" name="is_popular" className="block" checked={product.is_popular === '1' ? true : false} onChange={(e) => onInputSwitchChange(e, 'is_popular')} />
+                                <label htmlFor="isCustom">Custom</label>
+                                <InputSwitch id="isCustom" name="is_custom" className="block" checked={product.is_custom === '1' ? true : false} onChange={(e) => onInputSwitchChange(e, 'is_custom')} />
                             </div>
                             <div className="field col">
-                                <label htmlFor="canCustomizeProductImages">Customize Product Images</label>
-                                <InputSwitch
-                                    id="canCustomizeProductImages"
-                                    name="can_customize_product_images"
-                                    className="block"
-                                    checked={product.can_customize_product_images === '1' ? true : false}
-                                    onChange={(e) => onInputSwitchChange(e, 'can_customize_product_images')}
-                                />
+                                <label htmlFor="preferredBackgroundColor" className="w-full">
+                                    Preferred Background Color
+                                </label>
+                                <ColorPicker id="preferred_background_color" format="hex" value={product.preferred_background_color} onChange={(e) => onInputColorChange(e, 'preferred_background_color')} />
                             </div>
                         </div>
                         <div className="field">
-                            <label htmlFor="amount">Amount</label>
-                            <InputNumber id="amount" value={product.amount} onValueChange={(e) => onInputNumberChange(e, 'amount')} min={0} />
+                            <label htmlFor="featuredImage">Featured Image</label>
+                            <InputNumber id="featuredImage" value={product.featured_image} onChange={(e) => onInputChange(e, 'featured_image')} name="featured_image" />
+                        </div>
+                        <div className="formgrid grid">
+                            <div className="field col">
+                                <label htmlFor="quantity">Quantity</label>
+                                <InputNumber id="quantity" value={product.quantity} onValueChange={(e) => onInputNumberChange(e, 'quantity')} min={0} />
+                            </div>
+                            <div className="field col">
+                                <label htmlFor="order">Order</label>
+                                <InputNumber id="order" value={product.order} onValueChange={(e) => onInputNumberChange(e, 'order')} min={0} />
+                            </div>
+                        </div>
+                        <div className="field">
+                            <label htmlFor="tags">Tags</label>
+                            <Chips id="tags" value={product.tags} onChange={(e) => onInputChange(e, 'tags')} name="tags" />
+                        </div>
+                        <div className="formgrid grid">
+                            <div className="field col">
+                                <label htmlFor="productType">Product Type</label>
+                                <InputText id="productType" value={product.product_type} onChange={(e) => onInputChange(e, 'product_type')} />
+                            </div>
+                            <div className="field col">
+                                <label htmlFor="productVendor">Product Vendor</label>
+                                <InputText id="productVendor" value={product.product_vendor} onChange={(e) => onInputChange(e, 'product_vendor')} />
+                            </div>
                         </div>
                     </Dialog>
 
