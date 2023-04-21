@@ -88,7 +88,7 @@ const ProductCrud = () => {
         setSubmitted(true);
         const productService = new ProductService();
 
-        if (product.package_title.trim()) {
+        if (product.product_title.trim()) {
             let _products = [...products];
             let _product = { ...product };
             if (product.product_id) {
@@ -96,7 +96,7 @@ const ProductCrud = () => {
                     console.log(res);
                     if (res.status == 200) {
                         const index = findIndexById(product.product_id);
-                        _products[index] = _product;
+                        _products[index] = res.data;
                         setProducts(_products);
                         setProductDialog(false);
                         setProduct(emptyProduct);
@@ -203,7 +203,7 @@ const ProductCrud = () => {
     const onInputColorChange = (e, name) => {
         const val = e.target && e.target.value;
         let _product = { ...product };
-        _product[`${name}`] = val;
+        _product[`${name}`] = '#' + val;
 
         setProduct(_product);
     };
@@ -355,7 +355,7 @@ const ProductCrud = () => {
         return (
             <>
                 <span className="p-column-title">Tags</span>
-                {rowData.tags.split(',').map((tag, tagIndex) => {
+                {rowData.tags.map((tag, tagIndex) => {
                     return <Badge value={tag} key={tagIndex}></Badge>;
                 })}
             </>
@@ -467,16 +467,15 @@ const ProductCrud = () => {
                     <Dialog visible={productDialog} style={{ width: '700px' }} header="Product Details" modal className="p-fluid" footer={productDialogFooter} onHide={hideDialog}>
                         {/* {product.image && <img src={`${contextPath}/demo/images/product/${product.image}`} alt={product.image} width="150" className="mt-0 mx-auto mb-5 block shadow-2" />} */}
                         <div className="field">
-                            <label htmlFor="packageTitle">Package Title</label>
-                            <InputText id="packageTitle" value={product.product_title} onChange={(e) => onInputChange(e, 'product_title')} required autoFocus className={classNames({ 'p-invalid': submitted && !product.product_title })} />
+                            <label htmlFor="productTitle">product Title</label>
+                            <InputText id="productTitle" value={product.product_title} onChange={(e) => onInputChange(e, 'product_title')} required autoFocus className={classNames({ 'p-invalid': submitted && !product.product_title })} />
                             {submitted && !product.product_title && <small className="p-invalid">Product Title is required.</small>}
                         </div>
-                        <div className="field">
+                        {/* <div className="field">
                             <label htmlFor="productHandle">Product Handle</label>
                             <InputText id="productHandle" value={product.product_handle} onChange={(e) => onInputChange(e, 'product_handle')} required autoFocus className={classNames({ 'p-invalid': submitted && !product.product_handle })} />
                             {submitted && !product.product_handle && <small className="p-invalid">Product Handle is required.</small>}
-                        </div>
-
+                        </div> */}
                         <div className="formgrid grid">
                             <div className="field col">
                                 <label htmlFor="price">Price</label>
@@ -520,7 +519,7 @@ const ProductCrud = () => {
                                 <label htmlFor="preferredBackgroundColor" className="w-full">
                                     Preferred Background Color
                                 </label>
-                                <ColorPicker id="preferred_background_color" format="hex" value={product.preferred_background_color} onChange={(e) => onInputColorChange(e, 'preferred_background_color')} />
+                                <ColorPicker id="preferred_background_color" format="hex" value={product.preferred_background_color} onChange={(e) => onInputColorChange(e, 'preferred_background_color')} className={'w-2rem'} />
                             </div>
                         </div>
                         <div className="field">
@@ -558,7 +557,7 @@ const ProductCrud = () => {
                             <i className="pi pi-exclamation-triangle mr-3" style={{ fontSize: '2rem' }} />
                             {product && (
                                 <span>
-                                    Are you sure you want to delete <b>{product.package_name}</b>?
+                                    Are you sure you want to delete <b>{product.product_title}</b>?
                                 </span>
                             )}
                         </div>
