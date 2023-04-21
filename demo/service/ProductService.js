@@ -13,10 +13,11 @@ export class ProductService {
 
     async saveProduct(product) {
         var res = null;
+        console.log(product);
         if (product.product_id != null) {
             res = await axios.post(this.contextPath + 'update/' + product.product_id, product);
         } else {
-            res = await axios.post(this.contextPath + 'add', product.product_id);
+            res = await axios.post(this.contextPath + 'add', product);
         }
         return res.data;
     }
