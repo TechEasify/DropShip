@@ -15,9 +15,17 @@ export class ProductService {
         var res = null;
         console.log(product);
         if (product.product_id != null) {
-            res = await axios.post(this.contextPath + 'update/' + product.product_id, product);
+            res = await axios.post(this.contextPath + 'update/' + product.product_id, product, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
         } else {
-            res = await axios.post(this.contextPath + 'add', product);
+            res = await axios.post(this.contextPath + 'add', product, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
         }
         return res.data;
     }

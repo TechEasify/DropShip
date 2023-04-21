@@ -109,7 +109,7 @@ const ProductCrud = () => {
                 productService.saveProduct(_product).then((res) => {
                     console.log(res);
                     if (res.status == 200) {
-                        _products.push(_product);
+                        _products.push(res.data);
                         setProducts(_products);
                         setProductDialog(false);
                         setProduct(emptyProduct);
@@ -204,6 +204,16 @@ const ProductCrud = () => {
         const val = e.target && e.target.value;
         let _product = { ...product };
         _product[`${name}`] = '#' + val;
+
+        setProduct(_product);
+    };
+
+    const onInputFileChange = async (e, name) => {
+        const file = e.files[0];
+
+        const val = e.files && e.files[0];
+        let _product = { ...product };
+        _product[`${name}`] = val;
 
         setProduct(_product);
     };
@@ -524,7 +534,8 @@ const ProductCrud = () => {
                         </div>
                         <div className="field">
                             <label htmlFor="featuredImage">Featured Image</label>
-                            <InputNumber id="featuredImage" value={product.featured_image} onChange={(e) => onInputChange(e, 'featured_image')} name="featured_image" />
+                            {/* <InputNumber id="featuredImage" value={product.featured_image} onChange={(e) => onInputChange(e, 'featured_image')} name="featured_image" /> */}
+                            <FileUpload mode="basic" accept="image/*" maxFileSize={1000000} onSelect={(e) => onInputFileChange(e, 'featured_image')} customUpload />
                         </div>
                         <div className="formgrid grid">
                             <div className="field col">
