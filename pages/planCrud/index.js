@@ -201,7 +201,7 @@ const PlanCrud = () => {
             <React.Fragment>
                 <div className="my-2">
                     <Button label="New" icon="pi pi-plus" className="p-button-success mr-2" onClick={openNew} />
-                    <Button label="Delete" icon="pi pi-trash" className="p-button-danger" onClick={confirmDeleteSelected} disabled={!selectedPlans || !selectedPlans.length} />
+                    {/* <Button label="Delete" icon="pi pi-trash" className="p-button-danger" onClick={confirmDeleteSelected} disabled={!selectedPlans || !selectedPlans.length} /> */}
                 </div>
             </React.Fragment>
         );
@@ -372,7 +372,8 @@ const PlanCrud = () => {
             <div className="col-12">
                 <div className="card">
                     <Toast ref={toast} />
-                    <Toolbar className="mb-4" left={leftToolbarTemplate} right={rightToolbarTemplate}></Toolbar>
+                    {/* <Toolbar className="mb-4" left={leftToolbarTemplate} right={rightToolbarTemplate}></Toolbar> */}
+                    <Toolbar className="mb-4" left={leftToolbarTemplate}></Toolbar>
 
                     <DataTable
                         ref={dt}
