@@ -34,6 +34,17 @@ const AppMenu = () => {
                     ]
                 },
                 {
+                    label: 'Collections',
+                    icon: 'pi pi-fw pi-briefcase',
+                    items: [
+                        {
+                            label: 'Add Collection',
+                            icon: 'pi pi-fw pi-plus',
+                            to: '/collectionCrud'
+                        }
+                    ]
+                },
+                {
                     label: 'Plans',
                     icon: 'pi pi-fw pi-briefcase',
                     items: [
