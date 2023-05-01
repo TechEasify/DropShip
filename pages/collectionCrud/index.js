@@ -83,7 +83,7 @@ const CollectionCrud = () => {
                     console.log(res);
                     if (res.status == 200) {
                         const index = findIndexById(collection.collection_id);
-                        _collections[index] = _collection;
+                        _collections[index] = res.data;
                         setCollections(_collections);
                         setCollectionDialog(false);
                         setCollection(emptyCollection);
@@ -96,7 +96,7 @@ const CollectionCrud = () => {
                 collectionService.saveCollection(_collection).then((res) => {
                     console.log(res);
                     if (res.status == 200) {
-                        _collections.push(_collection);
+                        _collections.push(res.data);
                         setCollections(_collections);
                         setCollectionDialog(false);
                         setCollection(emptyCollection);

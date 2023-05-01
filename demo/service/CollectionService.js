@@ -14,9 +14,17 @@ export class CollectionService {
     async saveCollection(collection) {
         var res = null;
         if (collection.collection_id != null) {
-            res = await axios.post(this.contextPath + 'update/' + collection.collection_id, collection);
+            res = await axios.post(this.contextPath + 'update/' + collection.collection_id, collection, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
         } else {
-            res = await axios.post(this.contextPath + 'add', collection);
+            res = await axios.post(this.contextPath + 'add', collection, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
         }
         return res.data;
     }
