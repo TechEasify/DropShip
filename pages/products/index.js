@@ -6,6 +6,7 @@ import { Rating } from 'primereact/rating';
 import { PickList } from 'primereact/picklist';
 import { OrderList } from 'primereact/orderlist';
 import { ProductService } from '../../demo/service/ProductService';
+import { CollectionService } from '../../demo/service/CollectionService';
 import { InputText } from 'primereact/inputtext';
 import getConfig from 'next/config';
 import { Carousel } from 'primereact/carousel';
@@ -25,6 +26,7 @@ const Products = () => {
     const [picklistTargetValue, setPicklistTargetValue] = useState([]);
     const [orderlistValue, setOrderlistValue] = useState(listValue);
     const [dataViewValue, setDataViewValue] = useState(null);
+    const [carouselViewValue, setCarouselViewValue] = useState(null);
     const [globalFilterValue, setGlobalFilterValue] = useState('');
     const [filteredValue, setFilteredValue] = useState(null);
     const [layout, setLayout] = useState('grid');
@@ -49,12 +51,14 @@ const Products = () => {
             numScroll: 1
         }
     ];
-    const carouselItemTemplate = (product) => {
+    const carouselItemTemplate = (collection) => {
         return (
             <div className="border-1 surface-border border-round m-1 text-center py-5">
-                <div className="mb-3">{/* <img src={`${contextPath}/demo/images/product/${product.image}`} alt={product.name} className="w-6 shadow-2" /> */}</div>
+                <div className="mb-3">
+                    <img src={collection.collection_image} alt={collection.collection_name} className="w-6 shadow-2" />
+                </div>
                 <div>
-                    <p className="text-xl p-mb-1">{product.name}</p>
+                    <p className="text-xl p-mb-1">{collection.collection_name}</p>
                 </div>
             </div>
         );
@@ -67,7 +71,8 @@ const Products = () => {
     useEffect(() => {
         const productService = new ProductService();
         productService.getProducts().then((data) => setDataViewValue(data.data));
-        // productService.getProducts().then((data) => console.log(data.data));
+        const collectionService = new CollectionService();
+        collectionService.getCollections().then((data) => setCarouselViewValue(data.data));
         setGlobalFilterValue('');
     }, []);
 
@@ -187,7 +192,7 @@ const Products = () => {
                 <div className="card">
                     <h5>DataView</h5>
                     <div>
-                        <Carousel value={dataViewValue} numVisible={6} numScroll={3} responsiveOptions={carouselResponsiveOptions} itemTemplate={carouselItemTemplate}></Carousel>
+                        <Carousel value={carouselViewValue} numVisible={6} numScroll={3} responsiveOptions={carouselResponsiveOptions} itemTemplate={carouselItemTemplate}></Carousel>
                     </div>
                     <DataView value={filteredValue || dataViewValue} layout={layout} paginator rows={12} sortOrder={sortOrder} sortField={sortField} itemTemplate={itemTemplate} header={dataViewHeader}></DataView>
                 </div>
