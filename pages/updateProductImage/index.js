@@ -55,7 +55,7 @@ const index = () => {
 
     return (
         <>
-            <div className="flex">
+            <div className="flex p-fluid">
                 <div>
                     <div className="card m-3 border-1 surface-border shadow-2 max-w-max">
                         <div className="flex flex-wrap gap-2 align-items-center justify-content-between mb-2">
@@ -132,7 +132,7 @@ const index = () => {
                             <InputNumber id="productImageHeight" value={productSvgProperties.product_image_height} onChange={(e) => onInputNumberChange(e, 'product_image_height')} required />
                         </div>
                     </div> */}
-                    <div className="flex gap-3">
+                    <div className="">
                         <div className="field w-full">
                             <label htmlFor="logoImageUrl" className="block">
                                 Logo Image Url
