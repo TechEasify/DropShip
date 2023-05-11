@@ -27,24 +27,24 @@ const index = () => {
     };
 
     const [productSvgProperties, setProductSvgProperties] = useState({
-        product_image_url: 'https://cdn.shopify.com/s/files/1/0654/6168/2428/files/logo.png?v=1681700073',
-        product_image_x: 50,
-        product_image_y: 50,
-        product_image_width: 400,
-        product_image_height: 900,
-        label_image_url: 'https://cdn.shopify.com/s/files/1/0654/6168/2428/files/logo.png?v=1681700073',
-        label_image_x: 175,
-        label_image_y: 490,
-        label_image_width: 150,
-        label_image_height: 100,
-        logo_image_url: 'https://cdn.shopify.com/s/files/1/0654/6168/2428/files/logo.png?v=1681700073',
-        logo_image_x: 175,
-        logo_image_y: 490,
-        logo_image_width: 150,
-        logo_image_height: 100,
-        text_x: 175,
-        text_y: 490,
-        text_length: 150,
+        product_image_url: 'https://cdn.shopify.com/s/files/1/0654/6168/2428/files/product_image.png?v=1683802059',
+        product_image_x: 170,
+        product_image_y: 70,
+        product_image_width: 160,
+        product_image_height: 0,
+        label_image_url: 'https://cdn.shopify.com/s/files/1/0654/6168/2428/files/label_image.png?v=1683802059',
+        label_image_x: 50,
+        label_image_y: 200,
+        label_image_width: 400,
+        label_image_height: 0,
+        logo_image_url: 'https://cdn.shopify.com/s/files/1/0654/6168/2428/files/logo_image.png?v=1683802059',
+        logo_image_x: 210,
+        logo_image_y: 215,
+        logo_image_width: 80,
+        logo_image_height: 0,
+        text_x: 385,
+        text_y: 350,
+        text_length: 80,
         text_font_size: 20
     });
 
@@ -76,7 +76,7 @@ const index = () => {
                             {/* <span className={`product-badge status-${data.inventoryStatus.toLowerCase()}`}>{data.inventoryStatus}</span> */}
                         </div>
                         <div className="flex flex-column align-items-center text-center mb-3">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 500 1000" style={{ background: 'gray' }}>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="500" height="500" viewBox="0 0 500 500" style={{ background: 'gray' }}>
                                 <image
                                     x={productSvgProperties.product_image_x}
                                     y={productSvgProperties.product_image_y}
