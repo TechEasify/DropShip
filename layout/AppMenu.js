@@ -66,6 +66,11 @@ const AppMenu = () => {
                     to: '/updateProductImage'
                 },
                 {
+                    label: 'Update Product Label',
+                    icon: 'pi pi-fw pi-briefcase',
+                    to: '/updateProductLabel'
+                },
+                {
                     label: 'Select Products',
                     icon: 'pi pi-fw pi-briefcase',
                     to: '/selectProducts'
