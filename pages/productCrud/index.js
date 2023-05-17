@@ -307,7 +307,7 @@ const ProductCrud = () => {
         return (
             <>
                 <span className="p-column-title">Featured Image</span>
-                <img src={rowData.featured_image} alt={rowData.product_title} className="w-full" />
+                <img src={rowData.featured_image} alt={rowData.product_title} className="w-3rem" />
             </>
         );
     };
@@ -454,25 +454,25 @@ const ProductCrud = () => {
                         scrollable
                         scrollHeight="400px"
                     >
-                        <Column style={{ width: 'max-content', minWidth: '5rem' }} field="product_id" header="Id" sortable body={productIdBodyTemplate}></Column>
-                        <Column style={{ width: 'min-content', minWidth: '5rem' }} field="featured_image" header="Image" sortable body={featuredImageBodyTemplate}></Column>
-                        <Column style={{ width: 'max-content', minWidth: '5rem' }} field="product_title" header="Title" sortable body={productTitleBodyTemplate}></Column>
-                        <Column style={{ width: 'max-content', minWidth: '5rem' }} field="product_handle" header="Handle" sortable body={productHandleBodyTemplate}></Column>
-                        <Column style={{ width: 'max-content', minWidth: '5rem' }} field="price" header="Price" sortable body={priceBodyTemplate}></Column>
-                        <Column style={{ width: 'max-content', minWidth: '5rem' }} field="shipping_price" header="Shipping Price" sortable body={shippingPriceBodyTemplate}></Column>
-                        <Column style={{ width: 'max-content', minWidth: '5rem' }} field="shipping_time" header="Shipping Time" sortable body={shippingTimeBodyTemplate}></Column>
-                        <Column style={{ width: 'max-content', minWidth: '5rem' }} field="retail_price" header="Retail Price" sortable body={retailPriceBodyTemplate}></Column>
-                        <Column style={{ width: 'max-content', minWidth: '5rem' }} field="description" header="Description" sortable body={descriptionBodyTemplate}></Column>
-                        <Column style={{ width: 'max-content', minWidth: '5rem' }} field="product_sku" header="Sku" sortable body={productSkuBodyTemplate}></Column>
-                        <Column style={{ width: 'max-content', minWidth: '5rem' }} field="quantity" header="Quantity" sortable body={quantityBodyTemplate}></Column>
-                        <Column style={{ width: 'max-content', minWidth: '5rem' }} field="preferred_background_color" header="Preferred Background" sortable body={preferredBackgroundColorBodyTemplate}></Column>
-                        <Column style={{ width: 'max-content', minWidth: '5rem' }} field="sample_order_price" header="Sample Order Price" sortable body={sampleOrderPriceBodyTemplate}></Column>
-                        <Column style={{ width: 'max-content', minWidth: '5rem' }} field="product_type" header="Type" sortable body={productTypeBodyTemplate}></Column>
-                        <Column style={{ width: 'max-content', minWidth: '5rem' }} field="product_vendor" header="Vendor" sortable body={productVendorBodyTemplate}></Column>
-                        <Column style={{ width: 'max-content', minWidth: '5rem', flexWrap: 'wrap', gap: '2px' }} field="tags" header="Tags" sortable body={tagsBodyTemplate}></Column>
-                        <Column style={{ width: 'max-content', minWidth: '5rem' }} field="order" header="Order" sortable body={orderBodyTemplate}></Column>
-                        <Column style={{ width: 'max-content', minWidth: '5rem' }} field="is_custom" header="Custom" sortable body={isCustomBodyTemplate}></Column>
-                        <Column style={{ width: 'max-content', minWidth: '5rem' }} field="Actions" header="Actions" body={actionBodyTemplate} frozen={true} alignFrozen="right"></Column>
+                        <Column style={{ width: 'max-content', minWidth: '5rem', maxWidth: '10rem' }} field="product_id" header="Id" sortable body={productIdBodyTemplate}></Column>
+                        <Column style={{ width: 'min-content', minWidth: '5rem', maxWidth: '10rem', justifyContent: 'center' }} field="featured_image" header="Image" sortable body={featuredImageBodyTemplate}></Column>
+                        <Column style={{ width: 'max-content', minWidth: '5rem', maxWidth: '10rem' }} field="product_title" header="Title" sortable body={productTitleBodyTemplate}></Column>
+                        <Column style={{ width: 'max-content', minWidth: '5rem', maxWidth: '10rem' }} field="product_handle" header="Handle" sortable body={productHandleBodyTemplate}></Column>
+                        <Column style={{ width: 'max-content', minWidth: '5rem', maxWidth: '10rem' }} field="price" header="Price" sortable body={priceBodyTemplate}></Column>
+                        <Column style={{ width: 'max-content', minWidth: '5rem', maxWidth: '10rem' }} field="shipping_price" header="Shipping Price" sortable body={shippingPriceBodyTemplate}></Column>
+                        <Column style={{ width: 'max-content', minWidth: '5rem', maxWidth: '10rem' }} field="shipping_time" header="Shipping Time" sortable body={shippingTimeBodyTemplate}></Column>
+                        <Column style={{ width: 'max-content', minWidth: '5rem', maxWidth: '10rem' }} field="retail_price" header="Retail Price" sortable body={retailPriceBodyTemplate}></Column>
+                        <Column style={{ width: 'max-content', minWidth: '5rem', maxWidth: '120rem' }} field="description" header="Description" sortable body={descriptionBodyTemplate}></Column>
+                        <Column style={{ width: 'max-content', minWidth: '5rem', maxWidth: '10rem' }} field="product_sku" header="Sku" sortable body={productSkuBodyTemplate}></Column>
+                        <Column style={{ width: 'max-content', minWidth: '5rem', maxWidth: '10rem' }} field="quantity" header="Quantity" sortable body={quantityBodyTemplate}></Column>
+                        <Column style={{ width: 'max-content', minWidth: '5rem', maxWidth: '10rem' }} field="preferred_background_color" header="Preferred Background" sortable body={preferredBackgroundColorBodyTemplate}></Column>
+                        <Column style={{ width: 'max-content', minWidth: '5rem', maxWidth: '10rem' }} field="sample_order_price" header="Sample Order Price" sortable body={sampleOrderPriceBodyTemplate}></Column>
+                        <Column style={{ width: 'max-content', minWidth: '5rem', maxWidth: '10rem' }} field="product_type" header="Type" sortable body={productTypeBodyTemplate}></Column>
+                        <Column style={{ width: 'max-content', minWidth: '5rem', maxWidth: '10rem' }} field="product_vendor" header="Vendor" sortable body={productVendorBodyTemplate}></Column>
+                        <Column style={{ width: 'max-content', minWidth: '5rem', maxWidth: '10rem', flexWrap: 'wrap', gap: '2px' }} field="tags" header="Tags" sortable body={tagsBodyTemplate}></Column>
+                        <Column style={{ width: 'max-content', minWidth: '5rem', maxWidth: '10rem' }} field="order" header="Order" sortable body={orderBodyTemplate}></Column>
+                        <Column style={{ width: 'max-content', minWidth: '5rem', maxWidth: '10rem' }} field="is_custom" header="Custom" sortable body={isCustomBodyTemplate}></Column>
+                        <Column style={{ width: 'max-content', minWidth: '5rem', maxWidth: '10rem' }} field="Actions" header="Actions" body={actionBodyTemplate} frozen={true} alignFrozen="right"></Column>
                     </DataTable>
 
                     <Dialog visible={productDialog} style={{ width: '700px' }} header="Product Details" modal className="p-fluid" footer={productDialogFooter} onHide={hideDialog}>

@@ -247,7 +247,7 @@ const CollectionCrud = () => {
         return (
             <>
                 <span className="p-column-title">Collection Image</span>
-                <img src={rowData.collection_image} alt={rowData.collection_name} className="w-full" />
+                <img src={rowData.collection_image} alt={rowData.collection_name} className="w-3rem" />
             </>
         );
     };
@@ -328,13 +328,13 @@ const CollectionCrud = () => {
                         scrollable
                         scrollHeight="400px"
                     >
-                        <Column style={{ width: 'max-content', minWidth: '5rem' }} field="collection_id" header="ID" sortable body={collectionIdBodyTemplate}></Column>
-                        <Column style={{ width: 'min-content', minWidth: '5rem' }} field="collection_image" header="Image" sortable body={collectionImageBodyTemplate}></Column>
-                        <Column style={{ width: 'max-content', minWidth: '5rem' }} field="collection_name" header="Name" sortable body={collectionNameBodyTemplate}></Column>
-                        <Column style={{ width: 'max-content', minWidth: '5rem' }} field="collection_slug" header="Slug" sortable body={collectionSlugBodyTemplate}></Column>
-                        <Column style={{ width: 'max-content', minWidth: '5rem' }} field="collection_description" header="Description" sortable body={collectionDescriptionBodyTemplate}></Column>
-                        <Column style={{ width: 'max-content', minWidth: '5rem', flexWrap: 'wrap', gap: '2px' }} field="tags" header="Tags" sortable body={tagsBodyTemplate}></Column>
-                        <Column style={{ width: 'max-content', minWidth: '5rem' }} field="Actions" header="Actions" body={actionBodyTemplate} frozen={true} alignFrozen="right"></Column>
+                        <Column style={{ width: 'max-content', minWidth: '5rem', maxWidth: '10rem' }} field="collection_id" header="ID" sortable body={collectionIdBodyTemplate}></Column>
+                        <Column style={{ width: 'min-content', minWidth: '5rem', maxWidth: '10rem', justifyContent: 'center' }} field="collection_image" header="Image" sortable body={collectionImageBodyTemplate}></Column>
+                        <Column style={{ width: 'max-content', minWidth: '5rem', maxWidth: '10rem' }} field="collection_name" header="Name" sortable body={collectionNameBodyTemplate}></Column>
+                        <Column style={{ width: 'max-content', minWidth: '5rem', maxWidth: '10rem' }} field="collection_slug" header="Slug" sortable body={collectionSlugBodyTemplate}></Column>
+                        <Column style={{ width: 'max-content', minWidth: '5rem', maxWidth: '100rem' }} field="collection_description" header="Description" sortable body={collectionDescriptionBodyTemplate}></Column>
+                        <Column style={{ width: 'max-content', minWidth: '5rem', maxWidth: '10rem', flexWrap: 'wrap', gap: '2px' }} field="tags" header="Tags" sortable body={tagsBodyTemplate}></Column>
+                        <Column style={{ width: 'max-content', minWidth: '5rem', maxWidth: '10rem' }} field="Actions" header="Actions" body={actionBodyTemplate} frozen={true} alignFrozen="right"></Column>
                     </DataTable>
 
                     <Dialog visible={collectionDialog} style={{ width: '700px' }} header="Collection Details" modal className="p-fluid" footer={collectionDialogFooter} onHide={hideDialog}>
