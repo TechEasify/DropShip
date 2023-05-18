@@ -28,6 +28,7 @@ const Products = () => {
     const [dataViewValue, setDataViewValue] = useState(null);
     const [carouselViewValue, setCarouselViewValue] = useState(null);
     const [globalFilterValue, setGlobalFilterValue] = useState('');
+    const [collectionFilterValue, setCollectionFilterValue] = useState('');
     const [filteredValue, setFilteredValue] = useState(null);
     const [layout, setLayout] = useState('grid');
     const [sortKey, setSortKey] = useState(null);
@@ -37,8 +38,8 @@ const Products = () => {
     const carouselResponsiveOptions = [
         {
             breakpoint: '1024px',
-            numVisible: 3,
-            numScroll: 3
+            numVisible: 4,
+            numScroll: 4
         },
         {
             breakpoint: '768px',
@@ -53,7 +54,7 @@ const Products = () => {
     ];
     const carouselItemTemplate = (collection) => {
         return (
-            <div className="border-1 surface-border border-round m-1 text-center py-5">
+            <div className="border-1 surface-border border-round m-1 text-center py-3" onClick={() => onCollectionFilter(collection)}>
                 <div className="mb-3">
                     <img src={collection.collection_image} alt={collection.collection_name} className="w-6 shadow-2" />
                 </div>
@@ -72,7 +73,16 @@ const Products = () => {
         const productService = new ProductService();
         productService.getProducts().then((data) => setDataViewValue(data.data));
         const collectionService = new CollectionService();
-        collectionService.getCollections().then((data) => setCarouselViewValue(data.data));
+        setCarouselViewValue([
+            {
+                collection_id: '0',
+                collection_slug: '',
+                collection_name: 'ALL',
+                collection_image: 'https://shopifyapp.iihtsrt.com/public/assets/uploads/collection/avatar_1.png',
+                tags: []
+            }
+        ]);
+        collectionService.getCollections().then((data) => setCarouselViewValue((prevData) => [...data.data, ...prevData]));
         setGlobalFilterValue('');
     }, []);
 
@@ -83,7 +93,21 @@ const Products = () => {
             setFilteredValue(null);
         } else {
             const filtered = dataViewValue.filter((product) => {
-                return product.title.toLowerCase().includes(value);
+                return product.product_title.toLowerCase().includes(value);
+            });
+            setFilteredValue(filtered);
+        }
+    };
+
+    const onCollectionFilter = (collection) => {
+        const value = collection.tags;
+        setCollectionFilterValue(value);
+        console.log(value);
+        if (value.length === 0) {
+            setFilteredValue(null);
+        } else {
+            const filtered = dataViewValue.filter((product) => {
+                return product.tags.some((tag) => value == tag);
             });
             setFilteredValue(filtered);
         }
