@@ -104,7 +104,10 @@ const Dashboard = () => {
 
     useEffect(() => {
         const productService = new ProductService();
-        productService.getProductsSmall().then((data) => setProducts(data));
+        productService.getProducts().then((data) => {
+            console.log(data.data);
+            setProducts(data.data)
+        });
     }, []);
 
     useEffect(() => {
@@ -186,8 +189,8 @@ const Dashboard = () => {
                 <div className="card">
                     <h5>Due Shipping</h5>
                     <DataTable value={products} rows={2} paginator responsiveLayout="scroll">
-                        <Column header="Image" body={(data) => <img className="shadow-2" src={`${contextPath}/demo/images/product/${data.image}`} alt={data.image} width="50" />} />
-                        <Column field="name" header="Name" sortable style={{ width: '35%' }} />
+                        <Column header="Image" body={(data) => <img className="shadow-2" src={data.featured_image} alt={data.product_title} width="50" />} />
+                        <Column field="product_title" header="Name" sortable style={{ width: '35%' }} />
                         <Column field="price" header="Price" sortable style={{ width: '35%' }} body={(data) => formatCurrency(data.price)} />
                         <Column
                             header="View"
@@ -205,7 +208,7 @@ const Dashboard = () => {
                 <div className="card">
                     <h5>Top Selling Product</h5>
                     <DataTable value={products} rows={5} paginator responsiveLayout="scroll">
-                        <Column header="Image" body={(data) => <img className="shadow-2" src={`${contextPath}/demo/images/product/${data.image}`} alt={data.image} width="50" />} />
+                        <Column header="Image" body={(data) => <img className="shadow-2" src={data.featured_image} alt={data.product_title}  width="50" />} />
                         <Column field="name" header="Name" sortable style={{ width: '35%' }} />
                         <Column field="price" header="Price" sortable style={{ width: '35%' }} body={(data) => formatCurrency(data.price)} />
                         <Column
@@ -225,7 +228,7 @@ const Dashboard = () => {
                 <div className="card">
                     <h5>Top Selling Venders</h5>
                     <DataTable value={products} rows={5} paginator responsiveLayout="scroll">
-                        <Column header="Image" body={(data) => <img className="shadow-2" src={`${contextPath}/demo/images/product/${data.image}`} alt={data.image} width="50" />} />
+                        <Column header="Image" body={(data) => <img className="shadow-2" src={data.featured_image} alt={data.product_title}  width="50" />} />
                         <Column field="name" header="Name" sortable style={{ width: '35%' }} />
                         <Column field="price" header="Price" sortable style={{ width: '35%' }} body={(data) => formatCurrency(data.price)} />
                         <Column

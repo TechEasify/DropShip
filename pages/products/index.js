@@ -174,12 +174,12 @@ const Products = () => {
                         {/* <span className={`product-badge status-${data.inventoryStatus.toLowerCase()}`}>{data.inventoryStatus}</span> */}
                     </div>
                     <div className="flex flex-column align-items-center text-center mb-3">
-                        <img src={data.featured_image} alt={data.product_title} className="shadow-2 my-3 mx-0 max-w-full" />
+                        <img src={data.featured_image} alt={data.product_title} className="shadow-2 my-3 mx-0 max-w-full h-20rem" />
                         {/* <Rating value={data.rating} readOnly cancel={false} /> */}
                     </div>
                     <div>
                         <div className="text-2xl font-bold">{data.product_title}</div>
-                        <div className="mb-3">{data.description}</div>
+                        <div className="mb-3 white-space-nowrap overflow-hidden text-overflow-ellipsis" >{data.description}</div>
                     </div>
                     <hr />
                     <div className="flex align-items-center justify-content-between">
