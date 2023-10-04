@@ -84,7 +84,7 @@ const PlanCrud = () => {
             let _plan = { ...plan };
             if (plan.package_id) {
                 planService.savePlan(_plan).then((res) => {
-                    console.log(res);
+                    // console.log(res);
                     if (res.status == 200) {
                         const index = findIndexById(plan.package_id);
                         _plans[index] = _plan;

@@ -17,6 +17,8 @@ const Home = () => {
             else redirect to installer
             */
             router.push('/dashboard');
+        }else{
+            router.push('/login');
         }
     }, [param]);
 

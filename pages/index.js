@@ -6,9 +6,9 @@ else redirect to installer
 */
 
 import React from 'react';
-
+import Home from './[home]';
 const Index = () => {
-    return <></>;
+    return <><Home></Home></>;
 };
 
 Index.getLayout = function getLayout(page) {

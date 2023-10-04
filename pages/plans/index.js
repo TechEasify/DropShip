@@ -93,7 +93,7 @@ const Plans = () => {
                                                 )}
                                             </ul>
                                             <hr className="mb-3 mx-0 border-top-1 border-none surface-border mt-auto" />
-                                            <Button label="Try for free" className={`p-3 w-full mt-auto ${plan.is_popular === '1' ? 'text-indigo-500 bg-white' : 'text-white bg-indigo-500'}`}></Button>
+                                            <Button label={`${plan.trial_period_days > 0? 'Try for free': 'Activate'}`} className={`p-3 w-full mt-auto ${plan.is_popular === '1' ? 'text-indigo-500 bg-white' : 'text-white bg-indigo-500'}`}></Button>
                                         </div>
                                     </div>
                                 </div>
