@@ -71,6 +71,9 @@
     "test": "craco  test --env=jsdom",
     "eject": "craco  eject"
   },
+  "resolutions": {
+    "postcss-custom-properties": "9.0.2"
+  },
   "browserslist": [
     ">0.2%",
     "not dead",
