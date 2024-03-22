@@ -1,0 +1,164 @@
+.product-category-selector {
+  margin-left: -15px;
+  margin-right: -15px;
+}
+.product-category-selector__back {
+  margin-left: 15px;
+  margin-bottom: 10px;
+}
+.product-category-selector__block {
+  width: 50%;
+  float: left;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.product-category-selector__block--full {
+  width: 100%;
+}
+.product-category-selector__block__inner {
+  height: 300px;
+  overflow: auto;
+  padding-left: 10px;
+  padding-right: 10px;
+  border: 1px solid #e5e5e5;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+.product-category-selector__block__heading {
+  text-align: center;
+}
+.product-category-selector__block__heading--middle {
+  margin-top: 135px;
+}
+.product-category-selector__block__item--active a {
+  color: #2a6496;
+}
+.product-category-picker {
+  position: relative;
+}
+.product-category-picker__search-wrapper {
+  background: #fff;
+  border: 1px solid #e5e5e5;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  transition: border 0.2s linear, box-shadow 0.2s linear;
+}
+.product-category-picker__search-wrapper:after {
+  content: ' ';
+  display: block;
+  clear: both;
+}
+.product-category-picker__search-wrapper
+  input[type='text'].product-category-picker__search-wrapper__category-input {
+  background: transparent url(../static/images/layout/nav-arrow.png) no-repeat
+    98%;
+  border: none !important;
+  box-shadow: none !important;
+}
+@media (max-width: 991.98px) {
+  .product-category-picker__search-wrapper
+    input[type='text'].product-category-picker__search-wrapper__category-input {
+    background-position-x: 95%;
+  }
+}
+.product-category-picker__search-wrapper
+  input[type='text'].product-category-picker__search-wrapper__category-input.with-clear {
+  background-image: none;
+}
+.product-category-picker__search-wrapper--focused {
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.25);
+}
+.product-category-picker__search-wrapper__tags {
+  border-top: 1px solid #e5e5e5;
+  padding: 8px 5px 0;
+}
+.product-category-picker__search-wrapper__tags:after {
+  content: ' ';
+  display: block;
+  clear: both;
+}
+.product-category-picker__search-wrapper__tag {
+  background: #e5e5e5;
+  font-size: 14px;
+  color: #212b36;
+  float: left;
+  padding: 2px 8px;
+  margin: 0 5px 8px;
+}
+.product-category-picker__search-wrapper__tag__close-icon {
+  height: 14px;
+  width: 14px;
+  cursor: pointer;
+}
+.product-category-picker__category-list {
+  position: absolute;
+  z-index: 10;
+  background: #f8f8f8;
+  width: 100%;
+  max-height: 300px;
+  overflow: auto;
+  border: 1px solid #e5e5e5;
+  border-top: none;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.25);
+}
+.product-category-picker__category-list ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.product-category-picker__category-list ul li {
+  padding: 5px 13px;
+  border-bottom: 1px solid #e5e5e5;
+  font-size: 14px;
+}
+.product-category-picker__category-list ul li:last-child {
+  border-bottom: none;
+}
+.product-category-picker__category-list ul li.error {
+  color: #9d4a45;
+}
+.product-category-picker__category-list ul li a {
+  color: #222;
+}
+.product-category-picker__category-list ul li a:hover {
+  color: #37577d;
+}
+.product-category-picker__category-list ul li a.with-children img {
+  height: 11px;
+  padding-left: 10px;
+}
+.product-category-picker__category-list ul li a.last-child {
+  font-weight: 700;
+}
+.product-category-picker__breadcrumbs {
+  position: relative;
+  z-index: 2;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.25);
+  border-bottom: 1px solid #bbb;
+  background: #fff;
+}
+.product-category-picker__breadcrumbs:after {
+  content: ' ';
+  display: block;
+  clear: both;
+}
+.product-category-picker__breadcrumbs__menu-icon {
+  float: left;
+  padding: 7px 10px;
+}
+.product-category-picker__breadcrumbs__item {
+  float: left;
+  font-size: 13px;
+  padding: 10px 12px 10px 0;
+}
+.product-category-picker__breadcrumbs__item:first-child {
+  padding-left: 10px;
+}
+.product-category-picker__breadcrumbs__item a {
+  color: #37577d;
+}
+.product-category-picker__breadcrumbs__divider-icon {
+  float: right;
+}
+.product-category-picker__breadcrumbs__divider-icon img {
+  height: 18px;
+  margin-left: 10px;
+}

@@ -1,0 +1,91 @@
+.custom-product-pricing-calculator__calculator__column {
+  float: left;
+  min-height: 1px;
+  padding-right: 15px;
+  position: relative;
+}
+.custom-product-pricing-calculator {
+  background: #f7f7f7;
+  padding: 20px 15px;
+}
+@media (min-width: 992px) {
+  .custom-product-pricing-calculator .styled-select {
+    background-position-x: 90% !important;
+  }
+}
+.custom-product-pricing-calculator .styled-select select {
+  border: none !important;
+}
+@media (min-width: 992px) {
+  .custom-product-pricing-calculator__calculator {
+    border-right: 1px solid #e5e5e5;
+  }
+}
+@media (max-width: 991.98px) {
+  .custom-product-pricing-calculator__calculator {
+    border-bottom: 1px solid #e5e5e5;
+  }
+}
+.custom-product-pricing-calculator__calculator__column {
+  width: 25% !important;
+}
+.custom-product-pricing-calculator__calculator__column.shipping {
+  width: 16.66666667% !important;
+  padding: 0 15px;
+}
+@media (max-width: 767.98px) {
+  .custom-product-pricing-calculator__calculator__column.shipping {
+    width: 50% !important;
+  }
+}
+.custom-product-pricing-calculator__calculator__column.shipping label {
+  margin-bottom: 0;
+}
+.custom-product-pricing-calculator__calculator__column--plain-text {
+  padding-top: 38px;
+}
+@media (min-width: 992px) {
+  .custom-product-pricing-calculator__calculator__column .styled-select {
+    background-position-x: 90% !important;
+  }
+  .custom-product-pricing-calculator__calculator__column .styled-select select {
+    border: none !important;
+  }
+}
+.custom-product-pricing-calculator__calculator__column .period-input {
+  display: block;
+  min-width: 90px;
+}
+.custom-product-pricing-calculator__result__amount {
+  text-align: center;
+  font-size: 34px;
+  margin-top: 42px;
+}
+.custom-product-pricing-calculator__result__notes {
+  margin-left: 10px;
+  margin-top: 70px;
+}
+.custom-product-pricing-calculator__result__notes ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.custom-product-pricing-calculator__result__notes ul li {
+  color: #9e9e9e;
+}
+.custom-product-pricing-calculator__result__notes ul li:before {
+  content: '*';
+  margin-right: 5px;
+  color: red;
+}
+.custom-product-pricing-calculator__section-title {
+  font-size: 18px;
+  margin-bottom: 0;
+  margin-top: 0;
+}
+.custom-product-pricing-calculator__section-title--centered {
+  text-align: center;
+}
+.shipping-results .price {
+  font-size: 1.3em;
+}

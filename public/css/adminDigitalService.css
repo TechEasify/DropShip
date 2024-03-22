@@ -1,0 +1,153 @@
+.Admin-degital {
+    margin-bottom: 10px;
+    margin-top: 50px;
+}
+
+.view-invoice {
+    display: flex;
+    margin-left: 10px;
+    margin-right: 10px;
+    justify-content: space-around;
+}
+
+.invoice-text {
+    width: 50%;
+}
+
+.invoice-detail {
+    display: flex;
+}
+
+.invoice-from {
+    width: 20%;
+}
+
+.invoice-add {
+    display: flex;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.invoice-address {
+    width: 50%;
+}
+
+.invoice-label {
+    width: 30%;
+}
+
+.invoice-list {
+    margin-right: 10px;
+}
+
+.invoice {
+    background: #ca9832;
+    width: 100%;
+    text-align: center;
+}
+
+.invoice-detail {
+    display: flex;
+    align-items: center;
+}
+
+.invoice-table {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 10px;
+}
+
+table.invoice-det {
+    width: 90%;
+    height: 60px;
+    border: 1px solid;
+    margin-bottom: 10px;
+}
+
+tr.table-row {
+    border: 1px solid #ca9832;
+    font-size: 12px;    
+}
+
+th.table-head {
+    border: 1px solid;
+    text-align: center;
+    background: #ca9832;
+    color: #fff;
+}
+
+.view-status {
+    display: flex;
+    margin-left: 50px;
+    align-items: center;
+}
+
+td.table-head {
+    border: 1px solid #ca9832;
+    font-size: 12px;
+    text-align: center;
+}
+
+.MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded.MuiPaper-elevation24.MuiDialog-paper.MuiDialog-paperScrollPaper.MuiDialog-paperWidthSm.css-1t1j96h-MuiPaper-root-MuiDialog-paper {
+    width: 1000px !important;
+}
+
+.css-1t1j96h-MuiPaper-root-MuiDialog-paper {
+    background-color: #fff;
+    color: rgba(0, 0, 0, 0.87);
+    -webkit-transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    border-radius: 4px;
+    box-shadow: 0px 11px 15px -7px rgba(0,0,0,0.2), 0px 24px 38px 3px rgba(0,0,0,0.14), 0px 9px 46px 8px rgba(0,0,0,0.12);
+    margin: 32px;
+    position: relative;
+    overflow-y: auto;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    max-height: calc(100% - 64px);
+    max-width: 1000px !important;
+}
+
+.viewclose-btn {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.save-btn {
+    margin-right: 10px;
+}
+
+.view-Attachment {
+    display: flex;
+    margin-left: 50px;
+    align-items: center;
+}
+
+.payment-status {
+    display: flex;
+}
+
+.img-upload {
+    margin-left: 50px;
+}
+
+.view-payment {
+    display: flex;
+    margin-left: 50px;
+    margin-top: 10px;
+    align-items: flex-end;
+}
+
+.text-payment {
+    margin-right: 10px;
+}
+
+.admin-heading {
+    margin-bottom: 10px;
+}

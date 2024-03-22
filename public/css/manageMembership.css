@@ -1,0 +1,223 @@
+.ManageMembership {
+    margin-top: 50px;
+}
+
+.manage-select {
+    width: 100%;
+    margin-top: 10px;
+}
+
+h5.membership-heading {
+    font-size: 30px;
+}
+
+.manage-membership {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.free-head {
+    text-align: center;
+}
+
+.manage-head {
+    margin-right: 10px;
+}
+
+.manage-catalogue {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.catalogue-select {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.catalogue-text {
+    margin-right: 10px;
+    width: 25%;
+}
+
+.logo-upload {
+    margin-bottom: 10px;
+}
+
+.price-manage {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-bottom: 10px;
+}
+
+.digital {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.digital-text {
+    margin-right: 10px;
+    width: 100%;
+}
+
+.digital-select {
+    margin-left: 10px;
+    width: 100%;
+}
+
+.submit {
+    width: 50%;
+    margin: auto;
+    margin-top: 20px;
+}
+
+button.free-btn {
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: 15px;
+    background: #ca9832;
+    border: none;
+    border-radius: 5px;
+    color: white;
+}
+
+.catalogue-input {
+    width: 100%;
+    margin: 10px;
+}
+
+.rendered-catalogue {
+    margin-left: 20%;
+}
+
+.order-limit {
+    display: flex;
+    width: 100%;
+    align-items: center;
+}
+
+button.MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium.increment.css-1e6y48t-MuiButtonBase-root-MuiButton-root {
+    background: #232323;
+    color: white;
+    font-size: 14px;
+}
+
+.inc-btn {
+    margin-right: 10px;
+}
+
+.dec-btn {
+    margin-left: 10px;
+}
+
+
+/* Manage Tiers css */
+
+.manage-tiers {
+    margin-top: 50px;
+    margin-bottom: 10px;
+}
+
+.tiers-month {
+    display: flex;
+    align-items: center;
+}
+
+.tiers-text {
+    margin-right: 10px;
+}
+
+.Tiers-submit {
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+
+button.MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium.submit-btn.css-1e6y48t-MuiButtonBase-root-MuiButton-root {
+    padding: 10px;
+    font-size: 12px;
+    background: #ca9832;
+    color: white;
+}
+
+.edit-btn {
+    margin-right: 5px;
+}
+
+.tiers-table {
+    width: 100%;
+}
+
+
+/* Manage Digital Services */
+
+.digital-services {
+    margin-top: 50px;
+    margin-bottom: 10px;
+}
+
+.digital-menu {
+    display: flex;
+    margin-bottom: 10px;
+    align-items: center;
+}
+
+.designing-filed {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+h5.designing-heading {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.designing-form {
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.designing-text {
+    margin-right: 10px;
+    width: 10%;
+}
+
+.designing-input {
+    width: 100%;
+}
+
+.designing-submit {
+    margin-left: 10px;
+}
+
+.digital-label {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.button-digital {
+    width: 15%;
+}
+
+button.MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium.digital-btn.css-1e6y48t-MuiButtonBase-root-MuiButton-root {
+    font-size: 12px;
+    background: #232323;
+    color: white;
+}
+
+.css-az8st9-MuiDataGrid-root .MuiDataGrid-row:not(.MuiDataGrid-row--dynamicHeight)>.MuiDataGrid-cell {
+    overflow: unset !important;
+    white-space: nowrap;
+}
+
+.manage-form {
+    display: flex;
+    align-items: center;
+}

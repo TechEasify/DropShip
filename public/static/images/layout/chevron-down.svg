@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="23px" viewBox="0 0 16 23" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+    <title>A0299B0A-ED24-426B-B828-B7BA4C6236FB</title>
+    <desc>Created with sketchtool.</desc>
+    <defs>
+        <polygon id="path-1" points="10 2.0875 5 7.0875 5.15143483e-14 2.0875 1.175 0.9125 5 4.72916667 8.825 0.9125"></polygon>
+    </defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Icon/Chevron_down">
+            <g id="ic_chevron_down" transform="translate(3, 8.0000)">
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <use id="Shape" fill="#222222" xlink:href="#path-1"></use>
+                <g id="Color/Palette/Grays/color-gray-3" mask="url(#mask-2)" fill="#B1B1B1">
+                    <g transform="translate(-3, -8.000000)" id="color-box">
+                        <rect x="0" y="0" width="16" height="23"></rect>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

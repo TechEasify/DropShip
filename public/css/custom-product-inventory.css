@@ -1,0 +1,133 @@
+.inventory__welcome-box {
+  text-align: left;
+}
+.inventory__welcome-box__ordered-list {
+  list-style-type: none;
+  counter-reset: item;
+  padding-left: 0;
+}
+.inventory__welcome-box__ordered-list li {
+  position: relative;
+  margin: 20px 0;
+}
+.inventory__welcome-box__ordered-list li:before {
+  content: counter(item);
+  counter-increment: item;
+  border: 5px solid #e5e5e5;
+  border-radius: 50%;
+  height: 45px;
+  width: 45px;
+  line-height: 27px;
+  font-size: 18px;
+  color: #555;
+  display: inline-block;
+  font-weight: 700;
+  padding-top: 5px;
+  text-align: center;
+  margin-right: 10px;
+}
+.inventory__welcome-box__ordered-list
+  li
+  .inventory__welcome-box__ordered-list__item {
+  position: absolute;
+  top: 0;
+  left: 55px;
+  min-height: 45px;
+  line-height: 45px;
+}
+.inventory__welcome-box__ordered-list
+  li
+  .inventory__welcome-box__ordered-list__item
+  span {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: normal;
+}
+.inventory__welcome-box__ordered-list--connected li {
+  margin: 0;
+}
+.inventory__welcome-box__ordered-list--connected li:after {
+  content: '';
+  width: 2px;
+  height: 20px;
+  display: block;
+  background: #e5e5e5;
+  margin-left: 21px;
+}
+.inventory__welcome-box__ordered-list--connected li:last-child:after {
+  content: none;
+}
+.inventory__welcome-box__paragraph {
+  text-align: left;
+}
+@media (max-width: 1199.98px) {
+  .inventory__welcome-box__paragraph {
+    text-align: center;
+  }
+}
+.inventory__welcome-box__arrow {
+  position: absolute;
+  right: -55px;
+  top: -82px;
+}
+@media (max-width: 991.98px) {
+  .inventory__welcome-box__arrow {
+    display: none;
+  }
+}
+.inventory__welcome-box__arrow--shipments-page {
+  right: -70px;
+}
+.inventory__welcome-box__no-items-image img {
+  width: 50%;
+}
+.inventory .warehouse-stats .stats-column {
+  padding: 25px 15px;
+}
+@media (max-width: 991.98px) {
+  .inventory #stats.warehouse-stats h2 {
+    font-size: 20px;
+    line-height: 32px;
+  }
+  .inventory #stats.warehouse-stats h4 {
+    font-size: 12px;
+    line-height: 14px;
+  }
+  .inventory #stats.warehouse-stats .stats-column {
+    padding: 8px;
+    min-height: 82px;
+  }
+  .inventory #stats.warehouse-stats .stats-column:nth-child(-n + 3) {
+    width: 33.3333%;
+    border-bottom: 1px solid #746861;
+  }
+  .inventory #stats.warehouse-stats .stats-column:nth-child(3) {
+    border-right: 0;
+  }
+  .inventory #stats.warehouse-stats .stats-column:nth-child(n + 4) {
+    width: 50%;
+  }
+  .inventory #stats.warehouse-stats .stats-column:nth-child(2) {
+    padding: 8px 2px;
+  }
+}
+.image-overlay {
+  position: absolute;
+  z-index: 6;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(34, 34, 34, 0.5);
+  text-align: center;
+}
+.image-overlay__count {
+  color: #fff;
+  vertical-align: middle;
+  transform: translateX(-50%) translateY(-50%);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 18px;
+  font-weight: 700;
+}

@@ -1,0 +1,105 @@
+.proactive-message__parent-container {
+  position: fixed;
+  width: 236px;
+  height: 387px;
+  border-radius: 3px;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.25);
+  border: 1px solid #e5e5e5;
+  right: 79px;
+  bottom: 16px;
+}
+.proactive-message__sales-img {
+  width: 71px;
+  height: 58px;
+  object-fit: contain;
+}
+.proactive-message .pf-i-close {
+  position: absolute;
+  right: 12px;
+  top: 10px;
+}
+.proactive-message__divider {
+  width: 211px;
+  height: 1px;
+}
+.proactive-message__success-block {
+  margin-top: 60px;
+}
+.proactive-message__button {
+  position: absolute;
+  width: 90%;
+  bottom: 16px;
+}
+.proactive-message__minimised {
+  right: 0;
+  bottom: 45px;
+  position: fixed;
+  width: 58px;
+  height: 58px;
+  border-radius: 3px 0 0 3px;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.25);
+  border: 1px solid #89100d;
+  z-index: 1100;
+}
+@media (max-width: 991.98px) {
+  .proactive-message__divider,
+  .proactive-message__parent-container {
+    display: none;
+  }
+  .proactive-message__parent-container-mobile {
+    right: 0;
+    bottom: 0;
+    z-index: 99999;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+  }
+  .proactive-message__parent-container-mobile .proactive-message__main-block {
+    margin: auto !important;
+    padding: 0 10px;
+    max-width: 500px;
+    display: inline-block;
+    vertical-align: middle;
+  }
+  .proactive-message__parent-container-mobile .proactive-message__bottom-block {
+    margin-top: 24px;
+  }
+  .proactive-message__parent-container-mobile
+    .proactive-message__success-block {
+    margin-top: 0;
+  }
+  .proactive-message__parent-container-mobile .proactive-message__button {
+    width: 100%;
+    bottom: 32px;
+    left: 0;
+    padding: 0 8px;
+  }
+  .proactive-message__parent-container-mobile:before {
+    content: '';
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+  }
+  .proactive-message__mobile-block {
+    display: initial;
+    position: fixed;
+    right: 0;
+    bottom: 16px;
+    width: 100%;
+  }
+  .proactive-message__mobile-parent {
+    height: 58px;
+    border: 1px solid #e5e5e5;
+  }
+}
+.proactive-message .slide-fade-enter-active {
+  transition: all 0.3s ease;
+}
+.proactive-message .slide-fade-leave-active {
+  transition: all 0.3s cubic-bezier(1, 0.5, 0.8, 1);
+}
+.proactive-message .slide-fade-enter,
+.proactive-message .slide-fade-leave-to {
+  transform: translateY(50px);
+  opacity: 0;
+}

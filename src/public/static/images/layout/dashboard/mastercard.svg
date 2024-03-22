@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="48px" height="32px" viewBox="0 0 48 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 49.3 (51167) - http://www.bohemiancoding.com/sketch -->
+    <title>B22AB6C3-81C0-4F18-9255-B48F125F19BF</title>
+    <desc>Created with sketchtool.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="48" height="32" rx="3"></rect>
+    </defs>
+    <g id="Ready" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Billing---Wallet" transform="translate(-502.000000, -634.000000)">
+            <g id="method/mastercard" transform="translate(502.000000, 634.000000)">
+                <g id="Rectangle-7">
+                    <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-1"></use>
+                    <rect stroke="#E5E5E5" stroke-width="1" x="0.5" y="0.5" width="47" height="31" rx="3"></rect>
+                </g>
+                <g id="mastercard-2" stroke-width="1" fill-rule="evenodd" transform="translate(10.000000, 7.000000)">
+                    <polygon id="Shape" fill="#FF5F00" fill-rule="nonzero" points="17.9998574 15.4285714 10.2857143 15.4285714 10.2857143 1.71428571 18 1.71428571"></polygon>
+                    <path d="M10.6950374,8.71428561 C10.6950374,5.93480129 11.9874011,3.45882306 13.99986,1.86319578 C12.4765323,0.653607831 10.5924088,-0.00287699353 8.65248128,9.47800341e-06 C3.87373136,9.47800342e-06 0,3.90146549 0,8.71428561 C0,13.5271057 3.87373136,17.4285617 8.65248128,17.4285617 C10.5924568,17.43148 12.4766346,16.7749934 14,15.5653754 C11.9876811,13.9700301 10.6950374,11.4939109 10.6950374,8.71428561" id="Shape" fill="#EB001B" fill-rule="nonzero"></path>
+                    <path d="M28,8.71428561 C28,13.5271059 24.1264623,17.4285621 19.3479513,17.4285621 C17.4078678,17.4314294 15.5235788,16.7749571 14,15.5653757 C16.0129182,13.9697484 17.3052173,11.493911 17.3052173,8.71428561 C17.3052173,5.93466021 16.0129182,3.45882286 14,1.86319552 C15.5235412,0.653644069 17.4077757,-0.00282639926 19.3478113,9.14740672e-06 C24.1263223,9.14740672e-06 27.99986,3.90146531 27.99986,8.71428561" id="Shape" fill="#F79E1B" fill-rule="nonzero"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
