@@ -11,7 +11,6 @@ export function Methods() {
             Billing: Billing methods
             <Link
               className="pf-btn float-none float-md-right pf-mt-12 pf-mt-md-0 pf-d-block pf-d-md-inline-block pf-btn-primary"
-              style={{ color: '#FFF' }}
               to="methods/add"
             >
               Add new billing method

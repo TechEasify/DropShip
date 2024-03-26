@@ -9935,6 +9935,10 @@ button.pf-bg-blue:hover {
   padding-right: 1px;
 }
 
+.MuiToolbar-root.MuiToolbar-gutters.MuiToolbar-regular.pf-d-flex.pf-flex-wrap.pf-justify-content-between.pf-align-items-center.css-i6s8oy {
+  background: rgb(241, 241, 241, 1) !important;
+}
+
 span.pf-i.pf-i-32.pf-i-close.pf-modal__close-icon {
   margin: 0 auto;
   font-size: 18px;

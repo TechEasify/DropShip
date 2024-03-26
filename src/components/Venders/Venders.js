@@ -1,6 +1,7 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom';
-import { Button, Card, CardContent, CardMedia, Typography } from '@mui/material'
+import { Card, CardContent, CardMedia, Typography } from '@mui/material'
+import { Button } from '@shopify/polaris';
 
 function Venders() {
     const history = useHistory()
@@ -53,7 +54,7 @@ function Venders() {
                 <div className='venders-card'>
                     <Card sx={{ maxWidth: 345, marginBottom: 2 }}>
                         <CardMedia
-                            sx={{ height: 140 }}
+                            sx={{ height: 280 }}
                             image="https://d46qqg0b6pc82.cloudfront.net/listing_variation_images/attachments/fb5/9e9/3b-/original/FLLF8-2.png"
                             title="green iguana"
                             className='card-venderImg'
@@ -80,7 +81,7 @@ function Venders() {
 
                     <Card sx={{ maxWidth: 345, marginBottom: 2 }}>
                         <CardMedia
-                            sx={{ height: 140 }}
+                            sx={{ height: 280 }}
                             image="https://d46qqg0b6pc82.cloudfront.net/listing_variation_images/attachments/fb5/9e9/3b-/original/FLLF8-2.png"
                             title="green iguana"
                             className='card-venderImg'
@@ -107,7 +108,7 @@ function Venders() {
 
                     <Card sx={{ maxWidth: 345, marginBottom: 2 }}>
                         <CardMedia
-                            sx={{ height: 140 }}
+                            sx={{ height: 280 }}
                             image="https://d46qqg0b6pc82.cloudfront.net/listing_variation_images/attachments/fb5/9e9/3b-/original/FLLF8-2.png"
                             title="green iguana"
                             className='card-venderImg'
@@ -133,7 +134,7 @@ function Venders() {
                     </Card>
                     <Card sx={{ maxWidth: 345, marginBottom: 2 }}>
                         <CardMedia
-                            sx={{ height: 140 }}
+                            sx={{ height: 280 }}
                             image="https://d46qqg0b6pc82.cloudfront.net/listing_variation_images/attachments/fb5/9e9/3b-/original/FLLF8-2.png"
                             title="green iguana"
                             onClick={() => history.push('/venders/detail')}
