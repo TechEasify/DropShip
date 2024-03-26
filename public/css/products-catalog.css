@@ -307,17 +307,13 @@ img.MuiCardMedia-root.MuiCardMedia-media.MuiCardMedia-img.cardimg-mui.css-o69gx8
   height: 200px;
 }
 
+img.MuiCardMedia-root.MuiCardMedia-media.MuiCardMedia-img.cardimg-mui.css-rhsghg {
+  height: 200px;
+}
 
-
-
-
-
-
-
-
-
-
-
+.MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded.MuiPaper-elevation1.MuiCard-root.card-detail.css-rk70f7 {
+  padding: 10px;
+}
 
 
 .shipping-banner {
@@ -2191,6 +2187,7 @@ img.product-img-select {
 
 .main-card {
   margin-bottom: 10px;
+  margin-top: 10px;
 }
 
 /* .Polaris-Button.Polaris-Button svg {
@@ -2198,6 +2195,5 @@ img.product-img-select {
 } */
 
 .Polaris-Icon--toneBase svg {
-  color: #fff !important;
   color: #fff !important;
 }

@@ -151,15 +151,31 @@ function Category() {
 
     const handleSubmit = () => {
         if (validateForm()) {
-            const newId = rows.length + 1;
-            const newCategory = {
-                id: newId,
-                name: categoryData.name,
-                image: categoryData.image,
-                status: categoryData.status,
-                tags: categoryData.tags,
-            };
-            setRows([...rows, newCategory]);
+            if (categoryData.id !== null) {
+                const updatedRows = rows.map(row => {
+                    if (row.id === categoryData.id) {
+                        return {
+                            ...row,
+                            name: categoryData.name,
+                            image: categoryData.image,
+                            status: categoryData.status,
+                            tags: categoryData.tags,
+                        };
+                    }
+                    return row;
+                });
+                setRows(updatedRows);
+            } else {
+                const newId = rows.length + 1;
+                const newCategory = {
+                    id: newId,
+                    name: categoryData.name,
+                    image: categoryData.image,
+                    status: categoryData.status,
+                    tags: categoryData.tags,
+                };
+                setRows([...rows, newCategory]);
+            }
             setCategoryData({
                 id: null,
                 name: '',

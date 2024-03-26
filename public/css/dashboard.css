@@ -2580,6 +2580,10 @@ table.billing div.status-label.success {
   scrollbar-width: thin;
 }
 
+.MuiPaper-root.MuiPaper-elevation.MuiPaper-elevation16.MuiDrawer-paper.MuiDrawer-paperAnchorLeft.css-wf16b5 {
+  scrollbar-width: thin;
+}
+
 .dashboard__sidebar > ul {
   flex: 1 1 auto;
   /* overflow-y: auto; */

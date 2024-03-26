@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
 import FormControl from '@mui/material/FormControl';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import { Button } from '@mui/material';
 import { DataGrid } from '@mui/x-data-grid';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { Select } from '@shopify/polaris';
+import { Button, Select } from '@shopify/polaris';
 
 const exceptThisSymbols = ["e", "E", "+", "-", "."];
 
