@@ -523,7 +523,7 @@ function Products() {
                                     <div className='product-price'>
                                         <Card>
                                             <div className='product-lebal'>
-                                                <p style={{ fontSize: 15, fontWeight: 600 }}>Pricing</p>
+                                                <p style={{ fontSize: 15 }}>Pricing</p>
                                             </div>
                                             <TextField
                                                 type="number"
@@ -554,7 +554,7 @@ function Products() {
                                     <div className='quantity-product'>
                                         <Card>
                                             <div className='product-lebal'>
-                                                <p style={{ fontSize: 15, fontWeight: 600 }}>Shipping</p>
+                                                <p style={{ fontSize: 15 }}>Shipping</p>
                                             </div>
                                             <TextField
                                                 type="number"
@@ -608,7 +608,7 @@ function Products() {
                                     <div className='product-active'>
                                         <Card>
                                             <div className='product-lebal'>
-                                                <p style={{ fontSize: 15, fontWeight: 600 }}>Status</p>
+                                                <p style={{ fontSize: 15 }}>Status</p>
                                             </div>
                                             <Select
                                                 label="Status"
@@ -631,7 +631,7 @@ function Products() {
                                     <div className='product-organization'>
                                         <Card>
                                             <div className='product-lebal'>
-                                                <p style={{ fontSize: 15, fontWeight: 600 }}>Product organization</p>
+                                                <p style={{ fontSize: 15 }}>Product organization</p>
                                             </div>
                                             <TextField
                                                 label="Type"
@@ -671,7 +671,7 @@ function Products() {
                                     <div className='plan-selection'>
                                         <Card>
                                             <div className='product-lebal'>
-                                                <p style={{ fontSize: 15, fontWeight: 600 }}>Select plan</p>
+                                                <p style={{ fontSize: 15 }}>Select plan</p>
                                             </div>
                                             <Select
                                                 label="Plan Selection"
@@ -685,7 +685,7 @@ function Products() {
                                     <div className='quantity-product'>
                                         <Card>
                                             <div className='product-lebal'>
-                                                <p style={{ fontSize: 15, fontWeight: 600 }}>Quantity</p>
+                                                <p style={{ fontSize: 15 }}>Quantity</p>
                                             </div>
                                             <TextField
                                                 type="number"
