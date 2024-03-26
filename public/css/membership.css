@@ -26,10 +26,10 @@
 }
 
 .css-1q2h7u5.Mui-selected {
-    /* color: rgb(25, 118, 210); */
-    color: #fff !important;
-    background: #232323 !important;
-    border-radius: 5px !important;
+  /* color: rgb(25, 118, 210); */
+  color: #fff !important;
+  background: #232323 !important;
+  border-radius: 5px !important;
 }
 
 button#mui-p-20649-T-2 {
@@ -142,6 +142,10 @@ h2.chart-head {
 }
 
 span.MuiCircularProgress-root.MuiCircularProgress-determinate.MuiCircularProgress-colorPrimary.css-1rn30mb-MuiCircularProgress-root {
+  width: 160px !important;
+  height: 160px !important;
+}
+span.MuiCircularProgress-root.MuiCircularProgress-determinate.MuiCircularProgress-colorPrimary.css-a6xa17 {
   width: 160px !important;
   height: 160px !important;
 }

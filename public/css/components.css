@@ -32620,6 +32620,12 @@ button.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-contained
   background: #232323;
 }
 
+button.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-containedPrimary.MuiButton-sizeMedium.MuiButton-containedSizeMedium.MuiButton-colorPrimary.MuiButton-root.MuiButton-contained.MuiButton-containedPrimary.MuiButton-sizeMedium.MuiButton-containedSizeMedium.MuiButton-colorPrimary.order-now.css-1hw9j7s{
+  margin-top: 30px;
+  font-size: 12px;
+  background: #232323;
+}
+
 img.payment {
   width: 100%;
   height: auto;
