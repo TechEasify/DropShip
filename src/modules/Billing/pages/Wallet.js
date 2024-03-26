@@ -12,7 +12,7 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Link from '@mui/material/Link';
-import { Button } from '@mui/material';
+import { Button } from '@shopify/polaris';
 
 function CustomTabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -120,7 +120,7 @@ function Wallet() {
                                 <Box sx={{ width: '100%' }}>
                                     <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                                         <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-                                            <Tab label="Item One" {...a11yProps(0)} style={{ marginTop: "10px", fontSize: "12px" }} />
+                                            <Tab label="Item One" {...a11yProps(0)} style={{ marginTop: "10px", fontSize: "12px", color: "#fff", background: "#232323", borderRadius: "5px" }} />
                                         </Tabs>
                                     </Box>
                                     <h6>Amount</h6>
@@ -140,9 +140,7 @@ function Wallet() {
                                         />
                                         <div className='Wallet-btn'>
                                             <Button
-                                                className="download-btn"
-                                                variant="contained"
-                                                color="primary"
+                                                className='product-btn'
                                                 onClick={handleSend}
                                             >
                                                 Send
