@@ -307,6 +307,21 @@ img.MuiCardMedia-root.MuiCardMedia-media.MuiCardMedia-img.cardimg-mui.css-o69gx8
   height: 200px;
 }
 
+.cardmedia {
+  padding: 10px;
+  border: 1px solid transparent;
+  box-shadow: inset 0px -2px 14px 7px #bdbdbd;
+}
+
+.ck.ck-editor__top.ck-reset_all {
+  position: sticky;
+  top: 0;
+}
+
+.card-inner {
+  margin-top: 10px;
+}
+
 img.MuiCardMedia-root.MuiCardMedia-media.MuiCardMedia-img.cardimg-mui.css-rhsghg {
   height: 200px;
 }
