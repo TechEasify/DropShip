@@ -1827,6 +1827,10 @@ p.inner-pro {
   height: 280px;
 }
 
+.MuiCardMedia-root.card-venderImg.css-7xowk2 {
+  height: 200px;
+}
+
 .card-vender {
   height: auto;
   flex-basis: 20%;
@@ -2143,6 +2147,10 @@ button.Polaris-Button.Polaris-Button--pressable.Polaris-Button--variantSecondary
   padding: 24px;
   flex-grow: 1;
   background-color: rgba(241, 241, 241, 1) !important;
+}
+
+main.jss13 {
+  background: rgb(241, 241, 241, 1) !important;
 }
 
 ul#sidebar-ul-9 {
