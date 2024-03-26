@@ -9927,7 +9927,7 @@ button.pf-bg-blue:hover {
 }
 
 .order-3.text-right.basis-md-auto.basis-20 {
-  background-color: #fff;
+  /* background-color: #fff; */
   border-radius: 50px;
   height: 20px;
   width: 20px;

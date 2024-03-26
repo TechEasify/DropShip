@@ -32,7 +32,7 @@ const useStyle = makeStyles({
 
   appBar: {
     position: 'relative',
-    backgroundColor: 'white',
+    background: 'rgb(241, 241, 241, 1)',
   },
 });
 
