@@ -1646,6 +1646,42 @@ img.MuiCardMedia-root.MuiCardMedia-media.MuiCardMedia-img.cardimg-mui.css-o69gx8
 
 .filter-search-vender {
   width: 30%;
+  margin-top: 10px;
+}
+
+.MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded.MuiPaper-elevation1.MuiCard-root.css-pwngrv-MuiPaper-root-MuiCard-root {
+  width: 0%;
+  padding: 5px;
+}
+
+.usd-wallet {
+  margin-bottom: 10px;
+}
+
+.accordian-detail {
+  display: flex !important;
+}
+
+.Wallet-main {
+  margin-top: 50px;
+}
+
+.inner-wallet {
+  margin-top: 50px;
+}
+
+.wallet-card {
+  display: flex;
+  align-items: center;
+}
+
+.wall-usd {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.wallet-price {
+  margin-left: 10px;
 }
 
 ul.pf-breadcrumbs.pf-p-0.vender-breadcrumbs {
@@ -1851,14 +1887,6 @@ button.Polaris-Button.Polaris-Button--pressable.Polaris-Button--variantSecondary
 button.Polaris-Button.Polaris-Button--pressable.Polaris-Button--variantSecondary.Polaris-Button--sizeMedium.Polaris-Button--textAlignCenter:hover {
   background: rgb(241, 241, 241, 1);
   color: #232323;
-}
-
-svg.Polaris-Icon__Svg {
-  fill: #fff !important;
-}
-
-svg.Polaris-Icon__Svg:hover {
-  fill: #232323 !important;
 }
 
 .tiers-head {
