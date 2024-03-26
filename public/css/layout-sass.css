@@ -3164,6 +3164,7 @@ i.header__link__icon.pf-i.pf-i-account.pf-i-24.pf-mr-auto.pf-mr-sm-4 {
 }
 .file-library .list {
   position: relative;
+  left: 2%;
 }
 .file-library .list__instruction img {
   display: inline-block;
@@ -3232,6 +3233,7 @@ i.header__link__icon.pf-i.pf-i-account.pf-i-24.pf-mr-auto.pf-mr-sm-4 {
 }
 .file-library .filter {
   margin-bottom: 15px;
+  margin-top: 10px;
 }
 .file-library .filter .filter-store-select {
   display: block;

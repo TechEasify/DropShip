@@ -33031,6 +33031,12 @@ main.modal-body.mt-4 {
   left: 140px !important;
 }
 
+.jss4 {
+  padding: 24px;
+  flex-grow: 1;
+  background: rgb(241, 241, 241, 1) !important;
+}
+
 /* .design-imges {
   flex: 1;
   max-width: 33%;
