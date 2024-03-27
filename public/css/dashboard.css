@@ -7384,3 +7384,62 @@ body.pf-lang--de .product-push-add .add-block .info-arrow {
 .sync-products-list-items__header > .row {
   height: 48px;
 }
+
+.dashboard-detail {
+  margin-bottom: 20px;
+  margin-left: 50px;
+  margin-right: 50px;
+  margin-top: 20px;
+}
+
+.Polaris-Button.Polaris-Button svg {
+  fill: rgb(241, 241, 241, 1) !important;
+}
+
+.dash-cardtext {
+  font-size: 16px;
+}
+
+.dashcard-detail {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  flex-wrap: wrap;
+  cursor: pointer;
+}
+
+p.oders-value {
+  text-align: center;
+  margin-top: 5px;
+  font-weight: 600;
+}
+
+.tranding-product {
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 20px;
+}
+
+.trending-product {
+  margin-bottom: 10px;
+}
+
+.trending-product {
+  margin-bottom: 30px;
+  display: flex;
+  margin-top: 30px;
+}
+
+h4.tranding-text {
+  font-weight: 700;
+  line-height: 20px;
+}
+
+.top-product {
+  width: 50%;
+  margin-right: 30px;
+}
+
+.recent-order {
+  width: 50%;
+}

@@ -9,7 +9,7 @@ import { Button, Select } from '@shopify/polaris';
 const exceptThisSymbols = ["e", "E", "+", "-", "."];
 
 function ManageDigitalService() {
-    const [managePlan, setManagePlan] = useState('');
+    const [managePlan, setManagePlan] = useState('logodesigning');
     const [digitalService, setDigitalService] = useState({
         id: 1,
         name: '',
@@ -140,7 +140,7 @@ function ManageDigitalService() {
     };
 
     const handleClose = () => {
-        setManagePlan('')
+        setManagePlan(managePlan)
         setDigitalForm(false);
         setDigitalService({
             id: '',

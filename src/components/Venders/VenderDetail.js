@@ -1486,11 +1486,11 @@ function VenderDetail() {
                   </div>
                   <div className="sell-more">
                     <h6>
-                      Sell more with <span>Pro Plan</span>{' '}
+                      Sell more with <span>Pro Plan</span>
                     </h6>
                     <div className="selling">
                       <div className="write-icon">
-                        <Icon className="profile-icon" source={ProfileIcon} tone="base" />
+                        <Icon source={ProfileIcon} tone="base" />
                       </div>
                       <p>This plan was recommended by top selling merchants</p>
                     </div>

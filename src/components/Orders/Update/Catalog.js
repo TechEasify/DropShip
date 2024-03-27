@@ -78,164 +78,353 @@ export default function Catalog(props) {
                 </div>
               </div>
               <div className="card-catalog">
-                <Card sx={{ maxWidth: 350, margin: 1 }} className="card-detail">
-                  <div className="cardmedia">
-                    <CardMedia
-                      className="cardimg-mui"
-                      component="img"
-                      alt="green iguana"
-                      height="200"
-                      image="https://d46qqg0b6pc82.cloudfront.net/listing_variation_images/attachments/598/a30/86-/original/FLLSP2.png"
-                      onClick={() => history.push('/orders/shipping')}
-                    />
-                    <CardContent>
-                      <h5>Liquid Foundation - Mahogany</h5>
-                      <div className="card-inner">
-                        <div className="card-alltext">
-                          <div className="card-pay">
-                            <h6 style={{ marginBottom: '10px' }}>
-                              You Pay: $11.40
-                            </h6>
-                            <h6 style={{ marginBottom: '10px' }}>
-                              Shipping charges: $5
-                            </h6>
-                            <p style={{ marginBottom: '10px' }}>
-                              You sell: $37
-                            </p>
-                          </div>
-                          <div className="card-profit">
-                            <h6>Profit: </h6>
-                            <h6 style={{ color: 'green' }}>$20.60</h6>
+                <div className="card-direction">
+                  <Card
+                    sx={{ maxWidth: 350, margin: 1 }}
+                    className="card-detail"
+                  >
+                    <div className="cardmedia">
+                      <CardMedia
+                        className="cardimg-mui"
+                        component="img"
+                        alt="green iguana"
+                        height="200"
+                        image="https://d46qqg0b6pc82.cloudfront.net/listing_variation_images/attachments/598/a30/86-/original/FLLSP2.png"
+                        onClick={() => history.push('/orders/shipping')}
+                      />
+                      <CardContent>
+                        <h5>Liquid Foundation - Mahogany</h5>
+                        <div className="card-inner">
+                          <div className="card-alltext">
+                            <div className="card-pay">
+                              <h6 style={{ marginBottom: '10px' }}>
+                                You Pay: $11.40
+                              </h6>
+                              <h6 style={{ marginBottom: '10px' }}>
+                                Shipping charges: $5
+                              </h6>
+                              <p style={{ marginBottom: '10px' }}>
+                                You sell: $37
+                              </p>
+                            </div>
+                            <div className="card-profit">
+                              <h6>Profit: </h6>
+                              <h6 style={{ color: 'green' }}>$20.60</h6>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    </CardContent>
-                    <div className="card-button">
-                      <div className="addtoproduct">
-                        <Button
-                          className="product-btn"
-                          onClick={() => history.push('template/1')}
-                        >
-                          Custommise your product
-                        </Button>
-                      </div>
-                      <div className="shopping-cart">
-                        <Button
-                          className="product-btn"
-                          onClick={() => history.push('/template')}
-                        >
-                          Select Product
-                        </Button>
+                      </CardContent>
+                      <div className="card-button">
+                        <div className="addtoproduct">
+                          <Button
+                            className="product-btn"
+                            onClick={() => history.push('template/1')}
+                          >
+                            Custommise your product
+                          </Button>
+                        </div>
+                        <div className="shopping-cart">
+                          <Button
+                            className="product-btn"
+                            onClick={() => history.push('/template')}
+                          >
+                            Select Product
+                          </Button>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </Card>
+                  </Card>
+                </div>
 
-                <Card sx={{ maxWidth: 350, margin: 1 }} className="card-detail">
-                  <div className="cardmedia">
-                    <CardMedia
-                      className="cardimg-mui"
-                      component="img"
-                      alt="green iguana"
-                      height="200"
-                      image="https://d46qqg0b6pc82.cloudfront.net/listing_variation_images/attachments/598/a30/86-/original/FLLSP2.png"
-                      onClick={() => history.push('/orders/shipping')}
-                    />
-                    <CardContent>
-                      <h5>Liquid Foundation - Mahogany</h5>
-                      <div className="card-inner">
-                        <div className="card-alltext">
-                          <div className="card-pay">
-                            <h6 style={{ marginBottom: '10px' }}>
-                              You Pay: $11.40
-                            </h6>
-                            <h6 style={{ marginBottom: '10px' }}>
-                              Shipping charges: $5
-                            </h6>
-                            <p style={{ marginBottom: '10px' }}>
-                              You sell: $37
-                            </p>
-                          </div>
-                          <div className="card-profit">
-                            <h6>Profit: </h6>
-                            <h6 style={{ color: 'green' }}>$20.60</h6>
+                <div className="card-direction">
+                  <Card
+                    sx={{ maxWidth: 350, margin: 1 }}
+                    className="card-detail"
+                  >
+                    <div className="cardmedia">
+                      <CardMedia
+                        className="cardimg-mui"
+                        component="img"
+                        alt="green iguana"
+                        height="200"
+                        image="https://d46qqg0b6pc82.cloudfront.net/listing_variation_images/attachments/598/a30/86-/original/FLLSP2.png"
+                        onClick={() => history.push('/orders/shipping')}
+                      />
+                      <CardContent>
+                        <h5>Liquid Foundation - Mahogany</h5>
+                        <div className="card-inner">
+                          <div className="card-alltext">
+                            <div className="card-pay">
+                              <h6 style={{ marginBottom: '10px' }}>
+                                You Pay: $11.40
+                              </h6>
+                              <h6 style={{ marginBottom: '10px' }}>
+                                Shipping charges: $5
+                              </h6>
+                              <p style={{ marginBottom: '10px' }}>
+                                You sell: $37
+                              </p>
+                            </div>
+                            <div className="card-profit">
+                              <h6>Profit: </h6>
+                              <h6 style={{ color: 'green' }}>$20.60</h6>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    </CardContent>
-                    <div className="card-button">
-                      <div className="addtoproduct">
-                        <Button
-                          className="product-btn"
-                          onClick={() => history.push('template/1')}
-                        >
-                          Custommise your product
-                        </Button>
-                      </div>
-                      <div className="shopping-cart">
-                        <Button
-                          className="product-btn"
-                          onClick={() => history.push('/template')}
-                        >
-                          Select Product
-                        </Button>
+                      </CardContent>
+                      <div className="card-button">
+                        <div className="addtoproduct">
+                          <Button
+                            className="product-btn"
+                            onClick={() => history.push('template/1')}
+                          >
+                            Custommise your product
+                          </Button>
+                        </div>
+                        <div className="shopping-cart">
+                          <Button
+                            className="product-btn"
+                            onClick={() => history.push('/template')}
+                          >
+                            Select Product
+                          </Button>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </Card>
+                  </Card>
+                </div>
 
-                <Card sx={{ maxWidth: 350, margin: 1 }} className="card-detail">
-                  <div className="cardmedia">
-                    <CardMedia
-                      className="cardimg-mui"
-                      component="img"
-                      alt="green iguana"
-                      height="200"
-                      image="https://d46qqg0b6pc82.cloudfront.net/listing_variation_images/attachments/598/a30/86-/original/FLLSP2.png"
-                      onClick={() => history.push('/orders/shipping')}
-                    />
-                    <CardContent>
-                      <h5>Liquid Foundation - Mahogany</h5>
-                      <div className="card-inner">
-                        <div className="card-alltext">
-                          <div className="card-pay">
-                            <h6 style={{ marginBottom: '10px' }}>
-                              You Pay: $11.40
-                            </h6>
-                            <h6 style={{ marginBottom: '10px' }}>
-                              Shipping charges: $5
-                            </h6>
-                            <p style={{ marginBottom: '10px' }}>
-                              You sell: $37
-                            </p>
-                          </div>
-                          <div className="card-profit">
-                            <h6>Profit: </h6>
-                            <h6 style={{ color: 'green' }}>$20.60</h6>
+                <div className="card-direction">
+                  <Card
+                    sx={{ maxWidth: 350, margin: 1 }}
+                    className="card-detail"
+                  >
+                    <div className="cardmedia">
+                      <CardMedia
+                        className="cardimg-mui"
+                        component="img"
+                        alt="green iguana"
+                        height="200"
+                        image="https://d46qqg0b6pc82.cloudfront.net/listing_variation_images/attachments/598/a30/86-/original/FLLSP2.png"
+                        onClick={() => history.push('/orders/shipping')}
+                      />
+                      <CardContent>
+                        <h5>Liquid Foundation - Mahogany</h5>
+                        <div className="card-inner">
+                          <div className="card-alltext">
+                            <div className="card-pay">
+                              <h6 style={{ marginBottom: '10px' }}>
+                                You Pay: $11.40
+                              </h6>
+                              <h6 style={{ marginBottom: '10px' }}>
+                                Shipping charges: $5
+                              </h6>
+                              <p style={{ marginBottom: '10px' }}>
+                                You sell: $37
+                              </p>
+                            </div>
+                            <div className="card-profit">
+                              <h6>Profit: </h6>
+                              <h6 style={{ color: 'green' }}>$20.60</h6>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    </CardContent>
-                    <div className="card-button">
-                      <div className="addtoproduct">
-                        <Button
-                          className="product-btn"
-                          onClick={() => history.push('template/1')}
-                        >
-                          Custommise your product 
-                        </Button>
-                      </div>
-                      <div className="shopping-cart">
-                        <Button
-                          className="product-btn"
-                          onClick={() => history.push('/template')}
-                        >
-                          Select Product
-                        </Button>
+                      </CardContent>
+                      <div className="card-button">
+                        <div className="addtoproduct">
+                          <Button
+                            className="product-btn"
+                            onClick={() => history.push('template/1')}
+                          >
+                            Custommise your product
+                          </Button>
+                        </div>
+                        <div className="shopping-cart">
+                          <Button
+                            className="product-btn"
+                            onClick={() => history.push('/template')}
+                          >
+                            Select Product
+                          </Button>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </Card>
+                  </Card>
+                </div>
+
+                <div className="card-direction">
+                  <Card
+                    sx={{ maxWidth: 350, margin: 1 }}
+                    className="card-detail"
+                  >
+                    <div className="cardmedia">
+                      <CardMedia
+                        className="cardimg-mui"
+                        component="img"
+                        alt="green iguana"
+                        height="200"
+                        image="https://d46qqg0b6pc82.cloudfront.net/listing_variation_images/attachments/598/a30/86-/original/FLLSP2.png"
+                        onClick={() => history.push('/orders/shipping')}
+                      />
+                      <CardContent>
+                        <h5>Liquid Foundation - Mahogany</h5>
+                        <div className="card-inner">
+                          <div className="card-alltext">
+                            <div className="card-pay">
+                              <h6 style={{ marginBottom: '10px' }}>
+                                You Pay: $11.40
+                              </h6>
+                              <h6 style={{ marginBottom: '10px' }}>
+                                Shipping charges: $5
+                              </h6>
+                              <p style={{ marginBottom: '10px' }}>
+                                You sell: $37
+                              </p>
+                            </div>
+                            <div className="card-profit">
+                              <h6>Profit: </h6>
+                              <h6 style={{ color: 'green' }}>$20.60</h6>
+                            </div>
+                          </div>
+                        </div>
+                      </CardContent>
+                      <div className="card-button">
+                        <div className="addtoproduct">
+                          <Button
+                            className="product-btn"
+                            onClick={() => history.push('template/1')}
+                          >
+                            Custommise your product
+                          </Button>
+                        </div>
+                        <div className="shopping-cart">
+                          <Button
+                            className="product-btn"
+                            onClick={() => history.push('/template')}
+                          >
+                            Select Product
+                          </Button>
+                        </div>
+                      </div>
+                    </div>
+                  </Card>
+                </div>
+
+                <div className="card-direction">
+                  <Card
+                    sx={{ maxWidth: 350, margin: 1 }}
+                    className="card-detail"
+                  >
+                    <div className="cardmedia">
+                      <CardMedia
+                        className="cardimg-mui"
+                        component="img"
+                        alt="green iguana"
+                        height="200"
+                        image="https://d46qqg0b6pc82.cloudfront.net/listing_variation_images/attachments/598/a30/86-/original/FLLSP2.png"
+                        onClick={() => history.push('/orders/shipping')}
+                      />
+                      <CardContent>
+                        <h5>Liquid Foundation - Mahogany</h5>
+                        <div className="card-inner">
+                          <div className="card-alltext">
+                            <div className="card-pay">
+                              <h6 style={{ marginBottom: '10px' }}>
+                                You Pay: $11.40
+                              </h6>
+                              <h6 style={{ marginBottom: '10px' }}>
+                                Shipping charges: $5
+                              </h6>
+                              <p style={{ marginBottom: '10px' }}>
+                                You sell: $37
+                              </p>
+                            </div>
+                            <div className="card-profit">
+                              <h6>Profit: </h6>
+                              <h6 style={{ color: 'green' }}>$20.60</h6>
+                            </div>
+                          </div>
+                        </div>
+                      </CardContent>
+                      <div className="card-button">
+                        <div className="addtoproduct">
+                          <Button
+                            className="product-btn"
+                            onClick={() => history.push('template/1')}
+                          >
+                            Custommise your product
+                          </Button>
+                        </div>
+                        <div className="shopping-cart">
+                          <Button
+                            className="product-btn"
+                            onClick={() => history.push('/template')}
+                          >
+                            Select Product
+                          </Button>
+                        </div>
+                      </div>
+                    </div>
+                  </Card>
+                </div>
+
+                <div className="card-direction">
+                  <Card
+                    sx={{ maxWidth: 350, margin: 1 }}
+                    className="card-detail"
+                  >
+                    <div className="cardmedia">
+                      <CardMedia
+                        className="cardimg-mui"
+                        component="img"
+                        alt="green iguana"
+                        height="200"
+                        image="https://d46qqg0b6pc82.cloudfront.net/listing_variation_images/attachments/598/a30/86-/original/FLLSP2.png"
+                        onClick={() => history.push('/orders/shipping')}
+                      />
+                      <CardContent>
+                        <h5>Liquid Foundation - Mahogany</h5>
+                        <div className="card-inner">
+                          <div className="card-alltext">
+                            <div className="card-pay">
+                              <h6 style={{ marginBottom: '10px' }}>
+                                You Pay: $11.40
+                              </h6>
+                              <h6 style={{ marginBottom: '10px' }}>
+                                Shipping charges: $5
+                              </h6>
+                              <p style={{ marginBottom: '10px' }}>
+                                You sell: $37
+                              </p>
+                            </div>
+                            <div className="card-profit">
+                              <h6>Profit: </h6>
+                              <h6 style={{ color: 'green' }}>$20.60</h6>
+                            </div>
+                          </div>
+                        </div>
+                      </CardContent>
+                      <div className="card-button">
+                        <div className="addtoproduct">
+                          <Button
+                            className="product-btn"
+                            onClick={() => history.push('template/1')}
+                          >
+                            Custommise your product
+                          </Button>
+                        </div>
+                        <div className="shopping-cart">
+                          <Button
+                            className="product-btn"
+                            onClick={() => history.push('/template')}
+                          >
+                            Select Product
+                          </Button>
+                        </div>
+                      </div>
+                    </div>
+                  </Card>
+                </div>
               </div>
             </div>
           </div>

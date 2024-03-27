@@ -43,8 +43,8 @@ export default function Template() {
             </div>
             <div className="select-stock">
               <h6 style={{ fontSize: 16 }}>
-                SKU:{' '}
-                <span style={{ fontSize: 14 }}>natural-daily-moisturizer</span>{' '}
+                SKU:
+                <span style={{ fontSize: 14 }}>natural-daily-moisturizer</span>
                 | Stock: <span style={{ fontSize: 14 }}>1000</span>
               </h6>
             </div>
@@ -76,7 +76,9 @@ export default function Template() {
                     />
                   </div>
                   <div className="select-cost">
-                    <p style={{ fontSize: 17, fontWeight: 600 }}>Retail Price</p>
+                    <p style={{ fontSize: 17, fontWeight: 600 }}>
+                      Retail Price
+                    </p>
                     <TextField
                       type="number"
                       value={retailPrice}
@@ -84,7 +86,7 @@ export default function Template() {
                     />
                   </div>
                   <div className="select-cost">
-                    <p style={{ fontSize: 17, fontWeight: 600  }}>Profit</p>
+                    <p style={{ fontSize: 17, fontWeight: 600 }}>Profit</p>
                     <span style={{ color: 'green', fontWeight: 600 }}>
                       ${profit + shipping}
                     </span>

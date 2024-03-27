@@ -14,7 +14,7 @@ import Chip from '@mui/material/Chip';
 import { Button, Select } from '@shopify/polaris';
 
 function ManageMembership() {
-    const [managePlan, setManagePlan] = useState('');
+    const [managePlan, setManagePlan] = useState('free');
     const [tabValue, setTabValue] = useState('1');
     const [formData, setFormData] = useState({
         freeMonthly: {
