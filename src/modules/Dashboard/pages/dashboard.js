@@ -723,7 +723,7 @@ export default function Dashboard() {
                 headings={[
                   { title: 'Order' },
                   { title: 'Amount' },
-                  { title: 'Approve status' },
+                  { title: 'Payment status' },
                 ]}
               >
                 {TransactionHistory}
