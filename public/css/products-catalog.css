@@ -1759,6 +1759,14 @@ ul.pf-breadcrumbs.pf-p-0.vender-breadcrumbs {
   font-size: 13px;
 }
 
+.MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded.MuiPaper-elevation1.MuiCard-root.plan-card.css-w88nxk {
+  background: #232323;
+  color: white;
+  width: 30%;
+  padding: 10px;
+  font-size: 13px;
+}
+
 h6.text-mem {
   color: white;
 }
@@ -1784,6 +1792,11 @@ button.MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-textPrimary.Mu
   font-weight: 600;
 }
 
+button.MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium.MuiButton-colorPrimary.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium.MuiButton-colorPrimary.purchase-free.css-1ujsas3 {
+  color: #232323;
+  font-weight: 600;
+}
+
 ul.plan-li {
   list-style: none;
 }
@@ -1793,6 +1806,10 @@ ul.plan-li {
   align-items: center;
   margin-top: 10px;
   margin-bottom: 10px;
+}
+
+.write-icon {
+  margin-right: 20px;
 }
 
 img.mark-img {
@@ -1832,7 +1849,9 @@ p.inner-pro {
 }
 
 .MuiCardMedia-root.card-venderImg.css-7xowk2 {
-  height: 200px;
+  width: 100%;
+  margin: auto;
+  height: 280px;
 }
 
 .card-vender {

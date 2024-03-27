@@ -222,7 +222,7 @@ export default function Catalog(props) {
                           className="product-btn"
                           onClick={() => history.push('template/1')}
                         >
-                          Custommise your product
+                          Custommise your product 
                         </Button>
                       </div>
                       <div className="shopping-cart">
