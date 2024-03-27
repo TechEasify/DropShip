@@ -1812,6 +1812,21 @@ ul.plan-li {
   margin-right: 20px;
 }
 
+.profile-icon {
+  /* Set the desired width and height */
+  width: 32px; /* Change this value to increase or decrease the width */
+  height: 32px; /* Change this value to increase or decrease the height */
+}
+
+svg.Polaris-Icon__Svg {
+  filter: brightness(0.5);
+}
+
+span.Polaris-Icon.Polaris-Icon--toneBase {
+  width: 25px;
+  height: 25px;
+}
+
 img.mark-img {
   width: 15%;
   height: auto;
