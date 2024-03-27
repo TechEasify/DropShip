@@ -88,39 +88,45 @@ export default function Catalog(props) {
                       image="https://d46qqg0b6pc82.cloudfront.net/listing_variation_images/attachments/598/a30/86-/original/FLLSP2.png"
                       onClick={() => history.push('/orders/shipping')}
                     />
-                  </div>
-                  <CardContent>
-                    <h5>Liquid Foundation - Mahogany</h5>
-                    <div className="card-inner">
-                      <div className="card-alltext">
-                        <div className="card-pay">
-                          <h6 style={{ marginBottom: "10px" }}>You Pay: $11.40</h6>
-                          <h6 style={{ marginBottom: "10px" }}>Shipping charges: $5</h6>
-                          <p style={{ marginBottom: "10px" }}>You sell: $37</p>
-                        </div>
-                        <div className="card-profit">
-                          <h6>Profit: </h6>
-                          <h6 style={{ color: 'green' }}>$20.60</h6>
+                    <CardContent>
+                      <h5>Liquid Foundation - Mahogany</h5>
+                      <div className="card-inner">
+                        <div className="card-alltext">
+                          <div className="card-pay">
+                            <h6 style={{ marginBottom: '10px' }}>
+                              You Pay: $11.40
+                            </h6>
+                            <h6 style={{ marginBottom: '10px' }}>
+                              Shipping charges: $5
+                            </h6>
+                            <p style={{ marginBottom: '10px' }}>
+                              You sell: $37
+                            </p>
+                          </div>
+                          <div className="card-profit">
+                            <h6>Profit: </h6>
+                            <h6 style={{ color: 'green' }}>$20.60</h6>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </CardContent>
-                  <div className="card-button">
-                    <div className="addtoproduct">
-                      <Button
-                        className="product-btn"
-                        onClick={() => history.push('template/1')}
-                      >
-                        Custommise your product
-                      </Button>
-                    </div>
-                    <div className="shopping-cart">
-                      <Button
-                        className="product-btn"
-                        onClick={() => history.push('/template')}
-                      >
-                        Select Product
-                      </Button>
+                    </CardContent>
+                    <div className="card-button">
+                      <div className="addtoproduct">
+                        <Button
+                          className="product-btn"
+                          onClick={() => history.push('template/1')}
+                        >
+                          Custommise your product
+                        </Button>
+                      </div>
+                      <div className="shopping-cart">
+                        <Button
+                          className="product-btn"
+                          onClick={() => history.push('/template')}
+                        >
+                          Select Product
+                        </Button>
+                      </div>
                     </div>
                   </div>
                 </Card>
@@ -135,39 +141,45 @@ export default function Catalog(props) {
                       image="https://d46qqg0b6pc82.cloudfront.net/listing_variation_images/attachments/598/a30/86-/original/FLLSP2.png"
                       onClick={() => history.push('/orders/shipping')}
                     />
-                  </div>
-                  <CardContent>
-                    <h5>Liquid Foundation - Mahogany</h5>
-                    <div className="card-inner">
-                      <div className="card-alltext">
-                        <div className="card-pay">
-                          <h6 style={{ marginBottom: "10px" }}>You Pay: $11.40</h6>
-                          <h6 style={{ marginBottom: "10px" }}>Shipping charges: $5</h6>
-                          <p style={{ marginBottom: "10px" }}>You sell: $37</p>
-                        </div>
-                        <div className="card-profit">
-                          <h6>Profit: </h6>
-                          <h6 style={{ color: 'green' }}>$20.60</h6>
+                    <CardContent>
+                      <h5>Liquid Foundation - Mahogany</h5>
+                      <div className="card-inner">
+                        <div className="card-alltext">
+                          <div className="card-pay">
+                            <h6 style={{ marginBottom: '10px' }}>
+                              You Pay: $11.40
+                            </h6>
+                            <h6 style={{ marginBottom: '10px' }}>
+                              Shipping charges: $5
+                            </h6>
+                            <p style={{ marginBottom: '10px' }}>
+                              You sell: $37
+                            </p>
+                          </div>
+                          <div className="card-profit">
+                            <h6>Profit: </h6>
+                            <h6 style={{ color: 'green' }}>$20.60</h6>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </CardContent>
-                  <div className="card-button">
-                    <div className="addtoproduct">
-                      <Button
-                        className="product-btn"
-                        onClick={() => history.push('template/1')}
-                      >
-                        Custommise your product
-                      </Button>
-                    </div>
-                    <div className="shopping-cart">
-                      <Button
-                        className="product-btn"
-                        onClick={() => history.push('/template')}
-                      >
-                        Select Product
-                      </Button>
+                    </CardContent>
+                    <div className="card-button">
+                      <div className="addtoproduct">
+                        <Button
+                          className="product-btn"
+                          onClick={() => history.push('template/1')}
+                        >
+                          Custommise your product
+                        </Button>
+                      </div>
+                      <div className="shopping-cart">
+                        <Button
+                          className="product-btn"
+                          onClick={() => history.push('/template')}
+                        >
+                          Select Product
+                        </Button>
+                      </div>
                     </div>
                   </div>
                 </Card>
@@ -182,39 +194,45 @@ export default function Catalog(props) {
                       image="https://d46qqg0b6pc82.cloudfront.net/listing_variation_images/attachments/598/a30/86-/original/FLLSP2.png"
                       onClick={() => history.push('/orders/shipping')}
                     />
-                  </div>
-                  <CardContent>
-                    <h5>Liquid Foundation - Mahogany</h5>
-                    <div className="card-inner">
-                      <div className="card-alltext">
-                        <div className="card-pay">
-                          <h6 style={{ marginBottom: "10px" }}>You Pay: $11.40</h6>
-                          <h6 style={{ marginBottom: "10px" }}>Shipping charges: $5</h6>
-                          <p style={{ marginBottom: "10px" }}>You sell: $37</p>
-                        </div>
-                        <div className="card-profit">
-                          <h6>Profit: </h6>
-                          <h6 style={{ color: 'green' }}>$20.60</h6>
+                    <CardContent>
+                      <h5>Liquid Foundation - Mahogany</h5>
+                      <div className="card-inner">
+                        <div className="card-alltext">
+                          <div className="card-pay">
+                            <h6 style={{ marginBottom: '10px' }}>
+                              You Pay: $11.40
+                            </h6>
+                            <h6 style={{ marginBottom: '10px' }}>
+                              Shipping charges: $5
+                            </h6>
+                            <p style={{ marginBottom: '10px' }}>
+                              You sell: $37
+                            </p>
+                          </div>
+                          <div className="card-profit">
+                            <h6>Profit: </h6>
+                            <h6 style={{ color: 'green' }}>$20.60</h6>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </CardContent>
-                  <div className="card-button">
-                    <div className="addtoproduct">
-                      <Button
-                        className="product-btn"
-                        onClick={() => history.push('template/1')}
-                      >
-                        Custommise your product
-                      </Button>
-                    </div>
-                    <div className="shopping-cart">
-                      <Button
-                        className="product-btn"
-                        onClick={() => history.push('/template')}
-                      >
-                        Select Product
-                      </Button>
+                    </CardContent>
+                    <div className="card-button">
+                      <div className="addtoproduct">
+                        <Button
+                          className="product-btn"
+                          onClick={() => history.push('template/1')}
+                        >
+                          Custommise your product
+                        </Button>
+                      </div>
+                      <div className="shopping-cart">
+                        <Button
+                          className="product-btn"
+                          onClick={() => history.push('/template')}
+                        >
+                          Select Product
+                        </Button>
+                      </div>
                     </div>
                   </div>
                 </Card>

@@ -58,7 +58,7 @@ export default function Template() {
               <div className="select-detail">
                 <div className="select-price">
                   <div className="select-cost">
-                    <p style={{ fontSize: 17 }}>Cost</p>
+                    <p style={{ fontSize: 17, fontWeight: 600 }}>Cost</p>
                     <TextField
                       type="number"
                       value={cost}
@@ -67,7 +67,7 @@ export default function Template() {
                     />
                   </div>
                   <div className="select-cost">
-                    <p style={{ fontSize: 17 }}>Shipping</p>
+                    <p style={{ fontSize: 17, fontWeight: 600 }}>Shipping</p>
                     <TextField
                       type="number"
                       value={shipping}
@@ -76,7 +76,7 @@ export default function Template() {
                     />
                   </div>
                   <div className="select-cost">
-                    <p style={{ fontSize: 17 }}>Retail Price</p>
+                    <p style={{ fontSize: 17, fontWeight: 600 }}>Retail Price</p>
                     <TextField
                       type="number"
                       value={retailPrice}
@@ -84,7 +84,7 @@ export default function Template() {
                     />
                   </div>
                   <div className="select-cost">
-                    <p style={{ fontSize: 17 }}>Profit</p>
+                    <p style={{ fontSize: 17, fontWeight: 600  }}>Profit</p>
                     <span style={{ color: 'green', fontWeight: 600 }}>
                       ${profit + shipping}
                     </span>

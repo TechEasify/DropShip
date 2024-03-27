@@ -305,12 +305,19 @@ button.AddtoProducts.btn.btn-primary {
 
 img.MuiCardMedia-root.MuiCardMedia-media.MuiCardMedia-img.cardimg-mui.css-o69gx8-MuiCardMedia-root {
   height: 200px;
+  border-radius: inherit;
 }
+
+/* .cardmedia {
+  padding: 10px;
+  border: 1px solid transparent;
+  box-shadow: inset 0px -2px 14px 7px #bdbdbd;
+} */
 
 .cardmedia {
   padding: 10px;
   border: 1px solid transparent;
-  box-shadow: inset 0px -2px 14px 7px #bdbdbd;
+  background: url(/cdn/shop/files/basic-background.png?v=1675320894) repeat #efede8;
 }
 
 .ck.ck-editor__top.ck-reset_all {
@@ -2189,6 +2196,16 @@ img.product-img-select {
 
 .select-cost {
   margin-right: 30px;
+}
+
+
+.select-img {
+  margin: 10px;
+  border: 1px solid #e5e5e5;
+}
+
+.select-heading {
+  margin-bottom: 10px;
 }
 
 .description-product {
