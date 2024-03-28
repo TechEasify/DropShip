@@ -30,10 +30,13 @@ const defaultAllSteps = [
 
 export default function Dashboard() {
   const [user, setUser] = useState([]);
-
   const location = useLocation();
-
-  console.log(location.pathname, 'location');
+  const [currentPage, setCurrentPage] = useState(1);
+  const [currentServicePage, setCurrentServicePage] = useState(1);
+  const [currentTransactionPage, setCurrentTransactionPage] = useState(1);
+  const [currentOrders, setCurrentOrders] = useState([]);
+  const [currentServices, setCurrentServices] = useState([]);
+  const [currentTransaction, setCurrentTransaction] = useState([]);
 
   // useEffect(() => {
   //   getProfileUser()
@@ -69,33 +72,267 @@ export default function Dashboard() {
       paymentStatus: <Badge progress="complete">Paid</Badge>,
       fulfillmentStatus: <Badge progress="incomplete">Unfulfilled</Badge>,
     },
+    {
+      id: '1021',
+      order: '#1021',
+      date: 'Jul 20 at 4:34pm',
+      customer: 'Jaydon Stanton',
+      total: '$969.44',
+      paymentStatus: <Badge progress="complete">Paid</Badge>,
+      fulfillmentStatus: <Badge progress="incomplete">Unfulfilled</Badge>,
+    },
+    {
+      id: '1022',
+      order: '#1022',
+      date: 'Jul 20 at 3:46pm',
+      customer: 'Ruben Westerfelt',
+      total: '$701.19',
+      paymentStatus: <Badge progress="partiallyComplete">Partially paid</Badge>,
+      fulfillmentStatus: <Badge progress="incomplete">Unfulfilled</Badge>,
+    },
+    {
+      id: '1023',
+      order: '#1023',
+      date: 'Jul 20 at 3.44pm',
+      customer: 'Leo Carder',
+      total: '$798.24',
+      paymentStatus: <Badge progress="complete">Paid</Badge>,
+      fulfillmentStatus: <Badge progress="incomplete">Unfulfilled</Badge>,
+    },
+    {
+      id: '1024',
+      order: '#1024',
+      date: 'Jul 20 at 4:34pm',
+      customer: 'Jaydon Stanton',
+      total: '$969.44',
+      paymentStatus: <Badge progress="complete">Paid</Badge>,
+      fulfillmentStatus: <Badge progress="incomplete">Unfulfilled</Badge>,
+    },
+    {
+      id: '1025',
+      order: '#1025',
+      date: 'Jul 20 at 3:46pm',
+      customer: 'Ruben Westerfelt',
+      total: '$701.19',
+      paymentStatus: <Badge progress="partiallyComplete">Partially paid</Badge>,
+      fulfillmentStatus: <Badge progress="incomplete">Unfulfilled</Badge>,
+    },
+    {
+      id: '1026',
+      order: '#1026',
+      date: 'Jul 20 at 3.44pm',
+      customer: 'Leo Carder',
+      total: '$798.24',
+      paymentStatus: <Badge progress="complete">Paid</Badge>,
+      fulfillmentStatus: <Badge progress="incomplete">Unfulfilled</Badge>,
+    },
+    {
+      id: '1027',
+      order: '#1027',
+      date: 'Jul 20 at 4:34pm',
+      customer: 'Jaydon Stanton',
+      total: '$969.44',
+      paymentStatus: <Badge progress="complete">Paid</Badge>,
+      fulfillmentStatus: <Badge progress="incomplete">Unfulfilled</Badge>,
+    },
+    {
+      id: '1028',
+      order: '#1028',
+      date: 'Jul 20 at 3:46pm',
+      customer: 'Ruben Westerfelt',
+      total: '$701.19',
+      paymentStatus: <Badge progress="partiallyComplete">Partially paid</Badge>,
+      fulfillmentStatus: <Badge progress="incomplete">Unfulfilled</Badge>,
+    },
+    {
+      id: '1029',
+      order: '#1029',
+      date: 'Jul 20 at 3.44pm',
+      customer: 'Leo Carder',
+      total: '$798.24',
+      paymentStatus: <Badge progress="complete">Paid</Badge>,
+      fulfillmentStatus: <Badge progress="incomplete">Unfulfilled</Badge>,
+    },
+    {
+      id: '1030',
+      order: '#1030',
+      date: 'Jul 20 at 4:34pm',
+      customer: 'Jaydon Stanton',
+      total: '$969.44',
+      paymentStatus: <Badge progress="complete">Paid</Badge>,
+      fulfillmentStatus: <Badge progress="incomplete">Unfulfilled</Badge>,
+    },
+    {
+      id: '1031',
+      order: '#1031',
+      date: 'Jul 20 at 3:46pm',
+      customer: 'Ruben Westerfelt',
+      total: '$701.19',
+      paymentStatus: <Badge progress="partiallyComplete">Partially paid</Badge>,
+      fulfillmentStatus: <Badge progress="incomplete">Unfulfilled</Badge>,
+    },
+    {
+      id: '1032',
+      order: '#1032',
+      date: 'Jul 20 at 3.44pm',
+      customer: 'Leo Carder',
+      total: '$798.24',
+      paymentStatus: <Badge progress="complete">Paid</Badge>,
+      fulfillmentStatus: <Badge progress="incomplete">Unfulfilled</Badge>,
+    },
+    {
+      id: '1033',
+      order: '#1033',
+      date: 'Jul 20 at 4:34pm',
+      customer: 'Jaydon Stanton',
+      total: '$969.44',
+      paymentStatus: <Badge progress="complete">Paid</Badge>,
+      fulfillmentStatus: <Badge progress="incomplete">Unfulfilled</Badge>,
+    },
+    {
+      id: '1034',
+      order: '#1034',
+      date: 'Jul 20 at 3:46pm',
+      customer: 'Ruben Westerfelt',
+      total: '$701.19',
+      paymentStatus: <Badge progress="partiallyComplete">Partially paid</Badge>,
+      fulfillmentStatus: <Badge progress="incomplete">Unfulfilled</Badge>,
+    },
+    {
+      id: '1035',
+      order: '#1035',
+      date: 'Jul 20 at 3.44pm',
+      customer: 'Leo Carder',
+      total: '$798.24',
+      paymentStatus: <Badge progress="complete">Paid</Badge>,
+      fulfillmentStatus: <Badge progress="incomplete">Unfulfilled</Badge>,
+    },
+    {
+      id: '1036',
+      order: '#1036',
+      date: 'Jul 20 at 4:34pm',
+      customer: 'Jaydon Stanton',
+      total: '$969.44',
+      paymentStatus: <Badge progress="complete">Paid</Badge>,
+      fulfillmentStatus: <Badge progress="incomplete">Unfulfilled</Badge>,
+    },
+    {
+      id: '1037',
+      order: '#1037',
+      date: 'Jul 20 at 3:46pm',
+      customer: 'Ruben Westerfelt',
+      total: '$701.19',
+      paymentStatus: <Badge progress="partiallyComplete">Partially paid</Badge>,
+      fulfillmentStatus: <Badge progress="incomplete">Unfulfilled</Badge>,
+    },
+    {
+      id: '1038',
+      order: '#1038',
+      date: 'Jul 20 at 3.44pm',
+      customer: 'Leo Carder',
+      total: '$798.24',
+      paymentStatus: <Badge progress="complete">Paid</Badge>,
+      fulfillmentStatus: <Badge progress="incomplete">Unfulfilled</Badge>,
+    },
   ];
 
   const DServices = [
     {
-      id: '120',
-      order: '#120',
+      id: '9021',
+      order: '#9021',
       digitalServices: 'logodesigning',
       amount: '$200',
       time: '10',
       approveStatus: <Badge progress="complete">Approve</Badge>,
     },
     {
-      id: '121',
-      order: '#121',
+      id: '9022',
+      order: '#9022',
       digitalServices: 'labeldesigning',
       amount: '$500',
       time: '20',
       approveStatus: <Badge progress="complete">Pending</Badge>,
     },
     {
-      id: '122',
-      order: '#122',
+      id: '9023',
+      order: '#9023',
       digitalServices: 'imagedesigning',
       amount: '$100',
       time: '15',
       approveStatus: <Badge progress="complete">Cancel</Badge>,
     },
+    {
+      id: '9024',
+      order: '#9024',
+      digitalServices: 'logodesigning',
+      amount: '$200',
+      time: '10',
+      approveStatus: <Badge progress="complete">Approve</Badge>,
+    },
+    {
+      id: '9025',
+      order: '#9025',
+      digitalServices: 'labeldesigning',
+      amount: '$500',
+      time: '20',
+      approveStatus: <Badge progress="complete">Pending</Badge>,
+    },
+    {
+      id: '9026',
+      order: '#9026',
+      digitalServices: 'imagedesigning',
+      amount: '$100',
+      time: '15',
+      approveStatus: <Badge progress="complete">Cancel</Badge>,
+    },
+    {
+      id: '9027',
+      order: '#9027',
+      digitalServices: 'logodesigning',
+      amount: '$200',
+      time: '10',
+      approveStatus: <Badge progress="complete">Approve</Badge>,
+    },
+    {
+      id: '9028',
+      order: '#9028',
+      digitalServices: 'labeldesigning',
+      amount: '$500',
+      time: '20',
+      approveStatus: <Badge progress="complete">Pending</Badge>,
+    },
+    {
+      id: '9029',
+      order: '#9029',
+      digitalServices: 'imagedesigning',
+      amount: '$100',
+      time: '15',
+      approveStatus: <Badge progress="complete">Cancel</Badge>,
+    },
+    {
+      id: '9030',
+      order: '#9030',
+      digitalServices: 'logodesigning',
+      amount: '$200',
+      time: '10',
+      approveStatus: <Badge progress="complete">Approve</Badge>,
+    },
+    {
+      id: '9031',
+      order: '#9031',
+      digitalServices: 'labeldesigning',
+      amount: '$500',
+      time: '20',
+      approveStatus: <Badge progress="complete">Pending</Badge>,
+    },
+    {
+      id: '9032',
+      order: '#9032',
+      digitalServices: 'imagedesigning',
+      amount: '$100',
+      time: '15',
+      approveStatus: <Badge progress="complete">Cancel</Badge>,
+    }
   ];
 
   const Transaction = [
@@ -114,10 +351,120 @@ export default function Dashboard() {
     {
       id: '122',
       order: '#122',
-      amount: '$100',
+      amount: '$200',
       paymentStatus: <Badge progress="complete">Paid</Badge>,
     },
+    {
+      id: '123',
+      order: '#123',
+      amount: '$500',
+      paymentStatus: <Badge progress="complete">Cancel</Badge>,
+    },
+    {
+      id: '124',
+      order: '#124',
+      amount: '$200',
+      paymentStatus: <Badge progress="complete">Paid</Badge>,
+    },
+    {
+      id: '125',
+      order: '#125',
+      amount: '$500',
+      paymentStatus: <Badge progress="complete">Cancel</Badge>,
+    },
+    {
+      id: '126',
+      order: '#126',
+      amount: '$200',
+      paymentStatus: <Badge progress="complete">Paid</Badge>,
+    },
+    {
+      id: '127',
+      order: '#127',
+      amount: '$500',
+      paymentStatus: <Badge progress="complete">Cancel</Badge>,
+    },
+    {
+      id: '128',
+      order: '#128',
+      amount: '$200',
+      paymentStatus: <Badge progress="complete">Paid</Badge>,
+    },
+    {
+      id: '129',
+      order: '#129',
+      amount: '$500',
+      paymentStatus: <Badge progress="complete">Cancel</Badge>,
+    },
+    {
+      id: '130',
+      order: '#130',
+      amount: '$200',
+      paymentStatus: <Badge progress="complete">Paid</Badge>,
+    },
+    {
+      id: '131',
+      order: '#131',
+      amount: '$500',
+      paymentStatus: <Badge progress="complete">Cancel</Badge>,
+    },
+    {
+      id: '132',
+      order: '#132',
+      amount: '$200',
+      paymentStatus: <Badge progress="complete">Paid</Badge>,
+    },
+    {
+      id: '133',
+      order: '#133',
+      amount: '$500',
+      paymentStatus: <Badge progress="complete">Cancel</Badge>,
+    }
   ];
+
+  const pageLimit = 10;
+  const startIndex = (currentPage - 1) * pageLimit;
+  const startServiceIndex = (currentServicePage - 1) * pageLimit;
+  const startTransactionIndex = (currentTransactionPage - 1) * pageLimit;
+  const endIndex = Math.min(startIndex + pageLimit, orders.length);
+  const endServices = Math.min(startServiceIndex + pageLimit, DServices.length);
+  const endTransaction = Math.min(startTransactionIndex + pageLimit, Transaction.length);
+  
+  useEffect(() => {
+    setCurrentOrders(orders.slice(startIndex, endIndex));
+  }, [currentPage]);
+
+  useEffect(() => {
+    setCurrentServices(DServices.slice(startServiceIndex, endServices));
+  }, [currentServicePage]);
+
+  useEffect(() => {
+    setCurrentTransaction(Transaction.slice(startTransactionIndex, endTransaction));
+  }, [currentTransactionPage]);
+
+  const handlePreviousPage = () => {
+    setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
+  };
+
+  const handlePreviousSerPage = () => {
+    setCurrentServicePage((prevPage) => Math.max(prevPage - 1, 1));
+  };
+
+  const handlePreviousTranPage = () => {
+    setCurrentTransactionPage((prevPage) => Math.max(prevPage - 1, 1));
+  };
+
+  const handleNextPage = () => {
+    setCurrentPage((prevPage) => Math.min(prevPage + 1, Math.ceil(orders.length / pageLimit)));
+  };
+
+  const handlenextservices = () => {
+    setCurrentServicePage((prevPage) => Math.min(prevPage + 1, Math.ceil(DServices.length / pageLimit)));
+  }
+
+  const handlenextTransaction = () => {
+    setCurrentTransactionPage((prevPage) => Math.min(prevPage + 1, Math.ceil(Transaction.length / pageLimit)));
+  }
 
   const resourceName = {
     singular: 'order',
@@ -127,7 +474,7 @@ export default function Dashboard() {
   const { selectedResources, allResourcesSelected, handleSelectionChange } =
     useIndexResourceState(orders);
 
-  const rowMarkup = orders.map(
+  const rowMarkup = currentOrders.map(
     (
       { id, order, date, customer, total, paymentStatus, fulfillmentStatus },
       index
@@ -155,7 +502,7 @@ export default function Dashboard() {
     )
   );
 
-  const DigitalService = DServices.map(
+  const DigitalService = currentServices.map(
     ({ id, order, digitalServices, amount, time, approveStatus }, index) => (
       <IndexTable.Row
         id={id}
@@ -176,7 +523,7 @@ export default function Dashboard() {
     )
   );
 
-  const TransactionHistory = Transaction.map(
+  const TransactionHistory = currentTransaction.map(
     ({ id, order, amount, paymentStatus }, index) => (
       <IndexTable.Row
         id={id}
@@ -600,15 +947,12 @@ export default function Dashboard() {
                 }}
               >
                 <Pagination
-                  onPrevious={() => {
-                    console.log('Previous');
-                  }}
-                  onNext={() => {
-                    console.log('Next');
-                  }}
+                  onPrevious={handlePreviousPage}
+                  onNext={handleNextPage}
+                  hasNext={currentPage < Math.ceil(orders.length / pageLimit)}
+                  hasPrevious={currentPage > 1}
                   type="table"
-                  hasNext
-                  label="1 of 50 product"
+                  label={`${currentPage} of ${orders.length} product`}
                 />
               </div>
             </LegacyCard>
@@ -645,15 +989,12 @@ export default function Dashboard() {
                 }}
               >
                 <Pagination
-                  onPrevious={() => {
-                    console.log('Previous');
-                  }}
-                  onNext={() => {
-                    console.log('Next');
-                  }}
+                  onPrevious={handlePreviousPage}
+                  onNext={handleNextPage}
+                  hasNext={currentPage < Math.ceil(orders.length / pageLimit)}
+                  hasPrevious={currentPage > 1}
                   type="table"
-                  hasNext
-                  label="1 of 50 orders"
+                  label={`${currentPage} of ${orders.length} orders`}
                 />
               </div>
             </LegacyCard>
@@ -670,7 +1011,7 @@ export default function Dashboard() {
             <LegacyCard>
               <IndexTable
                 resourceName={resourceName}
-                itemCount={orders.length}
+                itemCount={DServices.length}
                 selectedItemsCount={
                   allResourcesSelected ? 'All' : selectedResources.length
                 }
@@ -693,15 +1034,12 @@ export default function Dashboard() {
                 }}
               >
                 <Pagination
-                  onPrevious={() => {
-                    console.log('Previous');
-                  }}
-                  onNext={() => {
-                    console.log('Next');
-                  }}
+                  onPrevious={handlePreviousSerPage}
+                  onNext={handlenextservices}
+                  hasNext={currentServicePage < Math.ceil(DServices.length / pageLimit)}
+                  hasPrevious={currentServicePage > 1}
                   type="table"
-                  hasNext
-                  label="1 of 50 services"
+                  label={`${currentServicePage} of ${DServices.length} product`}
                 />
               </div>
             </LegacyCard>
@@ -715,7 +1053,7 @@ export default function Dashboard() {
             <LegacyCard>
               <IndexTable
                 resourceName={resourceName}
-                itemCount={orders.length}
+                itemCount={Transaction.length}
                 selectedItemsCount={
                   allResourcesSelected ? 'All' : selectedResources.length
                 }
@@ -736,15 +1074,12 @@ export default function Dashboard() {
                 }}
               >
                 <Pagination
-                  onPrevious={() => {
-                    console.log('Previous');
-                  }}
-                  onNext={() => {
-                    console.log('Next');
-                  }}
+                  onPrevious={handlePreviousTranPage}
+                  onNext={handlenextTransaction}
+                  hasNext={currentTransactionPage < Math.ceil(DServices.length / pageLimit)}
+                  hasPrevious={currentTransactionPage > 1}
                   type="table"
-                  hasNext
-                  label="1 of 50 transaction"
+                  label={`${currentTransactionPage} of ${Transaction.length} transaction`}
                 />
               </div>
             </LegacyCard>
