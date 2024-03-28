@@ -1,14 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, Redirect, Link } from 'react-router-dom';
 import clsx from 'clsx';
-import {
-  Drawer,
-  AppBar,
-  Toolbar,
-  CssBaseline,
-  Box,
-
-} from '@mui/material';
+import { Drawer, AppBar, Toolbar, CssBaseline, Box } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import {
   Template,
@@ -61,14 +54,11 @@ import SettingDigitalService from '../components/ViewDegitalService/SettingDigit
 import TestOrder from '../modules/Orders/pages/TestOrder';
 import TestMultiShipping from '../modules/Orders/pages/TestMultiShipping';
 
-
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import { TextField } from '@shopify/polaris';
-import {
-  SearchIcon
-} from '@shopify/polaris-icons';
+import { SearchIcon } from '@shopify/polaris-icons';
 
 const drawerWidth = 230;
 
@@ -108,13 +98,13 @@ const nav = [
   //   treeItem: [],
   //   link: '/warehouse',
   // },
-  {
-    text: 'Venders',
-    icon: 'pf-i pf-i-24 pf-mb-2 pf-mr-8 pf-i-package-variant-closed pf-text-gray-400',
-    isTree: false,
-    treeItem: [],
-    link: '/venders',
-  },
+  // {
+  //   text: 'Vendor',
+  //   icon: 'pf-i pf-i-24 pf-mb-2 pf-mr-8 pf-i-package-variant-closed pf-text-gray-400',
+  //   isTree: false,
+  //   treeItem: [],
+  //   link: '/vendor',
+  // },
   {
     text: 'File library',
     icon: 'pf-i pf-i-24 pf-i-folder-multiple-image',
@@ -122,22 +112,22 @@ const nav = [
     treeItem: [],
     link: '/library',
   },
-  {
-    text: 'Manage Products',
-    icon: 'pf-i pf-i-24 pf-i-credit-card-outline',
-    isTree: true,
-    treeItem: [
-      {
-        text: 'Products',
-        link: '/manageable/products',
-      },
-      {
-        text: 'Category',
-        link: '/manageable/category',
-      },
-    ],
-    link: '/manageable',
-  },
+  // {
+  //   text: 'Manage Products',
+  //   icon: 'pf-i pf-i-24 pf-i-credit-card-outline',
+  //   isTree: true,
+  //   treeItem: [
+  //     {
+  //       text: 'Products',
+  //       link: '/manageable/products',
+  //     },
+  //     {
+  //       text: 'Category',
+  //       link: '/manageable/category',
+  //     },
+  //   ],
+  //   link: '/manageable',
+  // },
   {
     text: 'Stores',
     icon: 'pf-i pf-i-24 pf-i-store',
@@ -272,7 +262,7 @@ const useStyle = makeStyles((theme) => ({
       width: `calc(100% - ${drawerWidth}px)`,
       marginLeft: drawerWidth,
     },
-    backgroundColor: "rgba(241, 241, 241, 1)",
+    backgroundColor: 'rgba(241, 241, 241, 1)',
   },
 }));
 
@@ -291,8 +281,8 @@ const Layout = ({ children, window }) => {
   const [value, setValue] = useState('');
 
   const handleChange = () => {
-    setValue(newValue)
-  }
+    setValue(newValue);
+  };
 
   const toggleDrawer = (anchor, open) => (event) => {
     if (
@@ -301,14 +291,14 @@ const Layout = ({ children, window }) => {
     ) {
       return;
     }
-  
+
     const isKeepOpenItem =
       event.target.innerText === 'Manage Products' ||
       event.target.innerText === 'Settings' ||
       event.target.innerText === 'Billing';
 
-    console.log(isKeepOpenItem, "isKeepOpenItem")
-  
+    console.log(isKeepOpenItem, 'isKeepOpenItem');
+
     if (!isKeepOpenItem) {
       setState({ ...state, [anchor]: open });
     }
@@ -321,31 +311,27 @@ const Layout = ({ children, window }) => {
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
     >
-      <div
-        id="dashboard-sidebar"
-        className="dashboard__sidebar"
-      >
-        <ul
-          className="pf-m-0 pf-px-0 pf-py-8"
-          id="sidebar-ul"
-        >
+      <div id="dashboard-sidebar" className="dashboard__sidebar">
+        <ul className="pf-m-0 pf-px-0 pf-py-8" id="sidebar-ul">
           {nav.map((item) => (
             <div key={item.text}>
-              {item.text !== 'Billing' && item.text !== 'Manage Products' && item.text !== 'Settings' && (
-                <li className="panel" key={item.text}>
-                  <Link
-                    className={clsx(
-                      'pf-link-block pf-px-24 pf-py-8',
-                      item.link === `/${prefix}` ? 'active' : ''
-                    )}
-                    style={{ cursor: 'pointer' }}
-                    to={item.link}
-                  >
-                    <span className={item.icon}/>
-                    <span className="pf-ml-8">{item.text}</span>
-                  </Link>
-                </li>
-              )}
+              {item.text !== 'Billing' &&
+                item.text !== 'Manage Products' &&
+                item.text !== 'Settings' && (
+                  <li className="panel" key={item.text}>
+                    <Link
+                      className={clsx(
+                        'pf-link-block pf-px-24 pf-py-8',
+                        item.link === `/${prefix}` ? 'active' : ''
+                      )}
+                      style={{ cursor: 'pointer' }}
+                      to={item.link}
+                    >
+                      <span className={item.icon} />
+                      <span className="pf-ml-8">{item.text}</span>
+                    </Link>
+                  </li>
+                )}
 
               {item.text === 'Billing' && (
                 <>
@@ -388,15 +374,19 @@ const Layout = ({ children, window }) => {
                     </a>
                   </li>
                   <ul
-                    className={`pf-pl-24 pf-bg-white collapse ${expandBill && 'in'
-                      }`}
+                    className={`pf-pl-24 pf-bg-white collapse ${
+                      expandBill && 'in'
+                    }`}
                     id="sidebar-ul-9"
                   >
                     {item.treeItem.map((treeItem) => (
                       <li key={treeItem.text}>
                         <Link
-                          className={`pf-link-block pf-px-24 pf-py-8 ${treeItem.link === `/${prefix}/${path}` ? 'active' : ''
-                            }`}
+                          className={`pf-link-block pf-px-24 pf-py-8 ${
+                            treeItem.link === `/${prefix}/${path}`
+                              ? 'active'
+                              : ''
+                          }`}
                           to={treeItem.link}
                           style={{ cursor: 'pointer' }}
                         >
@@ -418,7 +408,7 @@ const Layout = ({ children, window }) => {
                       style={{ cursor: 'pointer' }}
                       onClick={() => setExpandProduct(!expandproduct)}
                     >
-                      <span className={item.icon}/>
+                      <span className={item.icon} />
                       <span className="pf-ml-8">{item.text}</span>
                       <div>
                         {!expandproduct ? (
@@ -448,15 +438,19 @@ const Layout = ({ children, window }) => {
                     </a>
                   </li>
                   <ul
-                    className={`pf-pl-24 pf-bg-white collapse ${expandproduct && 'in'
-                      }`}
+                    className={`pf-pl-24 pf-bg-white collapse ${
+                      expandproduct && 'in'
+                    }`}
                     id="sidebar-ul-9"
                   >
                     {item.treeItem.map((treeItem) => (
                       <li key={treeItem.text}>
                         <Link
-                          className={`pf-link-block pf-px-24 pf-py-8 ${treeItem.link === `/${prefix}/${path}` ? 'active' : ''
-                            }`}
+                          className={`pf-link-block pf-px-24 pf-py-8 ${
+                            treeItem.link === `/${prefix}/${path}`
+                              ? 'active'
+                              : ''
+                          }`}
                           to={treeItem.link}
                           style={{ cursor: 'pointer' }}
                         >
@@ -508,15 +502,19 @@ const Layout = ({ children, window }) => {
                     </a>
                   </li>
                   <ul
-                    className={`pf-pl-24 pf-bg-white collapse ${expandSetting && 'in'
-                      }`}
+                    className={`pf-pl-24 pf-bg-white collapse ${
+                      expandSetting && 'in'
+                    }`}
                     id="sidebar-ul-9"
                   >
                     {item.treeItem.map((treeItem) => (
                       <li key={treeItem.text}>
                         <Link
-                          className={`pf-link-block pf-px-24 pf-py-8 ${treeItem.link === `/${prefix}/${path}` ? 'active' : ''
-                            }`}
+                          className={`pf-link-block pf-px-24 pf-py-8 ${
+                            treeItem.link === `/${prefix}/${path}`
+                              ? 'active'
+                              : ''
+                          }`}
                           to={treeItem.link}
                           style={{ cursor: 'pointer' }}
                         >
@@ -538,7 +536,7 @@ const Layout = ({ children, window }) => {
   useEffect(() => {
     setExpandBill(prefix === 'billing');
     setExpandSetting(prefix === 'settings');
-    setExpandProduct(prefix === 'manageable')
+    setExpandProduct(prefix === 'manageable');
   }, [prefix]);
 
   return (
@@ -552,50 +550,48 @@ const Layout = ({ children, window }) => {
               className="dashboard__header pf-bg-white pf-ui-body"
             >
               <div className="dashboard__menu">
-                  <div className="row">
-                    <div className='headerbar'>
-                      <div className='drawer-icon'>
-                        {['left'].map((anchor) => (
-                          <React.Fragment key={anchor}>
-                            <IconButton
-                              color="black"
-                              aria-label="open drawer"
-                              edge="start"
-                              onClick={toggleDrawer(anchor, true)}
-                            >
-                              <MenuIcon>
-                                {anchor}
-                              </MenuIcon>
-                            </IconButton>
-                            <Drawer
-                              anchor={anchor}
-                              open={state[anchor]}
-                              onClose={toggleDrawer(anchor, false)}
-                            >
-                              {list(anchor)}
-                            </Drawer>
-                          </React.Fragment>
-                        ))}
-                      </div>
-                      <div className='search-bar'>
-                        <TextField
-                          value={value}
-                          onChange={handleChange}
-                          autoComplete="off"
-                          placeholder="Search"
-                        />
-                      </div>
-                      <div className="other-icon">
-                        <ul
-                          id="userbar"
-                          className="pf-p-0 pf-m-0 pf-d-inline-block"
-                        >
-                          <Language />
-                          <Currency />
-                          <Notification />
-                          <User />
+                <div className="row">
+                  <div className="headerbar">
+                    <div className="drawer-icon">
+                      {['left'].map((anchor) => (
+                        <React.Fragment key={anchor}>
+                          <IconButton
+                            color="black"
+                            aria-label="open drawer"
+                            edge="start"
+                            onClick={toggleDrawer(anchor, true)}
+                          >
+                            <MenuIcon>{anchor}</MenuIcon>
+                          </IconButton>
+                          <Drawer
+                            anchor={anchor}
+                            open={state[anchor]}
+                            onClose={toggleDrawer(anchor, false)}
+                          >
+                            {list(anchor)}
+                          </Drawer>
+                        </React.Fragment>
+                      ))}
+                    </div>
+                    <div className="search-bar">
+                      <TextField
+                        value={value}
+                        onChange={handleChange}
+                        autoComplete="off"
+                        placeholder="Search"
+                      />
+                    </div>
+                    <div className="other-icon">
+                      <ul
+                        id="userbar"
+                        className="pf-p-0 pf-m-0 pf-d-inline-block"
+                      >
+                        <Language />
+                        <Currency />
+                        <Notification />
+                        <User />
 
-                          {/* <li className="pf-d-inline-block">
+                        {/* <li className="pf-d-inline-block">
                           <Link
                             className="pf-btn pf-btn-primary pf-ml-24 pf-mr-8 pf-mt-12"
                             id="dashboard-new-order"
@@ -604,10 +600,10 @@ const Layout = ({ children, window }) => {
                             New order{' '}
                           </Link>
                         </li> */}
-                        </ul>
-                      </div>
+                      </ul>
                     </div>
-                    {/* <div
+                  </div>
+                  {/* <div
                         id="sitewide-search-225d772b"
                         className="sitewide-search__user-bar pf-mt-12"
                       >
@@ -637,9 +633,9 @@ const Layout = ({ children, window }) => {
                           </div>
                         </div>
                       </div> */}
-                  </div>
                 </div>
               </div>
+            </div>
           </Toolbar>
         </AppBar>
         <main className={classes.content}>
@@ -746,9 +742,7 @@ const ROUTES = [
         path: '/template/create',
         key: 'TEMPLATE_CREATE',
         exact: true,
-        component: () => (
-          <CreateProductTemplate />
-        ),
+        component: () => <CreateProductTemplate />,
       },
       {
         path: '/template/1',
@@ -764,9 +758,7 @@ const ROUTES = [
         path: '/template/view',
         key: 'TEMPLATE_DETAIL',
         exact: true,
-        component: () => (
-          <Productview />
-        ),
+        component: () => <Productview />,
       },
     ],
   },
@@ -836,43 +828,43 @@ const ROUTES = [
   //     },
   //   ],
   // },
-  {
-    path: '/venders',
-    key: 'VENDERS',
-    component: RenderRoutes,
-    routes: [
-      {
-        path: '/venders',
-        key: 'VENDERS_ROOT',
-        exact: true,
-        component: () => {
-          const userLogInSuccess = isLoggedIn();
-          return userLogInSuccess ? (
-            <Layout>
-              <Venders />
-            </Layout>
-          ) : (
-            <Login />
-          );
-        },
-      },
-      {
-        path: '/venders/detail',
-        key: 'VENDERS_ROOT',
-        exact: true,
-        component: () => {
-          const userLogInSuccess = isLoggedIn();
-          return userLogInSuccess ? (
-            <Layout>
-              <VenderDetail />
-            </Layout>
-          ) : (
-            <Login />
-          );
-        },
-      },
-    ],
-  },
+  // {
+  //   path: '/vendor',
+  //   key: 'VENDOR',
+  //   component: RenderRoutes,
+  //   routes: [
+  //     {
+  //       path: '/vendor',
+  //       key: 'VENDOR_ROOT',
+  //       exact: true,
+  //       component: () => {
+  //         const userLogInSuccess = isLoggedIn();
+  //         return userLogInSuccess ? (
+  //           <Layout>
+  //             <Venders />
+  //           </Layout>
+  //         ) : (
+  //           <Login />
+  //         );
+  //       },
+  //     },
+  //     {
+  //       path: '/vendor/detail',
+  //       key: 'VENDOR_ROOT',
+  //       exact: true,
+  //       component: () => {
+  //         const userLogInSuccess = isLoggedIn();
+  //         return userLogInSuccess ? (
+  //           <Layout>
+  //             <VenderDetail />
+  //           </Layout>
+  //         ) : (
+  //           <Login />
+  //         );
+  //       },
+  //     },
+  //   ],
+  // },
   {
     path: '/orders',
     key: 'Orders',
@@ -1009,58 +1001,58 @@ const ROUTES = [
       },
     ],
   },
-  {
-    path: '/manageable',
-    key: 'MANAGEABLE',
-    component: (props) => {
-      const isUserLogin = isLoggedIn();
-      return isUserLogin ? <RenderRoutes {...props} /> : <Redirect to="/" />;
-    },
-    routes: [
-      {
-        path: '/manageable',
-        key: 'MANAGEABLE_ROOT',
-        exact: true,
-        component: () => <Redirect to="/manageable/products" />,
-      },
-      {
-        path: '/manageable/products',
-        key: 'MANAGEABLE_PRODUCT',
-        exact: true,
-        component: () => (
-          <Layout>
-            <Products />
-          </Layout>
-        ),
-      },
-      {
-        path: '/manageable/category',
-        key: 'MANAGEABLE_EDIT',
-        exact: true,
-        component: () => (
-          <Layout>
-            <Category />
-          </Layout>
-        ),
-      },
-      {
-        path: '/manageable/editproduct',
-        key: 'MANAGEABLE_EDIT',
-        exact: true,
-        component: () => (
-          <Editproduct />
-        ),
-      },
-      {
-        path: '/manageable/editproduct',
-        key: 'MANAGEABLE_EDIT',
-        exact: true,
-        component: () => (
-          <Editdesign />
-        ),
-      },
-    ],
-  },
+  // {
+  //   path: '/manageable',
+  //   key: 'MANAGEABLE',
+  //   component: (props) => {
+  //     const isUserLogin = isLoggedIn();
+  //     return isUserLogin ? <RenderRoutes {...props} /> : <Redirect to="/" />;
+  //   },
+  //   routes: [
+  //     {
+  //       path: '/manageable',
+  //       key: 'MANAGEABLE_ROOT',
+  //       exact: true,
+  //       component: () => <Redirect to="/manageable/products" />,
+  //     },
+  //     {
+  //       path: '/manageable/products',
+  //       key: 'MANAGEABLE_PRODUCT',
+  //       exact: true,
+  //       component: () => (
+  //         <Layout>
+  //           <Products />
+  //         </Layout>
+  //       ),
+  //     },
+  //     {
+  //       path: '/manageable/category',
+  //       key: 'MANAGEABLE_EDIT',
+  //       exact: true,
+  //       component: () => (
+  //         <Layout>
+  //           <Category />
+  //         </Layout>
+  //       ),
+  //     },
+  //     {
+  //       path: '/manageable/editproduct',
+  //       key: 'MANAGEABLE_EDIT',
+  //       exact: true,
+  //       component: () => (
+  //         <Editproduct />
+  //       ),
+  //     },
+  //     {
+  //       path: '/manageable/editproduct',
+  //       key: 'MANAGEABLE_EDIT',
+  //       exact: true,
+  //       component: () => (
+  //         <Editdesign />
+  //       ),
+  //     },
+  //   ],
+  // },
   {
     path: '/settings',
     key: 'SETTINGS_ROOT',
@@ -1144,7 +1136,7 @@ const ROUTES = [
             <Memberships />
           </Layout>
         ),
-      }
+      },
     ],
   },
   // {
@@ -1244,7 +1236,7 @@ const ROUTES = [
             <ViewDigitalService />
           </Layout>
         ),
-      }
+      },
     ],
   },
   {
@@ -1264,7 +1256,7 @@ const ROUTES = [
             <SettingDigitalService />
           </Layout>
         ),
-      }
+      },
     ],
   },
 ];

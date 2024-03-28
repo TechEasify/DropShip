@@ -8531,3 +8531,26 @@ img.report-feedback {
 .live-mockups__thumb img {
   width: 100%;
 }
+
+.direct-head {
+  margin-bottom: 20px;
+}
+
+.route-access {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.detail-direct {
+  padding: 10px;
+  width: 220px;
+}
+
+.route-btn {
+  display: grid;
+}
+
+.route-text {
+  margin-bottom: 10px;
+  text-align: center;
+}

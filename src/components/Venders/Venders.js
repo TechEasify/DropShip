@@ -10,7 +10,7 @@ function Venders() {
         <>
             <div className='vender-main'>
                 <div className='vender-head'>
-                    <h2 className='category-heading'>Venders</h2>
+                    <h2 className='category-heading'>Vendor</h2>
                     <div className="filter-search-vender">
                         <div style={{ minHeight: '39px' }}>
                             <input
@@ -58,7 +58,7 @@ function Venders() {
                             image="https://d46qqg0b6pc82.cloudfront.net/listing_variation_images/attachments/fb5/9e9/3b-/original/FLLF8-2.png"
                             title="green iguana"
                             className='card-venderImg'
-                            onClick={() => history.push('/venders/detail')}
+                            onClick={() => history.push('/admin/vendor/detail')}
                         />
                         <CardContent>
                             <Typography gutterBottom variant="h4" component="div">
@@ -71,10 +71,10 @@ function Venders() {
                         </CardContent>
                         <div className='card-button'>
                             <div className='shopping-cart'>
-                            <Button className='product-btn' onClick={() => history.push('/venders/#')}>Link</Button>
+                            <Button className='product-btn' onClick={() => history.push('/admin/vendor/#')}>Link</Button>
                             </div>
                             <div className='addtoproduct'>
-                                <Button className='product-btn' onClick={() => history.push('/venders/detail')}>Products</Button>
+                                <Button className='product-btn' onClick={() => history.push('/admin/vendor/detail')}>Products</Button>
                             </div>
                         </div>
                     </Card>
@@ -85,7 +85,7 @@ function Venders() {
                             image="https://d46qqg0b6pc82.cloudfront.net/listing_variation_images/attachments/fb5/9e9/3b-/original/FLLF8-2.png"
                             title="green iguana"
                             className='card-venderImg'
-                            onClick={() => history.push('/venders/detail')}
+                            onClick={() => history.push('/admin/vendor/detail')}
                         />
                         <CardContent>
                             <Typography gutterBottom variant="h4" component="div">
@@ -101,7 +101,7 @@ function Venders() {
                             <Button className='product-btn' >Link</Button>
                             </div>
                             <div className='addtoproduct'>
-                                <Button className='product-btn' onClick={() => history.push('/venders/detail')}>Products</Button>
+                                <Button className='product-btn' onClick={() => history.push('/admin/vendor/detail')}>Products</Button>
                             </div>
                         </div>
                     </Card>
@@ -112,7 +112,7 @@ function Venders() {
                             image="https://d46qqg0b6pc82.cloudfront.net/listing_variation_images/attachments/fb5/9e9/3b-/original/FLLF8-2.png"
                             title="green iguana"
                             className='card-venderImg'
-                            onClick={() => history.push('/venders/detail')}
+                            onClick={() => history.push('/admin/vendor/detail')}
                         />
                         <CardContent>
                             <Typography gutterBottom variant="h4" component="div">
@@ -128,7 +128,7 @@ function Venders() {
                             <Button className='product-btn' >Link</Button>
                             </div>
                             <div className='addtoproduct'>
-                                <Button className='product-btn' onClick={() => history.push('/venders/detail')}>Products</Button>
+                                <Button className='product-btn' onClick={() => history.push('/admin/vendor/detail')}>Products</Button>
                             </div>
                         </div>
                     </Card>
@@ -137,7 +137,7 @@ function Venders() {
                             sx={{ height: 280 }}
                             image="https://d46qqg0b6pc82.cloudfront.net/listing_variation_images/attachments/fb5/9e9/3b-/original/FLLF8-2.png"
                             title="green iguana"
-                            onClick={() => history.push('/venders/detail')}
+                            onClick={() => history.push('/admin/vendor/detail')}
                             className='card-venderImg'
                         />
                         <CardContent>
@@ -154,7 +154,7 @@ function Venders() {
                             <Button className='product-btn' >Link</Button>
                             </div>
                             <div className='addtoproduct'>
-                                <Button className='product-btn' onClick={() => history.push('/venders/detail')}>Products</Button>
+                                <Button className='product-btn' onClick={() => history.push('/admin/vendor/detail')}>Products</Button>
                             </div>
                         </div>
                     </Card>
