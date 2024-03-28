@@ -7406,17 +7406,29 @@ body.pf-lang--de .product-push-add .add-block .info-arrow {
 
 .dashcard-detail {
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   flex-direction: row;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
   cursor: pointer;
+  width: 100%;
 }
 
-p.oders-value {
+.today-orders {
+  margin-right: 10px;
+}
+
+/* p.oders-value {
   text-align: center;
   margin-top: 5px;
   font-weight: 600;
   margin-bottom: 5px;
+} */
+
+p.oders-value {
+  text-align: center;
+  margin-top: -10px;
+  font-weight: 600;
+  margin-bottom: -10px;
 }
 
 .tranding-product {

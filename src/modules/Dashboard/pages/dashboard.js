@@ -873,8 +873,8 @@ export default function Dashboard() {
                   <div className="dash-cardtext">
                     <h4>Today Orders</h4>
                   </div>
+                  <p className="oders-value">1</p>
                 </div>
-                <p className="oders-value">1</p>
               </Card>
             </div>
 
@@ -885,8 +885,8 @@ export default function Dashboard() {
                   <div className="dash-cardtext">
                     <h4>Pendding Orders</h4>
                   </div>
+                  <p className="oders-value">1</p>
                 </div>
-                <p className="oders-value">1</p>
               </Card>
             </div>
 
@@ -897,8 +897,8 @@ export default function Dashboard() {
                   <div className="dash-cardtext">
                     <h4>Completed Orders</h4>
                   </div>
+                  <p className="oders-value">1</p>
                 </div>
-                <p className="oders-value">1</p>
               </Card>
             </div>
 
@@ -909,8 +909,8 @@ export default function Dashboard() {
                   <div className="dash-cardtext">
                     <h4>Total Orders</h4>
                   </div>
+                  <p className="oders-value">1</p>
                 </div>
-                <p className="oders-value">1</p>
               </Card>
             </div>
 
@@ -921,8 +921,8 @@ export default function Dashboard() {
                   <div className="dash-cardtext">
                     <h4>Monthly Sale</h4>
                   </div>
+                  <p className="oders-value">1</p>
                 </div>
-                <p className="oders-value">1</p>
               </Card>
             </div>
 
@@ -933,8 +933,8 @@ export default function Dashboard() {
                   <div className="dash-cardtext">
                     <h4>Annual Sale</h4>
                   </div>
+                  <p className="oders-value">1</p>
                 </div>
-                <p className="oders-value">1</p>
               </Card>
             </div>
 
@@ -945,8 +945,8 @@ export default function Dashboard() {
                   <div className="dash-cardtext">
                     <h4>Monthly Order</h4>
                   </div>
+                  <p className="oders-value">1</p>
                 </div>
-                <p className="oders-value">1</p>
               </Card>
             </div>
 
@@ -957,11 +957,11 @@ export default function Dashboard() {
                   <div className="dash-cardtext">
                     <h4>Current Tiers</h4>
                   </div>
-                </div>
-                <div className="dashcard-tiers">
-                  <p className="oders-value">
-                    Broze + <span>300$</span>
-                  </p>
+                  <div className="dashcard-tiers">
+                    <p className="oders-value">
+                      Broze + <span>300$</span>
+                    </p>
+                  </div>
                 </div>
               </Card>
             </div>
