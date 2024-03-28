@@ -390,7 +390,7 @@
   color: #232323;
   font-size: 40px;
   font-weight: 600;
-  margin-top: 10px;
+  margin-top: 30px;
 }
 @media (max-width: 991.98px) {
   .dashboard-home__welcome {
@@ -7400,7 +7400,7 @@ body.pf-lang--de .product-push-add .add-block .info-arrow {
 
 .dashcard-detail {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   flex-direction: row;
   flex-wrap: wrap;
   cursor: pointer;
@@ -7469,11 +7469,15 @@ h4.tranding-text {
 
 .dashboard-card {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
 }
 
 .dashoard-step {
   margin-right: 10px;
   width: 23%;
+}
+
+img.img-responsive.pf-m-auto {
+  border-radius: inherit;
 }
 
