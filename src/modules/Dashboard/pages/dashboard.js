@@ -425,7 +425,6 @@ export default function Dashboard() {
     },
   ];
 
-
   const handleSelectChange = (value) => {
     setSelected(value);
     const newPageLimit = parseInt(value);
@@ -439,7 +438,10 @@ export default function Dashboard() {
     setServiceSelected(value);
     const newPageLimit = parseInt(value);
     const newStartIndex = (currentServicePage - 1) * newPageLimit;
-    const newEndIndex = Math.min(newStartIndex + newPageLimit, DServices.length);
+    const newEndIndex = Math.min(
+      newStartIndex + newPageLimit,
+      DServices.length
+    );
     setCurrentServices(DServices.slice(newStartIndex, newEndIndex));
     setCurrentServicePage(1);
   };
@@ -448,11 +450,14 @@ export default function Dashboard() {
     setTransaction(value);
     const newPageLimit = parseInt(value);
     const newStartIndex = (currentTransactionPage - 1) * newPageLimit;
-    const newEndIndex = Math.min(newStartIndex + newPageLimit, Transaction.length);
+    const newEndIndex = Math.min(
+      newStartIndex + newPageLimit,
+      Transaction.length
+    );
     setCurrentTransaction(Transaction.slice(newStartIndex, newEndIndex));
     setCurrentTransactionPage(1);
   };
-  
+
   const pageLimit = 10;
   const startIndex = (currentPage - 1) * pageLimit;
   const startServiceIndex = (currentServicePage - 1) * pageLimit;
@@ -702,201 +707,159 @@ export default function Dashboard() {
           {location.pathname === '/admin' ? (
             ''
           ) : (
-            <div className="row">
-              <div className="col-md-2 pf-d-flex pf-justify-content-center">
-                {/* <img
-                src="https://www.dropshippy.com/static/images/dashboard/onboarding-left.svg"
-                alt="Onboarding Illustration"
-                className="pf-d-none pf-d-md-block"
-                style={{ width: 165 }}
-              /> */}
-              </div>
-              <div className="col-md-8 pf-d-flex  pf-justify-content-center">
-                <div
-                  className="splide__track splide__track--slide splide__track--ltr"
-                  id="onboarding-steps-splide-slider-track"
-                  aria-live="polite"
-                  aria-atomic="true"
-                >
-                  <div
-                    className="splide__list"
-                    id="onboarding-steps-splide-slider-list pf-d-flex pf-justify-content-center"
-                    role="presentation"
-                  >
+            <div className="pf-d-flex  pf-justify-content-center">
+              <div
+                className="splide__track splide__track--slide splide__track--ltr"
+                id="onboarding-steps-splide-slider-track"
+                aria-live="polite"
+                aria-atomic="true"
+              >
+                <Card>
+                  <div className="dashboard-card">
                     {/* Slide 1 */}
-                    <div
-                      data-splide-interval=""
-                      className="splide__slide is-active is-visible"
-                      id="onboarding-steps-splide-slider-slide01"
-                      role="tabpanel"
-                      aria-roledescription="slide"
-                      aria-label="1 of 4"
-                      style={{ marginRight: '16px', width: 'calc(25% - 12px)' }}
-                    >
-                      <div className="pf-d-flex pf-flex-column pf-rounded--large pf-p-16 pf-h-100 pf-border pf-bg-white">
-                        <img
-                          alt="Design your first product"
-                          src="https://static.cdn.printful.com/static/v864/images/dashboard/onboarding/create-product-template.png"
-                          className="img-responsive pf-m-auto"
-                          style={{ maxWidth: '195px' }}
-                        />
-                        <div className="pf-d-flex pf-flex-column pf-h-100">
-                          <div className="pf-ui-subheading">Step 1</div>
-                          <h3 className="pf-h3 pf-m-0">Design your product</h3>
-                          <div className="pf-ui-body pf-py-8">
-                            You’ll simply add any design to one of our hundreds
-                            of premium-quality products.
-                          </div>
-                          <div className="pf-ui-body">~ 25 minutes</div>
-                          <div className="pf-d-flex pf-align-items-end pf-h-100">
-                            <a
-                              id="create_product_template-action"
-                              href="/dashboard/product-templates"
-                              className="pf-w-100"
-                            >
-                              <button className="pf-w-100 pf-btn pf-mt-12 pf-btn-primary">
-                                Start
-                              </button>
-                            </a>
+                    <div className="dashoard-step">
+                      <Card>
+                        <div className="pf-d-flex pf-flex-column pf-rounded--large pf-p-16 pf-h-100 pf-border pf-bg-white">
+                          <img
+                            alt="Design your first product"
+                            src="https://static.cdn.printful.com/static/v864/images/dashboard/onboarding/create-product-template.png"
+                            className="img-responsive pf-m-auto"
+                            style={{ maxWidth: '195px' }}
+                          />
+                          <div className="pf-d-flex pf-flex-column pf-h-100">
+                            <div className="pf-ui-subheading">Step 1</div>
+                            <h3 className="pf-h3 pf-m-0">
+                              Design your product
+                            </h3>
+                            <div className="pf-ui-body pf-py-8">
+                              You’ll simply add any design to one of our
+                              hundreds of premium-quality products.
+                            </div>
+                            <div className="pf-ui-body">~ 25 minutes</div>
+                            <div className="pf-d-flex pf-align-items-end pf-h-100">
+                              <a
+                                id="create_product_template-action"
+                                href="/dashboard/product-templates"
+                                className="pf-w-100"
+                              >
+                                <button className="pf-w-100 pf-btn pf-mt-12 pf-btn-primary">
+                                  Start
+                                </button>
+                              </a>
+                            </div>
                           </div>
                         </div>
-                      </div>
+                      </Card>
                     </div>
 
                     {/* Slide 2 */}
-                    <div
-                      className="splide__slide is-visible is-next"
-                      id="onboarding-steps-splide-slider-slide02"
-                      role="tabpanel"
-                      aria-roledescription="slide"
-                      aria-label="2 of 4"
-                      style={{ marginRight: '16px', width: 'calc(25% - 12px)' }}
-                    >
-                      <div className="pf-d-flex pf-flex-column pf-rounded--large pf-p-16 pf-h-100 pf-border pf-bg-white">
-                        <img
-                          alt="Connect your store"
-                          src="https://static.cdn.printful.com/static/v864/images/dashboard/onboarding/create-store.png"
-                          className="img-responsive pf-m-auto"
-                          style={{ maxWidth: '195px' }}
-                        />
-                        <div className="pf-d-flex pf-flex-column pf-h-100">
-                          <div className="pf-ui-subheading">Step 2</div>
-                          <h3 className="pf-h3 pf-m-0">Connect your store</h3>
-                          <div className="pf-ui-body pf-py-8">
-                            You’ll easily connect your ecommerce platform to
-                            Printful in only a few clicks.
-                          </div>
-                          <div className="pf-ui-body">~ 10 minutes</div>
-                          <div className="pf-d-flex pf-align-items-end pf-h-100">
-                            <a
-                              id="create_store-action"
-                              href="/dashboard/store"
-                              className="pf-w-100"
-                            >
-                              <button className="pf-w-100 pf-btn pf-mt-12 pf-btn-secondary">
-                                Start
-                              </button>
-                            </a>
+                    <div className="dashoard-step">
+                      <Card>
+                        <div className="pf-d-flex pf-flex-column pf-rounded--large pf-p-16 pf-h-100 pf-border pf-bg-white">
+                          <img
+                            alt="Connect your store"
+                            src="https://static.cdn.printful.com/static/v864/images/dashboard/onboarding/create-store.png"
+                            className="img-responsive pf-m-auto"
+                            style={{ maxWidth: '195px' }}
+                          />
+                          <div className="pf-d-flex pf-flex-column pf-h-100">
+                            <div className="pf-ui-subheading">Step 2</div>
+                            <h3 className="pf-h3 pf-m-0">Connect your store</h3>
+                            <div className="pf-ui-body pf-py-8">
+                              You’ll easily connect your ecommerce platform to
+                              Printful in only a few clicks.
+                            </div>
+                            <div className="pf-ui-body">~ 10 minutes</div>
+                            <div className="pf-d-flex pf-align-items-end pf-h-100">
+                              <a
+                                id="create_store-action"
+                                href="/dashboard/store"
+                                className="pf-w-100"
+                              >
+                                <button className="pf-w-100 pf-btn pf-mt-12 pf-btn-secondary">
+                                  Start
+                                </button>
+                              </a>
+                            </div>
                           </div>
                         </div>
-                      </div>
+                      </Card>
                     </div>
 
                     {/* Slide 3 */}
-                    <div
-                      data-splide-interval=""
-                      className="splide__slide is-visible"
-                      id="onboarding-steps-splide-slider-slide03"
-                      role="tabpanel"
-                      aria-roledescription="slide"
-                      aria-label="3 of 4"
-                      style={{ marginRight: '16px', width: 'calc(25% - 12px)' }}
-                    >
-                      <div className="pf-d-flex pf-flex-column pf-rounded--large pf-p-16 pf-h-100 pf-border pf-bg-white">
-                        <img
-                          alt="Add products to store"
-                          src="https://static.cdn.printful.com/static/v864/images/dashboard/onboarding/design-products.png"
-                          className="img-responsive pf-m-auto"
-                          style={{ maxWidth: '195px' }}
-                        />
-                        <div className="pf-d-flex pf-flex-column pf-h-100">
-                          <div className="pf-ui-subheading">Step 3</div>
-                          <h3 className="pf-h3 pf-m-0">
-                            Upload products to store
-                          </h3>
-                          <div className="pf-ui-body pf-py-8">
-                            You’ll give your product some context with a title,
-                            description, and price.
-                          </div>
-                          <div className="pf-ui-body">~ 15 minutes</div>
-                          <div className="pf-d-flex pf-align-items-end pf-h-100">
-                            <a
-                              id="design_products-action"
-                              href="/dashboard/store?offerSync=1"
-                              className="pf-w-100"
-                            >
-                              <button
-                                disabled="disabled"
-                                className="pf-w-100 pf-btn pf-mt-12 pf-btn-secondary"
+                    <div className="dashoard-step">
+                      <Card>
+                        <div className="pf-d-flex pf-flex-column pf-rounded--large pf-p-16 pf-h-100 pf-border pf-bg-white">
+                          <img
+                            alt="Add products to store"
+                            src="https://static.cdn.printful.com/static/v864/images/dashboard/onboarding/design-products.png"
+                            className="img-responsive pf-m-auto"
+                            style={{ maxWidth: '195px' }}
+                          />
+                          <div className="pf-d-flex pf-flex-column pf-h-100">
+                            <div className="pf-ui-subheading">Step 3</div>
+                            <h3 className="pf-h3 pf-m-0">
+                              Upload products to store
+                            </h3>
+                            <div className="pf-ui-body pf-py-8">
+                              You’ll give your product some context with a
+                              title, description, and price.
+                            </div>
+                            <div className="pf-ui-body">~ 15 minutes</div>
+                            <div className="pf-d-flex pf-align-items-end pf-h-100">
+                              <a
+                                id="design_products-action"
+                                href="/dashboard/store?offerSync=1"
+                                className="pf-w-100"
                               >
-                                Start
-                              </button>
-                            </a>
+                                <button
+                                  disabled="disabled"
+                                  className="pf-w-100 pf-btn pf-mt-12 pf-btn-secondary"
+                                >
+                                  Start
+                                </button>
+                              </a>
+                            </div>
                           </div>
                         </div>
-                      </div>
+                      </Card>
                     </div>
 
                     {/* Slide 4 */}
-                    <div
-                      data-splide-interval=""
-                      className="splide__slide is-visible"
-                      id="onboarding-steps-splide-slider-slide04"
-                      role="tabpanel"
-                      aria-roledescription="slide"
-                      aria-label="4 of 4"
-                      style={{ marginRight: '16px', width: 'calc(25% - 12px)' }}
-                    >
-                      <div className="pf-d-flex pf-flex-column pf-rounded--large pf-p-16 pf-h-100 pf-border pf-bg-white">
-                        <img
-                          alt="Set up billing"
-                          src="https://static.cdn.printful.com/static/v864/images/dashboard/onboarding/add-billing.png"
-                          className="img-responsive pf-m-auto"
-                          style={{ maxWidth: '195px' }}
-                        />
-                        <div className="pf-d-flex pf-flex-column pf-h-100">
-                          <div className="pf-ui-subheading">Step 4</div>
-                          <h3 className="pf-h3 pf-m-0">Set up billing</h3>
-                          <div className="pf-ui-body pf-py-8">
-                            You’ll input your billing information to cover the
-                            fulfilment fee each time you sell a product.
-                          </div>
-                          <div className="pf-ui-body">~ 5 minutes</div>
-                          <div className="pf-d-flex pf-align-items-end pf-h-100">
-                            <a
-                              id="add_billing-action"
-                              href="/dashboard/billing/billing-methods/add"
-                              className="pf-w-100"
-                            >
-                              <button className="pf-w-100 pf-btn pf-mt-12 pf-btn-secondary">
-                                Start
-                              </button>
-                            </a>
+                    <div className="dashoard-step">
+                      <Card>
+                        <div className="pf-d-flex pf-flex-column pf-rounded--large pf-p-16 pf-h-100 pf-border pf-bg-white">
+                          <img
+                            alt="Set up billing"
+                            src="https://static.cdn.printful.com/static/v864/images/dashboard/onboarding/add-billing.png"
+                            className="img-responsive pf-m-auto"
+                            style={{ maxWidth: '195px' }}
+                          />
+                          <div className="pf-d-flex pf-flex-column pf-h-100">
+                            <div className="pf-ui-subheading">Step 4</div>
+                            <h3 className="pf-h3 pf-m-0">Set up billing</h3>
+                            <div className="pf-ui-body pf-py-8">
+                              You’ll input your billing information to cover the
+                              fulfilment fee each time you sell a product.
+                            </div>
+                            <div className="pf-ui-body">~ 5 minutes</div>
+                            <div className="pf-d-flex pf-align-items-end pf-h-100">
+                              <a
+                                id="add_billing-action"
+                                href="/dashboard/billing/billing-methods/add"
+                                className="pf-w-100"
+                              >
+                                <button className="pf-w-100 pf-btn pf-mt-12 pf-btn-secondary">
+                                  Start
+                                </button>
+                              </a>
+                            </div>
                           </div>
                         </div>
-                      </div>
+                      </Card>
                     </div>
                   </div>
-                </div>
-              </div>
-
-              <div className="col-md-2 pf-d-flex pf-justify-content-center">
-                {/* <img
-                src="https://www.dropshippy.com/static/images/dashboard/onboarding-right.svg"
-                alt="Onboarding Illustration"
-                className="pf-d-none pf-d-md-block"
-                style={{ width: 165 }}
-              /> */}
+                </Card>
               </div>
             </div>
           )}

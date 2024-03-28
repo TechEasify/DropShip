@@ -7387,8 +7387,6 @@ body.pf-lang--de .product-push-add .add-block .info-arrow {
 
 .dashboard-detail {
   margin-bottom: 20px;
-  margin-left: 50px;
-  margin-right: 50px;
   margin-top: 20px;
 }
 
@@ -7448,3 +7446,34 @@ h4.tranding-text {
 .label-perpage {
   margin-right: 10px;
 }
+
+
+/* Card  */
+
+._Container_3iemw_4 {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin: var(--p-space-200) 0;
+  scroll-snap-align: start;
+  flex: 1 0 10rem;
+  min-width: -webkit-fit-content;
+  min-width: fit-content;
+  min-width: -moz-fit-content;
+  max-width: 16.25rem;
+}
+
+._Container_3iemw_4:not(:last-of-type) {
+  border-right: var(--p-border-width-025) solid var(--p-color-border-secondary);
+}
+
+.dashboard-card {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.dashoard-step {
+  margin-right: 10px;
+  width: 23%;
+}
+
