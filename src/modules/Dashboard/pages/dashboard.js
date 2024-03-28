@@ -868,84 +868,100 @@ export default function Dashboard() {
           <div className="dashcard-detail">
             <div className="today-orders">
               <Card roundedAbove="md">
-                <Icon source={OrderFilledIcon} tone="base" />
-                <p className="oders-value">1</p>
-                <div className="dash-cardtext">
-                  <h4>Today Orders</h4>
+                <div className="name-value">
+                  <Icon source={OrderFilledIcon} tone="base" />
+                  <div className="dash-cardtext">
+                    <h4>Today Orders</h4>
+                  </div>
                 </div>
+                <p className="oders-value">1</p>
               </Card>
             </div>
 
             <div className="today-orders">
               <Card roundedAbove="md">
-                <Icon source={OrderDraftFilledIcon} tone="base" />
-                <p className="oders-value">1</p>
-                <div className="dash-cardtext">
-                  <h4>Pendding Orders</h4>
+                <div className="name-value">
+                  <Icon source={OrderDraftFilledIcon} tone="base" />
+                  <div className="dash-cardtext">
+                    <h4>Pendding Orders</h4>
+                  </div>
                 </div>
+                <p className="oders-value">1</p>
               </Card>
             </div>
 
             <div className="today-orders">
               <Card roundedAbove="md">
-                <Icon source={ClipboardCheckFilledIcon} tone="base" />
-                <p className="oders-value">1</p>
-                <div className="dash-cardtext">
-                  <h4>Completed Orders</h4>
+                <div className="name-value">
+                  <Icon source={ClipboardCheckFilledIcon} tone="base" />
+                  <div className="dash-cardtext">
+                    <h4>Completed Orders</h4>
+                  </div>
                 </div>
+                <p className="oders-value">1</p>
               </Card>
             </div>
 
             <div className="today-orders">
               <Card roundedAbove="md">
-                <Icon source={CartFilledIcon} tone="base" />
-                <p className="oders-value">1</p>
-                <div className="dash-cardtext">
-                  <h4>Total Orders</h4>
+                <div className="name-value">
+                  <Icon source={CartFilledIcon} tone="base" />
+                  <div className="dash-cardtext">
+                    <h4>Total Orders</h4>
+                  </div>
                 </div>
+                <p className="oders-value">1</p>
               </Card>
             </div>
 
             <div className="today-orders">
               <Card roundedAbove="md">
-                <Icon source={CartFilledIcon} tone="base" />
-                <p className="oders-value">1</p>
-                <div className="dash-cardtext">
-                  <h4>Monthly Sale</h4>
+                <div className="name-value">
+                  <Icon source={CartFilledIcon} tone="base" />
+                  <div className="dash-cardtext">
+                    <h4>Monthly Sale</h4>
+                  </div>
                 </div>
+                <p className="oders-value">1</p>
               </Card>
             </div>
 
             <div className="today-orders">
               <Card roundedAbove="md">
-                <Icon source={CartAbandonedFilledIcon} tone="base" />
-                <p className="oders-value">1</p>
-                <div className="dash-cardtext">
-                  <h4>Annual Sale</h4>
+                <div className="name-value">
+                  <Icon source={CartAbandonedFilledIcon} tone="base" />
+                  <div className="dash-cardtext">
+                    <h4>Annual Sale</h4>
+                  </div>
                 </div>
+                <p className="oders-value">1</p>
               </Card>
             </div>
 
             <div className="today-orders">
               <Card roundedAbove="md">
-                <Icon source={OrderDraftFilledIcon} tone="base" />
-                <p className="oders-value">1</p>
-                <div className="dash-cardtext">
-                  <h4>Monthly Order</h4>
+                <div className="name-value">
+                  <Icon source={OrderDraftFilledIcon} tone="base" />
+                  <div className="dash-cardtext">
+                    <h4>Monthly Order</h4>
+                  </div>
                 </div>
+                <p className="oders-value">1</p>
               </Card>
             </div>
 
             <div className="today-orders">
               <Card roundedAbove="md">
-                <Icon source={LabelPrinterIcon} tone="base" />
+                <div className="name-value">
+                  <Icon source={LabelPrinterIcon} tone="base" />
+                  <div className="dash-cardtext">
+                    <h4>Current Tiers</h4>
+                  </div>
+                </div>
                 <div className="dashcard-tiers">
                   <p className="oders-value">
                     Broze + <span>300$</span>
                   </p>
-                </div>
-                <div className="dash-cardtext">
-                  <h4>Current Tiers</h4>
                 </div>
               </Card>
             </div>
