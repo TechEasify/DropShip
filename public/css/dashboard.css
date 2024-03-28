@@ -7444,3 +7444,7 @@ h4.tranding-text {
 .recent-order {
   width: 50%;
 }
+
+.label-perpage {
+  margin-right: 10px;
+}

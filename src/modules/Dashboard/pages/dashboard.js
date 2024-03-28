@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import { getProfileUser } from '../../../routes/helper';
-import { Card, Icon, Pagination } from '@shopify/polaris';
+import { Card, Icon, Pagination, Select } from '@shopify/polaris';
 import {
   CartAbandonedFilledIcon,
   CartFilledIcon,
@@ -37,6 +37,9 @@ export default function Dashboard() {
   const [currentOrders, setCurrentOrders] = useState([]);
   const [currentServices, setCurrentServices] = useState([]);
   const [currentTransaction, setCurrentTransaction] = useState([]);
+  const [selected, setSelected] = useState('10');
+  const [serviceSelected, setServiceSelected] = useState('10');
+  const [transaction, setTransaction] = useState('10');
 
   // useEffect(() => {
   //   getProfileUser()
@@ -332,7 +335,7 @@ export default function Dashboard() {
       amount: '$100',
       time: '15',
       approveStatus: <Badge progress="complete">Cancel</Badge>,
-    }
+    },
   ];
 
   const Transaction = [
@@ -419,17 +422,48 @@ export default function Dashboard() {
       order: '#133',
       amount: '$500',
       paymentStatus: <Badge progress="complete">Cancel</Badge>,
-    }
+    },
   ];
 
+
+  const handleSelectChange = (value) => {
+    setSelected(value);
+    const newPageLimit = parseInt(value);
+    const newStartIndex = (currentPage - 1) * newPageLimit;
+    const newEndIndex = Math.min(newStartIndex + newPageLimit, orders.length);
+    setCurrentOrders(orders.slice(newStartIndex, newEndIndex));
+    setCurrentPage(1);
+  };
+
+  const handleSelectServiceChange = (value) => {
+    setServiceSelected(value);
+    const newPageLimit = parseInt(value);
+    const newStartIndex = (currentServicePage - 1) * newPageLimit;
+    const newEndIndex = Math.min(newStartIndex + newPageLimit, DServices.length);
+    setCurrentServices(DServices.slice(newStartIndex, newEndIndex));
+    setCurrentServicePage(1);
+  };
+
+  const handleSelectTransactionChange = (value) => {
+    setTransaction(value);
+    const newPageLimit = parseInt(value);
+    const newStartIndex = (currentTransactionPage - 1) * newPageLimit;
+    const newEndIndex = Math.min(newStartIndex + newPageLimit, Transaction.length);
+    setCurrentTransaction(Transaction.slice(newStartIndex, newEndIndex));
+    setCurrentTransactionPage(1);
+  };
+  
   const pageLimit = 10;
   const startIndex = (currentPage - 1) * pageLimit;
   const startServiceIndex = (currentServicePage - 1) * pageLimit;
   const startTransactionIndex = (currentTransactionPage - 1) * pageLimit;
   const endIndex = Math.min(startIndex + pageLimit, orders.length);
   const endServices = Math.min(startServiceIndex + pageLimit, DServices.length);
-  const endTransaction = Math.min(startTransactionIndex + pageLimit, Transaction.length);
-  
+  const endTransaction = Math.min(
+    startTransactionIndex + pageLimit,
+    Transaction.length
+  );
+
   useEffect(() => {
     setCurrentOrders(orders.slice(startIndex, endIndex));
   }, [currentPage]);
@@ -439,7 +473,9 @@ export default function Dashboard() {
   }, [currentServicePage]);
 
   useEffect(() => {
-    setCurrentTransaction(Transaction.slice(startTransactionIndex, endTransaction));
+    setCurrentTransaction(
+      Transaction.slice(startTransactionIndex, endTransaction)
+    );
   }, [currentTransactionPage]);
 
   const handlePreviousPage = () => {
@@ -455,16 +491,22 @@ export default function Dashboard() {
   };
 
   const handleNextPage = () => {
-    setCurrentPage((prevPage) => Math.min(prevPage + 1, Math.ceil(orders.length / pageLimit)));
+    setCurrentPage((prevPage) =>
+      Math.min(prevPage + 1, Math.ceil(orders.length / pageLimit))
+    );
   };
 
   const handlenextservices = () => {
-    setCurrentServicePage((prevPage) => Math.min(prevPage + 1, Math.ceil(DServices.length / pageLimit)));
-  }
+    setCurrentServicePage((prevPage) =>
+      Math.min(prevPage + 1, Math.ceil(DServices.length / pageLimit))
+    );
+  };
 
   const handlenextTransaction = () => {
-    setCurrentTransactionPage((prevPage) => Math.min(prevPage + 1, Math.ceil(Transaction.length / pageLimit)));
-  }
+    setCurrentTransactionPage((prevPage) =>
+      Math.min(prevPage + 1, Math.ceil(Transaction.length / pageLimit))
+    );
+  };
 
   const resourceName = {
     singular: 'order',
@@ -541,6 +583,26 @@ export default function Dashboard() {
       </IndexTable.Row>
     )
   );
+
+  const options = [
+    { label: '10', value: '10' },
+    { label: '20', value: '20' },
+    { label: '50', value: '50' },
+    { label: '100', value: '100' },
+  ];
+
+  const generateOptions = (length) => {
+    const pageCount = Math.ceil(length / pageLimit);
+    const dynamicOptions = Array.from({ length: pageCount }, (_, index) => ({
+      label: `${(index + 1) * pageLimit}`,
+      value: `${(index + 1) * pageLimit}`,
+    }));
+    return dynamicOptions;
+  };
+
+  const currentOptions = generateOptions(orders.length);
+  const currentServOptions = generateOptions(DServices.length);
+  const currentTranOptions = generateOptions(Transaction.length);
 
   return (
     <div className="pf-bg-lighter dashboard__fullwidth">
@@ -944,8 +1006,20 @@ export default function Dashboard() {
                   maxWidth: '700px',
                   margin: 'auto',
                   border: '1px solid var(--p-color-border)',
+                  display: 'flex',
+                  justifyContent: 'space-evenly',
                 }}
               >
+                <div style={{ display: 'flex', alignItems: 'center' }}>
+                  <div className="label-perpage">
+                    <p>Row per page:- </p>
+                  </div>
+                  <Select
+                    options={currentOptions}
+                    onChange={handleSelectChange}
+                    value={selected}
+                  />
+                </div>
                 <Pagination
                   onPrevious={handlePreviousPage}
                   onNext={handleNextPage}
@@ -986,8 +1060,20 @@ export default function Dashboard() {
                   maxWidth: '700px',
                   margin: 'auto',
                   border: '1px solid var(--p-color-border)',
+                  display: 'flex',
+                  justifyContent: 'space-evenly',
                 }}
               >
+                <div style={{ display: 'flex', alignItems: 'center' }}>
+                  <div className="label-perpage">
+                    <p>Row per page:- </p>
+                  </div>
+                  <Select
+                    options={currentOptions}
+                    onChange={handleSelectChange}
+                    value={selected}
+                  />
+                </div>
                 <Pagination
                   onPrevious={handlePreviousPage}
                   onNext={handleNextPage}
@@ -1031,15 +1117,29 @@ export default function Dashboard() {
                   maxWidth: '700px',
                   margin: 'auto',
                   border: '1px solid var(--p-color-border)',
+                  display: 'flex',
+                  justifyContent: 'space-evenly',
                 }}
               >
+                <div style={{ display: 'flex', alignItems: 'center' }}>
+                  <div className="label-perpage">
+                    <p>Row per page:- </p>
+                  </div>
+                  <Select
+                    options={currentServOptions}
+                    onChange={handleSelectServiceChange}
+                    value={serviceSelected}
+                  />
+                </div>
                 <Pagination
                   onPrevious={handlePreviousSerPage}
                   onNext={handlenextservices}
-                  hasNext={currentServicePage < Math.ceil(DServices.length / pageLimit)}
+                  hasNext={
+                    currentServicePage < Math.ceil(DServices.length / pageLimit)
+                  }
                   hasPrevious={currentServicePage > 1}
                   type="table"
-                  label={`${currentServicePage} of ${DServices.length} product`}
+                  label={`${currentServicePage} of ${DServices.length} service`}
                 />
               </div>
             </LegacyCard>
@@ -1071,12 +1171,27 @@ export default function Dashboard() {
                   maxWidth: '700px',
                   margin: 'auto',
                   border: '1px solid var(--p-color-border)',
+                  display: 'flex',
+                  justifyContent: 'space-evenly',
                 }}
               >
+                <div style={{ display: 'flex', alignItems: 'center' }}>
+                  <div className="label-perpage">
+                    <p>Row per page:- </p>
+                  </div>
+                  <Select
+                    options={currentTranOptions}
+                    onChange={handleSelectTransactionChange}
+                    value={transaction}
+                  />
+                </div>
                 <Pagination
                   onPrevious={handlePreviousTranPage}
                   onNext={handlenextTransaction}
-                  hasNext={currentTransactionPage < Math.ceil(DServices.length / pageLimit)}
+                  hasNext={
+                    currentTransactionPage <
+                    Math.ceil(DServices.length / pageLimit)
+                  }
                   hasPrevious={currentTransactionPage > 1}
                   type="table"
                   label={`${currentTransactionPage} of ${Transaction.length} transaction`}
