@@ -7390,9 +7390,9 @@ body.pf-lang--de .product-push-add .add-block .info-arrow {
   margin-top: 20px;
 }
 
-.Polaris-Button.Polaris-Button svg {
+/* .Polaris-Button.Polaris-Button svg {
   fill: rgb(241, 241, 241, 1) !important;
-}
+} */
 
 .name-value {
   display: flex;
