@@ -11,6 +11,7 @@ import {
   OrderDraftFilledIcon,
   OrderFilledIcon,
   OrderIcon,
+  PointOfSaleIcon,
 } from '@shopify/polaris-icons';
 import {
   IndexTable,
@@ -913,7 +914,13 @@ export default function Dashboard() {
                 </div>
               </Card>
             </div>
+          </div>
+        </Card>
+      </div>
 
+      <div className="dashboard-detail">
+        <Card roundedAbove="md" background="bg-surface-secondary">
+          <div className="dashcard-detail">
             <div className="today-orders">
               <Card roundedAbove="md">
                 <div className="name-value">
@@ -953,8 +960,8 @@ export default function Dashboard() {
             <div className="today-orders">
               <Card roundedAbove="md">
                 <div className="name-value">
-                  <Icon source={LabelPrinterIcon} tone="base" />
-                  <div className="dash-cardtext">
+                  <Icon source={PointOfSaleIcon} tone="base" />
+                  <div className="tiers-cardtext">
                     <h4>Current Tiers</h4>
                   </div>
                   <div className="dashcard-tiers">
