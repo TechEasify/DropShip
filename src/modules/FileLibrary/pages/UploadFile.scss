@@ -47,3 +47,15 @@ body {
   margin-right: 10px;
 }
 
+
+.Polaris-InlineStack {
+  display: flex !important;
+  justify-content: center !important;
+}
+
+button.Polaris-Button.Polaris-Button--pressable.Polaris-Button--variantPrimary.Polaris-Button--sizeMedium.Polaris-Button--textAlignCenter {
+  background: #232323;
+  /* width: 15%; */
+  height: 37px;
+  color: rgb(241, 241, 241, 1);
+}

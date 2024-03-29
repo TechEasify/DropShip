@@ -9,11 +9,15 @@ import {
   IndexTable,
   useIndexResourceState,
   Button,
+  Banner,
+  Modal,
+  TextContainer,
 } from '@shopify/polaris';
 
 export default function UploadFile() {
   const [uploadedFiles, setUploadedFiles] = useState([]);
   const [uploadedImages, setUploadedImages] = useState([]);
+  const [active, setActive] = useState(false);
   const items = [];
   const appliedFilters = [];
   const filters = [];
@@ -34,19 +38,24 @@ export default function UploadFile() {
     />
   );
 
+  const handleChange = () => {
+    setActive(!active);
+  };
+
   const handleFileUpload = (event) => {
-    const files = event.target.files;
-    const newUploadedFilesArray = [...uploadedFiles, ...files];
+    const files = Array.from(event.target.files);
+    const newUploadedFilesArray = [
+      ...uploadedFiles,
+      ...files.map((file) => ({
+        id: file.name,
+        file: file,
+      })),
+    ];
     setUploadedFiles(newUploadedFilesArray);
+    setActive(false)
 
     // Create an array of URLs for the newly uploaded images
-    const newImageUrls = [];
-    for (let i = 0; i < files.length; i++) {
-      const imageUrl = URL.createObjectURL(files[i]);
-      newImageUrls.push(imageUrl);
-    }
-
-    // Append the new image URLs to the existing list
+    const newImageUrls = files.map((file) => URL.createObjectURL(file));
     const updatedImageUrls = [...uploadedImages, ...newImageUrls];
     setUploadedImages(updatedImageUrls);
   };
@@ -70,53 +79,52 @@ export default function UploadFile() {
     !appliedFilters.length && uploadedFiles.length === 0 ? (
       <EmptyState
         heading="Upload a file to get started"
-        action={{ content: 'Upload files', onAction: handleClick }}
+        action={{ content: 'Upload files', onAction: handleChange }}
         image="https://cdn.shopify.com/s/files/1/2376/3301/products/emptystate-files.png"
       >
         <p>You can use the Files section to upload images</p>
       </EmptyState>
-    ) : (
-      <></>
-    );
+    ) : undefined;
 
   const { selectedResources, allResourcesSelected, handleSelectionChange } =
-    useIndexResourceState({
-      selectedItems: uploadedFiles.map((_, index) => index),
-      resourceName: resourceName,
-      idForItem: (item, index) => index,
+    useIndexResourceState(uploadedFiles, {
+      resourceIdResolver: (resource) => resource.id,
     });
 
   const rowMarkup = uploadedFiles.map((file, index) => (
     <IndexTable.Row
+      id={`file-${index}`}
       key={`file-${index}`}
-      selected={selectedResources.includes(index)}
+      selected={selectedResources.includes(file.id)}
+      position={index}
+      onSelect={() => handleSelectionChange(file.id)}
     >
       <IndexTable.Cell>
         <div className="file-preview">
           <img
             src={uploadedImages[index]}
-            alt={file.name}
+            alt={file.file.name}
             className="file-thumbnail"
           />
         </div>
       </IndexTable.Cell>
       <IndexTable.Cell>
         <div className="file-preview">
-          <span className="file-name">{file.name}</span>
+          <span className="file-name">{file.file.name}</span>
         </div>
       </IndexTable.Cell>
       <IndexTable.Cell>
-        <span>{file.type}</span>
+        <span>{file.file.type}</span>
       </IndexTable.Cell>
       <IndexTable.Cell>
         <div className="action-row">
-          <Button onClick={() => handleDownload(file)}>Download</Button>
+          <Button onClick={() => handleDownload(file.file)}>Download</Button>
         </div>
       </IndexTable.Cell>
     </IndexTable.Row>
   ));
 
-  console.log(uploadedFiles, 'uploadedFiles');
+  console.log(selectedResources, 'selectedResources');
 
   return (
     <>
@@ -129,10 +137,10 @@ export default function UploadFile() {
             <Layout.Section>
               <LegacyCard>
                 <ResourceList
-                  emptyState={uploadedFiles.length === 0 && emptyStateMarkup}
+                  emptyState={emptyStateMarkup}
                   items={uploadedFiles.map((file, index) => ({
                     id: `file-${index}`,
-                    name: file.name,
+                    name: file.file.name,
                     imageUrl: uploadedImages[index],
                   }))}
                   renderItem={() => null}
@@ -146,7 +154,7 @@ export default function UploadFile() {
                         <h4>Files</h4>
                       </div>
                       <div className="uploadmore-btn">
-                        <Button onClick={handleClick}>Upload more files</Button>
+                        <Button onClick={handleClick}>Update files</Button>
                       </div>
                     </div>
                     <IndexTable
@@ -178,6 +186,26 @@ export default function UploadFile() {
               />
             </Layout.Section>
           </Layout>
+
+          <div className="popup-banner">
+            <div style={{ height: '500px' }}>
+              <Modal
+                open={active}
+                onClose={handleChange}
+                title="Upload Logo or Label"
+                primaryAction={{
+                  content: 'Upload Logo',
+                  onAction: handleClick,
+                }}
+                secondaryActions={[
+                  {
+                    content: 'Upload Label',
+                    onAction: handleClick,
+                  },
+                ]}
+              />
+            </div>
+          </div>
         </div>
       </div>
     </>
