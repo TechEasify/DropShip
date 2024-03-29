@@ -7,8 +7,23 @@ import {
   Badge,
   Card,
   Button,
+  Icon,
 } from '@shopify/polaris';
 import { Link, useLocation, useHistory } from 'react-router-dom';
+import {
+  BillFilledIcon,
+  ContractFilledIcon,
+  DatabaseAddIcon,
+  FileFilledIcon,
+  NotificationFilledIcon,
+  OrderDraftFilledIcon,
+  PersonAddIcon,
+  ProductFilledIcon,
+  ProfileIcon,
+  ReceiptRupeeFilledIcon,
+  StoreFilledIcon,
+  WalletFilledIcon,
+} from '@shopify/polaris-icons';
 
 export default () => {
   const location = useLocation();
@@ -220,19 +235,8 @@ export default () => {
                 <div className="detail-direct">
                   <Card>
                     <div className="route-text">
-                      <h4>My DropShippy</h4>
-                    </div>
-                    <div className="route-btn">
-                      <Button onClick={() => history.push('/')}>
-                        DropShippy
-                      </Button>
-                    </div>
-                  </Card>
-                </div>
-                <div className="detail-direct">
-                  <Card>
-                    <div className="route-text">
-                      <h4>Product Catalog</h4>
+                      <Icon source={ProductFilledIcon} tone="base" />
+                      {/* <h4>Product Catalog</h4> */}
                     </div>
                     <div className="route-btn">
                       <Button onClick={() => history.push('/catalog')}>
@@ -244,7 +248,8 @@ export default () => {
                 <div className="detail-direct">
                   <Card>
                     <div className="route-text">
-                      <h4>Order</h4>
+                      <Icon source={OrderDraftFilledIcon} tone="base" />
+                      {/* <h4>Order</h4> */}
                     </div>
                     <div className="route-btn">
                       <Button onClick={() => history.push('/orders')}>
@@ -256,11 +261,12 @@ export default () => {
                 <div className="detail-direct">
                   <Card>
                     <div className="route-text">
-                      <h4>Select Product</h4>
+                      <Icon source={ReceiptRupeeFilledIcon} tone="base" />
+                      {/* <h4>Select Product</h4> */}
                     </div>
                     <div className="route-btn">
                       <Button onClick={() => history.push('/template')}>
-                      Select Product
+                        Select Product
                       </Button>
                     </div>
                   </Card>
@@ -268,11 +274,12 @@ export default () => {
                 <div className="detail-direct">
                   <Card>
                     <div className="route-text">
-                      <h4>File library</h4>
+                      <Icon source={FileFilledIcon} tone="base" />
+                      {/* <h4>File library</h4> */}
                     </div>
                     <div className="route-btn">
                       <Button onClick={() => history.push('/library')}>
-                      File library
+                        File library
                       </Button>
                     </div>
                   </Card>
@@ -280,11 +287,12 @@ export default () => {
                 <div className="detail-direct">
                   <Card>
                     <div className="route-text">
-                      <h4>Memberships</h4>
+                      <Icon source={PersonAddIcon} tone="base" />
+                      {/* <h4>Memberships</h4> */}
                     </div>
                     <div className="route-btn">
                       <Button onClick={() => history.push('/memberships')}>
-                      Memberships
+                        Memberships
                       </Button>
                     </div>
                   </Card>
@@ -292,11 +300,14 @@ export default () => {
                 <div className="detail-direct">
                   <Card>
                     <div className="route-text">
-                      <h4>View Digital Service</h4>
+                      <Icon source={StoreFilledIcon} tone="base" />
+                      {/* <h4>View Digital Service</h4> */}
                     </div>
                     <div className="route-btn">
-                      <Button onClick={() => history.push('/viewdigitalservice')}>
-                      View Digital Service
+                      <Button
+                        onClick={() => history.push('/viewdigitalservice')}
+                      >
+                        View Digital Service
                       </Button>
                     </div>
                   </Card>
@@ -304,11 +315,12 @@ export default () => {
                 <div className="detail-direct">
                   <Card>
                     <div className="route-text">
-                      <h4>Billing</h4>
+                      <Icon source={BillFilledIcon} tone="base" />
+                      {/* <h4>Billing</h4> */}
                     </div>
                     <div className="route-btn">
                       <Button onClick={() => history.push('/billing/payments')}>
-                      Billing Payment
+                        Billing Payment
                       </Button>
                     </div>
                   </Card>
@@ -316,11 +328,12 @@ export default () => {
                 <div className="detail-direct">
                   <Card>
                     <div className="route-text">
-                      <h4>Add Billing Method</h4>
+                      <Icon source={DatabaseAddIcon} tone="base" />
+                      {/* <h4>Add Billing Method</h4> */}
                     </div>
                     <div className="route-btn">
                       <Button onClick={() => history.push('/billing/methods')}>
-                      Add Billing
+                        Add Billing
                       </Button>
                     </div>
                   </Card>
@@ -328,11 +341,12 @@ export default () => {
                 <div className="detail-direct">
                   <Card>
                     <div className="route-text">
-                      <h4>Wallet</h4>
+                      <Icon source={WalletFilledIcon} tone="base" />
+                      {/* <h4>Wallet</h4> */}
                     </div>
                     <div className="route-btn">
                       <Button onClick={() => history.push('/billing/wallet')}>
-                      Wallet
+                        Wallet
                       </Button>
                     </div>
                   </Card>
@@ -340,11 +354,14 @@ export default () => {
                 <div className="detail-direct">
                   <Card>
                     <div className="route-text">
-                      <h4>Legal Info</h4>
+                      <Icon source={ContractFilledIcon} tone="base" />
+                      {/* <h4>Legal Info</h4> */}
                     </div>
                     <div className="route-btn">
-                      <Button onClick={() => history.push('/billing/legal-info')}>
-                      Legal info
+                      <Button
+                        onClick={() => history.push('/billing/legal-info')}
+                      >
+                        Legal info
                       </Button>
                     </div>
                   </Card>
@@ -352,11 +369,14 @@ export default () => {
                 <div className="detail-direct">
                   <Card>
                     <div className="route-text">
-                      <h4>My Account</h4>
+                      <Icon source={ProfileIcon} tone="base" />
+                      {/* <h4>My Account</h4> */}
                     </div>
                     <div className="route-btn">
-                      <Button onClick={() => history.push('/settings/my-account')}>
-                      My Account
+                      <Button
+                        onClick={() => history.push('/settings/my-account')}
+                      >
+                        My Account
                       </Button>
                     </div>
                   </Card>
@@ -364,23 +384,14 @@ export default () => {
                 <div className="detail-direct">
                   <Card>
                     <div className="route-text">
-                      <h4>Notifications</h4>
+                      <Icon source={NotificationFilledIcon} tone="base" />
+                      {/* <h4>Notifications</h4> */}
                     </div>
                     <div className="route-btn">
-                      <Button onClick={() => history.push('/settings/notifications')}>
-                      Notifications
-                      </Button>
-                    </div>
-                  </Card>
-                </div>
-                <div className="detail-direct">
-                  <Card>
-                    <div className="route-text">
-                      <h4>Legal Info</h4>
-                    </div>
-                    <div className="route-btn">
-                      <Button onClick={() => history.push('/billing/legal-info')}>
-                      Legal info
+                      <Button
+                        onClick={() => history.push('/settings/notifications')}
+                      >
+                        Notifications
                       </Button>
                     </div>
                   </Card>
