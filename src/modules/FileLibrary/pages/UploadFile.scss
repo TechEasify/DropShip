@@ -1,3 +1,49 @@
 body {
   background-color: #fff !important;
 }
+
+.file-head {
+  margin-top: 50px;
+}
+
+.file-upload {
+  padding: 10px;
+}
+
+.file-preview {
+  display: flex;
+  align-items: center;
+  width: 50%;
+  flex-wrap: wrap;
+}
+
+.file-thumbnail {
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+}
+
+.file-name {
+  font-weight: bold;
+}
+
+.table-upload {
+  margin-top: 10px;
+}
+
+.upload-more {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px;
+}
+
+.uploadtable-head {
+  margin-left: 10px;
+  font-size: 20px;
+}
+
+.uploadmore-btn {
+  margin-right: 10px;
+}
+
