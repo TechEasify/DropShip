@@ -91,6 +91,13 @@ const nav = [
     link: '/admin/vendor',
   },
   {
+    text: 'File library',
+    icon: 'pf-i pf-i-24 pf-i-folder-multiple-image',
+    isTree: false,
+    treeItem: [],
+    link: '/admin/library',
+  },
+  {
     text: 'Manage Products',
     icon: 'pf-i pf-i-24 pf-i-credit-card-outline',
     isTree: true,
@@ -830,6 +837,28 @@ const ROUTESADMIN = [
             <Connect />
           </AdminLayout>
         ),
+      },
+    ],
+  },
+  {
+    path: '/admin/library',
+    key: 'ADMIN_LIBRARY',
+    component: RenderAdminRoutes,
+    routes: [
+      {
+        path: '/admin/library',
+        key: 'ADMINLIBRARY_ROOT',
+        exact: true,
+        component: () => {
+          const userLogInSuccess = isLoggedIn();
+          return userLogInSuccess ? (
+            <AdminLayout>
+              <UploadFile />
+            </AdminLayout>
+          ) : (
+            <Login />
+          );
+        },
       },
     ],
   },
