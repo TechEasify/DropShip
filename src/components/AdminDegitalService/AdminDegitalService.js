@@ -121,8 +121,6 @@ function AdminDegitalService() {
     setStatus(e.target.value)
   }
 
-  console.log(Status, "Status");
-
   const handleUploadButtonClick = () => {
     fileInputRef.current.click();
   };

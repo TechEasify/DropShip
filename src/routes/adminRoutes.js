@@ -84,7 +84,7 @@ const nav = [
     link: '/admin/store',
   },
   {
-    text: 'Vendor',
+    text: 'Manage Vendor',
     icon: 'pf-i pf-i-24 pf-mb-2 pf-mr-8 pf-i-package-variant-closed pf-text-gray-400',
     isTree: false,
     treeItem: [],

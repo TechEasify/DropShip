@@ -12,6 +12,10 @@ import {
   Modal,
   Badge,
   Text,
+  Avatar,
+  Pagination,
+  Select,
+  TextField,
 } from '@shopify/polaris';
 import { useLocation } from 'react-router-dom';
 
@@ -135,13 +139,19 @@ export default function UploadFile() {
   // );
 
   const location = useLocation();
-  console.log(location.pathname, "location");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(10);
+  const [searchQuery, setSearchQuery] = useState('');
+  const maxItemsPerPage = 100;
   const orders = [
     {
       id: '1020',
       order:
         'https://d46qqg0b6pc82.cloudfront.net/listing_variation_images/attachments/07b/4f1/85-/original/natural-daily-moisturizer.png',
+      venderImage:
+        'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHVzZXIlMjBwcm9maWxlfGVufDB8fDB8fHww',
       vendorId: '#2020',
+      vendorName: 'FLLF812',
       productName: 'Natural Daily Moisturizer',
       productType: 'Label',
     },
@@ -149,7 +159,10 @@ export default function UploadFile() {
       id: '1019',
       order:
         'https://d46qqg0b6pc82.cloudfront.net/listing_variation_images/attachments/fb5/9e9/3b-/original/FLLF8-2.png',
+      venderImage:
+        'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fHVzZXIlMjBwcm9maWxlfGVufDB8fDB8fHww',
       vendorId: '#2019',
+      vendorName: 'FLLF8',
       productName: 'FLLF8-2',
       productType: 'FLLF8-2',
     },
@@ -157,7 +170,175 @@ export default function UploadFile() {
       id: '1018',
       order:
         'https://d46qqg0b6pc82.cloudfront.net/listing_variation_images/attachments/598/a30/86-/original/FLLSP2.png',
+      venderImage:
+        'https://plus.unsplash.com/premium_photo-1664298528358-790433ba0815?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fHVzZXIlMjBwcm9maWxlfGVufDB8fDB8fHww',
       vendorId: '#2018',
+      vendorName: 'FLL',
+      productName: 'FLLSP2',
+      productType: 'Logo',
+    },
+    {
+      id: '1017',
+      order:
+        'https://d46qqg0b6pc82.cloudfront.net/listing_variation_images/attachments/07b/4f1/85-/original/natural-daily-moisturizer.png',
+      venderImage:
+        'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHVzZXIlMjBwcm9maWxlfGVufDB8fDB8fHww',
+      vendorId: '#2017',
+      vendorName: 'FLLF812',
+      productName: 'Natural Daily Moisturizer',
+      productType: 'Label',
+    },
+    {
+      id: '1016',
+      order:
+        'https://d46qqg0b6pc82.cloudfront.net/listing_variation_images/attachments/fb5/9e9/3b-/original/FLLF8-2.png',
+      venderImage:
+        'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fHVzZXIlMjBwcm9maWxlfGVufDB8fDB8fHww',
+      vendorId: '#2016',
+      vendorName: 'FLLF8',
+      productName: 'FLLF8-2',
+      productType: 'FLLF8-2',
+    },
+    {
+      id: '1015',
+      order:
+        'https://d46qqg0b6pc82.cloudfront.net/listing_variation_images/attachments/598/a30/86-/original/FLLSP2.png',
+      venderImage:
+        'https://plus.unsplash.com/premium_photo-1664298528358-790433ba0815?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fHVzZXIlMjBwcm9maWxlfGVufDB8fDB8fHww',
+      vendorId: '#2015',
+      vendorName: 'FLL',
+      productName: 'FLLSP2',
+      productType: 'Logo',
+    },
+    {
+      id: '1014',
+      order:
+        'https://d46qqg0b6pc82.cloudfront.net/listing_variation_images/attachments/07b/4f1/85-/original/natural-daily-moisturizer.png',
+      venderImage:
+        'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHVzZXIlMjBwcm9maWxlfGVufDB8fDB8fHww',
+      vendorId: '#2014',
+      vendorName: 'FLLF812',
+      productName: 'Natural Daily Moisturizer',
+      productType: 'Label',
+    },
+    {
+      id: '1013',
+      order:
+        'https://d46qqg0b6pc82.cloudfront.net/listing_variation_images/attachments/fb5/9e9/3b-/original/FLLF8-2.png',
+      venderImage:
+        'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fHVzZXIlMjBwcm9maWxlfGVufDB8fDB8fHww',
+      vendorId: '#2013',
+      vendorName: 'FLLF8',
+      productName: 'FLLF8-2',
+      productType: 'FLLF8-2',
+    },
+    {
+      id: '1012',
+      order:
+        'https://d46qqg0b6pc82.cloudfront.net/listing_variation_images/attachments/598/a30/86-/original/FLLSP2.png',
+      venderImage:
+        'https://plus.unsplash.com/premium_photo-1664298528358-790433ba0815?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fHVzZXIlMjBwcm9maWxlfGVufDB8fDB8fHww',
+      vendorId: '#2012',
+      vendorName: 'FLL',
+      productName: 'FLLSP2',
+      productType: 'Logo',
+    },
+    {
+      id: '1013',
+      order:
+        'https://d46qqg0b6pc82.cloudfront.net/listing_variation_images/attachments/07b/4f1/85-/original/natural-daily-moisturizer.png',
+      venderImage:
+        'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHVzZXIlMjBwcm9maWxlfGVufDB8fDB8fHww',
+      vendorId: '#2013',
+      vendorName: 'FLLF812',
+      productName: 'Natural Daily Moisturizer',
+      productType: 'Label',
+    },
+    {
+      id: '1012',
+      order:
+        'https://d46qqg0b6pc82.cloudfront.net/listing_variation_images/attachments/fb5/9e9/3b-/original/FLLF8-2.png',
+      venderImage:
+        'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fHVzZXIlMjBwcm9maWxlfGVufDB8fDB8fHww',
+      vendorId: '#2012',
+      vendorName: 'FLLF8',
+      productName: 'FLLF8-2',
+      productType: 'FLLF8-2',
+    },
+    {
+      id: '1011',
+      order:
+        'https://d46qqg0b6pc82.cloudfront.net/listing_variation_images/attachments/598/a30/86-/original/FLLSP2.png',
+      venderImage:
+        'https://plus.unsplash.com/premium_photo-1664298528358-790433ba0815?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fHVzZXIlMjBwcm9maWxlfGVufDB8fDB8fHww',
+      vendorId: '#2011',
+      vendorName: 'FLL',
+      productName: 'FLLSP2',
+      productType: 'Logo',
+    },
+    {
+      id: '1010',
+      order:
+        'https://d46qqg0b6pc82.cloudfront.net/listing_variation_images/attachments/07b/4f1/85-/original/natural-daily-moisturizer.png',
+      venderImage:
+        'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHVzZXIlMjBwcm9maWxlfGVufDB8fDB8fHww',
+      vendorId: '#2010',
+      vendorName: 'FLLF812',
+      productName: 'Natural Daily Moisturizer',
+      productType: 'Label',
+    },
+    {
+      id: '1009',
+      order:
+        'https://d46qqg0b6pc82.cloudfront.net/listing_variation_images/attachments/fb5/9e9/3b-/original/FLLF8-2.png',
+      venderImage:
+        'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fHVzZXIlMjBwcm9maWxlfGVufDB8fDB8fHww',
+      vendorId: '#2009',
+      vendorName: 'FLLF8',
+      productName: 'FLLF8-2',
+      productType: 'FLLF8-2',
+    },
+    {
+      id: '1008',
+      order:
+        'https://d46qqg0b6pc82.cloudfront.net/listing_variation_images/attachments/598/a30/86-/original/FLLSP2.png',
+      venderImage:
+        'https://plus.unsplash.com/premium_photo-1664298528358-790433ba0815?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fHVzZXIlMjBwcm9maWxlfGVufDB8fDB8fHww',
+      vendorId: '#2008',
+      vendorName: 'FLL',
+      productName: 'FLLSP2',
+      productType: 'Logo',
+    },
+    {
+      id: '1007',
+      order:
+        'https://d46qqg0b6pc82.cloudfront.net/listing_variation_images/attachments/07b/4f1/85-/original/natural-daily-moisturizer.png',
+      venderImage:
+        'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHVzZXIlMjBwcm9maWxlfGVufDB8fDB8fHww',
+      vendorId: '#2007',
+      vendorName: 'FLLF812',
+      productName: 'Natural Daily Moisturizer',
+      productType: 'Label',
+    },
+    {
+      id: '1006',
+      order:
+        'https://d46qqg0b6pc82.cloudfront.net/listing_variation_images/attachments/fb5/9e9/3b-/original/FLLF8-2.png',
+      venderImage:
+        'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fHVzZXIlMjBwcm9maWxlfGVufDB8fDB8fHww',
+      vendorId: '#2006',
+      vendorName: 'FLLF8',
+      productName: 'FLLF8-2',
+      productType: 'FLLF8-2',
+    },
+    {
+      id: '1005',
+      order:
+        'https://d46qqg0b6pc82.cloudfront.net/listing_variation_images/attachments/598/a30/86-/original/FLLSP2.png',
+      venderImage:
+        'https://plus.unsplash.com/premium_photo-1664298528358-790433ba0815?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fHVzZXIlMjBwcm9maWxlfGVufDB8fDB8fHww',
+      vendorId: '#2005',
+      vendorName: 'FLL',
       productName: 'FLLSP2',
       productType: 'Logo',
     },
@@ -165,6 +346,26 @@ export default function UploadFile() {
   const resourceName = {
     singular: 'order',
     plural: 'orders',
+  };
+
+  // filter order
+  const filteredOrders = orders.filter((order) =>
+    order.productName.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = Math.min(startIndex + itemsPerPage, filteredOrders.length);
+
+  // Handle page change
+  const handlePageChange = (newPage) => {
+    setCurrentPage(newPage);
+  };
+
+  //Handle item per page
+  const handleItemsPerPageChange = (selectedValue) => {
+    const newItemsPerPage = parseInt(selectedValue, 10);
+    setItemsPerPage(Math.min(newItemsPerPage, maxItemsPerPage));
+    setCurrentPage(1);
   };
 
   const { selectedResources, allResourcesSelected, handleSelectionChange } =
@@ -191,14 +392,31 @@ export default function UploadFile() {
 
   const headings = [
     { title: 'Order' },
-    ...(location.pathname === "/admin/library" ? [{ title: 'Vendor ID' }] : []),
+    ...(location.pathname === '/admin/library'
+      ? [
+          { title: 'Vendor Image' },
+          { title: 'Vendor ID' },
+          { title: 'Vendor Name' },
+        ]
+      : []),
     { title: 'Product Label' },
     { title: 'Product Type' },
-    { title: 'Action' }
+    { title: 'Action' },
   ];
 
-  const rowMarkup = orders.map(
-    ({ id, order, vendorId, productName, productType }, index) => (
+  const rowMarkup = filteredOrders.slice(startIndex, endIndex).map(
+    (
+      {
+        id,
+        order,
+        vendorId,
+        venderImage,
+        vendorName,
+        productName,
+        productType,
+      },
+      index
+    ) => (
       <IndexTable.Row
         id={id}
         key={id}
@@ -210,10 +428,21 @@ export default function UploadFile() {
             <img src={order} alt={order} className="file-thumbnail" />
           </div>
         </IndexTable.Cell>
-        {
-          location.pathname === "/admin/library" &&
-          <IndexTable.Cell>{vendorId}</IndexTable.Cell>
-        }
+        {location.pathname === '/admin/library' && (
+          <>
+            <IndexTable.Cell>
+              <div className="file-preview">
+                <img
+                  src={venderImage}
+                  alt={venderImage}
+                  className="file-thumbnail"
+                />
+              </div>
+            </IndexTable.Cell>
+            <IndexTable.Cell>{vendorId}</IndexTable.Cell>
+            <IndexTable.Cell>{vendorName}</IndexTable.Cell>
+          </>
+        )}
         <IndexTable.Cell>{productName}</IndexTable.Cell>
         <IndexTable.Cell>{productType}</IndexTable.Cell>
         <IndexTable.Cell>
@@ -225,11 +454,31 @@ export default function UploadFile() {
     )
   );
 
+  const handleSearchChange = (value) => {
+    setSearchQuery(value);
+    setCurrentPage(1);
+  };
+
+  const options = [
+    { label: '10', value: '10' },
+    { label: '20', value: '20' },
+    { label: '50', value: '50' },
+    { label: '100', value: '100' },
+  ];
+
   return (
     <>
       <div className="file-upload">
         <div className="file-head">
           <h2 className="pf-h2">File library</h2>
+          <div className="search-file">
+            <TextField
+              autoComplete="off"
+              placeholder="Search"
+              value={searchQuery}
+              onChange={handleSearchChange}
+            />
+          </div>
         </div>
         {/* <div className="upload-img">
           <Layout>
@@ -320,6 +569,48 @@ export default function UploadFile() {
             >
               {rowMarkup}
             </IndexTable>
+            <div
+              style={{
+                marginBottom: '10px',
+                marginTop: '10px',
+                display: 'flex',
+                justifyContent: 'center',
+              }}
+            >
+              <div
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  marginRight: '10px',
+                  marginBottom: '10px'
+                }}
+              >
+                <div className="label-perpage">
+                  <p>Row per page:- </p>
+                </div>
+                <Select
+                  options={options}
+                  value={itemsPerPage.toString()}
+                  onChange={handleItemsPerPageChange}
+                />
+              </div>
+              <div
+                style={{
+                  marginBottom: '10px'
+                }}
+              >
+              <Pagination
+                onPrevious={() => handlePageChange(currentPage - 1)}
+                onNext={() => handlePageChange(currentPage + 1)}
+                hasPrevious={currentPage > 1}
+                hasNext={endIndex < orders.length}
+                label={`${currentPage}-${Math.min(
+                  endIndex,
+                  orders.length
+                )} of ${orders.length} orders`}
+              />
+              </div>
+            </div>
           </LegacyCard>
         </div>
       </div>
