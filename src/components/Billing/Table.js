@@ -24,6 +24,8 @@ export default ({
 }) => {
   const classes = useStyles();
 
+  console.log(selectedResources, 'selectedResources');
+
   return (
     // <TableContainer component={Paper}>
     //   <Table className={classes.table} id="payment_history">
@@ -73,9 +75,9 @@ export default ({
     // </TableContainer>
 
     <>
-      {filteredOrders.length !== 0 ? (
-        <>
-          <LegacyCard>
+      <LegacyCard>
+        {filteredOrders.length !== 0 ? (
+          <>
             <IndexTable
               resourceName={resourceName}
               itemCount={trash.length}
@@ -136,15 +138,15 @@ export default ({
                 />
               </div>
             </div>
-          </LegacyCard>
-        </>
-      ) : (
-        <div className="not-found">
-          <div className="result-not">
-            <h2 className="category-heading">No Results Found!</h2>
+          </>
+        ) : (
+          <div className="not-found">
+            <div className="result-not">
+              <h2 style={{ fontSize: "20px", fontWeight: 600 }}>No Results Found!</h2>
+            </div>
           </div>
-        </div>
-      )}
+        )}
+      </LegacyCard>
     </>
   );
 };

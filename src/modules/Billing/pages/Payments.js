@@ -173,8 +173,7 @@ export function Payments() {
     order.id.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  console.log(filteredOrders, 'filteredOrders');
-
+  // handle search function
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
     setCurrentPage(1);
@@ -195,6 +194,7 @@ export function Payments() {
     setCurrentPage(1);
   };
 
+  // select option
   const options = [
     { label: '10', value: '10' },
     { label: '20', value: '20' },
@@ -219,6 +219,7 @@ export function Payments() {
         { id, status, amount, currency, invoice_id, expiration_time },
         index
       ) => (
+        console.log(expiration_time.toLocaleString(), "expiration_time.toLocaleString()"),
         <IndexTable.Row
           id={id}
           key={id}
