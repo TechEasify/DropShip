@@ -208,9 +208,7 @@ export function Payments() {
   };
 
   const { selectedResources, allResourcesSelected, handleSelectionChange } =
-    useIndexResourceState(filteredOrders);
-
-    console.log(allResourcesSelected, "allResourcesSelected");
+    useIndexResourceState(filteredOrders);  
 
   const rowMarkup = filteredOrders
     .slice(startIndex, endIndex)
@@ -219,7 +217,6 @@ export function Payments() {
         { id, status, amount, currency, invoice_id, expiration_time },
         index
       ) => (
-        console.log(expiration_time.toLocaleString(), "expiration_time.toLocaleString()"),
         <IndexTable.Row
           id={id}
           key={id}
