@@ -16,8 +16,10 @@ import {
   Pagination,
   Select,
   TextField,
+  Icon,
 } from '@shopify/polaris';
 import { useLocation } from 'react-router-dom';
+import { SearchIcon } from '@shopify/polaris-icons';
 
 export default function UploadFile() {
   // const [uploadedFiles, setUploadedFiles] = useState([]);
@@ -244,7 +246,7 @@ export default function UploadFile() {
       productType: 'Logo',
     },
     {
-      id: '1013',
+      id: '1011',
       order:
         'https://d46qqg0b6pc82.cloudfront.net/listing_variation_images/attachments/07b/4f1/85-/original/natural-daily-moisturizer.png',
       venderImage:
@@ -255,7 +257,7 @@ export default function UploadFile() {
       productType: 'Label',
     },
     {
-      id: '1012',
+      id: '1010',
       order:
         'https://d46qqg0b6pc82.cloudfront.net/listing_variation_images/attachments/fb5/9e9/3b-/original/FLLF8-2.png',
       venderImage:
@@ -266,7 +268,7 @@ export default function UploadFile() {
       productType: 'FLLF8-2',
     },
     {
-      id: '1011',
+      id: '1009',
       order:
         'https://d46qqg0b6pc82.cloudfront.net/listing_variation_images/attachments/598/a30/86-/original/FLLSP2.png',
       venderImage:
@@ -277,7 +279,7 @@ export default function UploadFile() {
       productType: 'Logo',
     },
     {
-      id: '1010',
+      id: '1008',
       order:
         'https://d46qqg0b6pc82.cloudfront.net/listing_variation_images/attachments/07b/4f1/85-/original/natural-daily-moisturizer.png',
       venderImage:
@@ -288,7 +290,7 @@ export default function UploadFile() {
       productType: 'Label',
     },
     {
-      id: '1009',
+      id: '1007',
       order:
         'https://d46qqg0b6pc82.cloudfront.net/listing_variation_images/attachments/fb5/9e9/3b-/original/FLLF8-2.png',
       venderImage:
@@ -299,7 +301,7 @@ export default function UploadFile() {
       productType: 'FLLF8-2',
     },
     {
-      id: '1008',
+      id: '1006',
       order:
         'https://d46qqg0b6pc82.cloudfront.net/listing_variation_images/attachments/598/a30/86-/original/FLLSP2.png',
       venderImage:
@@ -310,7 +312,7 @@ export default function UploadFile() {
       productType: 'Logo',
     },
     {
-      id: '1007',
+      id: '1005',
       order:
         'https://d46qqg0b6pc82.cloudfront.net/listing_variation_images/attachments/07b/4f1/85-/original/natural-daily-moisturizer.png',
       venderImage:
@@ -321,7 +323,7 @@ export default function UploadFile() {
       productType: 'Label',
     },
     {
-      id: '1006',
+      id: '1004',
       order:
         'https://d46qqg0b6pc82.cloudfront.net/listing_variation_images/attachments/fb5/9e9/3b-/original/FLLF8-2.png',
       venderImage:
@@ -332,7 +334,7 @@ export default function UploadFile() {
       productType: 'FLLF8-2',
     },
     {
-      id: '1005',
+      id: '1003',
       order:
         'https://d46qqg0b6pc82.cloudfront.net/listing_variation_images/attachments/598/a30/86-/original/FLLSP2.png',
       venderImage:
@@ -352,6 +354,8 @@ export default function UploadFile() {
   const filteredOrders = orders.filter((order) =>
     order.productName.toLowerCase().includes(searchQuery.toLowerCase())
   );
+
+  console.log(filteredOrders, 'filteredOrders');
 
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = Math.min(startIndex + itemsPerPage, filteredOrders.length);
@@ -404,55 +408,57 @@ export default function UploadFile() {
     { title: 'Action' },
   ];
 
-  const rowMarkup = filteredOrders.slice(startIndex, endIndex).map(
-    (
-      {
-        id,
-        order,
-        vendorId,
-        venderImage,
-        vendorName,
-        productName,
-        productType,
-      },
-      index
-    ) => (
-      <IndexTable.Row
-        id={id}
-        key={id}
-        selected={selectedResources.includes(id)}
-        position={index}
-      >
-        <IndexTable.Cell>
-          <div className="file-preview">
-            <img src={order} alt={order} className="file-thumbnail" />
-          </div>
-        </IndexTable.Cell>
-        {location.pathname === '/admin/library' && (
-          <>
-            <IndexTable.Cell>
-              <div className="file-preview">
-                <img
-                  src={venderImage}
-                  alt={venderImage}
-                  className="file-thumbnail"
-                />
-              </div>
-            </IndexTable.Cell>
-            <IndexTable.Cell>{vendorId}</IndexTable.Cell>
-            <IndexTable.Cell>{vendorName}</IndexTable.Cell>
-          </>
-        )}
-        <IndexTable.Cell>{productName}</IndexTable.Cell>
-        <IndexTable.Cell>{productType}</IndexTable.Cell>
-        <IndexTable.Cell>
-          <div className="action-row">
-            <Button onClick={() => handleDownload(order)}>Download</Button>
-          </div>
-        </IndexTable.Cell>
-      </IndexTable.Row>
-    )
-  );
+  const rowMarkup = filteredOrders
+    .slice(startIndex, endIndex)
+    .map(
+      (
+        {
+          id,
+          order,
+          vendorId,
+          venderImage,
+          vendorName,
+          productName,
+          productType,
+        },
+        index
+      ) => (
+        <IndexTable.Row
+          id={id}
+          key={id}
+          selected={selectedResources.includes(id)}
+          position={index}
+        >
+          <IndexTable.Cell>
+            <div className="file-preview">
+              <img src={order} alt={order} className="file-thumbnail" />
+            </div>
+          </IndexTable.Cell>
+          {location.pathname === '/admin/library' && (
+            <>
+              <IndexTable.Cell>
+                <div className="file-preview">
+                  <img
+                    src={venderImage}
+                    alt={venderImage}
+                    className="file-thumbnail"
+                  />
+                </div>
+              </IndexTable.Cell>
+              <IndexTable.Cell>{vendorId}</IndexTable.Cell>
+              <IndexTable.Cell>{vendorName}</IndexTable.Cell>
+            </>
+          )}
+          <IndexTable.Cell>{productName}</IndexTable.Cell>
+          <IndexTable.Cell>{productType}</IndexTable.Cell>
+          <IndexTable.Cell>
+            <div className="action-row">
+              <Button onClick={() => handleDownload(order)}>Download</Button>
+            </div>
+          </IndexTable.Cell>
+        </IndexTable.Row>
+      )
+    );
 
   const handleSearchChange = (value) => {
     setSearchQuery(value);
@@ -468,6 +474,81 @@ export default function UploadFile() {
 
   return (
     <>
+      {/* <div className="upload-img">
+        <Layout>
+          <Layout.Section>
+            <LegacyCard>
+              <ResourceList
+                emptyState={emptyStateMarkup}
+                items={uploadedFiles.map((file, index) => ({
+                  id: `file-${index}`,
+                  name: file.file.name,
+                  imageUrl: uploadedImages[index],
+                }))}
+                renderItem={() => null}
+                resourceName={resourceName}
+                filterControl={filterControl}
+              />
+              {uploadedFiles.length > 0 && (
+                <div className="table-upload">
+                  <div className="upload-more">
+                    <div className="uploadtable-head">
+                      <h4>Files</h4>
+                    </div>
+                    <div className="uploadmore-btn">
+                      <Button onClick={handleChange}>Update files</Button>
+                    </div>
+                  </div>
+                  <IndexTable
+                    resourceName={resourceName}
+                    itemCount={uploadedFiles.length}
+                    selectedItemsCount={
+                      allResourcesSelected ? 'All' : selectedResources.length
+                    }
+                    onSelectionChange={handleSelectionChange}
+                    headings={[
+                      { title: 'File' },
+                      { title: 'Product Label' },
+                      { title: 'Type' },
+                      { title: 'Action' },
+                    ]}
+                  >
+                    {rowMarkup}
+                  </IndexTable>
+                </div>
+              )}
+            </LegacyCard>
+            <input
+              type="file"
+              id="file-input"
+              accept="image/*"
+              multiple
+              style={{ display: 'none' }}
+              onChange={handleFileUpload}
+            />
+          </Layout.Section>
+        </Layout>
+
+        <div className="popup-banner">
+          <div>
+            <Modal
+              open={active}
+              onClose={handleChange}
+              title="Upload Logo or Label"
+              primaryAction={{
+                content: 'Upload Logo',
+                onAction: () => handleClick('Logo'),
+              }}
+              secondaryActions={[
+                {
+                  content: 'Upload Label',
+                  onAction: () => handleClick('Label'),
+                },
+              ]}
+            />
+          </div>
+        </div>
+      </div> */}
       <div className="file-upload">
         <div className="file-head">
           <h2 className="pf-h2">File library</h2>
@@ -478,140 +559,78 @@ export default function UploadFile() {
               value={searchQuery}
               onChange={handleSearchChange}
             />
+            <div className="filesearch-icon">
+              <Icon source={SearchIcon} tone="base" />
+            </div>
           </div>
         </div>
-        {/* <div className="upload-img">
-          <Layout>
-            <Layout.Section>
-              <LegacyCard>
-                <ResourceList
-                  emptyState={emptyStateMarkup}
-                  items={uploadedFiles.map((file, index) => ({
-                    id: `file-${index}`,
-                    name: file.file.name,
-                    imageUrl: uploadedImages[index],
-                  }))}
-                  renderItem={() => null}
-                  resourceName={resourceName}
-                  filterControl={filterControl}
-                />
-                {uploadedFiles.length > 0 && (
-                  <div className="table-upload">
-                    <div className="upload-more">
-                      <div className="uploadtable-head">
-                        <h4>Files</h4>
-                      </div>
-                      <div className="uploadmore-btn">
-                        <Button onClick={handleChange}>Update files</Button>
-                      </div>
-                    </div>
-                    <IndexTable
-                      resourceName={resourceName}
-                      itemCount={uploadedFiles.length}
-                      selectedItemsCount={
-                        allResourcesSelected ? 'All' : selectedResources.length
-                      }
-                      onSelectionChange={handleSelectionChange}
-                      headings={[
-                        { title: 'File' },
-                        { title: 'Product Label' },
-                        { title: 'Type' },
-                        { title: 'Action' },
-                      ]}
-                    >
-                      {rowMarkup}
-                    </IndexTable>
-                  </div>
-                )}
-              </LegacyCard>
-              <input
-                type="file"
-                id="file-input"
-                accept="image/*"
-                multiple
-                style={{ display: 'none' }}
-                onChange={handleFileUpload}
-              />
-            </Layout.Section>
-          </Layout>
-
-          <div className="popup-banner">
-            <div>
-              <Modal
-                open={active}
-                onClose={handleChange}
-                title="Upload Logo or Label"
-                primaryAction={{
-                  content: 'Upload Logo',
-                  onAction: () => handleClick('Logo'),
-                }}
-                secondaryActions={[
-                  {
-                    content: 'Upload Label',
-                    onAction: () => handleClick('Label'),
-                  },
-                ]}
-              />
-            </div>
-          </div>
-        </div> */}
 
         <div className="upload-img">
-          <LegacyCard>
-            <IndexTable
-              resourceName={resourceName}
-              itemCount={orders.length}
-              selectedItemsCount={
-                allResourcesSelected ? 'All' : selectedResources.length
-              }
-              onSelectionChange={handleSelectionChange}
-              headings={headings}
-            >
-              {rowMarkup}
-            </IndexTable>
-            <div
-              style={{
-                marginBottom: '10px',
-                marginTop: '10px',
-                display: 'flex',
-                justifyContent: 'center',
-              }}
-            >
-              <div
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  marginRight: '10px',
-                  marginBottom: '10px'
-                }}
-              >
-                <div className="label-perpage">
-                  <p>Row per page:- </p>
+          {filteredOrders.length !== 0 ? (
+            <>
+              <LegacyCard>
+                <IndexTable
+                  resourceName={resourceName}
+                  itemCount={orders.length}
+                  selectedItemsCount={
+                    allResourcesSelected ? 'All' : selectedResources.length
+                  }
+                  onSelectionChange={handleSelectionChange}
+                  headings={headings}
+                >
+                  {rowMarkup}
+                </IndexTable>
+                <div
+                  style={{
+                    marginBottom: '10px',
+                    marginTop: '10px',
+                    display: 'flex',
+                    justifyContent: 'center',
+                  }}
+                >
+                  <div
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      marginRight: '10px',
+                      marginBottom: '10px',
+                    }}
+                  >
+                    <div className="label-perpage">
+                      <p>Row per page:- </p>
+                    </div>
+                    <Select
+                      options={options}
+                      value={itemsPerPage.toString()}
+                      onChange={handleItemsPerPageChange}
+                    />
+                  </div>
+                  <div
+                    style={{
+                      marginBottom: '10px',
+                    }}
+                  >
+                    <Pagination
+                      onPrevious={() => handlePageChange(currentPage - 1)}
+                      onNext={() => handlePageChange(currentPage + 1)}
+                      hasPrevious={currentPage > 1}
+                      hasNext={endIndex < orders.length}
+                      label={`${currentPage}-${Math.min(
+                        endIndex,
+                        orders.length
+                      )} of ${orders.length} orders`}
+                    />
+                  </div>
                 </div>
-                <Select
-                  options={options}
-                  value={itemsPerPage.toString()}
-                  onChange={handleItemsPerPageChange}
-                />
-              </div>
-              <div
-                style={{
-                  marginBottom: '10px'
-                }}
-              >
-              <Pagination
-                onPrevious={() => handlePageChange(currentPage - 1)}
-                onNext={() => handlePageChange(currentPage + 1)}
-                hasPrevious={currentPage > 1}
-                hasNext={endIndex < orders.length}
-                label={`${currentPage}-${Math.min(
-                  endIndex,
-                  orders.length
-                )} of ${orders.length} orders`}
-              />
+              </LegacyCard>
+            </>
+          ) : (
+            <div className="not-found">
+              <div className="result-not">
+                <h2 className="category-heading">No Results Found!</h2>
               </div>
             </div>
-          </LegacyCard>
+          )}
         </div>
       </div>
     </>

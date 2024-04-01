@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Card, CardContent, CardMedia, Typography } from '@mui/material';
-import { Button, Pagination, Select, TextField } from '@shopify/polaris';
+import { Button, Icon, Pagination, Select, TextField } from '@shopify/polaris';
+import { SearchIcon } from '@shopify/polaris-icons';
 
 function Venders() {
   const history = useHistory();
@@ -195,83 +196,99 @@ function Venders() {
               value={searchQuery}
               onChange={handleChange}
             />
-          </div>
-        </div>
-        <div className="venders-card">
-          {filteredCards
-            .slice(indexOfFirstCard, indexOfLastCard)
-            .map((card, index) => (
-              <Card key={index} sx={{ width: '30%', marginBottom: 2 }}>
-                <CardMedia
-                  sx={{ height: 350 }}
-                  image={card.image}
-                  title={card.title}
-                  className="card-venderImg"
-                  onClick={() => history.push('/admin/vendor/detail')}
-                />
-                <CardContent>
-                  <Typography gutterBottom variant="h4" component="div">
-                    {card.title}
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary">
-                    {card.description}
-                  </Typography>
-                </CardContent>
-                <div className="card-button">
-                  <div className="shopping-cart">
-                    <Button
-                      className="product-btn"
-                      onClick={() => history.push('/admin/vendor/#')}
-                    >
-                      Link
-                    </Button>
-                  </div>
-                  <div className="addtoproduct">
-                    <Button
-                      className="product-btn"
-                      onClick={() => history.push('/admin/vendor/detail')}
-                    >
-                      Products
-                    </Button>
-                  </div>
-                </div>
-              </Card>
-            ))}
-        </div>
-        <div
-          style={{
-            display: 'flex',
-            marginBottom: '10px',
-            justifyContent: 'center',
-          }}
-        >
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              marginRight: '10px',
-            }}
-          >
-            <div className="label-perpage">
-              <p>Row per page:- </p>
+            <div className="search-icon">
+              <Icon source={SearchIcon} tone="base" />
             </div>
-            <Select
-              options={options}
-              value={cardsPerPage.toString()}
-              onChange={handlePerPageChange}
-            />
           </div>
-          <Pagination
-            onPrevious={() => handlePageChange(currentPage - 1)}
-            onNext={() => handlePageChange(currentPage + 1)}
-            hasPrevious={currentPage !== 1}
-            hasNext={indexOfLastCard < filteredCards.length}
-            label={`${indexOfFirstCard + 1}-${Math.min(
-              indexOfLastCard,
-              filteredCards.length
-            )} of ${filteredCards.length} cards`}
-          />
         </div>
+        {filteredCards.length !== 0 ? (
+          <>
+            <div className="venders-card">
+              {filteredCards.slice(indexOfFirstCard, indexOfLastCard).map(
+                (card, index) => (
+                  console.log(card, 'card'),
+                  (
+                    <Card key={index} sx={{ width: '30%', marginBottom: 2 }}>
+                      <CardMedia
+                        sx={{ height: 350 }}
+                        image={card.image}
+                        title={card.title}
+                        className="card-venderImg"
+                        onClick={() => history.push('/admin/vendor/detail')}
+                      />
+                      <CardContent>
+                        <Typography gutterBottom variant="h4" component="div">
+                          {card.title}
+                        </Typography>
+                        <Typography variant="body2" color="text.secondary">
+                          {card.description}
+                        </Typography>
+                      </CardContent>
+                      <div className="card-button">
+                        <div className="shopping-cart">
+                          <Button
+                            className="product-btn"
+                            onClick={() => history.push('/admin/vendor/#')}
+                          >
+                            Link
+                          </Button>
+                        </div>
+                        <div className="addtoproduct">
+                          <Button
+                            className="product-btn"
+                            onClick={() => history.push('/admin/vendor/detail')}
+                          >
+                            Products
+                          </Button>
+                        </div>
+                      </div>
+                    </Card>
+                  )
+                )
+              )}
+            </div>
+            <div
+              style={{
+                display: 'flex',
+                marginBottom: '10px',
+                justifyContent: 'center',
+              }}
+            >
+              <div
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  marginRight: '10px',
+                }}
+              >
+                <div className="label-perpage">
+                  <p>Row per page:- </p>
+                </div>
+                <Select
+                  options={options}
+                  value={cardsPerPage.toString()}
+                  onChange={handlePerPageChange}
+                />
+              </div>
+              <Pagination
+                onPrevious={() => handlePageChange(currentPage - 1)}
+                onNext={() => handlePageChange(currentPage + 1)}
+                hasPrevious={currentPage !== 1}
+                hasNext={indexOfLastCard < filteredCards.length}
+                label={`${indexOfFirstCard + 1}-${Math.min(
+                  indexOfLastCard,
+                  filteredCards.length
+                )} of ${filteredCards.length} cards`}
+              />
+            </div>
+          </>
+        ) : (
+          <div className="not-found">
+            <div className="result-not">
+              <h2 className="category-heading">No Results Found!</h2>
+            </div>
+          </div>
+        )}
       </div>
     </>
   );
