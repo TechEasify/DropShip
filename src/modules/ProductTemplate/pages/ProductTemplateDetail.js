@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 export default function ProductTemplateDetail() {
   const history = useHistory();
+  const product = useSelector((state) => state.SelectProduct);
   return (
     <>
       <div className="container-fluid dashboard__container clearfix">
@@ -73,12 +75,11 @@ export default function ProductTemplateDetail() {
                     <div className="pf-pl-md-16">
                       <div className="product-template-detail-item product-template-detail-item--product pf-mb-24">
                         <div className="pf-h5">Product</div>
-                        <div className="pf-text-muted">Essential Oil 10Ml</div>
-                        <a className="pf-link pf-pointer">See product info</a>
+                        <div className="pf-text-muted">{product.productData.description}</div>
                       </div>
                       <div className="product-template-detail-item product-template-detail-item--price pf-mb-24">
                         <div className="pf-h5">Price</div>
-                        <div className="pf-text-muted">$12.95</div>
+                        <div className="pf-text-muted">{product.productData.cost}</div>
                       </div>
                       <div className="product-template-detail-item product-template-detail-item--technique pf-mb-24">
                         <div className="pf-h5">Stock</div>
@@ -93,7 +94,7 @@ export default function ProductTemplateDetail() {
                               data-original-title=""
                               title=""
                             >
-                              $5
+                              {product.productData.shipping}
                             </a>
                           </span>
                           <span className="product-template-placements-output__templates pf-d-none">

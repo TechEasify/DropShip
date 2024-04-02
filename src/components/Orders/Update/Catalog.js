@@ -4,12 +4,14 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import { Button } from '@shopify/polaris';
+import { useSelector } from 'react-redux';
 
 export default function Catalog(props) {
-  console.log(props, 'props Catalog');
   const history = useHistory();
-
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const product = useSelector((state) => state.product);
+  console.log(product, "product");
+
 
   const images = [
     {

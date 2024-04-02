@@ -28,17 +28,18 @@ const labelName = {
 };
 
 export default function Design({ type, onReview }) {
-  const templateImage = "https://shopifyapp.iihtsrt.com/public/assets/uploads/collection/lavender.-without-logo.png";//data[type][template];
+  const templateImage =
+    'https://shopifyapp.iihtsrt.com/public/assets/uploads/collection/lavender.-without-logo.png';
 
   const backTemplateImage = data.label;
-
-  console.log(backTemplateImage, "backTemplateImage");
 
   const history = useHistory();
   const dispatch = useDispatch();
 
   const canvasSize = useRef(null);
+  // console.log(canvasSize, "canvasSize");
   const canvasZone = useRef(null);
+  // console.log(canvasZone, "canvasZone");
 
   const canvas = useCanvas(canvasSize, canvasZone);
 
@@ -61,8 +62,19 @@ export default function Design({ type, onReview }) {
   const [showLayers, setShowLayers] = useState(false);
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
+  const [currentStep, setCurrentStep] = useState(1);
 
   const TEMPLATE_OPTIONS = ['front', 'back'];
+
+  useEffect(() => {
+    if (
+      currentStep === 3 &&
+      objects['front'].length === 1 &&
+      objects['back'].length === 1
+    ) {
+      history.push('/template/create?step=3');
+    }
+  }, [currentStep, objects]);
 
   // handle template function
   const changeTemplate = (newTemplate) => {
@@ -101,7 +113,7 @@ export default function Design({ type, onReview }) {
     const file = event.target.files[0];
     if (file instanceof Blob) {
       if (!canvas) {
-        console.error("Canvas is not initialized yet.");
+        console.error('Canvas is not initialized yet.');
         return;
       }
       const clipPath = _.find(canvas.getObjects(), (o) => o.name === 'clip');
@@ -122,11 +134,17 @@ export default function Design({ type, onReview }) {
             iomg.on('mouseup', () => {
               setIsCapture((preCapture) => !preCapture);
             });
-            setObjects({ ...objects, [template]: [...objects[template], iomg] });
+            setObjects({
+              ...objects,
+              [template]: [...objects[template], iomg],
+            });
+            canvas.add(iomg);
+
+            console.log('Uploaded Image URL:', reader.result);
           },
           {
             name: shortId.generate(),
-            top: clipPath.top,
+            top: (clipPath.top + clipPath.height) / 2,
             left: clipPath.left,
             lockRotation: true,
             crossOrigin: 'anonymous',
@@ -135,13 +153,14 @@ export default function Design({ type, onReview }) {
       };
       reader.readAsDataURL(file);
     } else {
-      console.error("Invalid file object:", file);
+      console.error('Invalid file object:', file);
     }
   };
 
+
   useEffect(() => {
     if (!canvas) {
-      console.error("Canvas is not initialized yet.");
+      console.error('Canvas is not initialized yet.');
       return;
     }
 
@@ -160,6 +179,25 @@ export default function Design({ type, onReview }) {
       strokeWidth: 4,
     });
 
+    let clipRectangleBack
+    if (template === 'back') {
+      clipRectangleBack = new fabric.Rect({
+        width: 760,
+        height: 350,
+        top: 400,
+        left: 65,
+        fill: 'transparent',
+        strokeDashArray: [5, 5],
+        stroke: '#222',
+        selectable: false,
+        lockRotation: true,
+        name: 'clip',
+        visible: true,
+        strokeWidth: 4,
+      });
+
+    }
+
     fabric.Object.prototype.transparentCorners = false;
     fabric.Object.prototype.cornerColor = 'blue';
     fabric.Object.prototype.cornerStyle = 'circle';
@@ -167,17 +205,21 @@ export default function Design({ type, onReview }) {
     fabric.Image.fromURL(
       template === 'front' ? templateImage : backTemplateImage,
       (iomg) => {
-        canvas.setBackgroundImage(
-          iomg,
-          canvas.renderAll.bind(canvas),
-          {
-            // scaleX: canvas.width / iomg.width,
-            // scaleY: canvas.height / iomg.height,
-          }
-        );
+        canvas.setBackgroundImage(iomg, canvas.renderAll.bind(canvas), {
+          scaleX: canvas.width / iomg.width,
+          scaleY: canvas.height / iomg.height,
+        });
 
+        console.log(canvas.width, 'canvas.width');
+        console.log(canvas.height, 'canvas.height');
       },
-      { selectable: false, name: 'bg', width: canvas.width, crossOrigin: 'Anonymous' }
+      {
+        selectable: false,
+        name: 'bg',
+        width: canvas.width,
+        height: canvas.height,
+        crossOrigin: 'Anonymous',
+      }
     );
 
     fabric.Image.fromURL(
@@ -205,9 +247,10 @@ export default function Design({ type, onReview }) {
               fill: 'yellow',
             });
             dropImage.scaleToWidth(clipRectangle.width);
+            canvas.add(clipRectangle);
             break;
           case 'back':
-            clipRectangle.set({
+            clipRectangleBack.set({
               width: 760,
               height: 350,
               top: 400,
@@ -218,17 +261,17 @@ export default function Design({ type, onReview }) {
               strokeDashArray: [5, 5],
               stroke: '#222',
               top: 400,
-              left: 70,
-              width: 300,
+              left: 280,
+              width: 280,
               height: 250,
               fill: 'yellow',
             });
-            dropImage.scaleToWidth(clipRectangle.width);
+            dropImage.scaleToWidth(clipRectangleBack.width);
+            canvas.add(clipRectangleBack);
             break;
 
           default:
         }
-        canvas.add(clipRectangle);
         canvas.add(dropImage);
 
         setIsReady(true);
@@ -239,8 +282,8 @@ export default function Design({ type, onReview }) {
         fill: 'yellow',
         name: 'drop',
         crossOrigin: 'Anonymous',
-        selectable: false
-      },
+        selectable: false,
+      }
     );
 
     return () => {
@@ -257,39 +300,6 @@ export default function Design({ type, onReview }) {
       }));
     };
   }, [canvas, templateImage, template, backTemplateImage]);
-
-  useEffect(() => {
-    if (colors.hexs.length > 0 && isReady) {
-      const cloneCanvas = _.cloneDeep(canvas);
-      const clipPath = _.find(
-        cloneCanvas.getObjects(),
-        (o) => o.name === 'clip'
-      );
-      const dropImage = _.find(
-        cloneCanvas.getObjects(),
-        (o) => o.name === 'drop'
-      );
-      cloneCanvas.remove(clipPath);
-      cloneCanvas.remove(dropImage);
-      const previews = colors.hexs.map((c) => {
-        cloneCanvas.set({ backgroundColor: c });
-        return {
-          image: cloneCanvas.toDataURL(),
-          color: c,
-        };
-      });
-
-      canvas.set({ backgroundColor: color });
-      canvas.renderAll();
-
-      setColors((prevColors) => ({ ...prevColors, previews }));
-    }
-  }, [isReady, canvas, color, template, isCapture]);
-
-  const onChooseColor = (chooseColors, currentColor) => {
-    setColors({ ...colors, hexs: chooseColors });
-    setColor(currentColor);
-  };
 
   useEffect(() => {
     if (canvas && isReady && !_.isEmpty(canvas.getObjects())) {
@@ -330,9 +340,9 @@ export default function Design({ type, onReview }) {
       ...objects,
       [template]: !_.isEmpty(newObjects)
         ? newObjects.map((obj) => {
-          delete obj.isRender;
-          return obj;
-        })
+            delete obj.isRender;
+            return obj;
+          })
         : [],
     });
   };
@@ -361,20 +371,29 @@ export default function Design({ type, onReview }) {
 
   // handle continue button function
   const onSaveDesign = (design) => {
-    console.log(design, "design");
-    const cloneCanvas = _.cloneDeep(canvas);
-    const cObjects = cloneCanvas.getObjects();
-    console.log(cloneCanvas);
-    const [clipPath] = cObjects.filter((object) => object.name === 'clip');
-    clipPath.set({ visible: false });
-    const imagePreview = cloneCanvas.toDataURL();
-    console.log(imagePreview);
-    const designImage = cloneCanvas.toDataURL();
-    console.log(designImage, "designImage");
+    if (template === 'front') {
+      setTemplate('back');
+      setCurrentStep(2);
+    } else if (template === 'back') {
+      setCurrentStep(3);
+      // Proceed with further actions
+      setTemplate('back');
+      const cloneCanvas = _.cloneDeep(canvas);
+      console.log(cloneCanvas, 'cloneCanvas');
 
-    dispatch(
-      SaveDesign(design, { preview: imagePreview, design: designImage })
-    );
+      const cObjects = cloneCanvas.getObjects();
+      const [clipPath] = cObjects.filter((object) => object.name === 'clip');
+      clipPath.set({ visible: false });
+      const imagePreview = cloneCanvas.toDataURL();
+      console.log(imagePreview, 'imagePreview');
+
+      dispatch(
+        SaveDesign(design, { preview: imagePreview, design: imagePreview })
+      );
+
+      history.push('/template/create?step=3');
+    }
+    console.log(objects, 'objects');
   };
 
   const onChangeDesignTemplate = (desgin) => {
@@ -387,8 +406,21 @@ export default function Design({ type, onReview }) {
   };
 
   const onBack = () => {
+    if (template === 'back') {
+      setTemplate('front');
+      setCurrentStep(1);
+    }
     dispatch(ResetDesign());
     history.push('/template/create?step=1');
+  };
+
+  const isContinueDisabled = () => {
+    if (currentStep === 1 && objects['front'].length !== 1) {
+      return true;
+    } else if (currentStep === 2 && objects['back'].length !== 1) {
+      return true;
+    }
+    return false;
   };
 
   // handle close popover close function
@@ -416,19 +448,25 @@ export default function Design({ type, onReview }) {
               horizontal: 'left',
             }}
           >
-            <Typography sx={{ p: 2 }} style={{ color: "red" }}>Cannot upload multiple image.</Typography>
+            <Typography sx={{ p: 2 }} style={{ color: 'red' }}>
+              Cannot upload multiple image.
+            </Typography>
           </Popover>
           <div className="design-imges">
-            <div className='designer-sidebar'>
+            <div className="designer-sidebar">
               <div class="sidebar-product">
-                <div className='nav-select bg-color'>
-                  <div className='btn-design'>
+                <div className="nav-select bg-color">
+                  <div className="btn-design">
                     <button
                       onClick={() => handleButtonClick('layers')}
-                      className={`item pf-text-center pf-py-8 pf-py-md-12 pf-px-2 pf-my-8 pf-my-md-4 pf-cursor-pointer pf-d-inline-block pf-d-md-block pf-btn-unstyled ${activeButton === 'layers' ? 'active' : ''}`}
+                      className={`item pf-text-center pf-py-8 pf-py-md-12 pf-px-2 pf-my-8 pf-my-md-4 pf-cursor-pointer pf-d-inline-block pf-d-md-block pf-btn-unstyled ${
+                        activeButton === 'layers' ? 'active' : ''
+                      }`}
                     >
                       <i className="sidebar-navigation-icon pf-i pf-i-24 pf-i-layers-outline"></i>
-                      <span className="title pf-ui-legal pf-d-block pf-mt-4">Layers</span>
+                      <span className="title pf-ui-legal pf-d-block pf-mt-4">
+                        Layers
+                      </span>
                     </button>
                   </div>
                   <input
@@ -437,39 +475,61 @@ export default function Design({ type, onReview }) {
                     style={{ display: 'none' }}
                     onChange={handleFileSelect}
                   />
-                  {
-                    objects[template].length !== 1 ?
-                      <div className='btn-design'>
-                        <button
-                          onClick={() => handleButtonClick('uploads')}
-                          className={`item pf-text-center pf-py-8 pf-py-md-12 pf-px-2 pf-my-8 pf-my-md-4 pf-cursor-pointer pf-d-inline-block pf-d-md-block pf-btn-unstyled ${activeButton === 'uploads' ? 'active' : ''}`}
+                  {objects[template].length !== 1 ? (
+                    <div className="btn-design">
+                      <button
+                        onClick={() => handleButtonClick('uploads')}
+                        className={`item pf-text-center pf-py-8 pf-py-md-12 pf-px-2 pf-my-8 pf-my-md-4 pf-cursor-pointer pf-d-inline-block pf-d-md-block pf-btn-unstyled ${
+                          activeButton === 'uploads' ? 'active' : ''
+                        }`}
+                      >
+                        <i
+                          data-v-f7d35098=""
+                          data-test=""
+                          aria-hidden="true"
+                          class="sidebar-navigation-icon pf-i pf-i-24 pf-i-upload"
+                        ></i>{' '}
+                        <span
+                          data-v-f7d35098=""
+                          class="title pf-ui-legal pf-d-block pf-mt-4"
                         >
-                          <i data-v-f7d35098="" data-test="" aria-hidden="true" class="sidebar-navigation-icon pf-i pf-i-24 pf-i-upload"></i> <span data-v-f7d35098="" class="title pf-ui-legal pf-d-block pf-mt-4">Uploads</span>
-                        </button>
-                      </div>
-                      :
-                      <div className='btn-design'>
-                        <button
-                          onClick={() => handleButtonClick('uploads')}
-                          className={`item pf-text-center pf-py-8 pf-py-md-12 pf-px-2 pf-my-8 pf-my-md-4 pf-cursor-pointer pf-d-inline-block pf-d-md-block pf-btn-unstyled ${activeButton === 'uploads' ? 'active' : ''}`}
-                          disabled={objects[template].length !== 1}
+                          Uploads
+                        </span>
+                      </button>
+                    </div>
+                  ) : (
+                    <div className="btn-design">
+                      <button
+                        onClick={() => handleButtonClick('uploads')}
+                        className={`item pf-text-center pf-py-8 pf-py-md-12 pf-px-2 pf-my-8 pf-my-md-4 pf-cursor-pointer pf-d-inline-block pf-d-md-block pf-btn-unstyled ${
+                          activeButton === 'uploads' ? 'active' : ''
+                        }`}
+                        disabled={objects[template].length !== 1}
+                      >
+                        <i
+                          data-v-f7d35098=""
+                          data-test=""
+                          aria-hidden="true"
+                          class="sidebar-navigation-icon pf-i pf-i-24 pf-i-upload"
+                        ></i>{' '}
+                        <span
+                          data-v-f7d35098=""
+                          class="title pf-ui-legal pf-d-block pf-mt-4"
                         >
-                          <i data-v-f7d35098="" data-test="" aria-hidden="true" class="sidebar-navigation-icon pf-i pf-i-24 pf-i-upload"></i> <span data-v-f7d35098="" class="title pf-ui-legal pf-d-block pf-mt-4">Uploads</span>
-                        </button>
-                      </div>
-
-                  }
+                          Uploads
+                        </span>
+                      </button>
+                    </div>
+                  )}
                 </div>
-                <div className='nav-select'>
+                <div className="nav-select">
                   {showLayers && (
                     <>
-                      <div className='layers-list'>
+                      <div className="layers-list">
                         <div className="layers-head">
-                          <h6 >
-                            Layers:
-                          </h6>
+                          <h6>Layers:</h6>
                         </div>
-                        <div className='layers-tab'>
+                        <div className="layers-tab">
                           <DndProvider backend={HTML5Backend}>
                             {objects[template].length > 0 && (
                               <>
@@ -489,18 +549,27 @@ export default function Design({ type, onReview }) {
               </div>
               <div
                 className="col-12 col-md-8 pr-0"
-                style={{ padding: 0, height: 1080 }}
+                // style={{ padding: 0, height: 1080 }}
                 ref={canvasSize}
               >
                 <div className="text-center">
-                  <ul className="pf-tabs secondary tabs-center " style={{ top: 0 }}>
+                  <ul
+                    className="pf-tabs secondary tabs-center "
+                    style={{ top: 0 }}
+                  >
                     <div className="tab-wrap">
                       {Object.keys(objects).map((key) => (
                         <li
                           key={key}
-                          className={clsx('tab', template === key ? 'active' : '')}
+                          className={clsx(
+                            'tab',
+                            template === key ? 'active' : ''
+                          )}
                         >
-                          <a href="#" onClick={() => onChangeDesignTemplate(key)}>
+                          <a
+                            href="#"
+                            onClick={() => onChangeDesignTemplate(key)}
+                          >
                             <span>{labelName[key]}</span>
                           </a>
                         </li>
@@ -518,27 +587,34 @@ export default function Design({ type, onReview }) {
                 <canvas id="c" ref={canvasZone} />
                 <div className="pf-mb-8" />
                 <div className="generator-variant-area">
-                  {colors.previews.map((preview) => (
-                    <div
-                      className="variant-item active"
-                      title=""
-                      role="button"
-                      onClick={() => setColor(preview.color)}
-                      key={preview.color}
-                    >
-                      <div className="quality-icon" />
-                      <div
-                        className="generator-mockup-preview pf-mx-auto"
-                        style={{ minHeight: 100, width: 100 }}
-                      >
+                  {colors.previews.map(
+                    (preview) => (
+                      console.log(preview, 'preview'),
+                      (
                         <div
-                          style={{ backgroundImage: `url("${preview.image}")` }}
-                        />
-                        <div />
-                      </div>
-                      <div />
-                    </div>
-                  ))}
+                          className="variant-item active"
+                          title=""
+                          role="button"
+                          onClick={() => setColor(preview.color)}
+                          key={preview.color}
+                        >
+                          <div className="quality-icon" />
+                          <div
+                            className="generator-mockup-preview pf-mx-auto"
+                            style={{ minHeight: 100, width: 100 }}
+                          >
+                            <div
+                              style={{
+                                backgroundImage: `url("${preview.image}")`,
+                              }}
+                            />
+                            <div />
+                          </div>
+                          <div />
+                        </div>
+                      )
+                    )
+                  )}
                 </div>
               </div>
             </div>
@@ -561,7 +637,10 @@ export default function Design({ type, onReview }) {
               <div className="container">
                 <div>
                   <div className="row no-gutters pf-px-12 pf-px-md-0 pf-pt-8 pf-pt-md-0">
-                    <div className="row no-gutters pf-px-12 pf-px-md-0 pf-pt-8 pf-pt-md-0" style={{ justifyContent: "end" }}>
+                    <div
+                      className="row no-gutters pf-px-12 pf-px-md-0 pf-pt-8 pf-pt-md-0"
+                      style={{ justifyContent: 'end' }}
+                    >
                       <div className="col-12 col-md-auto order-2 order-md-1 pf-d-flex pf-align-items-stretch">
                         <a
                           href="#"
@@ -572,7 +651,9 @@ export default function Design({ type, onReview }) {
                         </a>
                         <a
                           href="#"
-                          className={objects[template].length !== 1 ? "pf-btn pf-btn-primary pf-w-75 pf-w-md-auto disabled" : "pf-btn pf-btn-primary pf-w-75 pf-w-md-auto"}
+                          className={`pf-btn pf-btn-primary pf-w-75 pf-w-md-auto ${
+                            isContinueDisabled() ? 'disabled' : ''
+                          }`}
                           onClick={onSaveDesign}
                         >
                           Continue

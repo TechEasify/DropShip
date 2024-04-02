@@ -1,8 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Card, CardContent, CardMedia, Typography } from '@mui/material';
-import { Button, Icon, Pagination, Select, TextField } from '@shopify/polaris';
-import { SearchIcon } from '@shopify/polaris-icons';
+import {
+  Button,
+  Icon,
+  MediaCard,
+  Pagination,
+  Select,
+  TextField,
+} from '@shopify/polaris';
+import {
+  LogoFacebookIcon,
+  LogoInstagramIcon,
+  LogoXIcon,
+  SearchIcon,
+} from '@shopify/polaris-icons';
 
 function Venders() {
   const history = useHistory();
@@ -34,14 +46,14 @@ function Venders() {
     },
     {
       id: 3,
-      title: 'moisturizer',
+      title: 'Moisturizer',
       image:
         'https://d46qqg0b6pc82.cloudfront.net/listing_variation_images/attachments/07b/4f1/85-/original/natural-daily-moisturizer.png',
       description: 'Description of product 1...',
     },
     {
       id: 4,
-      title: 'daily Product',
+      title: 'Daily Product',
       image:
         'https://d46qqg0b6pc82.cloudfront.net/listing_variation_images/attachments/fb5/9e9/3b-/original/FLLF8-2.png',
       description: 'Description of product 2...',
@@ -55,7 +67,7 @@ function Venders() {
     },
     {
       id: 6,
-      title: 'natural Product',
+      title: 'Natural Product',
       image:
         'https://d46qqg0b6pc82.cloudfront.net/listing_variation_images/attachments/fb5/9e9/3b-/original/FLLF8-2.png',
       description: 'Description of product 2...',
@@ -104,14 +116,14 @@ function Venders() {
     },
     {
       id: 13,
-      title: 'moisturizer',
+      title: 'Moisturizer',
       image:
         'https://d46qqg0b6pc82.cloudfront.net/listing_variation_images/attachments/07b/4f1/85-/original/natural-daily-moisturizer.png',
       description: 'Description of product 1...',
     },
     {
       id: 14,
-      title: 'daily Product',
+      title: 'Daily Product',
       image:
         'https://d46qqg0b6pc82.cloudfront.net/listing_variation_images/attachments/fb5/9e9/3b-/original/FLLF8-2.png',
       description: 'Description of product 2...',
@@ -125,7 +137,7 @@ function Venders() {
     },
     {
       id: 16,
-      title: 'natural Product',
+      title: 'Natural Product',
       image:
         'https://d46qqg0b6pc82.cloudfront.net/listing_variation_images/attachments/fb5/9e9/3b-/original/FLLF8-2.png',
       description: 'Description of product 2...',
@@ -204,52 +216,109 @@ function Venders() {
         {filteredCards.length !== 0 ? (
           <>
             <div className="venders-card">
-              {filteredCards.slice(indexOfFirstCard, indexOfLastCard).map(
-                (card, index) => (
-                  console.log(card, 'card'),
-                  (
-                    <Card key={index} sx={{ width: '30%', marginBottom: 2 }}>
-                      <CardMedia
-                        sx={{ height: 350 }}
-                        image={card.image}
-                        title={card.title}
-                        className="card-venderImg"
-                        onClick={() => history.push('/admin/vendor/detail')}
-                      />
-                      <CardContent>
-                        <Typography gutterBottom variant="h4" component="div">
-                          {card.title}
-                        </Typography>
-                        <Typography variant="body2" color="text.secondary">
-                          {card.description}
-                        </Typography>
-                      </CardContent>
-                      <div className="card-button">
-                        <div className="shopping-cart">
-                          <Button
-                            className="product-btn"
-                            onClick={() => history.push('/admin/vendor/#')}
-                          >
-                            Link
-                          </Button>
-                        </div>
-                        <div className="addtoproduct">
-                          <Button
-                            className="product-btn"
-                            onClick={() => history.push('/admin/vendor/detail')}
-                          >
-                            Products
-                          </Button>
-                        </div>
+              {filteredCards
+                .slice(indexOfFirstCard, indexOfLastCard)
+                .map((card, index) => (
+                  // <Card key={index} sx={{ width: '30%', marginBottom: 2 }}>
+                  //   <CardMedia
+                  //     sx={{ height: 350 }}
+                  //     image={card.image}
+                  //     title={card.title}
+                  //     className="card-venderImg"
+                  //     onClick={() => history.push('/admin/vendor/detail')}
+                  //   />
+                  //   <CardContent>
+                  //     <Typography gutterBottom variant="h4" component="div">
+                  //       {card.title}
+                  //     </Typography>
+                  //     <Typography variant="body2" color="text.secondary">
+                  //       {card.description}
+                  //     </Typography>
+                  //   </CardContent>
+                  //   <div className="card-button">
+                  //     <div className="shopping-cart">
+                  //       <Button
+                  //         className="product-btn"
+                  //         onClick={() => history.push('/admin/vendor/#')}
+                  //       >
+                  //         Link
+                  //       </Button>
+                  //     </div>
+                  //     <div className="addtoproduct">
+                  //       <Button
+                  //         className="product-btn"
+                  //         onClick={() => history.push('/admin/vendor/detail')}
+                  //       >
+                  //         Products
+                  //       </Button>
+                  //     </div>
+                  //   </div>
+                  // </Card>
+
+                  <MediaCard
+                    key={index}
+                    title={card.title}
+                    primaryAction={{
+                      content: 'View',
+                      onAction: () => {
+                        history.push('/admin/vendor/detail');
+                      },
+                    }}
+                    secondaryAction={{
+                      content: 'Store',
+                      onAction: () => {
+                        history.push('/admin/vendor/#');
+                      },
+                    }}
+                    description={
+                      <div className="social-icon">
+                        <Icon source={LogoInstagramIcon} tone="base" />
+                        <Icon source={LogoXIcon} tone="base" />
+                        <Icon source={LogoFacebookIcon} tone="base" />
                       </div>
-                    </Card>
-                  )
-                )
-              )}
+                    }
+                  >
+                    <div className="media-main">
+                      <div className="media-card">
+                        <img
+                          alt={card.image}
+                          width="100%"
+                          height="100%"
+                          style={{
+                            width: '150px',
+                            height: '150px',
+                            objectFit: 'cover',
+                            objectPosition: 'center',
+                          }}
+                          src={card.image}
+                        />
+                      </div>
+                      {/* <div className="card-button">
+                      <div className="shopping-cart">
+                        <Button
+                          className="product-btn"
+                          onClick={() => history.push('/admin/vendor/#')}
+                        >
+                          Store
+                        </Button>
+                      </div>
+                      <div className="addtoproduct">
+                        <Button
+                          className="product-btn"
+                          onClick={() => history.push('/admin/vendor/detail')}
+                        >
+                          View
+                        </Button>
+                      </div>
+                    </div> */}
+                    </div>
+                  </MediaCard>
+                ))}
             </div>
             <div
               style={{
                 display: 'flex',
+                marginTop: '10px',
                 marginBottom: '10px',
                 justifyContent: 'center',
               }}

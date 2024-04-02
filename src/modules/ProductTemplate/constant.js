@@ -11,6 +11,7 @@ export const SAVE_TECHNIQUE = 'SAVE_TECHNIQUE';
 export const SAVE_NAME = 'SAVE_NAME';
 
 export const RESET_DESIGN = 'RESET_DESIGN';
+export const SAVE_PRODUCT_DATA = 'SAVE_PRODUCT_DATA';
 
 // Api endpoints
 export const GET_CATEGORIES_ENDPOINT = '/api/categories';

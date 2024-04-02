@@ -9,6 +9,7 @@ import {
   SAVE_TECHNIQUE,
   SAVE_NAME,
   RESET_DESIGN,
+  SAVE_PRODUCT_DATA,
 } from './constant';
 
 const frontendState = {
@@ -68,6 +69,27 @@ const backendState = {
   variants: [],
   sizes: [],
   colors: [],
+};
+
+const initialState = {
+  productData: {},
+};
+
+export const SelectProduct = (state = initialState, action) => {
+  switch (action.type) {
+    case SAVE_PRODUCT_DATA:
+      return {
+        ...state,
+        productData: action.data,
+      };
+    case RESET_DESIGN:
+      return {
+        ...state,
+        productData: {},
+      };
+    default:
+      return state;
+  }
 };
 
 export const FrontReducer = (state = frontendState, action) => {

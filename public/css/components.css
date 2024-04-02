@@ -33014,6 +33014,28 @@ main.makeStyles-content-4 {
   background: rgb(241, 241, 241, 1) !important;
   height: 100vh;
   border-radius: 10px;
+  margin-top: 100px;
+}
+
+.canvas-container {
+    width: 800px !important;
+    height: 800px !important;
+}
+
+  canvas#c {
+      width: 800px !important;
+      height: 800px !important;
+      margin-top: 50px !important;
+  }
+
+.pf-ui-body.product-templates-review-step {
+  margin-top: 80px;
+}
+
+canvas.upper-canvas {
+    width: 800px !important;
+    height: 800px !important;
+    margin-top: 50px !important;
 }
 
 .nav-select {

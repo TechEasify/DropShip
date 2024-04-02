@@ -1656,6 +1656,30 @@ img.MuiCardMedia-root.MuiCardMedia-media.MuiCardMedia-img.cardimg-mui.css-rhsghg
 .venders-card {
   display: flex;
   flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-around;
+}
+
+.Polaris-Button.Polaris-Button svg {
+  fill: currentColor !important;
+}
+
+.social-icon {
+  display: flex;
+}
+
+h2.Polaris-Text--root.Polaris-Text--headingSm {
+  font-size: 15px !important;
+}
+
+.Polaris-ButtonGroup {
+  --pc-button-group-item: 10;
+  --pc-button-group-focused: 20;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-top: calc(var(--p-space-200)* -1);
+  margin-left: calc(var(--p-space-200)* -1);
   justify-content: space-around;
 }
 
@@ -1967,6 +1991,13 @@ button.Polaris-Button.Polaris-Button--pressable.Polaris-Button--variantSecondary
   /* width: 15%; */
   height: 40px;
   color: rgb(241, 241, 241, 1);
+}
+
+.Polaris-MediaCard {
+  height: 100%;
+  width: 300px !important;
+  display: flex;
+  flex-flow: row wrap;
 }
 
 button.Polaris-Button.Polaris-Button--pressable.Polaris-Button--variantSecondary.Polaris-Button--sizeMedium.Polaris-Button--textAlignCenter:hover {

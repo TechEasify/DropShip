@@ -12,6 +12,7 @@ import {
   SAVE_TECHNIQUE,
   RESET_DESIGN,
   GET_CATEGORIES_ENDPOINT,
+  SAVE_PRODUCT_DATA,
 } from './constant';
 
 // Action for redux --------------------------------------------------------------
@@ -53,6 +54,14 @@ export const SaveTechnique = (technique) => async (dispatch) => {
 
 export const ResetDesign = () => async (dispatch) => {
   dispatch({ type: RESET_DESIGN });
+};
+
+export const saveProductData = (productData) => {
+  console.log(productData, "productData");
+  return {
+    type: SAVE_PRODUCT_DATA,
+    data: productData,
+  };
 };
 
 // Direct api --------------------------------------------------------------------

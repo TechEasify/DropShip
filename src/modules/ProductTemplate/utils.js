@@ -5,12 +5,17 @@ function degToRad(degrees) {
 export const clipByName = function (ctx, clipObject) {
   this.setCoords();
   const clipRect = clipObject;
-  const scaleXTo1 = (1 / this.scaleX);
-  const scaleYTo1 = (1 / this.scaleY);
+  const scaleXTo1 = 1 / this.scaleX;
+  const scaleYTo1 = 1 / this.scaleY;
   ctx.save();
 
   const ctxLeft = -(this.width / 2) + clipRect.strokeWidth;
+  console.log(ctxLeft, 'ctxLeft');
   const ctxTop = -(this.height / 2) + clipRect.strokeWidth;
+  console.log(ctxTop, 'ctxTop');
+
+  console.log(clipRect.width, "width")
+  console.log(clipRect.height, "height");
 
   ctx.translate(ctxLeft, ctxTop);
 
@@ -21,7 +26,7 @@ export const clipByName = function (ctx, clipObject) {
     clipRect.left - this.oCoords.tl.x,
     clipRect.top - this.oCoords.tl.y,
     clipRect.width,
-    clipRect.height,
+    clipRect.height
   );
   ctx.closePath();
   ctx.restore();
@@ -33,7 +38,7 @@ export function dataURItoBlob(dataURI) {
   var byteString = atob(dataURI.split(',')[1]);
 
   // separate out the mime component
-  var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0]
+  var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
 
   // write the bytes of the string to an ArrayBuffer
   var ab = new ArrayBuffer(byteString.length);
@@ -49,5 +54,4 @@ export function dataURItoBlob(dataURI) {
   // write the ArrayBuffer to a blob, and you're done
   var blob = new Blob([ab], { type: mimeString });
   return blob;
-
 }

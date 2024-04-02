@@ -1,32 +1,46 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Card, Icon, TextField } from '@shopify/polaris';
 import { DeleteIcon } from '@shopify/polaris-icons';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { useDispatch } from 'react-redux';
+import { saveProductData } from '../action';
 
 export default function Template() {
-  const [cost, setCost] = useState(11.9);
-  const [shipping, setShipping] = useState(5);
-  const [retailPrice, setRetailPrice] = useState(48);
-  const [profit, setProfit] = useState(retailPrice - cost - shipping);
+  const dispatch = useDispatch();
 
-  const handleCostChange = (value) => {
-    const newCost = value;
-    setCost(newCost);
-    setProfit(retailPrice - newCost - shipping);
+  const [product, setProduct] = useState({
+    cost: 11.9,
+    shipping: 5,
+    retailPrice: 48,
+    profit: 48 - 11.9 - 5,
+    description: `Our product prices can change depending on where an order is fulfilled and which currency you use to pay for it. Each product has a fixed price for each location. Our North American products have a fixed USD price, and our products in Europe have a fixed EUR price. Products fulfilled in one location but charged in a different currency have a floating price. For example, let's say you're ordering a t-shirt that we only fulfill in the US and you're paying for it in EUR. The price you pay would be our USD price converted to EUR. The end price would also depend on that month's exchange rate, which is what makes it a floating price. If you're ordering a product that we fulfill in Europe and you're paying for it in EUR, you would pay our fixed EUR price.`,
+  });
+
+  const handleFieldChange = (field, value) => {
+    setProduct((prevProduct) => ({
+      ...prevProduct,
+      [field]: value,
+      profit:
+        field === 'retailPrice'
+          ? value - prevProduct.cost - prevProduct.shipping
+          : prevProduct.profit,
+    }));
   };
 
-  const handleShippingChange = (value) => {
-    const newShipping = value;
-    setShipping(newShipping);
-    setProfit(retailPrice - cost - newShipping);
+  const handleDescriptionChange = (event, editor) => {
+    const data = editor.getData();
+    setProduct((prevProduct) => ({
+      ...prevProduct,
+      description: data,
+    }));
   };
 
-  const handleRetailPriceChange = (value) => {
-    const newRetailPrice = value;
-    setRetailPrice(newRetailPrice);
-    setProfit(newRetailPrice - cost - shipping);
-  };
+  useEffect(() => {
+    dispatch(saveProductData(product));
+  }, [dispatch, product]);
+
+  console.log(product, "product");
 
   return (
     <>
@@ -61,8 +75,8 @@ export default function Template() {
                     <p style={{ fontSize: 17, fontWeight: 600 }}>Cost</p>
                     <TextField
                       type="number"
-                      value={cost}
-                      onChange={handleCostChange}
+                      value={product.cost}
+                      onChange={(value) => handleFieldChange('cost', value)}
                       readOnly
                     />
                   </div>
@@ -70,8 +84,8 @@ export default function Template() {
                     <p style={{ fontSize: 17, fontWeight: 600 }}>Shipping</p>
                     <TextField
                       type="number"
-                      value={shipping}
-                      onChange={handleShippingChange}
+                      value={product.shipping}
+                      onChange={(value) => handleFieldChange('shipping', value)}
                       readOnly
                     />
                   </div>
@@ -81,14 +95,16 @@ export default function Template() {
                     </p>
                     <TextField
                       type="number"
-                      value={retailPrice}
-                      onChange={handleRetailPriceChange}
+                      value={product.retailPrice}
+                      onChange={(value) =>
+                        handleFieldChange('retailPrice', value)
+                      }
                     />
                   </div>
                   <div className="select-cost">
                     <p style={{ fontSize: 17, fontWeight: 600 }}>Profit</p>
                     <span style={{ color: 'green', fontWeight: 600 }}>
-                      ${profit + shipping}
+                      ${product.profit + product.shipping}
                     </span>
                   </div>
                 </div>
@@ -100,15 +116,11 @@ export default function Template() {
                     <div>
                       <CKEditor
                         editor={ClassicEditor}
-                        data="<p>Our product prices can change depending on where an order is fulfilled and which currency you use to pay for it.Each product has a fixed price for each location. Our North American products have a fixed USD price, and our products in Europe have a fixed EUR price.Products fulfilled in one location but charged in a different currency have a floating price.For example, let's say you're ordering a t-shirt that we only fulfill in the US and you're paying for it in EUR. The price you pay would be our USD price converted to EUR. The end price would also depend on that month's exchange rate, which is what makes it a floating price.If you're ordering a product that we fulfill in Europe and you're paying for it in EUR, you would pay our fixed EUR price.&nbsp;5!</p>
-                      <p>Our product prices can change depending on where an order is fulfilled and which currency you use to pay for it.Each product has a fixed price for each location. Our North American products have a fixed USD price, and our products in Europe have a fixed EUR price.Products fulfilled in one location but charged in a different currency have a floating price.For example, let's say you're ordering a t-shirt that we only fulfill in the US and you're paying for it in EUR. The price you pay would be our USD price converted to EUR. The end price would also depend on that month's exchange rate, which is what makes it a floating price.If you're ordering a product that we fulfill in Europe and you're paying for it in EUR, you would pay our fixed EUR price.&nbsp;5!</p>
-                      "
+                        data={product.description}
                         onReady={(editor) => {
                           console.log('Editor is ready to use!', editor);
                         }}
-                        onChange={(event) => {
-                          console.log(event);
-                        }}
+                        onChange={handleDescriptionChange}
                         onBlur={(event, editor) => {
                           console.log('Blur.', editor);
                         }}
