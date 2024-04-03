@@ -49,6 +49,7 @@ export default function CreateProductTemplate() {
   const history = useHistory();
   const classes = useStyle();
   const query = useQuery();
+  console.log(query, "query");
   const dispatch = useDispatch();
 
   let StepComponent = null;

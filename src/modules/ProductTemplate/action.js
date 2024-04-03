@@ -57,7 +57,6 @@ export const ResetDesign = () => async (dispatch) => {
 };
 
 export const saveProductData = (productData) => {
-  console.log(productData, "productData");
   return {
     type: SAVE_PRODUCT_DATA,
     data: productData,

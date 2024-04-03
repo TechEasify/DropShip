@@ -23,9 +23,7 @@ export default function ProductTemplateDetail() {
                 <div className="product-templates-view-header__breadcrumbs">
                   <ul className="pf-breadcrumbs pf-p-0">
                     <li>
-                      <a href="/catalog">
-                        Product catalog
-                      </a>
+                      <a href="/catalog">Product catalog</a>
                     </li>
                     <li>
                       <span>Essential Oil</span>
@@ -35,11 +33,6 @@ export default function ProductTemplateDetail() {
                   </ul>
                 </div>
                 <div className="product-templates-view-header__actions pf-my-16 pf-my-sm-8 pf-d-flex">
-                  {/* <a className="pf-link-block pf-pointer pf-justify-items-center pf-mr-12">
-                    <i className="pf-i pf-i-content-copy pf-i-24 pf-text-gray" />
-                    
-                    <span className="pf-link">Duplicate</span>
-                  </a> */}
                   <a className="pf-link-block pf-pointer pf-justify-items-center">
                     <i className="pf-i pf-i-delete pf-i-24 pf-text-gray" />
                     <span className="pf-link">Delete</span>
@@ -56,18 +49,27 @@ export default function ProductTemplateDetail() {
                       className="product-templates-view-image__container"
                       style={{
                         width: '100%',
-                        height: 280,
+                        height: 450,
                         backgroundRepeat: 'no-repeat',
                         backgroundPosition: 'center center',
-                        backgroundSize: 'contain',
+                        backgroundSize: 'cover',
                         backgroundImage:
                           'url("https://shopifyapp.iihtsrt.com/public/assets/uploads/collection/lavender.-without-logo.png")',
                       }}
                     />
                     <div className="product-templates-view-image__actions pf-mt-16">
-                      <a className="pf-link-block pf-pointer pf-justify-items-center pf-mr-12" onClick={() => history.push('/template/create')}>
-                        <i className="pf-i pf-i-pencil pf-i-24 pf-text-gray" />
-                        <span className="pf-link">Custommise your product</span>
+                      <a
+                        className="pf-link-block pf-pointer pf-justify-items-center pf-mr-12"
+                        onClick={() => history.push('/template/create')}
+                      >
+                        <div className="edit-icon">
+                          <div className="edit-product">
+                            <i className="pf-i pf-i-pencil pf-i-24 pf-text-gray" />
+                          </div>
+                          <span className="pf-link">
+                            Custommise your product
+                          </span>
+                        </div>
                       </a>
                     </div>
                   </div>
@@ -75,15 +77,25 @@ export default function ProductTemplateDetail() {
                     <div className="pf-pl-md-16">
                       <div className="product-template-detail-item product-template-detail-item--product pf-mb-24">
                         <div className="pf-h5">Product</div>
-                        <div className="pf-text-muted">{product.productData.description}</div>
+                        <div className="pf-text-muted">
+                          {product.productData.description}
+                        </div>
                       </div>
                       <div className="product-template-detail-item product-template-detail-item--price pf-mb-24">
                         <div className="pf-h5">Price</div>
-                        <div className="pf-text-muted">{product.productData.cost}</div>
+                        <div className="pf-text-muted">
+                          {product.productData.cost}
+                        </div>
                       </div>
                       <div className="product-template-detail-item product-template-detail-item--technique pf-mb-24">
                         <div className="pf-h5">Stock</div>
                         <div className="pf-text-muted">120</div>
+                      </div>
+                      <div className="product-template-detail-item product-template-detail-item--technique pf-mb-24">
+                        <div className="pf-h5">Retail Price</div>
+                        <div className="pf-text-muted">
+                          {product.productData.retailPrice}
+                        </div>
                       </div>
                       <div className="product-template-detail-item product-template-detail-item--print-files pf-mb-24">
                         <div className="pf-h5">Shipping Price</div>

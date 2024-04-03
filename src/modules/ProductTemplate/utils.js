@@ -5,17 +5,17 @@ function degToRad(degrees) {
 export const clipByName = function (ctx, clipObject) {
   this.setCoords();
   const clipRect = clipObject;
-  const scaleXTo1 = 1 / this.scaleX;
-  const scaleYTo1 = 1 / this.scaleY;
+  const scaleXTo1 = (1 / this.scaleX);
+  const scaleYTo1 = (1 / this.scaleY);
   ctx.save();
 
   const ctxLeft = -(this.width / 2) + clipRect.strokeWidth;
-  console.log(ctxLeft, 'ctxLeft');
+  console.log(ctxLeft, "ctxLeft");
   const ctxTop = -(this.height / 2) + clipRect.strokeWidth;
-  console.log(ctxTop, 'ctxTop');
+  console.log(ctxTop, "ctxTop");
 
-  console.log(clipRect.width, "width")
-  console.log(clipRect.height, "height");
+  console.log(clipRect.width, "clipRect.width");
+  console.log(clipRect.height, "clipRect.height");
 
   ctx.translate(ctxLeft, ctxTop);
 

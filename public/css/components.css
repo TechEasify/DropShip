@@ -33042,6 +33042,20 @@ canvas.upper-canvas {
   height: 100vh;
 }
 
+.edit-icon {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.edit-product {
+  margin-right: 5px;
+}
+
+.container-fluid.dashboard__container.clearfix {
+  margin-top: 20px;
+}
+
 .nav-select.bg-color {
     background: rgb(191 189 189);
     border-radius: 5px;

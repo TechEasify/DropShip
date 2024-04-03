@@ -27,19 +27,20 @@ const labelName = {
   back: 'Label',
 };
 
-export default function Design({ type, onReview }) {
+export default function Design({ onReview }) {
+  const type = 'oil';
   const templateImage =
     'https://shopifyapp.iihtsrt.com/public/assets/uploads/collection/lavender.-without-logo.png';
 
   const backTemplateImage = data.label;
+  // const backTemplateImage =
+  //   'https://naturescure-all.com/cdn/shop/products/castor_oil_2.jpg?v=1676370859';
 
   const history = useHistory();
   const dispatch = useDispatch();
 
   const canvasSize = useRef(null);
-  // console.log(canvasSize, "canvasSize");
   const canvasZone = useRef(null);
-  // console.log(canvasZone, "canvasZone");
 
   const canvas = useCanvas(canvasSize, canvasZone);
 
@@ -144,7 +145,7 @@ export default function Design({ type, onReview }) {
           },
           {
             name: shortId.generate(),
-            top: (clipPath.top + clipPath.height) / 2,
+            top: clipPath.top,
             left: clipPath.left,
             lockRotation: true,
             crossOrigin: 'anonymous',
@@ -156,7 +157,6 @@ export default function Design({ type, onReview }) {
       console.error('Invalid file object:', file);
     }
   };
-
 
   useEffect(() => {
     if (!canvas) {
@@ -179,7 +179,7 @@ export default function Design({ type, onReview }) {
       strokeWidth: 4,
     });
 
-    let clipRectangleBack
+    let clipRectangleBack;
     if (template === 'back') {
       clipRectangleBack = new fabric.Rect({
         width: 760,
@@ -196,6 +196,28 @@ export default function Design({ type, onReview }) {
         strokeWidth: 4,
       });
 
+      fabric.Object.prototype.transparentCorners = false;
+      fabric.Object.prototype.cornerColor = 'blue';
+      fabric.Object.prototype.cornerStyle = 'circle';
+
+      fabric.Image.fromURL(
+        template === 'back' && backTemplateImage,
+        (iomg) => {
+          // canvas.setHeight(iomg.height);
+          canvas.setBackgroundImage(iomg, canvas.renderAll.bind(canvas), {
+            scaleX: canvas.width / iomg.width,
+            scaleY: canvas.height / iomg.height,
+          });
+        },
+
+        console.log(canvas.width, ' canvas.width,'),
+        console.log(canvas.height, ' canvas.height,'),
+        {
+          selectable: false,
+          name: 'bg',
+          crossOrigin: 'Anonymous',
+        }
+      );
     }
 
     fabric.Object.prototype.transparentCorners = false;
@@ -209,9 +231,6 @@ export default function Design({ type, onReview }) {
           scaleX: canvas.width / iomg.width,
           scaleY: canvas.height / iomg.height,
         });
-
-        console.log(canvas.width, 'canvas.width');
-        console.log(canvas.height, 'canvas.height');
       },
       {
         selectable: false,
@@ -225,9 +244,6 @@ export default function Design({ type, onReview }) {
     fabric.Image.fromURL(
       data.drop,
       (dropImage) => {
-        // canvas.centerObjectH(iomg);
-        // canvas.add(iomg);
-
         switch (template) {
           case 'front':
             clipRectangle.set({
@@ -250,9 +266,24 @@ export default function Design({ type, onReview }) {
             canvas.add(clipRectangle);
             break;
           case 'back':
+            // clipRectangleBack.set({
+            //   width: 760,
+            //   height: 350,
+            //   top: 400,
+            //   left: 65,
+            //   lockRotation: true,
+            // });
+            // dropImage.set({
+            //   strokeDashArray: [5, 5],
+            //   stroke: '#222',
+            //   top: 400,
+            //   left: 300,
+            //   width: 330,
+            //   height: 310,
+            //   fill: 'yellow',
+            // });
             clipRectangleBack.set({
               width: 760,
-              height: 350,
               top: 400,
               left: 65,
               lockRotation: true,
@@ -261,9 +292,8 @@ export default function Design({ type, onReview }) {
               strokeDashArray: [5, 5],
               stroke: '#222',
               top: 400,
-              left: 280,
-              width: 280,
-              height: 250,
+              left: 300,
+              width: 330,
               fill: 'yellow',
             });
             dropImage.scaleToWidth(clipRectangleBack.width);
@@ -376,14 +406,16 @@ export default function Design({ type, onReview }) {
       setCurrentStep(2);
     } else if (template === 'back') {
       setCurrentStep(3);
-      // Proceed with further actions
+
       setTemplate('back');
+
       const cloneCanvas = _.cloneDeep(canvas);
       console.log(cloneCanvas, 'cloneCanvas');
 
       const cObjects = cloneCanvas.getObjects();
       const [clipPath] = cObjects.filter((object) => object.name === 'clip');
       clipPath.set({ visible: false });
+      console.log(clipPath, 'clipPath');
       const imagePreview = cloneCanvas.toDataURL();
       console.log(imagePreview, 'imagePreview');
 
@@ -402,9 +434,10 @@ export default function Design({ type, onReview }) {
     if (objects[template].length > 0) {
       onSaveDesign(template, canvas);
     }
-    history.push(`/template/create?step=2&design=${desgin}&type=oil`);
+    history.push(`/template/create?step=2&design=${desgin}&type=${type}`);
   };
 
+  // handle Back button
   const onBack = () => {
     if (template === 'back') {
       setTemplate('front');
@@ -414,6 +447,7 @@ export default function Design({ type, onReview }) {
     history.push('/template/create?step=1');
   };
 
+  // handle disable continue button
   const isContinueDisabled = () => {
     if (currentStep === 1 && objects['front'].length !== 1) {
       return true;
@@ -488,7 +522,7 @@ export default function Design({ type, onReview }) {
                           data-test=""
                           aria-hidden="true"
                           class="sidebar-navigation-icon pf-i pf-i-24 pf-i-upload"
-                        ></i>{' '}
+                        ></i>
                         <span
                           data-v-f7d35098=""
                           class="title pf-ui-legal pf-d-block pf-mt-4"
@@ -511,7 +545,7 @@ export default function Design({ type, onReview }) {
                           data-test=""
                           aria-hidden="true"
                           class="sidebar-navigation-icon pf-i pf-i-24 pf-i-upload"
-                        ></i>{' '}
+                        ></i>
                         <span
                           data-v-f7d35098=""
                           class="title pf-ui-legal pf-d-block pf-mt-4"
@@ -584,37 +618,36 @@ export default function Design({ type, onReview }) {
                   </ul>
                 </div>
 
-                <canvas id="c" ref={canvasZone} />
+                <canvas
+                  id="c"
+                  ref={canvasZone}
+                  style={{ width: '100%', height: '100%' }}
+                />
                 <div className="pf-mb-8" />
                 <div className="generator-variant-area">
-                  {colors.previews.map(
-                    (preview) => (
-                      console.log(preview, 'preview'),
-                      (
+                  {colors.previews.map((preview) => (
+                    <div
+                      className="variant-item active"
+                      title=""
+                      role="button"
+                      onClick={() => setColor(preview.color)}
+                      key={preview.color}
+                    >
+                      <div className="quality-icon" />
+                      <div
+                        className="generator-mockup-preview pf-mx-auto"
+                        style={{ minHeight: 100, width: 100 }}
+                      >
                         <div
-                          className="variant-item active"
-                          title=""
-                          role="button"
-                          onClick={() => setColor(preview.color)}
-                          key={preview.color}
-                        >
-                          <div className="quality-icon" />
-                          <div
-                            className="generator-mockup-preview pf-mx-auto"
-                            style={{ minHeight: 100, width: 100 }}
-                          >
-                            <div
-                              style={{
-                                backgroundImage: `url("${preview.image}")`,
-                              }}
-                            />
-                            <div />
-                          </div>
-                          <div />
-                        </div>
-                      )
-                    )
-                  )}
+                          style={{
+                            backgroundImage: `url("${preview.image}")`,
+                          }}
+                        />
+                        <div />
+                      </div>
+                      <div />
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>

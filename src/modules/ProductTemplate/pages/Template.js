@@ -5,9 +5,11 @@ import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { useDispatch } from 'react-redux';
 import { saveProductData } from '../action';
+import { useHistory } from 'react-router-dom';
 
 export default function Template() {
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const [product, setProduct] = useState({
     cost: 11.9,
@@ -30,6 +32,7 @@ export default function Template() {
 
   const handleDescriptionChange = (event, editor) => {
     const data = editor.getData();
+    console.log(data, "data");
     setProduct((prevProduct) => ({
       ...prevProduct,
       description: data,
@@ -39,6 +42,15 @@ export default function Template() {
   useEffect(() => {
     dispatch(saveProductData(product));
   }, [dispatch, product]);
+
+  const handleClick = () => {
+    history.push({
+      pathname: '/store',
+      state: {
+        product: product 
+      },
+    })
+  } 
 
   console.log(product, "product");
 
@@ -121,12 +133,6 @@ export default function Template() {
                           console.log('Editor is ready to use!', editor);
                         }}
                         onChange={handleDescriptionChange}
-                        onBlur={(event, editor) => {
-                          console.log('Blur.', editor);
-                        }}
-                        onFocus={(event, editor) => {
-                          console.log('Focus.', editor);
-                        }}
                       />
                     </div>
                   </div>
@@ -138,7 +144,7 @@ export default function Template() {
                     </Button>
                   </div>
                   <div className="delete-select">
-                    <Button className="delete-product">Push To Store</Button>
+                    <Button className="delete-product" onClick={handleClick}>Push To Store</Button>
                   </div>
                 </div>
               </div>
