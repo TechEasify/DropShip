@@ -209,9 +209,6 @@ export default function Design({ onReview }) {
             scaleY: canvas.height / iomg.height,
           });
         },
-
-        console.log(canvas.width, ' canvas.width,'),
-        console.log(canvas.height, ' canvas.height,'),
         {
           selectable: false,
           name: 'bg',
@@ -439,12 +436,15 @@ export default function Design({ onReview }) {
 
   // handle Back button
   const onBack = () => {
+    if (template === 'front') {
+      history.push('/template/1')
+    }
     if (template === 'back') {
       setTemplate('front');
       setCurrentStep(1);
     }
     dispatch(ResetDesign());
-    history.push('/template/create?step=1');
+    // history.push('/template/create?step=1');
   };
 
   // handle disable continue button
