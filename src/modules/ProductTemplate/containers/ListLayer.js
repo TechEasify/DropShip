@@ -7,9 +7,12 @@ export default function ListLayer({
   objects,
   onModifyObjects,
   canvas,
+  objectsRef,
+  template
 }) {
 
   const cloneObjects = _.cloneDeep(objects);
+  console.log(cloneObjects, "cloneObjects", typeof cloneObjects);
 
   const moveCard = useCallback(
     (dragID, hoverID) => {
@@ -25,11 +28,22 @@ export default function ListLayer({
   );
 
   const onDeleteObject = (name) => {
+    const objectIndex = objects.findIndex((obj) => obj.name === name);
+    if (objectIndex !== -1) {
+      const updatedObjects = [...objects.slice(0, objectIndex), ...objects.slice(objectIndex + 1)];
+      onModifyObjects(updatedObjects);
+    }
+  
     const object = _.find(canvas.getObjects(), (o) => o.name === name);
-    canvas.remove(object);
-
-    objects.splice(objects.findIndex((obj) => obj.name === name), 1);
-    onModifyObjects(objects);
+    if (object) {
+      canvas.remove(object);
+    }
+  
+    // Update objectsRef.current to reflect the deletion
+    objectsRef.current = {
+      ...objectsRef.current,
+      [template]: objectsRef.current[template].filter(obj => obj.name !== name)
+    };
   };
 
   const renderLayer = (layer, index) => (
@@ -50,7 +64,8 @@ export default function ListLayer({
   return (
     <>
       <div className="nested-sortable">
-        {cloneObjects.splice(0).reverse().map((object, index) => renderLayer(object, index))}
+        {/* Ensure cloneObjects is an array before using reverse and map */}
+        {Array.isArray(cloneObjects) && cloneObjects.reverse().map((object, index) => renderLayer(object, index))}
       </div>
     </>
   );

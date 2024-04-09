@@ -10,12 +10,7 @@ export const clipByName = function (ctx, clipObject) {
   ctx.save();
 
   const ctxLeft = -(this.width / 2) + clipRect.strokeWidth;
-  console.log(ctxLeft, "ctxLeft");
   const ctxTop = -(this.height / 2) + clipRect.strokeWidth;
-  console.log(ctxTop, "ctxTop");
-
-  console.log(clipRect.width, "clipRect.width");
-  console.log(clipRect.height, "clipRect.height");
 
   ctx.translate(ctxLeft, ctxTop);
 

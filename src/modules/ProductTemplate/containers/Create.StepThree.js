@@ -33,18 +33,18 @@ export default function CreateStepThree() {
   ]);
 
   const onExportToPngs = () => {
-    // const zip = new JSZip();
-    // Object.entries(ProductTemplateFront.designs).forEach(([key, value]) => {
-    //   if (value.design) {
-    //     zip.file(`${key}.png`, dataURItoBlob(value.design));
-    //   }
-    // });
-    // zip
-    //   .generateAsync({ type: 'blob' })
-    //   .then((content) => {
-    //     FileSaver.saveAs(content, 'templates.zip');
-    //   })
-    //   .catch((err) => console.error(err));
+    const zip = new JSZip();
+    Object.entries(ProductTemplateFront.designs).forEach(([key, value]) => {
+      if (value.design) {
+        zip.file(`${key}.png`, dataURItoBlob(value.design));
+      }
+    });
+    zip
+      .generateAsync({ type: 'blob' })
+      .then((content) => {
+        FileSaver.saveAs(content, 'templates.zip');
+      })
+      .catch((err) => console.error(err));
   };
 
   return (

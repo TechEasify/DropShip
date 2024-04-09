@@ -2,10 +2,7 @@ import React, { useRef, useEffect, useState } from 'react';
 import { fabric } from 'fabric';
 import * as _ from 'lodash';
 import clsx from 'clsx';
-import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { DndProvider } from 'react-dnd';
-import { HTML5Backend } from 'react-dnd-html5-backend';
 import shortId from 'shortid';
 
 import { DialogActions, Popover, Typography } from '@mui/material';
@@ -15,40 +12,48 @@ import { useCanvas } from '../hooks';
 import { clipByName } from '../utils';
 
 import ListLayer from './ListLayer';
-import TabProduct from './Tab.Product';
-import TabDesign from './Tab.Design';
 
 import data from '../assets';
 
 import { ResetDesign, SaveDesign } from '../action';
+import { Canvg } from 'canvg';
+import TabDesign from './Tab.Design';
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
+import { useDispatch } from 'react-redux';
 
+// Defining labels for different templates
 const labelName = {
   front: 'Main',
   back: 'Label',
 };
 
+// Main component
 export default function Design({ onReview }) {
   const type = 'oil';
   const templateImage =
     'https://shopifyapp.iihtsrt.com/public/assets/uploads/collection/lavender.-without-logo.png';
 
   const backTemplateImage = data.label;
-  // const backTemplateImage =
-  //   'https://naturescure-all.com/cdn/shop/products/castor_oil_2.jpg?v=1676370859';
 
   const history = useHistory();
   const dispatch = useDispatch();
 
   const canvasSize = useRef(null);
   const canvasZone = useRef(null);
-
-  const canvas = useCanvas(canvasSize, canvasZone);
-
-  const [isReady, setIsReady] = useState(false);
-  const [isCapture, setIsCapture] = useState(false);
-  const [tab, setTab] = useState('product');
+  const [canvas, setCanvas] = useState(null);
+  const [uploadCanvas, setUploadCanvas] = useState(null);
+  const [size, setSize] = useState({ width: 0, height: 0 });
   const [template, setTemplate] = useState('front');
-  const [objects, setObjects] = useState({
+  const [showLayers, setShowLayers] = useState(false);
+  const [activeButton, setActiveButton] = useState('design');
+  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [colors, setColors] = useState({ hexs: [], previews: [] });
+  const [color, setColor] = useState('');
+  const [tab, setTab] = useState('product');
+  const [currentStep, setCurrentStep] = useState(1);
+  const objectsRef = useRef({
     front: [],
     back: [],
     left: [],
@@ -56,28 +61,45 @@ export default function Design({ onReview }) {
     in: [],
     out: [],
   });
-  const [colors, setColors] = useState({ hexs: [], previews: [] });
-  const [color, setColor] = useState('');
-
-  const [activeButton, setActiveButton] = useState('design');
-  const [showLayers, setShowLayers] = useState(false);
-  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
-  const [anchorEl, setAnchorEl] = useState(null);
-  const [currentStep, setCurrentStep] = useState(1);
 
   const TEMPLATE_OPTIONS = ['front', 'back'];
 
   useEffect(() => {
+    setSize({
+      width: canvasSize.current.offsetWidth,
+      height: canvasSize.current.offsetHeight,
+    });
+  }, [canvasSize]);
+
+  useEffect(() => {
+    if (canvasSize.width !== 0) {
+      setCanvas(
+        new fabric.Canvas(canvasZone.current, {
+          width: 1080,
+          height: 1080,
+          preserveObjectStacking: true,
+        })
+      );
+      setUploadCanvas(
+        new fabric.Canvas(canvasZone.current, {
+          width: 800,
+          height: 800,
+          preserveObjectStacking: true,
+        })
+      );
+    }
+  }, [canvasSize, canvasZone]);
+
+  useEffect(() => {
     if (
       currentStep === 3 &&
-      objects['front'].length === 1 &&
-      objects['back'].length === 1
+      objectsRef.current['front'].length === 1 &&
+      objectsRef.current['back'].length === 1
     ) {
       history.push('/template/create?step=3');
     }
-  }, [currentStep, objects]);
+  }, [currentStep, objectsRef.current]);
 
-  // handle template function
   const changeTemplate = (newTemplate) => {
     if (TEMPLATE_OPTIONS.includes(newTemplate)) {
       setTemplate(newTemplate);
@@ -86,11 +108,10 @@ export default function Design({ onReview }) {
     }
   };
 
-  // handle layout upload button function
   const handleButtonClick = (button) => {
     setActiveButton(button);
     if (button === 'uploads') {
-      if (objects[template].length >= 1) {
+      if (objectsRef.current[template].length >= 1) {
         setAnchorEl(document.getElementById('uploadsButton'));
         setIsPopoverOpen(true);
       } else {
@@ -103,75 +124,20 @@ export default function Design({ onReview }) {
     }
   };
 
-  // Function to handle file selection
-  const handleFileSelect = (event) => {
-    if (objects[template].length >= 1) {
-      setAnchorEl(event.currentTarget);
-      setIsPopoverOpen(true);
-      return;
-    }
-
-    const file = event.target.files[0];
-    if (file instanceof Blob) {
-      if (!canvas) {
-        console.error('Canvas is not initialized yet.');
-        return;
-      }
-      const clipPath = _.find(canvas.getObjects(), (o) => o.name === 'clip');
-      const reader = new FileReader();
-      reader.onload = () => {
-        fabric.Image.fromURL(
-          reader.result,
-          (iomg) => {
-            iomg.set({
-              clipTo(ctx) {
-                return _.bind(clipByName, iomg)(ctx, clipPath);
-              },
-            });
-            iomg.scaleToWidth(clipPath.width);
-            iomg.on('mousemove', () => {
-              iomg.set({ isOld: true });
-            });
-            iomg.on('mouseup', () => {
-              setIsCapture((preCapture) => !preCapture);
-            });
-            setObjects({
-              ...objects,
-              [template]: [...objects[template], iomg],
-            });
-            canvas.add(iomg);
-
-            console.log('Uploaded Image URL:', reader.result);
-          },
-          {
-            name: shortId.generate(),
-            top: clipPath.top,
-            left: clipPath.left,
-            lockRotation: true,
-            crossOrigin: 'anonymous',
-          }
-        );
-      };
-      reader.readAsDataURL(file);
-    } else {
-      console.error('Invalid file object:', file);
-    }
-  };
-
   useEffect(() => {
-    if (!canvas) {
+    if (!uploadCanvas || !canvas) {
       console.error('Canvas is not initialized yet.');
       return;
     }
 
     const clipRectangle = new fabric.Rect({
-      width: 150,
-      height: 120,
-      top: 480,
-      left: 420,
+      width: 210,
+      height: 75,
+      top: 360,
+      left: 260,
       fill: 'transparent',
       strokeDashArray: [5, 5],
-      stroke: '#222',
+      stroke: 'red',
       selectable: false,
       lockRotation: true,
       name: 'clip',
@@ -182,39 +148,19 @@ export default function Design({ onReview }) {
     let clipRectangleBack;
     if (template === 'back') {
       clipRectangleBack = new fabric.Rect({
-        width: 760,
-        height: 350,
-        top: 400,
-        left: 65,
+        width: 560,
+        height: 250,
+        top: 300,
+        left: 50,
         fill: 'transparent',
         strokeDashArray: [5, 5],
-        stroke: '#222',
+        stroke: 'red',
         selectable: false,
         lockRotation: true,
         name: 'clip',
         visible: true,
         strokeWidth: 4,
       });
-
-      fabric.Object.prototype.transparentCorners = false;
-      fabric.Object.prototype.cornerColor = 'blue';
-      fabric.Object.prototype.cornerStyle = 'circle';
-
-      fabric.Image.fromURL(
-        template === 'back' && backTemplateImage,
-        (iomg) => {
-          // canvas.setHeight(iomg.height);
-          canvas.setBackgroundImage(iomg, canvas.renderAll.bind(canvas), {
-            scaleX: canvas.width / iomg.width,
-            scaleY: canvas.height / iomg.height,
-          });
-        },
-        {
-          selectable: false,
-          name: 'bg',
-          crossOrigin: 'Anonymous',
-        }
-      );
     }
 
     fabric.Object.prototype.transparentCorners = false;
@@ -222,12 +168,39 @@ export default function Design({ onReview }) {
     fabric.Object.prototype.cornerStyle = 'circle';
 
     fabric.Image.fromURL(
-      template === 'front' ? templateImage : backTemplateImage,
+      template === 'back' ? backTemplateImage : templateImage,
       (iomg) => {
         canvas.setBackgroundImage(iomg, canvas.renderAll.bind(canvas), {
-          scaleX: canvas.width / iomg.width,
-          scaleY: canvas.height / iomg.height,
+          // scaleX: canvas.width / iomg.width,
+          // scaleY: canvas.height / iomg.height,
+          scaleX: 0.8,
+          scaleY: 0.8,
+          // top: 400,
+          // originX: 'left',
+          // originY: 'center',
         });
+        uploadCanvas.setBackgroundImage(
+          iomg,
+          uploadCanvas.renderAll.bind(uploadCanvas),
+          {
+            // scaleX: uploadCanvas.width / iomg.width,
+            // scaleY: uploadCanvas.height / iomg.height,
+            scaleX: 0.9,
+            scaleY: 0.9,
+            // top: 400,
+            // originX: 'left',
+            // originY: 'center',
+          }
+        );
+        //         var img1 = iomg.set({
+        //           left: 0,
+        //           top: 0
+        //         });
+        //         iomg.scaleToHeight(1080);
+        //         iomg.scaleToWidth(1080);;
+        //         console.log(img1, "img1");
+        //  canvas.add(img1);
+        //  uploadCanvas.add(img1)
       },
       {
         selectable: false,
@@ -244,69 +217,81 @@ export default function Design({ onReview }) {
         switch (template) {
           case 'front':
             clipRectangle.set({
-              width: 150,
-              height: 120,
-              top: 480,
-              left: 420,
+              width: 260,
+              height: 100,
+              top: 430,
+              left: 315,
               lockRotation: true,
             });
             dropImage.set({
               strokeDashArray: [5, 5],
               stroke: '#222',
-              top: 480,
-              left: 420,
-              width: 150,
-              height: 120,
+              top: 430,
+              left: 315,
+              width: 260,
+              height: 100,
               fill: 'yellow',
+              clipPath: new fabric.Rect({
+                absolutePositioned: true,
+                originX: 'center',
+                originY: 'center',
+              }),
             });
-            dropImage.scaleToWidth(clipRectangle.width);
+            var resizeFilter = new fabric.Image.filters.Resize({
+              scaleX: 0.5,
+              scaleY: 0.5,
+            });
+
+            console.log(resizeFilter, 'resizeFilter');
+
+            // Apply the Resize filter to the dropImage
+            dropImage.filters.push(resizeFilter);
+            dropImage.applyFilters();
             canvas.add(clipRectangle);
             break;
           case 'back':
-            // clipRectangleBack.set({
-            //   width: 760,
-            //   height: 350,
-            //   top: 400,
-            //   left: 65,
-            //   lockRotation: true,
-            // });
-            // dropImage.set({
-            //   strokeDashArray: [5, 5],
-            //   stroke: '#222',
-            //   top: 400,
-            //   left: 300,
-            //   width: 330,
-            //   height: 310,
-            //   fill: 'yellow',
-            // });
             clipRectangleBack.set({
-              width: 760,
-              top: 400,
-              left: 65,
+              width: 680,
+              height: 310,
+              top: 360,
+              left: 60,
               lockRotation: true,
             });
             dropImage.set({
               strokeDashArray: [5, 5],
               stroke: '#222',
-              top: 400,
-              left: 300,
-              width: 330,
-              fill: 'yellow',
+              top: 360,
+              left: 60,
+              width: 680,
+              height: 310,
+              clipPath: new fabric.Rect({
+                absolutePositioned: true,
+                originX: 'center',
+                originY: 'center',
+              }),
             });
-            dropImage.scaleToWidth(clipRectangleBack.width);
+            var resizeFilterBack = new fabric.Image.filters.Resize({
+              scaleX: 0.5,
+              scaleY: 0.5,
+            });
+
+            console.log(resizeFilterBack, 'resizeFilterBack');
+
+            // Apply the Resize filter to the dropImage
+            dropImage.filters.push(resizeFilterBack);
+
+            // Apply filters to the dropImage
+            dropImage.applyFilters();
             canvas.add(clipRectangleBack);
             break;
-
           default:
         }
+        // Add masking
+        dropImage.clipPath =
+          template === 'front' ? clipRectangle : clipRectangleBack;
         canvas.add(dropImage);
-
-        setIsReady(true);
       },
       {
-        top: 519,
-        left: 397,
-        fill: 'yellow',
         name: 'drop',
         crossOrigin: 'Anonymous',
         selectable: false,
@@ -317,35 +302,12 @@ export default function Design({ onReview }) {
       if (canvas) {
         canvas.clear();
       }
-      setIsReady(false);
-      setObjects((preObjects) => ({
-        ...preObjects,
-        [template]: preObjects[template].map((object) => {
-          delete object.isRender;
-          return object;
-        }),
-      }));
     };
-  }, [canvas, templateImage, template, backTemplateImage]);
+  }, [canvas, uploadCanvas, templateImage, template, backTemplateImage]);
 
   useEffect(() => {
-    if (canvas && isReady && !_.isEmpty(canvas.getObjects())) {
-      const clipPath = _.find(canvas.getObjects(), (o) => o.name === 'clip');
-      const dropImage = _.find(canvas.getObjects(), (o) => o.name === 'drop');
-      if (canvas.getObjects().length > 2) {
-        clipPath.set({ visible: true });
-        dropImage.set({ visible: false });
-      } else {
-        clipPath.set({ visible: false });
-        dropImage.set({ visible: true });
-      }
-      canvas.renderAll();
-    }
-  });
-
-  useEffect(() => {
-    if (objects[template].length > 0 && isReady) {
-      objects[template].forEach((object) => {
+    if (canvas && uploadCanvas && objectsRef.current[template].length > 0) {
+      objectsRef.current[template].forEach((object) => {
         if (!object.isRender) {
           object.set({ isRender: true });
           if (!object.isOld) {
@@ -354,90 +316,178 @@ export default function Design({ onReview }) {
           canvas.add(object).setActiveObject(object);
         }
       });
+
+      // Clear the uploadCanvas after merging
+      uploadCanvas.clear();
     }
-    setIsCapture((preCapture) => !preCapture);
-  }, [objects, isReady]);
+  }, [canvas, uploadCanvas, template]);
 
   const onModifyObjects = (newObjects) => {
-    objects[template].forEach((object) => {
-      canvas.remove(object);
+    objectsRef.current[template].forEach((object) => {
+      uploadCanvas.remove(object);
     });
 
-    setObjects({
-      ...objects,
+    objectsRef.current = {
+      ...objectsRef.current,
       [template]: !_.isEmpty(newObjects)
         ? newObjects.map((obj) => {
             delete obj.isRender;
             return obj;
           })
         : [],
-    });
+    };
+  };
+
+  // Function to handle file selection
+  const handleFileSelect = (event) => {
+    if (!uploadCanvas) {
+      console.error('Canvas is not initialized yet.');
+      return;
+    }
+
+    const file = event.target.files[0];
+    if (file instanceof Blob) {
+      let clipPath;
+      if (template === 'front') {
+        clipPath = _.find(canvas.getObjects(), (o) => o.name === 'clip');
+      } else if (template === 'back') {
+        clipPath = _.find(canvas.getObjects(), (o) => o.name === 'clip');
+      } else {
+        console.error('Invalid template:', template);
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onload = () => {
+        fabric.Image.fromURL(
+          reader.result,
+          (iomg) => {
+            // Calculate scale factors for width and height
+            const scaleX = clipPath.width / iomg.width;
+            const scaleY = clipPath.height / iomg.height;
+
+            // Set the image's position and scale to fit within the clipping rectangle
+            iomg.set({
+              clipTo(ctx) {
+                return _.bind(clipByName, iomg)(ctx, clipPath);
+              },
+              top: clipPath.top,
+              left: clipPath.left,
+              scaleX: scaleX,
+              scaleY: scaleY,
+              lockRotation: true,
+            });
+
+            iomg.on('mousemove', () => {
+              iomg.set({ isOld: true });
+            });
+
+            iomg.on('mouseup', () => {});
+
+            objectsRef.current[template].push(iomg);
+            canvas.add(iomg);
+          },
+          {
+            name: shortId.generate(),
+            crossOrigin: 'anonymous',
+          }
+        );
+      };
+
+      reader.readAsDataURL(file);
+    } else {
+      console.error('Invalid file object:', file);
+    }
   };
 
   const onSaveTextObject = (textId) => {
     const textObject = _.find(canvas.getObjects(), (o) => o.name === textId);
-    canvas.remove(textObject);
+
+    uploadCanvas.remove(textObject);
 
     textObject.on('mousemove', () => {
       textObject.set({ isOld: true });
     });
 
     textObject.on('mouseup', () => {
-      setIsCapture((preCapture) => !preCapture);
+      setIsCapture((prevCapture) => !prevCapture);
     });
 
+    // Clone the text object as an image
     textObject.cloneAsImage((image) => {
       textObject.set({ image });
 
-      setObjects({
-        ...objects,
-        [template]: [...objects[template], textObject],
-      });
+      objectsRef.current = {
+        ...objectsRef.current,
+        [template]: [...objectsRef.current[template], textObject],
+      };
     });
   };
 
-  // handle continue button function
+  // Function to handle continue button click
   const onSaveDesign = (design) => {
+    if (!uploadCanvas) {
+      console.error('Canvas is not initialized yet.');
+      return;
+    }
+
     if (template === 'front') {
       setTemplate('back');
       setCurrentStep(2);
+      history.push(`/template/create?step=2&design=back&type=${type}`);
     } else if (template === 'back') {
       setCurrentStep(3);
-
       setTemplate('back');
 
-      const cloneCanvas = _.cloneDeep(canvas);
-      console.log(cloneCanvas, 'cloneCanvas');
-
-      const cObjects = cloneCanvas.getObjects();
-      const [clipPath] = cObjects.filter((object) => object.name === 'clip');
-      clipPath.set({ visible: false });
-      console.log(clipPath, 'clipPath');
-      const imagePreview = cloneCanvas.toDataURL();
-      console.log(imagePreview, 'imagePreview');
+      const svgData = canvas.toSVG({
+        suppressPreamble: true,
+        viewBox: {
+          x: 50,
+          y: 50,
+          width: 500,
+          height: 600,
+        },
+      });
+      console.log(svgData, 'svgData');
+  
+      const ctx = canvasZone.current.getContext('2d');
+      // Canvg.fromString(ctx, svgData, { ignoreDimensions: true }).render();
+      // uploadCanvas.setBackgroundColor(
+      //   '#ffffff',
+      //   uploadCanvas.renderAll.bind(uploadCanvas)
+      // );
+      const pngDataUrl = canvasZone.current.toDataURL({
+        format: 'png',
+        quality: 1,
+      });
+  
+      console.log(pngDataUrl, 'pngDataUrl');
+      console.log(objectsRef.current, 'objects');
 
       dispatch(
-        SaveDesign(design, { preview: imagePreview, design: imagePreview })
-      );
-
+          SaveDesign(design, { preview: pngDataUrl, design: pngDataUrl })
+        );
       history.push('/template/create?step=3');
     }
-    console.log(objects, 'objects');
-  };
 
-  const onChangeDesignTemplate = (desgin) => {
-    changeTemplate(desgin);
-
-    if (objects[template].length > 0) {
-      onSaveDesign(template, canvas);
+    if (template === 'front' && objectsRef.current[template].length > 0) {
+      setTemplate('back');
+      history.push(`/template/create?step=2&design=back&type=${type}`);
     }
-    history.push(`/template/create?step=2&design=${desgin}&type=${type}`);
   };
 
-  // handle Back button
+  const onChangeDesignTemplate = (design) => {
+    changeTemplate(design);
+
+    if (objectsRef.current[template].length > 0) {
+      onSaveDesign();
+    }
+    history.push(`/template/create?step=2&design=${design}&type=${type}`);
+  };
+
   const onBack = () => {
     if (template === 'front') {
-      history.push('/template/1')
+      history.push('/template/1');
     }
     if (template === 'back') {
       setTemplate('front');
@@ -447,17 +497,19 @@ export default function Design({ onReview }) {
     // history.push('/template/create?step=1');
   };
 
-  // handle disable continue button
   const isContinueDisabled = () => {
-    if (currentStep === 1 && objects['front'].length !== 1) {
+    const frontObjectsCount = objectsRef.current['front'].length;
+    const backObjectsCount = objectsRef.current['back'].length;
+
+    if (currentStep === 1 && frontObjectsCount !== 1) {
       return true;
-    } else if (currentStep === 2 && objects['back'].length !== 1) {
+    } else if (currentStep === 2 && backObjectsCount !== 1) {
       return true;
     }
+
     return false;
   };
 
-  // handle close popover close function
   const handleClosePopover = () => {
     setIsPopoverOpen(false);
   };
@@ -509,7 +561,7 @@ export default function Design({ onReview }) {
                     style={{ display: 'none' }}
                     onChange={handleFileSelect}
                   />
-                  {objects[template].length !== 1 ? (
+                  {objectsRef.current[template].length !== 1 ? (
                     <div className="btn-design">
                       <button
                         onClick={() => handleButtonClick('uploads')}
@@ -538,7 +590,7 @@ export default function Design({ onReview }) {
                         className={`item pf-text-center pf-py-8 pf-py-md-12 pf-px-2 pf-my-8 pf-my-md-4 pf-cursor-pointer pf-d-inline-block pf-d-md-block pf-btn-unstyled ${
                           activeButton === 'uploads' ? 'active' : ''
                         }`}
-                        disabled={objects[template].length !== 1}
+                        disabled={objectsRef.current[template].length !== 1}
                       >
                         <i
                           data-v-f7d35098=""
@@ -565,12 +617,14 @@ export default function Design({ onReview }) {
                         </div>
                         <div className="layers-tab">
                           <DndProvider backend={HTML5Backend}>
-                            {objects[template].length > 0 && (
+                            {objectsRef.current[template].length > 0 && (
                               <>
                                 <ListLayer
-                                  objects={objects[template]}
+                                  objects={objectsRef.current[template]}
                                   canvas={canvas}
                                   onModifyObjects={onModifyObjects}
+                                  objectsRef={objectsRef}
+                                  template={template}
                                 />
                               </>
                             )}
@@ -581,18 +635,14 @@ export default function Design({ onReview }) {
                   )}
                 </div>
               </div>
-              <div
-                className="col-12 col-md-8 pr-0"
-                // style={{ padding: 0, height: 1080 }}
-                ref={canvasSize}
-              >
+              <div className="col-12 col-md-8 pr-0" ref={canvasSize}>
                 <div className="text-center">
                   <ul
                     className="pf-tabs secondary tabs-center "
                     style={{ top: 0 }}
                   >
                     <div className="tab-wrap">
-                      {Object.keys(objects).map((key) => (
+                      {Object.keys(objectsRef.current).map((key) => (
                         <li
                           key={key}
                           className={clsx(
@@ -619,9 +669,14 @@ export default function Design({ onReview }) {
                 </div>
 
                 <canvas
+                  id="uploadCanvas"
+                  ref={canvasZone}
+                  style={{ display: 'none' }}
+                />
+                <canvas
                   id="c"
                   ref={canvasZone}
-                  style={{ width: '100%', height: '100%' }}
+                  style={{ width: 1080, height: 1080 }}
                 />
                 <div className="pf-mb-8" />
                 <div className="generator-variant-area">
@@ -685,7 +740,7 @@ export default function Design({ onReview }) {
                         <a
                           href="#"
                           className={`pf-btn pf-btn-primary pf-w-75 pf-w-md-auto ${
-                            isContinueDisabled() ? 'disabled' : ''
+                            isContinueDisabled() ? 'disable' : ''
                           }`}
                           onClick={onSaveDesign}
                         >

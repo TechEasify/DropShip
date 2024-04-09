@@ -27,7 +27,6 @@ import {
 
 export default () => {
   const location = useLocation();
-  console.log(location.state.product, "location");
   const history = useHistory();
   const isAdminPath = location.pathname === '/admin/store';
   const orders = [

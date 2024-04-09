@@ -1,10 +1,21 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import Slider from 'react-slick';
+import data from '../assets';
 
 export default function ProductTemplateDetail() {
   const history = useHistory();
   const product = useSelector((state) => state.SelectProduct);
+
+  const settings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  };
+
   return (
     <>
       <div className="container-fluid dashboard__container clearfix">
@@ -47,16 +58,33 @@ export default function ProductTemplateDetail() {
                   <div className="product-templates-view-page__image col-sm-6 col-md-5 col-lg-4">
                     <div
                       className="product-templates-view-image__container"
-                      style={{
-                        width: '100%',
-                        height: 450,
-                        backgroundRepeat: 'no-repeat',
-                        backgroundPosition: 'center center',
-                        backgroundSize: 'cover',
-                        backgroundImage:
-                          'url("https://shopifyapp.iihtsrt.com/public/assets/uploads/collection/lavender.-without-logo.png")',
-                      }}
-                    />
+                      // style={{
+                      //   width: '100%',
+                      //   height: 450,
+                      //   backgroundRepeat: 'no-repeat',
+                      //   backgroundPosition: 'center center',
+                      //   backgroundSize: 'cover',
+                      //   backgroundImage:
+                      //     'url("https://shopifyapp.iihtsrt.com/public/assets/uploads/collection/lavender.-without-logo.png")',
+                      // }}
+                    >
+                      <Slider {...settings}>
+                        <div>
+                          <img
+                            src='https://shopifyapp.iihtsrt.com/public/assets/uploads/collection/lavender.-without-logo.png'
+                            alt="Image 1"
+                            style={{ height: 'auto', width: '100%', borderRadius: "10px" }}
+                          />
+                        </div>
+                        <div>
+                          <img
+                            src={data.label}
+                            alt="Image 1"
+                            style={{ height: 'auto', width: '100%', borderRadius: "10px" }}
+                          />
+                        </div>
+                      </Slider>
+                    </div>
                     <div className="product-templates-view-image__actions pf-mt-16">
                       <a
                         className="pf-link-block pf-pointer pf-justify-items-center pf-mr-12"

@@ -1871,11 +1871,6 @@ p.inner-pro {
   margin-bottom: 0px;
 }
 
-.member-card {
-  display: flex;
-  justify-content: space-evenly;
-}
-
 .Membership-information {
   display: flex;
   justify-content: space-evenly;

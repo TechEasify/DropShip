@@ -6,7 +6,7 @@ export function useCanvas(sizeEl, zoneEl) {
   const [canvas, setCanvas] = useState(null);
 
   useEffect(() => {
-    setSize({ width: sizeEl.current.offsetWidth });
+    setSize({ width: sizeEl.current.offsetWidth, height: sizeEl.current.offsetHeight });
   }, [sizeEl]);
 
   useEffect(() => {

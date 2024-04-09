@@ -33017,26 +33017,26 @@ main.makeStyles-content-4 {
   margin-top: 100px;
 }
 
-.canvas-container {
-    width: 800px !important;
-    height: 800px !important;
-}
+/* .canvas-container {
+    width: 1080px !important;
+    height: 1080px !important;
+} */
 
-  canvas#c {
+  /* canvas#c {
       width: 800px !important;
       height: 800px !important;
       margin-top: 50px !important;
-  }
+  } */
 
 .pf-ui-body.product-templates-review-step {
   margin-top: 80px;
 }
 
-canvas.upper-canvas {
+/* canvas.upper-canvas {
     width: 800px !important;
     height: 800px !important;
     margin-top: 50px !important;
-}
+} */
 
 .nav-select {
   height: 100vh;
