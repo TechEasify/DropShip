@@ -32928,9 +32928,9 @@ button.item.pf-text-center.pf-py-8.pf-py-md-12.pf-px-2.pf-my-8.pf-my-md-4.pf-cur
 .divider[data-v-0a2c8d53] {
   border-color: var(--pf-comp-sidebar-navigation-horizontal-divider, var(--pf-sys-border-on-background, var(--pf-sys-neutral-300-on-background, #e5e5e5)));
   position: absolute;
-  top: 16%;
-  left: 0;
-  width: 20%;
+  top: 55.5%;
+  left: 0%;
+  width: 100%;
 }
 
 .item.active {
@@ -32990,13 +32990,15 @@ ul.pf-tabs.secondary.tabs-center {
 
 aside.sidebar-navigation.pf-d-flex.pf-align-items-center.pf-scrollbar-hide {
   display: flex;
-  flex-direction: row-reverse;
   background: rgb(191 189 189) !important;
   border-radius: 5px;
   margin-top: 34px;
   position: fixed;
   top: 15%;
   left: 1%;
+  flex-direction: column;
+  justify-content: center;
+  width: 6%;
 }
 
 .btn-rectangle {
@@ -33009,7 +33011,7 @@ main.makeStyles-content-4 {
 
 .sidebar-product {
   display: flex;
-  width: 33%;
+  width: 30%;
   margin-left: 10px;
   background: rgb(241, 241, 241, 1) !important;
   height: 100vh;
@@ -33030,6 +33032,14 @@ main.makeStyles-content-4 {
 
 .pf-ui-body.product-templates-review-step {
   margin-top: 80px;
+}
+
+.MuiDialogActions-root.MuiDialogActions-spacing.css-knqc4i-MuiDialogActions-root {
+    position: sticky;
+    bottom: 0px;
+    background-color: white;
+    width: 103% !important;
+    margin-left: -1% !important;
 }
 
 /* canvas.upper-canvas {

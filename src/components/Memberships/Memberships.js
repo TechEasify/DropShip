@@ -309,14 +309,14 @@ function Memberships() {
                             <img
                               src="https://files.cdn.printful.com/o/upload/product-catalog-img/20/2079a3ee4cc472ad952fe16654f274cd_l"
                               alt="Image 1"
-                              style={{ height: 'auto', width: '100%' }}
+                              style={{ height: 'auto', width: '100%', borderRadius: "0" }}
                             />
                           </div>
                           <div>
                             <img
                               src="https://files.cdn.printful.com/o/upload/product-catalog-img/fd/fdb7214913fd3c6c56d683e1f8997c58_l"
                               alt="Image 2"
-                              style={{ height: 'auto', width: '100%' }}
+                              style={{ height: 'auto', width: '100%', borderRadius: "0" }}
                             />
                           </div>
                         </Slider>

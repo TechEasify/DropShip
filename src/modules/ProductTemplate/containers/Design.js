@@ -21,6 +21,8 @@ import TabDesign from './Tab.Design';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { useDispatch } from 'react-redux';
+import { LabelPrinterIcon } from '@shopify/polaris-icons';
+import {Icon} from '@shopify/polaris'
 
 // Defining labels for different templates
 const labelName = {
@@ -129,7 +131,7 @@ export default function Design({ onReview }) {
       console.error('Canvas is not initialized yet.');
       return;
     }
-  
+
     // Create clipping rectangles for both front and back templates
     const clipRectangle = new fabric.Rect({
       width: 210,
@@ -145,7 +147,7 @@ export default function Design({ onReview }) {
       visible: true,
       strokeWidth: 4,
     });
-  
+
     let clipRectangleBack;
     if (template === 'back') {
       clipRectangleBack = new fabric.Rect({
@@ -163,24 +165,24 @@ export default function Design({ onReview }) {
         strokeWidth: 4,
       });
     }
-  
+
     fabric.Object.prototype.transparentCorners = false;
     fabric.Object.prototype.cornerColor = 'blue';
     fabric.Object.prototype.cornerStyle = 'circle';
-  
+
     fabric.Image.fromURL(
       template === 'back' ? backTemplateImage : templateImage,
       (iomg) => {
         canvas.setBackgroundImage(iomg, canvas.renderAll.bind(canvas), {
-          scaleX: 0.8,
-          scaleY: 0.8,
+          scaleX: 0.9,
+          scaleY: 0.9,
         });
         uploadCanvas.setBackgroundImage(
           iomg,
           uploadCanvas.renderAll.bind(uploadCanvas),
           {
             scaleX: 0.9,
-            scaleY: 0.9,
+            scaleY: 0.8,
           }
         );
       },
@@ -192,7 +194,7 @@ export default function Design({ onReview }) {
         crossOrigin: 'Anonymous',
       }
     );
-  
+
     // Load drop image and apply filters and clipping paths
     fabric.Image.fromURL(
       data.drop,
@@ -201,18 +203,18 @@ export default function Design({ onReview }) {
           case 'front':
             clipRectangle.set({
               width: 260,
-              height: 100,
-              top: 430,
+              height: 90,
+              top: 380,
               left: 315,
               lockRotation: true,
             });
             dropImage.set({
               strokeDashArray: [5, 5],
               stroke: '#222',
-              top: 430,
+              top: 380,
               left: 315,
               width: 260,
-              height: 100,
+              height: 90,
               fill: 'yellow',
               clipPath: new fabric.Rect({
                 absolutePositioned: true,
@@ -224,7 +226,7 @@ export default function Design({ onReview }) {
               scaleX: 0.5,
               scaleY: 0.5,
             });
-  
+
             // Apply the Resize filter to the dropImage
             dropImage.filters.push(resizeFilter);
             dropImage.applyFilters();
@@ -233,18 +235,18 @@ export default function Design({ onReview }) {
           case 'back':
             clipRectangleBack.set({
               width: 680,
-              height: 310,
-              top: 360,
+              height: 270,
+              top: 320,
               left: 60,
               lockRotation: true,
             });
             dropImage.set({
               strokeDashArray: [5, 5],
               stroke: '#222',
-              top: 360,
+              top: 320,
               left: 60,
               width: 680,
-              height: 310,
+              height: 270,
               clipPath: new fabric.Rect({
                 absolutePositioned: true,
                 originX: 'center',
@@ -255,7 +257,7 @@ export default function Design({ onReview }) {
               scaleX: 0.5,
               scaleY: 0.5,
             });
-  
+
             // Apply the Resize filter to the dropImage
             dropImage.filters.push(resizeFilterBack);
             // Apply filters to the dropImage
@@ -275,14 +277,14 @@ export default function Design({ onReview }) {
         selectable: false,
       }
     );
-  
+
     return () => {
       // Clear canvas when component unmounts
       if (canvas) {
         canvas.clear();
       }
     };
-  }, [canvas, uploadCanvas, templateImage, template, backTemplateImage]);  
+  }, [canvas, uploadCanvas, templateImage, template, backTemplateImage]);
 
   useEffect(() => {
     if (canvas && uploadCanvas && objectsRef.current[template].length > 0) {
@@ -409,7 +411,7 @@ export default function Design({ onReview }) {
       console.error('Canvas is not initialized yet.');
       return;
     }
-  
+
     if (template === 'front') {
       setTemplate('back');
       setCurrentStep(2);
@@ -420,7 +422,7 @@ export default function Design({ onReview }) {
       console.log(pngDataUrl, 'pngDataUrl');
     } else if (template === 'back') {
       setCurrentStep(3);
-      
+
       const svgData = canvas.toSVG({
         suppressPreamble: true,
         viewBox: {
@@ -431,21 +433,21 @@ export default function Design({ onReview }) {
         },
       });
       console.log(svgData, 'svgData');
-    
+
       const ctx = canvasZone.current.getContext('2d');
       const pngDataUrl = canvasZone.current.toDataURL({
         format: 'png',
         quality: 1,
       });
-    
+
       console.log(pngDataUrl, 'pngDataUrl');
       console.log(objectsRef.current, 'objects');
-  
+
       dispatch(SaveDesign(design, { preview: pngDataUrl, design: pngDataUrl }));
       history.push('/template/create?step=3');
     }
-  };  
-  
+  };
+
   const onChangeDesignTemplate = (design) => {
     changeTemplate(design);
 
@@ -577,6 +579,18 @@ export default function Design({ onReview }) {
                       </button>
                     </div>
                   )}
+                  <hr/>
+                  <div className="btn-design">
+                    <button
+                      className={`item pf-text-center pf-py-8 pf-py-md-12 pf-px-2 pf-my-8 pf-my-md-4 pf-cursor-pointer pf-d-inline-block pf-d-md-block pf-btn-unstyled disable`}
+                      style={{ background: "beige" }}
+                    >
+                      <Icon source={LabelPrinterIcon} tone="base" />
+                      <span className="title pf-ui-legal pf-d-block pf-mt-4">
+                        Label
+                      </span>
+                    </button>
+                  </div>
                 </div>
                 <div className="nav-select">
                   {showLayers && (

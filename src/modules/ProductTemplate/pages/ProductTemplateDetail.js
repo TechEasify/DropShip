@@ -106,13 +106,13 @@ export default function ProductTemplateDetail() {
                       <div className="product-template-detail-item product-template-detail-item--product pf-mb-24">
                         <div className="pf-h5">Product</div>
                         <div className="pf-text-muted">
-                          {product.productData.description}
+                          {product.productData.description !== undefined ? product.productData.description : "Our dummy product prices can change depending on where an order is fulfilled and which currency you use to pay for it. Each product has a fixed price for each location. Our North American products have a fixed USD price, and our products in Europe have a fixed EUR price. Products fulfilled in one location but charged in a different currency have a floating price. For example, let's say you're ordering a t-shirt that we only fulfill in the US and you're paying for it in EUR. The price you pay would be our USD price converted to EUR. The end price would also depend on that month's exchange rate, which is what makes it a floating price. If you're ordering a product that we fulfill in Europe and you're paying for it in EUR, you would pay our fixed EUR price."}
                         </div>
                       </div>
                       <div className="product-template-detail-item product-template-detail-item--price pf-mb-24">
                         <div className="pf-h5">Price</div>
                         <div className="pf-text-muted">
-                          {product.productData.cost}
+                          {product.productData.cost !== undefined ? product.productData.cost : 100}
                         </div>
                       </div>
                       <div className="product-template-detail-item product-template-detail-item--technique pf-mb-24">
@@ -122,7 +122,7 @@ export default function ProductTemplateDetail() {
                       <div className="product-template-detail-item product-template-detail-item--technique pf-mb-24">
                         <div className="pf-h5">Retail Price</div>
                         <div className="pf-text-muted">
-                          {product.productData.retailPrice}
+                          {product.productData.retailPrice !== undefined ? product.productData.retailPrice : 150}
                         </div>
                       </div>
                       <div className="product-template-detail-item product-template-detail-item--print-files pf-mb-24">
@@ -134,7 +134,7 @@ export default function ProductTemplateDetail() {
                               data-original-title=""
                               title=""
                             >
-                              {product.productData.shipping}
+                              {product.productData.shipping !== undefined ? product.productData.shipping : 50}
                             </a>
                           </span>
                           <span className="product-template-placements-output__templates pf-d-none">

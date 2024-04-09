@@ -22,6 +22,8 @@ const initialRows = [
         retail: "afasf  awrfasfaf",
         stock: "true",
         tags: ['afgbvasg', 'agasgreh'],
+        collections: ['afgbvasg', 'agasgreh', 'ayfgasf'],
+        weight: 270
     },
     {
         id: 2,
@@ -37,6 +39,8 @@ const initialRows = [
         retail: "afasf  awrfasfaf",
         stock: "false",
         tags: ['afgbvasg', 'agasgreh'],
+        collections: ['afgbvasg', 'agasgreh', 'ayfgasf'],
+        weight: 260
     },
     {
         id: 3,
@@ -52,6 +56,8 @@ const initialRows = [
         retail: "afasffjbsf",
         stock: "true",
         tags: ['afgbvasg', 'agasgreh'],
+        collections: ['afgbvasg', 'agasgreh', 'ayfgasf'],
+        weight: 250
     },
     {
         id: 4,
@@ -67,6 +73,8 @@ const initialRows = [
         retail: "afasf afhv awrfasfaf",
         stock: "false",
         tags: ['afgbvasg', 'agasgreh'],
+        collections: ['afgbvasg', 'agasgreh', 'ayfgasf'],
+        weight: 230
     },
 ];
 

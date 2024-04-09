@@ -999,7 +999,6 @@ export default function Dashboard() {
               </IndexTable>
               <div
                 style={{
-                  maxWidth: '700px',
                   margin: 'auto',
                   border: '1px solid var(--p-color-border)',
                   display: 'flex',
@@ -1053,7 +1052,6 @@ export default function Dashboard() {
               </IndexTable>
               <div
                 style={{
-                  maxWidth: '700px',
                   margin: 'auto',
                   border: '1px solid var(--p-color-border)',
                   display: 'flex',
@@ -1110,7 +1108,6 @@ export default function Dashboard() {
               </IndexTable>
               <div
                 style={{
-                  maxWidth: '700px',
                   margin: 'auto',
                   border: '1px solid var(--p-color-border)',
                   display: 'flex',
@@ -1164,7 +1161,6 @@ export default function Dashboard() {
               </IndexTable>
               <div
                 style={{
-                  maxWidth: '700px',
                   margin: 'auto',
                   border: '1px solid var(--p-color-border)',
                   display: 'flex',
