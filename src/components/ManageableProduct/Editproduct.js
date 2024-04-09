@@ -71,7 +71,7 @@ function Editproduct() {
 
     const onCloseDialog = () => {
         dispatch(ResetDesign());
-        history.push('/manageable/products');
+        history.push('/admin/manageable/products');
     };
     return (
         <>

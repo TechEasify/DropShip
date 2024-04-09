@@ -164,16 +164,13 @@ export default function Design({ onReview }) {
       });
     }
   
-    // Set global properties for fabric objects
     fabric.Object.prototype.transparentCorners = false;
     fabric.Object.prototype.cornerColor = 'blue';
     fabric.Object.prototype.cornerStyle = 'circle';
   
-    // Load template image based on the selected template
     fabric.Image.fromURL(
       template === 'back' ? backTemplateImage : templateImage,
       (iomg) => {
-        // Set background image for both canvas and uploadCanvas
         canvas.setBackgroundImage(iomg, canvas.renderAll.bind(canvas), {
           scaleX: 0.8,
           scaleY: 0.8,
@@ -414,17 +411,16 @@ export default function Design({ onReview }) {
     }
   
     if (template === 'front') {
-      setTemplate('back'); // Switch template to 'back'
+      setTemplate('back');
       setCurrentStep(2);
       const pngDataUrl = canvasZone.current.toDataURL({
         format: 'png',
         quality: 1,
       });
-      console.log(pngDataUrl, "pngDataUrl");
-      history.push(`/template/create?step=2&design=back&type=${type}`);
+      console.log(pngDataUrl, 'pngDataUrl');
     } else if (template === 'back') {
       setCurrentStep(3);
-      // No need to switch template here as it's already 'back'
+      
       const svgData = canvas.toSVG({
         suppressPreamble: true,
         viewBox: {
@@ -448,9 +444,8 @@ export default function Design({ onReview }) {
       dispatch(SaveDesign(design, { preview: pngDataUrl, design: pngDataUrl }));
       history.push('/template/create?step=3');
     }
-  };
+  };  
   
-
   const onChangeDesignTemplate = (design) => {
     changeTemplate(design);
 

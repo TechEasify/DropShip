@@ -482,7 +482,7 @@ function Editdesign() {
 
     const onBack = () => {
         dispatch(ResetDesign());
-        history.push('/manageable/editproduct');
+        history.push('/admin/manageable/products');
     };
 
     return (

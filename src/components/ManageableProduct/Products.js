@@ -14,11 +14,14 @@ const initialRows = [
         name: 'Jon',
         price: 60,
         shippingprice: 20,
+        pricetodropshipping: 50,
         quantity: 2,
         feature: 'ajg',
         type: 'hair oil',
-        tags: ['afgbvasg', 'agasgreh'],
         status: 'Deactive',
+        retail: "afasf  awrfasfaf",
+        stock: "true",
+        tags: ['afgbvasg', 'agasgreh'],
     },
     {
         id: 2,
@@ -26,11 +29,14 @@ const initialRows = [
         name: 'Cersei',
         price: 40,
         shippingprice: 20,
+        pricetodropshipping: 10,
         quantity: 1,
         feature: 'aagasg',
         type: 'hair oil',
-        tags: ['afgbvasg', 'agasgreh'],
         status: 'Active',
+        retail: "afasf  awrfasfaf",
+        stock: "false",
+        tags: ['afgbvasg', 'agasgreh'],
     },
     {
         id: 3,
@@ -38,11 +44,14 @@ const initialRows = [
         name: 'Jaime',
         price: 50,
         shippingprice: 20,
+        pricetodropshipping: 20,
         quantity: 5,
         feature: 'ajgagbagsb',
         type: 'oil',
-        tags: ['afgbvasg', 'agasgreh'],
         status: 'Deactive',
+        retail: "afasffjbsf",
+        stock: "true",
+        tags: ['afgbvasg', 'agasgreh'],
     },
     {
         id: 4,
@@ -50,11 +59,14 @@ const initialRows = [
         name: 'Arya',
         price: 30,
         shippingprice: 20,
+        pricetodropshipping: 40,
         quantity: 10,
         feature: 'oijln',
         type: 'hair oil',
-        tags: ['afgbvasg', 'agasgreh'],
         status: 'Active',
+        retail: "afasf afhv awrfasfaf",
+        stock: "false",
+        tags: ['afgbvasg', 'agasgreh'],
     },
 ];
 
@@ -75,6 +87,7 @@ function Products() {
         shippingprice: '',
         pricetodropshipping: '',
         quantity: '',
+        description: '',
         feature: '',
         type: '',
         image: null,
@@ -98,6 +111,7 @@ function Products() {
         shippingprice: '',
         pricetodropshipping: '',
         quantity: '',
+        description: '',
         feature: '',
         type: '',
         image: '',
@@ -191,7 +205,17 @@ function Products() {
     const handleEditorChange = (event, editor) => {
         const data = editor.getData();
         setEditorData(data);
+        setCategoryData((prevData) => ({
+            ...prevData,
+            description: data,
+        }));
+        setErrors((prevErrors) => ({
+            ...prevErrors,
+            description: '',
+        }));
     };
+
+    // console.log(editorData, "editorData");
 
     const handleSubmit = () => {
         if (validateForm()) {
@@ -201,6 +225,7 @@ function Products() {
                         return {
                             ...row,
                             name: categoryData.name,
+                            description: categoryData.description,
                             price: categoryData.price,
                             status: categoryData.status,
                             switchtooutofstock: categoryData.switchtooutofstock,
@@ -227,6 +252,7 @@ function Products() {
                 const newCategory = {
                     id: rows.length + 1,
                     name: categoryData.name,
+                    description: categoryData.description,
                     price: categoryData.price,
                     shippingprice: categoryData.shippingprice,
                     pricetodropshipping: categoryData.pricetodropshipping,
@@ -253,6 +279,7 @@ function Products() {
             setCategoryData({
                 id: null,
                 name: '',
+                description: '',
                 price: '',
                 status: '',
                 switchtooutofstock: '',
@@ -274,9 +301,9 @@ function Products() {
             });
             setNewCategory(false);
         }
-        console.log(categoryData, 'categoryData');
         if (categoryData !== '') {
-            history.push({ pathname: '/manageable/editproduct', state: categoryData });
+            console.log(categoryData, 'categoryData');
+            history.push({ pathname: '/admin/manageable/editproduct', state: categoryData });
         }
     };
 
@@ -291,6 +318,14 @@ function Products() {
             formIsValid = false;
         } else {
             newErrors.name = '';
+        }
+
+         // Validate name field
+         if (!categoryData.description) {
+            newErrors.description = 'Description is required';
+            formIsValid = false;
+        } else {
+            newErrors.description = '';
         }
 
         // Validate price field
@@ -429,7 +464,7 @@ function Products() {
 
     const handleDeleteTag = (index) => {
         const newTags = [...categoryData.tags];
-        const newcollections = [...categoryData.collections]
+        const newcollections = [...categoryData.collections];
         newTags.splice(index, 1);
         setCategoryData((prevData) => ({
             ...prevData,
@@ -472,7 +507,25 @@ function Products() {
                                                     editor={ClassicEditor}
                                                     data={editorData}
                                                     onChange={handleEditorChange}
+                                                    name="description"
                                                 />
+                                                {errors.description && (
+                                                <div id=":r10:Error" class="Polaris-InlineError">
+                                                    <div class="Polaris-InlineError__Icon">
+                                                        <span class="Polaris-Icon">
+                                                            <svg viewBox="0 0 20 20" class="Polaris-Icon__Svg" focusable="false" aria-hidden="true">
+                                                                <path d="M10 6a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0v-3.5a.75.75 0 0 1 .75-.75Z">
+                                                                </path>
+                                                                <path d="M11 13a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z">
+                                                                </path>
+                                                                <path fill-rule="evenodd" d="M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Zm-1.5 0a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0Z">
+                                                                </path>
+                                                            </svg>
+                                                        </span>
+                                                    </div>
+                                                    {errors.description}
+                                                </div>
+                                            )}
                                             </div>
                                         </Card>
                                     </div>
