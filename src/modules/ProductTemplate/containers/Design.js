@@ -129,7 +129,8 @@ export default function Design({ onReview }) {
       console.error('Canvas is not initialized yet.');
       return;
     }
-
+  
+    // Create clipping rectangles for both front and back templates
     const clipRectangle = new fabric.Rect({
       width: 210,
       height: 75,
@@ -144,7 +145,7 @@ export default function Design({ onReview }) {
       visible: true,
       strokeWidth: 4,
     });
-
+  
     let clipRectangleBack;
     if (template === 'back') {
       clipRectangleBack = new fabric.Rect({
@@ -162,45 +163,29 @@ export default function Design({ onReview }) {
         strokeWidth: 4,
       });
     }
-
+  
+    // Set global properties for fabric objects
     fabric.Object.prototype.transparentCorners = false;
     fabric.Object.prototype.cornerColor = 'blue';
     fabric.Object.prototype.cornerStyle = 'circle';
-
+  
+    // Load template image based on the selected template
     fabric.Image.fromURL(
       template === 'back' ? backTemplateImage : templateImage,
       (iomg) => {
+        // Set background image for both canvas and uploadCanvas
         canvas.setBackgroundImage(iomg, canvas.renderAll.bind(canvas), {
-          // scaleX: canvas.width / iomg.width,
-          // scaleY: canvas.height / iomg.height,
           scaleX: 0.8,
           scaleY: 0.8,
-          // top: 400,
-          // originX: 'left',
-          // originY: 'center',
         });
         uploadCanvas.setBackgroundImage(
           iomg,
           uploadCanvas.renderAll.bind(uploadCanvas),
           {
-            // scaleX: uploadCanvas.width / iomg.width,
-            // scaleY: uploadCanvas.height / iomg.height,
             scaleX: 0.9,
             scaleY: 0.9,
-            // top: 400,
-            // originX: 'left',
-            // originY: 'center',
           }
         );
-        //         var img1 = iomg.set({
-        //           left: 0,
-        //           top: 0
-        //         });
-        //         iomg.scaleToHeight(1080);
-        //         iomg.scaleToWidth(1080);;
-        //         console.log(img1, "img1");
-        //  canvas.add(img1);
-        //  uploadCanvas.add(img1)
       },
       {
         selectable: false,
@@ -210,7 +195,8 @@ export default function Design({ onReview }) {
         crossOrigin: 'Anonymous',
       }
     );
-
+  
+    // Load drop image and apply filters and clipping paths
     fabric.Image.fromURL(
       data.drop,
       (dropImage) => {
@@ -241,9 +227,7 @@ export default function Design({ onReview }) {
               scaleX: 0.5,
               scaleY: 0.5,
             });
-
-            console.log(resizeFilter, 'resizeFilter');
-
+  
             // Apply the Resize filter to the dropImage
             dropImage.filters.push(resizeFilter);
             dropImage.applyFilters();
@@ -274,12 +258,9 @@ export default function Design({ onReview }) {
               scaleX: 0.5,
               scaleY: 0.5,
             });
-
-            console.log(resizeFilterBack, 'resizeFilterBack');
-
+  
             // Apply the Resize filter to the dropImage
             dropImage.filters.push(resizeFilterBack);
-
             // Apply filters to the dropImage
             dropImage.applyFilters();
             canvas.add(clipRectangleBack);
@@ -297,13 +278,14 @@ export default function Design({ onReview }) {
         selectable: false,
       }
     );
-
+  
     return () => {
+      // Clear canvas when component unmounts
       if (canvas) {
         canvas.clear();
       }
     };
-  }, [canvas, uploadCanvas, templateImage, template, backTemplateImage]);
+  }, [canvas, uploadCanvas, templateImage, template, backTemplateImage]);  
 
   useEffect(() => {
     if (canvas && uploadCanvas && objectsRef.current[template].length > 0) {
@@ -430,15 +412,19 @@ export default function Design({ onReview }) {
       console.error('Canvas is not initialized yet.');
       return;
     }
-
+  
     if (template === 'front') {
-      setTemplate('back');
+      setTemplate('back'); // Switch template to 'back'
       setCurrentStep(2);
+      const pngDataUrl = canvasZone.current.toDataURL({
+        format: 'png',
+        quality: 1,
+      });
+      console.log(pngDataUrl, "pngDataUrl");
       history.push(`/template/create?step=2&design=back&type=${type}`);
     } else if (template === 'back') {
       setCurrentStep(3);
-      setTemplate('back');
-
+      // No need to switch template here as it's already 'back'
       const svgData = canvas.toSVG({
         suppressPreamble: true,
         viewBox: {
@@ -449,32 +435,21 @@ export default function Design({ onReview }) {
         },
       });
       console.log(svgData, 'svgData');
-  
+    
       const ctx = canvasZone.current.getContext('2d');
-      // Canvg.fromString(ctx, svgData, { ignoreDimensions: true }).render();
-      // uploadCanvas.setBackgroundColor(
-      //   '#ffffff',
-      //   uploadCanvas.renderAll.bind(uploadCanvas)
-      // );
       const pngDataUrl = canvasZone.current.toDataURL({
         format: 'png',
         quality: 1,
       });
-  
+    
       console.log(pngDataUrl, 'pngDataUrl');
       console.log(objectsRef.current, 'objects');
-
-      dispatch(
-          SaveDesign(design, { preview: pngDataUrl, design: pngDataUrl })
-        );
+  
+      dispatch(SaveDesign(design, { preview: pngDataUrl, design: pngDataUrl }));
       history.push('/template/create?step=3');
     }
-
-    if (template === 'front' && objectsRef.current[template].length > 0) {
-      setTemplate('back');
-      history.push(`/template/create?step=2&design=back&type=${type}`);
-    }
   };
+  
 
   const onChangeDesignTemplate = (design) => {
     changeTemplate(design);
