@@ -222,14 +222,14 @@ export default function Design({ onReview }) {
                 originY: 'center',
               }),
             });
-            var resizeFilter = new fabric.Image.filters.Resize({
-              scaleX: 0.5,
-              scaleY: 0.5,
-            });
+            // var resizeFilter = new fabric.Image.filters.Resize({
+            //   scaleX: 0.5,
+            //   scaleY: 0.5,
+            // });
 
-            // Apply the Resize filter to the dropImage
-            dropImage.filters.push(resizeFilter);
-            dropImage.applyFilters();
+            // // Apply the Resize filter to the dropImage
+            // dropImage.filters.push(resizeFilter);
+            // dropImage.applyFilters();
             canvas.add(clipRectangle);
             break;
           case 'back':
@@ -253,15 +253,15 @@ export default function Design({ onReview }) {
                 originY: 'center',
               }),
             });
-            var resizeFilterBack = new fabric.Image.filters.Resize({
-              scaleX: 0.5,
-              scaleY: 0.5,
-            });
+            // var resizeFilterBack = new fabric.Image.filters.Resize({
+            //   scaleX: 0.5,
+            //   scaleY: 0.5,
+            // });
 
-            // Apply the Resize filter to the dropImage
-            dropImage.filters.push(resizeFilterBack);
-            // Apply filters to the dropImage
-            dropImage.applyFilters();
+            // // Apply the Resize filter to the dropImage
+            // dropImage.filters.push(resizeFilterBack);
+            // // Apply filters to the dropImage
+            // dropImage.applyFilters();
             canvas.add(clipRectangleBack);
             break;
           default:
@@ -343,11 +343,10 @@ export default function Design({ onReview }) {
         fabric.Image.fromURL(
           reader.result,
           (iomg) => {
-            // Calculate scale factors for width and height
+            
             const scaleX = clipPath.width / iomg.width;
             const scaleY = clipPath.height / iomg.height;
 
-            // Set the image's position and scale to fit within the clipping rectangle
             iomg.set({
               clipTo(ctx) {
                 return _.bind(clipByName, iomg)(ctx, clipPath);

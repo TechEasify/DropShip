@@ -20,10 +20,13 @@ const initialRows = [
         type: 'hair oil',
         status: 'Deactive',
         retail: "afasf  awrfasfaf",
-        stock: "true",
+        stock: 100,
         tags: ['afgbvasg', 'agasgreh'],
         collections: ['afgbvasg', 'agasgreh', 'ayfgasf'],
-        weight: 270
+        weight: 270,
+        category: 'free',
+        sku: 'jgc',
+        switchtooutofstock: false
     },
     {
         id: 2,
@@ -37,10 +40,13 @@ const initialRows = [
         type: 'hair oil',
         status: 'Active',
         retail: "afasf  awrfasfaf",
-        stock: "false",
+        stock: 500,
         tags: ['afgbvasg', 'agasgreh'],
         collections: ['afgbvasg', 'agasgreh', 'ayfgasf'],
-        weight: 260
+        weight: 260,
+        category: 'primium ',
+        sku: 'mosziag',
+        switchtooutofstock: true
     },
     {
         id: 3,
@@ -54,10 +60,13 @@ const initialRows = [
         type: 'oil',
         status: 'Deactive',
         retail: "afasffjbsf",
-        stock: "true",
+        stock: 5,
         tags: ['afgbvasg', 'agasgreh'],
         collections: ['afgbvasg', 'agasgreh', 'ayfgasf'],
-        weight: 250
+        weight: 250,
+        category: 'free',
+        sku: 'Lannister',
+        switchtooutofstock: false
     },
     {
         id: 4,
@@ -71,10 +80,13 @@ const initialRows = [
         type: 'hair oil',
         status: 'Active',
         retail: "afasf afhv awrfasfaf",
-        stock: "false",
+        stock: 10,
         tags: ['afgbvasg', 'agasgreh'],
         collections: ['afgbvasg', 'agasgreh', 'ayfgasf'],
-        weight: 230
+        weight: 230,
+        category: 'growth ',
+        sku: 'oil',
+        switchtooutofstock: true
     },
 ];
 

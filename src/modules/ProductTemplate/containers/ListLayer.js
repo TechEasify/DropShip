@@ -12,7 +12,7 @@ export default function ListLayer({
 }) {
 
   const cloneObjects = _.cloneDeep(objects);
-  console.log(cloneObjects, "cloneObjects", typeof cloneObjects);
+  console.log(objectsRef.current, "objectsRef.current");
 
   const moveCard = useCallback(
     (dragID, hoverID) => {
@@ -39,7 +39,7 @@ export default function ListLayer({
       canvas.remove(object);
     }
   
-    // Update objectsRef.current to reflect the deletion
+    // Update objectsRef.current
     objectsRef.current = {
       ...objectsRef.current,
       [template]: objectsRef.current[template].filter(obj => obj.name !== name)
