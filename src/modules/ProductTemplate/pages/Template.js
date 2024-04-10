@@ -58,7 +58,7 @@ export default function Template() {
     setProduct((prevProducts) =>
       prevProducts.map((product) =>
         product.id === productId ? { ...product, description: data } : product
-      )
+      ) 
     );
   };
 
@@ -74,6 +74,15 @@ export default function Template() {
       },
     });
   };
+
+  const handleViewDigital = () => {
+    history.push({
+      pathname : '/viewdigitalservice',
+      state: {
+        product: product.find((product) => product.id === productId)
+      }
+    })
+  }
 
   console.log(product, 'products');
 
@@ -288,7 +297,7 @@ export default function Template() {
                     <div className="delete-select">
                       <Button
                         className="delete-product"
-                        onClick={() => history.push('/viewdigitalservice')}
+                        onClick={() => handleViewDigital(product.id)}
                       >
                         View Digital Service
                       </Button>

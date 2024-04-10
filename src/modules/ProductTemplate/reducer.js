@@ -72,7 +72,7 @@ const backendState = {
 };
 
 const initialState = {
-  productData: {},
+  productData: [],
 };
 
 export const SelectProduct = (state = initialState, action) => {
@@ -85,7 +85,7 @@ export const SelectProduct = (state = initialState, action) => {
     case RESET_DESIGN:
       return {
         ...state,
-        productData: {},
+        productData: [],
       };
     default:
       return state;

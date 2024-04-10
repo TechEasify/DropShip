@@ -1,16 +1,13 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory} from 'react-router-dom';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import { Button } from '@shopify/polaris';
-import { useSelector } from 'react-redux';
 
 export default function Catalog(props) {
   const history = useHistory();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const product = useSelector((state) => state.product);
-  console.log(product, "product");
 
 
   const images = [

@@ -7,7 +7,8 @@ import data from '../assets';
 export default function ProductTemplateDetail() {
   const history = useHistory();
   const product = useSelector((state) => state.SelectProduct);
-
+  console.log(product, "product templete Detail");
+  
   const settings = {
     dots: false,
     infinite: true,
