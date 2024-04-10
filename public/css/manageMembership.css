@@ -158,9 +158,16 @@ button.MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-textPrimary.Mu
 
 /* Manage Digital Services */
 
-.digital-services {
+/* .digital-services {
     margin-bottom: 10px;
     width: 32%;
+    display: block;
+} */
+
+.digital-services {
+    margin-bottom: 10px;
+    margin-top: 50px;
+    /* width: 32%; */
     display: block;
 }
 
