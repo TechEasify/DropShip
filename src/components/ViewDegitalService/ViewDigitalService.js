@@ -6,7 +6,7 @@ function ViewDigitalService() {
         <>
             <div className='view-services'>
                 <div className='view-text'>
-                    <h2 className='category-heading'>View Digital Service</h2>
+                    <h2 className='pf-h2'>View Digital Service</h2>
                     <p style={{ fontSize: 14 }}>Showcase your brand in a way your customers will remember and appreciate</p>
                 </div>
                 <hr />

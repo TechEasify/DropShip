@@ -26,7 +26,8 @@ import Design from '../containers/Design';
 const useStyle = makeStyles({
   root: {
     '& .MuiPaper-elevation4': {
-      boxShadow: '2px 3px 5px 1px #e5e5e5',
+      // boxShadow: '2px 3px 5px 1px #e5e5e5',
+      borderRight: "1px solid rgb(255, 255, 255, .1)"
     },
   },
 
@@ -90,7 +91,7 @@ export default function CreateProductTemplate() {
         TransitionComponent={Transition}
         onClose={onCloseDialog}
       >
-        <AppBar className={classes.appBar}>
+        {/* <AppBar className={classes.appBar}>
           <Toolbar className="pf-d-flex pf-flex-wrap pf-justify-content-between pf-align-items-center">
             <div>
               <h4 className="pf-h3 pf-m-0 product-create">Create a product template</h4>
@@ -108,7 +109,7 @@ export default function CreateProductTemplate() {
               <span className="pf-i pf-i-32 pf-i-close pf-modal__close-icon" onClick={onCloseDialog} />
             </div>
           </Toolbar>
-        </AppBar>
+        </AppBar> */}
         <main className="modal-body mt-4" style={{ paddingBottom: 0 }}>
           {StepComponent}
         </main>

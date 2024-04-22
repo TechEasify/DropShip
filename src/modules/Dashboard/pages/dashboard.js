@@ -881,7 +881,7 @@ export default function Dashboard() {
                 <div className="name-value">
                   <Icon source={OrderDraftFilledIcon} tone="base" />
                   <div className="dash-cardtext">
-                    <h4>Pendding Orders</h4>
+                    <h4>Pending Orders</h4>
                   </div>
                   <p className="oders-value">1</p>
                 </div>
@@ -1026,64 +1026,7 @@ export default function Dashboard() {
               </div>
             </LegacyCard>
           </Card>
-        </div>
-        <div className="recent-order">
-          <Card roundedAbove="md" background="bg-surface-secondary">
-            <div className="tranding-product">
-              <h4 className="tranding-text">Recent Orders</h4>
-            </div>
-            <LegacyCard>
-              <IndexTable
-                resourceName={resourceName}
-                itemCount={orders.length}
-                selectedItemsCount={
-                  allResourcesSelected ? 'All' : selectedResources.length
-                }
-                onSelectionChange={handleSelectionChange}
-                headings={[
-                  { title: 'Order' },
-                  { title: 'Date' },
-                  { title: 'Customer' },
-                  { title: 'Total', alignment: 'end' },
-                  { title: 'Payment status' },
-                ]}
-              >
-                {rowMarkup}
-              </IndexTable>
-              <div
-                style={{
-                  margin: 'auto',
-                  border: '1px solid var(--p-color-border)',
-                  display: 'flex',
-                  justifyContent: 'space-evenly',
-                }}
-              >
-                <div style={{ display: 'flex', alignItems: 'center' }}>
-                  <div className="label-perpage">
-                    <p>Row per page:- </p>
-                  </div>
-                  <Select
-                    options={currentOptions}
-                    onChange={handleSelectChange}
-                    value={selected}
-                  />
-                </div>
-                <Pagination
-                  onPrevious={handlePreviousPage}
-                  onNext={handleNextPage}
-                  hasNext={currentPage < Math.ceil(orders.length / pageLimit)}
-                  hasPrevious={currentPage > 1}
-                  type="table"
-                  label={`${currentPage} of ${orders.length} orders`}
-                />
-              </div>
-            </LegacyCard>
-          </Card>
-        </div>
-      </div>
-
-      <div className="trending-product">
-        <div className="top-product">
+            <br/>
           <Card roundedAbove="md" background="bg-surface-secondary">
             <div className="tranding-product">
               <h4 className="tranding-text">Digital Service</h4>
@@ -1141,6 +1084,58 @@ export default function Dashboard() {
         <div className="recent-order">
           <Card roundedAbove="md" background="bg-surface-secondary">
             <div className="tranding-product">
+              <h4 className="tranding-text">Recent Orders</h4>
+            </div>
+            <LegacyCard>
+              <IndexTable
+                resourceName={resourceName}
+                itemCount={orders.length}
+                selectedItemsCount={
+                  allResourcesSelected ? 'All' : selectedResources.length
+                }
+                onSelectionChange={handleSelectionChange}
+                headings={[
+                  { title: 'Order' },
+                  { title: 'Date' },
+                  { title: 'Customer' },
+                  { title: 'Total', alignment: 'end' },
+                  { title: 'Payment status' },
+                ]}
+              >
+                {rowMarkup}
+              </IndexTable>
+              <div
+                style={{
+                  margin: 'auto',
+                  border: '1px solid var(--p-color-border)',
+                  display: 'flex',
+                  justifyContent: 'space-evenly',
+                }}
+              >
+                <div style={{ display: 'flex', alignItems: 'center' }}>
+                  <div className="label-perpage">
+                    <p>Row per page:- </p>
+                  </div>
+                  <Select
+                    options={currentOptions}
+                    onChange={handleSelectChange}
+                    value={selected}
+                  />
+                </div>
+                <Pagination
+                  onPrevious={handlePreviousPage}
+                  onNext={handleNextPage}
+                  hasNext={currentPage < Math.ceil(orders.length / pageLimit)}
+                  hasPrevious={currentPage > 1}
+                  type="table"
+                  label={`${currentPage} of ${orders.length} orders`}
+                />
+              </div>
+            </LegacyCard>
+          </Card>
+          <br/>
+          <Card roundedAbove="md" background="bg-surface-secondary">
+            <div className="tranding-product">
               <h4 className="tranding-text">Transaction</h4>
             </div>
             <LegacyCard>
@@ -1193,6 +1188,15 @@ export default function Dashboard() {
           </Card>
         </div>
       </div>
+
+      {/* <div className="trending-product">
+        <div className="top-product">
+          
+        </div>
+        <div className="recent-order">
+          
+        </div>
+      </div> */}
     </div>
   );
 }

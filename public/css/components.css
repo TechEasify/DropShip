@@ -1,3 +1,8 @@
+body {
+  padding: 0 !important;
+  overflow: unset !important;
+}
+
 .accordion__header {
   cursor: pointer;
 }
@@ -8735,8 +8740,8 @@ table.table--reset > thead > tr > th {
   pointer-events: none;
 }
 .pf-btn-lg {
-  height: 56px;
-  line-height: 54px;
+  /* height: 56px; */
+  /* line-height: 54px; */
   min-width: 112px;
   font-size: 18px;
   padding-left: 40px;
@@ -9031,9 +9036,9 @@ button.pf-bg-white:focus,
 button.pf-bg-white:hover {
   background-color: #e6e6e6 !important;
 }
-.pf-bg-lighter {
+/* .pf-bg-lighter {
   background-color: #f8f8f8 !important;
-}
+} */
 a.pf-bg-lighter:focus,
 a.pf-bg-lighter:hover,
 button.pf-bg-lighter:focus,
@@ -10319,11 +10324,19 @@ span.pf-i.pf-i-32.pf-i-close.pf-modal__close-icon {
     margin-left: -12px;
   }
 }
-@media (min-width: 1200px) {
+/* @media (min-width: 1200px) {
   .form-horizontal .form-group,
   .row {
     margin-right: -16px;
     margin-left: -16px;
+  }
+} */
+
+@media (min-width: 1200px) {
+  .form-horizontal .form-group,
+  .row {
+    margin-right: 10px;
+    margin-left: 10px;
   }
 }
 @media (min-width: 1600px) {
@@ -31845,7 +31858,7 @@ ul.pf-list--large {
 }
 .pf-steps__item__title {
   margin: auto 12px;
-  color: #555;
+  color: #fff;
   font-size: 18px;
   line-height: 1.2;
 }
@@ -31863,7 +31876,7 @@ ul.pf-list--large {
   background: #fff;
 }
 .pf-steps__item--done .pf-steps__item__title {
-  color: #222;
+  color: #fff;
   font-weight: 700;
 }
 .pf-steps__item--done .pf-steps__item__title:focus,
@@ -32647,12 +32660,12 @@ img.payment {
 }
 
 .MuiToolbar-root.MuiToolbar-gutters.MuiToolbar-regular.pf-d-flex.pf-flex-wrap.pf-justify-content-between.pf-align-items-center.css-hyum1k-MuiToolbar-root {
-  background: rgb(241, 241, 241, 1) !important;
+  background: #232323 !important;
 }
 
-h4.pf-h3.pf-m-0.product-create {
+/* h4.pf-h3.pf-m-0.product-create {
   color: #232323;
-}
+} */
 
 /* span.pf-steps__item__title {
   color: white !important;
@@ -32922,7 +32935,26 @@ aside.sidebar-navigation.pf-d-flex.pf-align-items-center.pf-scrollbar-hide {
 }
 
 button.item.pf-text-center.pf-py-8.pf-py-md-12.pf-px-2.pf-my-8.pf-my-md-4.pf-cursor-pointer.pf-d-inline-block.pf-d-md-block.pf-btn-unstyled {
-  width: 64px;
+  width: 150px;
+  color: #fff;
+}
+
+.label-icon {
+  display: flex;
+  font-size: 20px;
+  align-items: center;
+  justify-content: center;
+}
+
+button.item.pf-text-center.pf-py-8.pf-py-md-12.pf-px-2.pf-my-8.pf-my-md-4.pf-cursor-pointer.pf-d-inline-block.pf-d-md-block.pf-btn-unstyled:hover {
+  background: rgb(45, 45, 45, 1);
+  color: #fff !important;
+}
+
+.label-icon:active {
+    display: flex !important;
+    font-size: 20px !important;
+    align-items: center !important;
 }
 
 .divider[data-v-0a2c8d53] {
@@ -32935,8 +32967,12 @@ button.item.pf-text-center.pf-py-8.pf-py-md-12.pf-px-2.pf-my-8.pf-my-md-4.pf-cur
 
 .item.active {
   background-color: #fff;
-  color: #222;
+  color: #222 !important;
   width: 64px;
+}
+
+.design-imges {
+  margin-top: 70px;
 }
 
 .pf-scrollbar-hide {
@@ -33002,7 +33038,9 @@ aside.sidebar-navigation.pf-d-flex.pf-align-items-center.pf-scrollbar-hide {
 }
 
 .btn-rectangle {
-  width: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 main.makeStyles-content-4 {
@@ -33012,39 +33050,56 @@ main.makeStyles-content-4 {
 .sidebar-product {
   display: flex;
   width: 33%;
-  margin-left: 10px;
-  background: rgb(241, 241, 241, 1) !important;
+  /* margin-left: 10px; */
+  background: #000 !important;
   height: 100vh;
-  border-radius: 10px;
-  margin-top: 100px;
+  /* border-radius: 10px; */
+  /* margin-top: 100px; */
 }
 
-/* .canvas-container {
-    width: 1080px !important;
-    height: 1080px !important;
-} */
+.canvas-container {
+    width: 600px !important;
+    height: 600px !important;
+    margin: 0 auto !important;
+}
 
-  /* canvas#c {
-      width: 800px !important;
-      height: 800px !important;
+  canvas#c {
+      width: 600px !important;
+      height: 600px !important;
       margin-top: 50px !important;
-  } */
+  }
+
+  canvas#uploadCanvas {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 600px !important;
+    height: 600px !important;
+}
+
+canvas#backCanvas {
+  width: 600px !important;
+  height: 600px !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+}
 
 .pf-ui-body.product-templates-review-step {
   margin-top: 80px;
 }
 
-.MuiDialogActions-root.MuiDialogActions-spacing.css-knqc4i-MuiDialogActions-root {
+/* .MuiDialogActions-root.MuiDialogActions-spacing.css-knqc4i-MuiDialogActions-root {
     position: sticky;
     bottom: 0px;
     background-color: white;
     width: 103% !important;
     margin-left: -1% !important;
-}
-
-/* canvas.upper-canvas {
-    width: 800px !important;
-    height: 800px !important;
+} */
+/* 
+canvas.upper-canvas {
+    width: 900px !important;
+    height: 900px !important;
     margin-top: 50px !important;
 } */
 
@@ -33063,16 +33118,19 @@ main.makeStyles-content-4 {
 }
 
 .container-fluid.dashboard__container.clearfix {
-  margin-top: 20px;
+  margin-top: 70px;
 }
 
 .nav-select.bg-color {
-    background: rgb(191 189 189);
-    border-radius: 5px;
+  background: rgb(26, 26, 26, 1);
+  /* border-radius: 5px; */
+  border-right: 1px solid rgb(255, 255, 255, .1);
+  /* box-shadow: -1px -3px 5px 1px #e5e5e5; */
 }
 
 main.modal-body.mt-4 {
-    background: rgb(241, 241, 241, 1);
+  background: #000;
+  padding: 0px;
 }
 
 .btn-design {
@@ -33085,12 +33143,23 @@ main.modal-body.mt-4 {
 }
 
 .designer-sidebar {
-    display: flex;
+  display: flex;
+  background: #000;
+  justify-content: center;
+  height: 80vh;
 }
 
-.MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded.MuiPaper-elevation8.MuiPopover-paper.css-3bmhjh-MuiPaper-root-MuiPopover-paper {
+main.MuiBox-root.css-if7lyl {
+    overflow: hidden;
+}
+
+/* .MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded.MuiPaper-elevation8.MuiPopover-paper.css-3bmhjh-MuiPaper-root-MuiPopover-paper {
   top: 256px !important;
   left: 140px !important;
+} */
+
+header.MuiPaper-root.MuiPaper-elevation.MuiPaper-elevation4.MuiAppBar-root.MuiAppBar-colorPrimary.MuiAppBar-positionFixed.makeStyles-appBar-4.mui-fixed.css-11b3ww9-MuiPaper-root-MuiAppBar-root {
+    background-color: #232323 !important;
 }
 
 .jss4 {

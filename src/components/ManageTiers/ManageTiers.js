@@ -219,7 +219,7 @@ function ManageTiers() {
                         <div className='tiers-table'>
                             <div className="tiers-head">
                                 <div className="tiers-text">
-                                    <h2 className='category-heading'>Manage Tiers</h2>
+                                    <h2 className='pf-h2 pf-my-40'>Manage Tiers</h2>
                                 </div>
                                 <Button className="category-btn" onClick={() => setAddTiers(true)}>
                                     Add Tiers

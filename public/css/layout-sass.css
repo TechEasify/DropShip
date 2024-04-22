@@ -2081,6 +2081,11 @@ i.header__link__icon.pf-i.pf-i-account.pf-i-24.pf-mr-auto.pf-mr-sm-4 {
   vertical-align: middle;
   line-height: 1;
   margin-bottom: -1px;
+  color: aliceblue;
+}
+
+span.header__link__text.dashboard__account-menu-text {
+  color: #000;
 }
 .header__link:hover {
   text-decoration: none;
@@ -4708,7 +4713,7 @@ body.modal-open.embedded.is-touch {
   display: none;
 }
 hr {
-  border-color: #ddd;
+  border-color: #585353;
 }
 .alert {
   word-wrap: break-word;
@@ -6535,6 +6540,10 @@ hr {
 
 li.MuiButtonBase-root.MuiMenuItem-root.MuiMenuItem-gutters.MuiMenuItem-root.MuiMenuItem-gutters.css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root {
   font-size: 13px !important;
+}
+
+.nav>li>a:focus, .nav>li>a:hover {
+  background-color: unset !important;
 }
 
 #userbar .nav > li a.active,

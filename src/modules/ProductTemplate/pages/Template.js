@@ -90,7 +90,7 @@ export default function Template() {
     <>
       <div className="select-product">
         <div className="product-head">
-          <h2 className="category-heading">Select Product</h2>
+          <h2 className="pf-h2 pf-my-40">Select Product</h2>
         </div>
         {/* <Card>
             <div className="select-heading">

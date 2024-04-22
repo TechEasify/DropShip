@@ -1,6 +1,7 @@
 .view-services {
-    margin-bottom: 10px;
-    margin-top: 50px;
+    /* margin-bottom: 10px; */
+    margin-top: 70px;
+    padding: 10px;
 }
 
 .view-content {
@@ -35,7 +36,8 @@ img.view-logo {
 
 .setting-service {
     margin-bottom: 10px;
-    margin-top: 50px;
+    margin-top: 70px;
+    padding: 10px;
 }
 
 .setting-text {

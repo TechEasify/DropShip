@@ -525,7 +525,7 @@ function AdminDegitalService() {
   return (
     <div className='Admin-degital'>
       <div className='admin-heading'>
-        <h2 className='category-heading'>Admin Digital Service</h2>
+        <h2 className='pf-h2 pf-my-40'>Admin Digital Service</h2>
       </div>
       {
         openView ?

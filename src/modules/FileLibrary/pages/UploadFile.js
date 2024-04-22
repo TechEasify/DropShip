@@ -557,9 +557,9 @@ export default function UploadFile() {
               value={searchQuery}
               onChange={handleSearchChange}
             />
-            <div className="filesearch-icon">
+            {/* <div className="filesearch-icon">
               <Icon source={SearchIcon} tone="base" />
-            </div>
+            </div> */}
           </div>
         </div>
 

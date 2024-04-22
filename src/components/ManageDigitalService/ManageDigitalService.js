@@ -168,7 +168,7 @@ function ManageDigitalService() {
                             <form onSubmit={handleSubmit}>
                                 <div className='manage-form'>
                                     <div className='digital-label'>
-                                        <h2 className='category-heading'>Manage Digital Service Form</h2>
+                                        <h2 className='pf-h2 pf-my-40'>Manage Digital Service Form</h2>
                                     </div>
                                     <div className='button-digital'>
                                         <Button className="digital-btn" onClick={handleClose}>
@@ -259,7 +259,7 @@ function ManageDigitalService() {
                         <div className='digital-table'>
                             <div className='digital-label'>
                                 <div className='digital-label'>
-                                    <h2 className='category-heading'>Manage Digital Service</h2>
+                                    <h2 className='pf-h2 pf-my-40'>Manage Digital Service</h2>
                                 </div>
                                 <div className='button-digital'>
                                     <Button className="digital-btn" onClick={() => setDigitalForm(true)}>Add Designing</Button>

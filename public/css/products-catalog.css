@@ -5,7 +5,7 @@
 }
 
 .catalog-heading {
-  margin-top: 50px;
+  margin-top: 70px;
 }
 
 .css-1mw79co-MuiPaper-root-MuiCard-root {
@@ -59,7 +59,8 @@ img.card-img-top.card-image {
   display: flex;
   overflow: hidden;
   justify-content: center;
-  margin-top: 70px;
+  background-color: #d3cfcf;
+  padding: 10px;
 }
 
 label {
@@ -71,11 +72,19 @@ label {
 }
 
 label.active {
-  border-color: #ca9832;
+  border-color: #766645;
 }
 
 .image-wrapper {
   margin-right: 20px;
+}
+
+img.dropship-logo {
+  width: 60px;
+  height: 60px;
+  margin-right: 20px;
+  border-radius: 0;
+  padding: 5px;
 }
 
 img {
@@ -110,7 +119,7 @@ img.img-basic {
 
 button.prev {
   position: absolute;
-  top: 60%;
+  top: 40%;
   left: 10%;
   background: transparent;
   border: transparent;
@@ -124,7 +133,7 @@ button.prev {
 
 button.next {
   position: absolute;
-  top: 60%;
+  top: 40%;
   right: 10%;
   background: transparent;
   border: transparent;
@@ -304,8 +313,17 @@ button.AddtoProducts.btn.btn-primary {
 }
 
 img.MuiCardMedia-root.MuiCardMedia-media.MuiCardMedia-img.cardimg-mui.css-o69gx8-MuiCardMedia-root {
-  height: 200px;
+  height: 280px;
+  width: 100%;
   border-radius: inherit;
+}
+
+.card-direction {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
 }
 
 /* .cardmedia {
@@ -1643,7 +1661,8 @@ img.MuiCardMedia-root.MuiCardMedia-media.MuiCardMedia-img.cardimg-mui.css-rhsghg
 /* Venders css */
 
 .vender-main {
-  margin-top: 50px;
+  margin-top: 70px;
+  padding: 10px;
 }
 
 .vender-head {
@@ -1723,11 +1742,13 @@ h2.Polaris-Text--root.Polaris-Text--headingSm {
 }
 
 .Wallet-main {
-  margin-top: 50px;
+  margin-top: 70px;
+  padding: 10px;
 }
 
 .inner-wallet {
-  margin-top: 50px;
+  margin-top: 70px;
+  padding: 10px;
 }
 
 .wallet-card {
@@ -1954,7 +1975,8 @@ span.MuiTabs-indicator.css-1aquho2-MuiTabs-indicator {
 /* Category css */
 
 .category-main {
-  margin-top: 50px;
+  margin-top: 70px;
+  padding: 10px;
 }
 
 .new-category {
@@ -2116,7 +2138,8 @@ span.error {
 .product-table {
   /* width: 76%; */
   margin-bottom: 10px;
-  margin-top: 50px;
+  margin-top: 70px;
+  padding: 10px;
 }
 
 .product-main {
@@ -2124,7 +2147,7 @@ span.error {
   width: 100%;
   /* margin-bottom: 10px; */
   max-width: 850px;
-  margin: 40px auto;
+  margin: 70px auto;
 }
 
 .category-input {
@@ -2218,7 +2241,7 @@ button.Polaris-Button.Polaris-Button--pressable.Polaris-Button--variantSecondary
 }
 
 .makeStyles-content-4 {
-  padding: 24px;
+  /* padding: 24px; */
   flex-grow: 1;
   background-color: rgba(241, 241, 241, 1) !important;
 }
@@ -2232,7 +2255,7 @@ ul#sidebar-ul-9 {
 }
 
 ul#sidebar-ul {
-  background: rgba(241, 241, 241, 1) !important;
+  background: rgba(235, 235, 235) !important;
   scrollbar-width: thin;
 }
 
@@ -2240,8 +2263,9 @@ ul#sidebar-ul {
 /* Select-Product */
 
 .select-product {
-  margin-top: 50px;
+  margin-top: 70px;
   margin-bottom: 10px;
+  padding: 10px;
 }
 
 .select-contain {
@@ -2293,8 +2317,7 @@ img.product-img-select {
 }
 
 .main-card {
-  margin-bottom: 10px;
-  margin-top: 10px;
+  margin: 20px;
 }
 
 /* .Polaris-Button.Polaris-Button svg {
@@ -2303,4 +2326,37 @@ img.product-img-select {
 
 .Polaris-Icon--toneBase svg {
   color: #fff !important;
+}
+
+
+
+.flickity-viewport {
+  height: 150px !important;
+}
+
+.carousel {
+  background: #EEE;
+}
+
+.carousel-cell {
+  width: 33%;
+  height: 100px;
+  margin-right: 10px;
+  background: rgb(122, 120, 120);
+  border-radius: 5px;
+  counter-increment: gallery-cell;
+}
+
+.carousel-cell.size-180 { width: 180px; }
+.carousel-cell.size-large { width: 75%; }
+
+/* Optionally, you can adjust styles for the img element */
+.carousel-cell img {
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+}
+
+.card-catalog {
+  margin-top: 30px;
 }

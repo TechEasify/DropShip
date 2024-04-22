@@ -9,6 +9,8 @@ import {
   ProductTemplateDetail,
 } from '../modules/ProductTemplate/pages';
 
+import dropshipping from '../dropshipping.png'
+
 import { Register, Login, ForgotPwd } from '../modules/Authentication/pages';
 
 import {
@@ -85,7 +87,7 @@ const nav = [
   },
   {
     text: 'Manage Vendor',
-    icon: 'pf-i pf-i-24 pf-mb-2 pf-mr-8 pf-i-package-variant-closed pf-text-gray-400',
+    icon: 'pf-i pf-i-24 pf-mb-2 pf-i-package-variant-closed pf-text-gray-400',
     isTree: false,
     treeItem: [],
     link: '/admin/vendor',
@@ -115,28 +117,28 @@ const nav = [
   },
   {
     text: 'Manage Memberships',
-    icon: 'pf-i pf-i-24 pf-mb-2 pf-mr-8 pf-i-cards pf-text-red-700',
+    icon: 'pf-i pf-i-24 pf-mb-2 pf-i-cards pf-text-red-700',
     isTree: false,
     treeItem: [],
     link: '/admin/managememberships',
   },
   {
     text: 'Manage Tiers',
-    icon: 'pf-i pf-i-24 pf-mb-2 pf-mr-8 pf-i-cards pf-text-red-700',
+    icon: 'pf-i pf-i-24 pf-mb-2 pf-i-cards pf-text-red-700',
     isTree: false,
     treeItem: [],
     link: '/admin/managetiers',
   },
   {
     text: 'Manage Digital Service',
-    icon: 'pf-i pf-i-24 pf-mb-2 pf-mr-8 pf-i-cards pf-text-red-700',
+    icon: 'pf-i pf-i-24 pf-mb-2 pf-i-cards pf-text-red-700',
     isTree: false,
     treeItem: [],
     link: '/admin/managedigitalservice',
   },
   {
     text: 'Admin Digital Service',
-    icon: 'pf-i pf-i-24 pf-mb-2 pf-mr-8 pf-i-cards pf-text-red-700',
+    icon: 'pf-i pf-i-24 pf-mb-2 pf-i-cards pf-text-red-700',
     isTree: false,
     treeItem: [],
     link: '/admin/admindigitalservice',
@@ -235,7 +237,9 @@ const AdminLayout = ({ children, window }) => {
   const classes = useStyle();
   const location = useLocation();
   const prefix = location.pathname.split('/admin')[1];
-  const path = location.pathname.split('/admin')[2];
+  console.log(prefix, "prefix");
+  const path = location.pathname.split('/')[2];
+  // console.log(path, "path");
   const [expandBill, setExpandBill] = useState(false);
   const [expandSetting, setExpandSetting] = useState(false);
   const [expandproduct, setExpandProduct] = useState(false);
@@ -287,7 +291,7 @@ const AdminLayout = ({ children, window }) => {
                     <Link
                       className={clsx(
                         'pf-link-block pf-px-24 pf-py-8',
-                        item.link === `/${prefix}` ? 'active' : ''
+                        item.link === `/admin${prefix}` ? 'active' : ''
                       )}
                       style={{ cursor: 'pointer' }}
                       to={item.link}
@@ -304,7 +308,7 @@ const AdminLayout = ({ children, window }) => {
                     <a
                       className={clsx(
                         'pf-link-block pf-px-24 pf-py-8',
-                        item.link === `/${prefix}` ? 'active' : ''
+                        item.link === `/admin${prefix}` ? 'active' : ''
                       )}
                       style={{ cursor: 'pointer' }}
                       onClick={() => setExpandBill(!expandBill)}
@@ -348,7 +352,7 @@ const AdminLayout = ({ children, window }) => {
                       <li key={treeItem.text}>
                         <Link
                           className={`pf-link-block pf-px-24 pf-py-8 ${
-                            treeItem.link === `/${prefix}/${path}`
+                            treeItem.link === `/admin${prefix}`
                               ? 'active'
                               : ''
                           }`}
@@ -368,7 +372,7 @@ const AdminLayout = ({ children, window }) => {
                     <a
                       className={clsx(
                         'pf-link-block pf-px-24 pf-py-8',
-                        item.link === `/${prefix}` ? 'active' : ''
+                        item.link === `/admin${prefix}` ? 'active' : ''
                       )}
                       style={{ cursor: 'pointer' }}
                       onClick={() => setExpandProduct(!expandproduct)}
@@ -409,10 +413,11 @@ const AdminLayout = ({ children, window }) => {
                     id="sidebar-ul-9"
                   >
                     {item.treeItem.map((treeItem) => (
+                      console.log(`/admin${prefix}`),
                       <li key={treeItem.text}>
                         <Link
                           className={`pf-link-block pf-px-24 pf-py-8 ${
-                            treeItem.link === `/${prefix}/${path}`
+                            treeItem.link === `/admin${prefix}`
                               ? 'active'
                               : ''
                           }`}
@@ -432,7 +437,7 @@ const AdminLayout = ({ children, window }) => {
                     <a
                       className={clsx(
                         'pf-link-block pf-px-24 pf-py-8',
-                        item.link === `/${prefix}` ? 'active' : ''
+                        item.link === `/admin${prefix}` ? 'active' : ''
                       )}
                       style={{ cursor: 'pointer' }}
                       onClick={() => setExpandSetting(!expandSetting)}
@@ -476,7 +481,7 @@ const AdminLayout = ({ children, window }) => {
                       <li key={treeItem.text}>
                         <Link
                           className={`pf-link-block pf-px-24 pf-py-8 ${
-                            treeItem.link === `/${prefix}/${path}`
+                            treeItem.link === `/admin${prefix}`
                               ? 'active'
                               : ''
                           }`}
@@ -506,7 +511,82 @@ const AdminLayout = ({ children, window }) => {
 
   return (
     <>
-      <div className={classes.root}>
+     <Box sx={{ display: 'flex' }}>
+        <CssBaseline />
+        <AppBar
+          position="fixed"
+          sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        >
+          <Toolbar>
+            <div className="dashboard__menu">
+              <div className="row">
+                <div className="headerbar">
+                <div className='logo-header'>
+                    <img className='dropship-logo' src={dropshipping}/>
+                  </div>
+                  <div className="search-bar">
+                    <TextField
+                      value={value}
+                      onChange={handleChange}
+                      autoComplete="off"
+                      placeholder="Search"
+                    />
+                  </div>
+                  <div className="other-icon">
+                    <ul
+                      id="userbar"
+                      className="pf-p-0 pf-m-0 pf-d-inline-block"
+                    >
+                      <Language />
+                      <Currency />
+                      <Notification />
+                      <User />
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </Toolbar>
+        </AppBar>
+        <Drawer
+          variant="permanent"
+          sx={{
+            width: drawerWidth,
+            flexShrink: 0,
+            [`& .MuiDrawer-paper`]: {
+              width: drawerWidth,
+              boxSizing: 'border-box',
+            },
+          }}
+        >
+          <Toolbar />
+          <Box sx={{ overflow: 'auto' }}>
+            {/* <List>
+              {nav.map((item) => (
+                <ListItem key={item.text} disablePadding>
+                  <ListItemButton component={Link} to={item.link}>
+                    <ListItemIcon>
+                      <span className={item.icon} />
+                    </ListItemIcon>
+                    <ListItemText primary={item.text} />
+                  </ListItemButton>
+                </ListItem>
+              ))}
+            </List> */}
+            {list('left')}
+          </Box>
+        </Drawer>
+        <Box component="main" sx={{ flexGrow: 1, background: "rgb(241, 241, 241, 1)" }}>
+          <main>
+            <div/>
+            {children}
+            <div>
+              <Footer />
+            </div>
+          </main>
+        </Box>
+      </Box>
+      {/* <div className={classes.root}>
         <CssBaseline />
         <AppBar className={classes.appBar}>
           <Toolbar>
@@ -555,49 +635,9 @@ const AdminLayout = ({ children, window }) => {
                         <Currency />
                         <Notification />
                         <User />
-
-                        {/* <li className="pf-d-inline-block">
-                          <Link
-                            className="pf-btn pf-btn-primary pf-ml-24 pf-mr-8 pf-mt-12"
-                            id="dashboard-new-order"
-                            to="/orders"
-                          >
-                            New order{' '}
-                          </Link>
-                        </li> */}
                       </ul>
                     </div>
                   </div>
-                  {/* <div
-                        id="sitewide-search-225d772b"
-                        className="sitewide-search__user-bar pf-mt-12"
-                      >
-                        <div
-                          id="sitewide-search"
-                          className="pf-w-100 pf-py-8 pf-py-sm-12 pf-py-md-0"
-                        >
-                          <div className=" sitewide-search--closed">
-                            <span className="pf-i pf-i-24 pf-i-magnify pf-position-absolute pf-mx-12 pf-my-8" />
-                            <input
-                              placeholder="Search products, services, articles, and more"
-                              type="search"
-                              id="sitewide-search-input"
-                              name="sitewide-search-input"
-                              autoComplete="off"
-                              className=" pf-px-48"
-                            />
-                            <input
-                              style={{
-                                opacity: 0,
-                                position: 'absolute',
-                                left: 0,
-                                zIndex: -1,
-                              }}
-                            />
-                            <div className="pf-i pf-i-24 pf-i-close pf-position-absolute pf-px-12 pf-py-8" />
-                          </div>
-                        </div>
-                      </div> */}
                 </div>
               </div>
             </div>
@@ -611,7 +651,7 @@ const AdminLayout = ({ children, window }) => {
             <Footer />
           </div>
         </main>
-      </div>
+      </div> */}
     </>
   );
 };

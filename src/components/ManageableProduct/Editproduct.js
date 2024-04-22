@@ -22,7 +22,7 @@ import Editdesign from './Editdesign';
 const useStyle = makeStyles({
     root: {
         '& .MuiPaper-elevation4': {
-            boxShadow: '2px 3px 5px 1px #e5e5e5',
+            // boxShadow: '2px 3px 5px 1px #e5e5e5',
         },
     },
 
@@ -83,7 +83,7 @@ function Editproduct() {
                 TransitionComponent={Transition}
                 onClose={onCloseDialog}
             >
-                <AppBar className={classes.appBar}>
+                {/* <AppBar className={classes.appBar}>
                     <Toolbar className="pf-d-flex pf-flex-wrap pf-justify-content-between pf-align-items-center">
                         <div>
                             <h4 className="pf-h3 pf-m-0 product-create">Create a product template</h4>
@@ -101,11 +101,7 @@ function Editproduct() {
                             <span className="pf-i pf-i-32 pf-i-close pf-modal__close-icon" onClick={onCloseDialog} />
                         </div>
                     </Toolbar>
-                </AppBar>
-
-                {/* <main className="modal-body mt-4" style={{ paddingBottom: 0 }}>
-                    {StepComponent}
-                </main> */}
+                </AppBar> */}
                 <main className="modal-body mt-4" style={{ paddingBottom: 0 }}>
                     {StepComponent}
                 </main>

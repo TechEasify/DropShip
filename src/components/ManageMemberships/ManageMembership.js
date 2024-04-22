@@ -336,7 +336,7 @@ function ManageMembership() {
     return (
         <>
             <div className='ManageMembership'>
-                <h2 className='category-heading'>Manage Membership</h2>
+                <h2 className='pf-h2 pf-my-40'>Manage Membership</h2>
                 <div className='manage-membership'>
                     <div className='manage-head'>
                         <h6>Plan</h6>

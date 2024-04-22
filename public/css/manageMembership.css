@@ -1,5 +1,6 @@
 .ManageMembership {
-    margin-top: 50px;
+    margin-top: 70px;
+    padding: 10px;
 }
 
 .manage-select {
@@ -121,8 +122,9 @@ button.MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-textPrimary.Mu
 /* Manage Tiers css */
 
 .manage-tiers {
-    margin-top: 50px;
+    margin-top: 70px;
     margin-bottom: 10px;
+    padding: 10px;
 }
 
 .tiers-month {
@@ -166,9 +168,10 @@ button.MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-textPrimary.Mu
 
 .digital-services {
     margin-bottom: 10px;
-    margin-top: 50px;
+    margin-top: 70px;
     /* width: 32%; */
     display: block;
+    padding: 10px;
 }
 
 .digital-menu {

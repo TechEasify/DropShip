@@ -47,6 +47,7 @@ export default function User() {
                 onClick={handleClick}
                 style={{ border: 'none' }}
                 type="button"
+                
               >
                 <i className="header__link__icon pf-i pf-i-account pf-i-24 pf-mr-auto pf-mr-sm-4" />
                 <span className="header__link__text dashboard__account-menu-text">

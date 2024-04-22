@@ -200,7 +200,7 @@ function Venders() {
     <>
       <div className="vender-main">
         <div className="vender-head">
-          <h2 className="category-heading">Manage Vendor</h2>
+          <h2 className="pf-h2">Manage Vendor</h2>
           <div className="filter-search-vender">
             <TextField
               autoComplete="off"
@@ -208,9 +208,9 @@ function Venders() {
               value={searchQuery}
               onChange={handleChange}
             />
-            <div className="search-icon">
+            {/* <div className="search-icon">
               <Icon source={SearchIcon} tone="base" />
-            </div>
+            </div> */}
           </div>
         </div>
         {filteredCards.length !== 0 ? (

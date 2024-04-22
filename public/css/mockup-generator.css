@@ -849,7 +849,7 @@
 .dynamic-sticky-footer {
   position: relative;
   width: 100%;
-  background: #fff;
+  background: rgb(26, 26, 26, 1);
   overflow: visible;
   min-height: 60px;
 }

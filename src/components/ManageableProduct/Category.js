@@ -233,7 +233,7 @@ function Category() {
                     <>
                         <div className="new-category">
                             <div className="main-text">
-                                {categoryData.id !== null ? <h2 className='category-heading'>Edit Category</h2> : <h2 className='category-heading'>New Category</h2>}
+                                {categoryData.id !== null ? <h2 className='product-heading'>Edit Category</h2> : <h2 className='product-heading'>New Category</h2>}
                                 <Button className="category-btn" onClick={() => setNewCategory(false)}>close</Button>
                             </div>
                             <div className="category-name">
@@ -337,7 +337,7 @@ function Category() {
                     :
                     <>
                         <div className='category-head'>
-                            <h2 className='category-heading'>Category</h2>
+                            <h1 className='product-heading'>Category</h1>
                             <Button className='category-btn' onClick={() => setNewCategory(true)}>New Category</Button>
                         </div>
                         <div style={{ height: 400, width: '100%' }}>

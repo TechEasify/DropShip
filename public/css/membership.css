@@ -82,13 +82,18 @@ button.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-contained
 .main-div {
   background: rgb(241, 241, 241, 1);
   overflow: hidden;
-  margin-top: 50px;
+  margin-top: 70px;
+  width: 1180px;
+  padding: 10px;
 }
 
 .member-cardDetail {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  background: rgb(241, 241, 241, 1);
 }
 
 .cardmember-contain {
@@ -257,8 +262,9 @@ span.MuiCircularProgress-root.MuiCircularProgress-determinate.MuiCircularProgres
 } */
 
 .Cardmember-slider {
-  padding-left: 10px;
-  padding-right: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 20px;
 }
 
 .saving-text {

@@ -8,7 +8,7 @@ import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import shortId from 'shortid';
 
-import { DialogActions } from '@mui/material';
+import { AppBar, DialogActions, Toolbar } from '@mui/material';
 
 import { clipByName } from '../../modules/ProductTemplate/utils';
 
@@ -22,8 +22,27 @@ import { ResetDesign } from '../../modules/ProductTemplate/action';
 import { useCanvas } from '../../modules/ProductTemplate/hooks';
 import Crop75Icon from '@mui/icons-material/Crop75';
 import BlurCircularIcon from '@mui/icons-material/BlurCircular';
-import {Icon} from '@shopify/polaris'
+import { Icon } from '@shopify/polaris';
 import { ProductFilledIcon } from '@shopify/polaris-icons';
+import { makeStyles } from '@mui/styles';
+
+const useStyle = makeStyles({
+  root: {
+    '& .MuiPaper-elevation4': {
+      // boxShadow: '2px 3px 5px 1px #e5e5e5',
+      borderRight: '1px solid rgb(255, 255, 255, .1)',
+    },
+  },
+
+  appBar: {
+    position: 'relative',
+    background: 'rgb(241, 241, 241, 1)',
+  },
+});
+
+const Transition = React.forwardRef((props, ref) => (
+  <Slide direction="up" ref={ref} {...props} />
+));
 
 const labelName = {
   front: 'Main',
@@ -31,6 +50,7 @@ const labelName = {
 };
 
 function Editdesign() {
+  const classes = useStyle();
   const location = useLocation();
 
   const templateImage =
@@ -497,72 +517,50 @@ function Editdesign() {
     history.push('/admin/manageable/products');
   };
 
+  const onCloseDialog = () => {
+    dispatch(ResetDesign());
+    history.push('/admin/manageable/products');
+  };
+
   return (
     <>
       <div className="dropzone dropzone-1" id="js--product-push-designer">
         <div className="row">
-          <div className="design-img col-12 pf-mt-md-8 pf-mb-md-48">
-            <div class="designer-sidebar pf-w-100">
-              {/* <aside
-                                aria-label="Design Maker sidebar"
-                                class="sidebar-navigation pf-d-flex pf-align-items-center pf-scrollbar-hide"
-                            >
-                                <nav data-v-0a2c8d53="">
-                                    <button
-                                        onClick={() => handleButtonClick('product')}
-                                        className={`item pf-text-center pf-py-8 pf-py-md-12 pf-px-2 pf-my-8 pf-my-md-4 pf-cursor-pointer pf-d-inline-block pf-d-md-block pf-btn-unstyled ${activeButton === 'product' ? 'active' : ''}`}
-                                    >
-                                        <i className="sidebar-navigation-icon pf-i pf-i-24 pf-i-tshirt-crew-outline"></i>
-                                        <span className="title pf-ui-legal pf-d-block pf-mt-4">Product</span>
-                                    </button>
-                                    <button
-                                        onClick={() => handleButtonClick('layers')}
-                                        className={`item pf-text-center pf-py-8 pf-py-md-12 pf-px-2 pf-my-8 pf-my-md-4 pf-cursor-pointer pf-d-inline-block pf-d-md-block pf-btn-unstyled ${activeButton === 'layers' ? 'active' : ''}`}
-                                    >
-                                        <i className="sidebar-navigation-icon pf-i pf-i-24 pf-i-layers-outline"></i>
-                                        <span className="title pf-ui-legal pf-d-block pf-mt-4">Layers</span>
-                                    </button>
-                                </nav>
-                                <hr data-v-0a2c8d53="" class="divider pf-my-4" />
-                            </aside> */}
-              <aside
-                aria-label="Design Maker sidebar"
-                class="sidebar-navigation pf-d-flex pf-align-items-center pf-scrollbar-hide"
-              >
-                  {/* <input
-                                        type="file"
-                                        id="fileInput"
-                                        style={{ display: 'none' }}
-                                        onChange={handleFileSelect}
-                                    />
-                                    <button
-                                        onClick={() => handleButtonClick('uploads')}
-                                        className={`item pf-text-center pf-py-8 pf-py-md-12 pf-px-2 pf-my-8 pf-my-md-4 pf-cursor-pointer pf-d-inline-block pf-d-md-block pf-btn-unstyled ${activeButton === 'uploads' ? 'active' : ''}`}
-                                    >
-                                        <i data-v-f7d35098="" data-test="" aria-hidden="true" class="sidebar-navigation-icon pf-i pf-i-24 pf-i-upload"></i> <span data-v-f7d35098="" class="title pf-ui-legal pf-d-block pf-mt-4">Uploads</span>
-                                    </button>
-                                    <button
-                                        onClick={() => handleButtonClick('text')}
-                                        className={`item pf-text-center pf-py-8 pf-py-md-12 pf-px-2 pf-my-8 pf-my-md-4 pf-cursor-pointer pf-d-inline-block pf-d-md-block pf-btn-unstyled ${activeButton === 'text' ? 'active' : ''}`}
-                                    >
-                                        <i data-v-f7d35098="" data-test="" aria-hidden="true" class="sidebar-navigation-icon pf-i pf-i-24 pf-i-format-text"></i> <span data-v-f7d35098="" class="title pf-ui-legal pf-d-block pf-mt-4">Text</span>
-                                    </button> */}
-
+          <div
+            className={classes.root}
+            fullWidth
+            maxWidth="xl"
+            open
+            TransitionComponent={Transition}
+            onClose={onCloseDialog}
+          >
+            <AppBar className={classes.appBar}>
+              <Toolbar className="pf-d-flex pf-flex-wrap pf-justify-content-between pf-align-items-center">
+                <div>
+                  <h4 className="pf-h3 pf-m-0 product-create">
+                    Product Template
+                  </h4>
+                </div>
+                <div>
                   <div className="btn-rectangle">
                     <button
                       onClick={() => handleChangeClipType('rectangle')}
                       className={`item pf-text-center pf-py-8 pf-py-md-12 pf-px-2 pf-my-8 pf-my-md-4 pf-cursor-pointer pf-d-inline-block pf-d-md-block pf-btn-unstyled ${
                         clipType === 'rectangle' ? 'active' : ''
                       }`}
-                      style={{ fontSize: 13 }}
+                      style={{ fontSize: 13, marginRight: '10px' }}
                     >
-                      <div>
+                      <div className="label-icon">
                         <Crop75Icon className="sidebar-navigation-icon pf-i pf-i-24 pf-i-format-text" />
+                        <span
+                          data-v-f7d35098=""
+                          class="title pf-ui-legal pf-d-block pf-mt-4"
+                        >
+                          Rectangle
+                        </span>
                       </div>
-                      Rectangle
                     </button>
-                  </div>
-                  <div className="btn-rectangle">
+
                     <button
                       onClick={() => handleChangeClipType('circle')}
                       className={`item pf-text-center pf-py-8 pf-py-md-12 pf-px-2 pf-my-8 pf-my-md-4 pf-cursor-pointer pf-d-inline-block pf-d-md-block pf-btn-unstyled ${
@@ -570,43 +568,97 @@ function Editdesign() {
                       }`}
                       style={{ fontSize: 13 }}
                     >
-                      <div>
+                      <div className="label-icon">
                         <BlurCircularIcon className="sidebar-navigation-icon pf-i pf-i-24 pf-i-format-text" />
+                        <span
+                          data-v-f7d35098=""
+                          class="title pf-ui-legal pf-d-block pf-mt-4"
+                        >
+                          Circle
+                        </span>
                       </div>
-                      Circle
                     </button>
                   </div>
-                  <hr data-v-0a2c8d53="" class="divider pf-my-4" />
-                  <div className="btn-design">
-                    <button
-                      className={`item pf-text-center pf-py-8 pf-py-md-12 pf-px-2 pf-my-8 pf-my-md-4 pf-cursor-pointer pf-d-inline-block pf-d-md-block pf-btn-unstyled disable`}
-                      style={{ background: 'beige' }}
-                    >
-                      <Icon source={ProductFilledIcon} tone="base" />
-                      <span className="title pf-ui-legal pf-d-block pf-mt-4">
-                        Product
-                      </span>
-                    </button>
-                  </div>
-              </aside>
-            </div>
-            {/* <TabProduct
-                            onChooseColor={onChooseColor}
-                            visible={tab === 'product' ? 'block' : 'none'}
-                        /> */}
-            <TabDesign
-              canvas={canvas}
-              onChooseImage={handleFileSelect}
-              onSaveTextObject={onSaveTextObject}
-              visible={tab === 'design' ? 'block' : 'none'}
-            />
+                </div>
+                <div className="order-3 text-right basis-md-auto basis-20">
+                  <span
+                    className="pf-i pf-i-32 pf-i-close pf-modal__close-icon"
+                    onClick={onCloseDialog}
+                  />
+                </div>
+              </Toolbar>
+            </AppBar>
           </div>
-          <div
-            className="col-12 col-md-8 pr-0"
-            style={{ padding: 0, height: 1080 }}
-            ref={canvasSize}
-          >
-            <div className="text-center">
+
+          {/* <div className="design-img col-12 pf-mt-md-8 pf-mb-md-48">
+            <div class="designer-sidebar pf-w-100">
+            <aside
+                aria-label="Design Maker sidebar"
+                class="sidebar-navigation pf-d-flex pf-align-items-center pf-scrollbar-hide"
+              >
+                <div className="btn-rectangle">
+                  <button
+                    onClick={() => handleChangeClipType('rectangle')}
+                    className={`item pf-text-center pf-py-8 pf-py-md-12 pf-px-2 pf-my-8 pf-my-md-4 pf-cursor-pointer pf-d-inline-block pf-d-md-block pf-btn-unstyled ${
+                      clipType === 'rectangle' ? 'active' : ''
+                    }`}
+                    style={{ fontSize: 13 }}
+                  >
+                    <div>
+                      <Crop75Icon className="sidebar-navigation-icon pf-i pf-i-24 pf-i-format-text" />
+                    </div>
+                    Rectangle
+                  </button>
+                </div>
+                <div className="btn-rectangle">
+                  <button
+                    onClick={() => handleChangeClipType('circle')}
+                    className={`item pf-text-center pf-py-8 pf-py-md-12 pf-px-2 pf-my-8 pf-my-md-4 pf-cursor-pointer pf-d-inline-block pf-d-md-block pf-btn-unstyled ${
+                      clipType === 'circle' ? 'active' : ''
+                    }`}
+                    style={{ fontSize: 13 }}
+                  >
+                    <div>
+                      <BlurCircularIcon className="sidebar-navigation-icon pf-i pf-i-24 pf-i-format-text" />
+                    </div>
+                    Circle
+                  </button>
+                </div>
+                <hr data-v-0a2c8d53="" class="divider pf-my-4" />
+                <div className="btn-design">
+                  <button
+                    className={`item pf-text-center pf-py-8 pf-py-md-12 pf-px-2 pf-my-8 pf-my-md-4 pf-cursor-pointer pf-d-inline-block pf-d-md-block pf-btn-unstyled disable`}
+                    style={{ background: 'beige' }}
+                  >
+                    <Icon source={ProductFilledIcon} tone="base" />
+                    <span className="title pf-ui-legal pf-d-block pf-mt-4">
+                      Product
+                    </span>
+                  </button>
+                </div>
+              </aside>
+
+              </div>
+              </div> */}
+        </div>
+        <TabDesign
+          canvas={canvas}
+          onChooseImage={handleFileSelect}
+          onSaveTextObject={onSaveTextObject}
+          visible={tab === 'design' ? 'block' : 'none'}
+        />
+      </div>
+      <div
+        className="col-12 col-md-8 pr-0"
+        style={{
+          padding: 0,
+          margin: '40px auto',
+          height: '85vh',
+          overflow: 'hidden',
+        }}
+        ref={canvasSize}
+      >
+        {/* <div className="text-center">
               <ul className="pf-tabs secondary tabs-center " style={{ top: 0 }}>
                 <div className="tab-wrap">
                   {Object.keys(objects).map((key) => (
@@ -627,16 +679,12 @@ function Editdesign() {
                   <i className="pf-i pf-i-chevron-right pf-i-24" />
                 </span>
               </ul>
-            </div>
+            </div> */}
 
-            <canvas id="c" ref={canvasZone} />
-          </div>
-        </div>
+        <canvas id="c" ref={canvasZone} style={{ margin: '0 auto' }} />
       </div>
 
-      <DialogActions
-        style={{ position: 'sticky', bottom: 0, backgroundColor: 'white' }}
-      >
+      <DialogActions style={{ background: 'rgb(26, 26, 26, 1)' }}>
         <div className="dynamic-sticky-footer  pf-p-0">
           <div className="dynamic-sticky-footer__second-wrap">
             <div className="dynamic-sticky-footer__second">
@@ -664,6 +712,9 @@ function Editdesign() {
                         <span className="pf-i pf-i-chevron-right pf-i-16 pf-pl-8" />
                       </a>
                     </div>
+                  </div>
+                  <div className="col-12 col-md-auto order-3 order-md-2">
+                    <div className="pf-text-red pf-bold pf-pb-8 pf-pb-md-0 pf-px-8" />
                   </div>
                 </div>
               </div>

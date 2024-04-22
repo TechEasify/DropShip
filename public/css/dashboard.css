@@ -390,7 +390,7 @@
   color: #232323;
   font-size: 40px;
   font-weight: 600;
-  margin-top: 30px;
+  margin-top: 50px;
 }
 @media (max-width: 991.98px) {
   .dashboard-home__welcome {
@@ -2505,6 +2505,7 @@ table.billing div.status-label.success {
 
 .headerbar {
   display: flex;
+  justify-content: center;
 }
 
 .drawer-icon {
@@ -2564,17 +2565,28 @@ table.billing div.status-label.success {
   display: none;
 }
 .dashboard__sidebar {
-  /* position: fixed;
+  position: fixed;
   width: 232px;
   top: 64px;
   bottom: 0;
   left: 0;
-  z-index: 100; */
+  z-index: 100;
+  background-color: rgb(235, 235, 235);
   /* border-right: 1px solid #e5e5e5; */
-  /* box-shadow: 8px 0 10px -2px rgba(0, 0, 0, 0.05); */
-  display: flex;
-  flex-direction: column;
+  /* box-shadow: 8px 0 10px -2px rgba(0, 0, 0, 0.05);
+  /* display: flex;
+  flex-direction: column; */
 }
+
+
+main.MuiBox-root.css-zxdg2z {
+  padding: 0 !important;
+}
+
+.other-icon {
+  width: 325px;
+}
+
 
 .MuiPaper-root.MuiPaper-elevation.MuiPaper-elevation16.MuiDrawer-paper.MuiDrawer-paperAnchorLeft.css-4t3x6l-MuiPaper-root-MuiDrawer-paper {
   scrollbar-width: thin;
@@ -2648,6 +2660,14 @@ table.billing div.status-label.success {
   color: #232323;
   font-size: 14px;
   font-weight: 500;
+}
+
+.dashboard__sidebar ul li a:active{
+  background: rgba(250, 250, 250, 1);
+  font-weight: 700;
+  letter-spacing: -0.25px;
+  /* color: white; */
+  border-radius: 5px;
 }
 
 li.dropdown.notification-li {
@@ -4590,6 +4610,12 @@ a.close-button {
 .billing-transactions .transactions table.dataTable thead tr th {
   text-align: center;
 }
+
+.billing {
+  margin-top: 70px;
+  padding: 10px;
+}
+
 .billing-transactions
   .transactions
   table.dataTable
@@ -7386,8 +7412,9 @@ body.pf-lang--de .product-push-add .add-block .info-arrow {
 }
 
 .dashboard-detail {
-  margin-bottom: 20px;
-  margin-top: 20px;
+  /* margin-bottom: 20px;
+  margin-top: 20px; */
+  margin: 20px;
 }
 
 /* .Polaris-Button.Polaris-Button svg {
@@ -7397,6 +7424,7 @@ body.pf-lang--de .product-push-add .add-block .info-arrow {
 .name-value {
   display: flex;
   align-items: center;
+  font-size: 13px;
 }
 
 .dash-cardtext {
@@ -7441,6 +7469,8 @@ p.oders-value {
   margin-bottom: 30px;
   display: flex;
   margin-top: 30px;
+  max-width: 1115px;
+  margin-left: 20px;
 }
 
 h4.tranding-text {
@@ -7467,11 +7497,24 @@ h4.tranding-text {
 }
 
 .dashoard-step {
-  margin-right: 10px;
+  margin-right: 20px;
   width: 23%;
+  margin-left: 20px;
 }
+
+header.MuiPaper-root.MuiPaper-elevation.MuiPaper-elevation4.MuiAppBar-root.MuiAppBar-colorPrimary.MuiAppBar-positionFixed.mui-fixed.css-ivnu1y-MuiPaper-root-MuiAppBar-root {
+  background: rgb(141 131 131) !important;
+  box-shadow: 2px 3px 5px 1px #998989;
+} 
 
 img.img-responsive.pf-m-auto {
   border-radius: inherit;
 }
 
+
+
+/* Navbar */
+
+header.MuiPaper-root.MuiPaper-elevation.MuiPaper-elevation4.MuiAppBar-root.MuiAppBar-colorPrimary.MuiAppBar-positionFixed.mui-fixed.css-l9her-MuiPaper-root-MuiAppBar-root {
+  background: rgb(241, 241, 241, 1) !important;
+}

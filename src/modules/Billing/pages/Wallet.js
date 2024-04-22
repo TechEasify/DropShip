@@ -155,7 +155,7 @@ function Wallet() {
                     <div className='Wallet-main'>
                         <div className='wallet-top'>
                             <div className='wallet-head'>
-                                <h2 className='category-heading'>Billing: Dropship Wallet</h2>
+                                <h2 className='pf-h2 pf-my-40'>Billing: Dropship Wallet</h2>
                             </div>
                             <br />
                             <div className='wallet-detail'>
